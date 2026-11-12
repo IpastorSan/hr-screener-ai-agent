@@ -13,8 +13,8 @@ Ana screens delivery-driver applicants for Grupo Sazón, a fictional restaurant 
 You need [uv](https://docs.astral.sh/uv/) and Node 26 (`mise install` sets up both Python 3.13 and Node). Then:
 
 ```sh
-git clone <this repo> sazon-screener
-cd sazon-screener
+git clone https://github.com/IpastorSan/hr-screener-ai-agent.git
+cd hr-screener-ai-agent
 make demo
 ```
 
