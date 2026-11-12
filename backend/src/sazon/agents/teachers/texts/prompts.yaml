@@ -1,0 +1,77 @@
+# The teacher agent in the model prompts (`llm/prompts/*.md`): every `{slot}` there is filled
+# from here, `{persona}` and `{company}` from `persona`, `{fields}` from `fields`. The school hires
+# only in Spain: the prompts' Mexican lines get what keeps a stray usted message in tú.
+persona:
+  name: Ana
+  company: Colegio Albéniz
+slots:
+  # In several prompts
+  hires: teachers for Infantil, Primaria, ESO, Bachillerato and FP
+  countries: Spain (three campuses in the northwest of Madrid)
+  # respond.md
+  words_es: '"móvil", "vale", "sede", "etapa", "jefatura de departamento"'
+  usted_examples: 'the school hires only in Spain; answer in tú even if they write "usted"'
+  words_mx: '"móvil", "sede" (never "celular" or "plantel")'
+  tone: like a friendly head of studies talking to a new colleague
+  location_examples: '"la sede de Aravaca", "el colegio de Las Rozas", "our Pozuelo campus"'
+  brand: Colegio Albéniz
+  concrete: a subject, a stage, how long
+  more_detail: the campus or the town
+  confirm_value: '`start_date`: read back `value` and ask if it is right. `campus` with `location_id`:
+    the place matched that campus only loosely; ask whether they mean it, named as in the reference
+    ("¿Te refieres a la sede de Pozuelo?"). `experience_years`: `value` is years of teaching; read
+    them back and ask if that is right ("Para confirmar, ¿son 30 años dando clase?"). Never suggest
+    you doubt them.'
+  gate_close: degree, master's or certificate
+  # summarize.md
+  country_words: Spain (`ES`) "móvil", "sede", "jefatura de departamento", "Máster de Profesorado".
+  # extract.md
+  job: a teaching job
+  short_answer: '"sí" while the awaited field is `english_c1` is `english_c1: true`'
+  code_switch: '"puedo full time" is workload `jornada_completa`'
+  question_examples: salary, timetable, the bilingual programme, the collective agreement
+  correction_example: '"perdona, en realidad solo media jornada"'
+  read_back: '`certificado_delitos_sexuales`: no read-back; a no is final, and "todavía no" or "lo pido
+    mañana" is `"in_progress"`.'
+  follow_up_examples: '"¿y en Primaria también?" after she said what ESO pays → "¿Cuánto se paga en
+    Primaria?"; "¿y eso cuánto es al mes?" after a yearly salary → "¿Cuánto se gana al mes?"; "and
+    in the summer?" after an answer about the calendar → "Do teachers work in July?".'
+  standalone: ¿Hay que dar clases en inglés?
+  matrix_es: '"puedo dar maths y physics", "tengo el C1 de English", "estoy ready para empezar en
+    septiembre"'
+  matrix_en: '"I teach Lengua", "I live in Las Rozas"'
+  mixed_example: '"Tengo el máster, but I only want media jornada"'
+  apology_example: '"Perdona, llevo un día horrible. Matemáticas y Física" is `answer` with subjects
+    [matematicas, fisica_quimica]'
+# How the extractor reads each field: its line in `extract.md`, the wording that steers what
+# it reports.
+fields:
+  full_name: the name as written, trimmed, abbreviations included ("Juan Hdz"). Do not add surnames.
+  phone: the number as written, digits and a leading + only (remove spaces, dots, dashes, parentheses).
+    Keep the country code only if the candidate wrote it.
+  email: lowercased, trimmed. Undo spoken forms ("arroba" → @, "punto" → .).
+  levels: list from `infantil`, `primaria`, `eso`, `bachillerato`, `fp` ("secundaria" → [`eso`, `bachillerato`];
+    "ciclos" or "formación profesional" → `fp`).
+  subjects: list from `matematicas`, `lengua`, `ingles`, `fisica_quimica`, `biologia`, `geografia_historia`,
+    `educacion_fisica`, `musica`, `tecnologia`; anything else as the name they used (e.g. "Filosofía").
+    "Mates" means `matematicas`, "FyQ" means `fisica_quimica`.
+  grado_maestro: '`true` if they hold the Grado en Maestro (Infantil or Primaria) or the older
+    Diplomatura de Magisterio; `false` if they do not; `"in_progress"` if they are still studying it
+    ("me falta el TFG"); `"not_valid"` if it is foreign and not yet recognised in Spain (homologación).'
+  master_profesorado: '`true` if they hold the Máster Universitario en Formación del Profesorado, or
+    the CAP obtained before October 2009; `false` if they do not; `"in_progress"` if they are doing it
+    now ("me falta el TFM"); `"not_valid"` if it is foreign and not yet recognised.'
+  certificado_delitos_sexuales: '`true` if they have the certificado negativo del Registro Central de
+    Delincuentes Sexuales; `false` if they cannot get one; `"in_progress"` if they have requested it
+    or will ("lo pido mañana", "todavía no"); `"not_valid"` if theirs has expired.'
+  english_c1: '`true` if their English is C1 or above (C2, Cambridge Advanced or Proficiency, native);
+    `false` below C1.'
+  campus: the campus or town they name, as written ("Aravaca", "Las Rozas", "Pozuelo"); a zone of one
+    of them as said ("Somosaguas", "Las Matas").
+  workload: one of `jornada_completa`, `media_jornada`, `sustituciones`.
+  experience_years: 'years of teaching experience as a number. Months divide by 12 ("seis meses" 0.5).
+    No experience → 0. If they are vague ("unos años"), give their words as a string: never work
+    out a number from them.'
+  start_date: an ISO date (YYYY-MM-DD) resolved against today. "Ya", "inmediato" → today. "En septiembre"
+    → the 1st of its next occurrence. "El próximo curso" → the 1st of the next September. No resolvable
+    date → leave it out.

@@ -1,0 +1,26 @@
+# One contact point for every alert: a webhook (Slack, Google Chat or any receiver that takes
+# Grafana's JSON) and an email, which needs GRAFANA_SMTP_* to be sent.
+apiVersion: 1
+
+contactPoints:
+  - orgId: 1
+    name: sazon-ops
+    receivers:
+      - uid: sazon-ops-webhook
+        type: webhook
+        settings:
+          url: $ALERT_WEBHOOK_URL
+          httpMethod: POST
+      - uid: sazon-ops-email
+        type: email
+        settings:
+          addresses: $ALERT_EMAIL
+          singleEmail: true
+
+policies:
+  - orgId: 1
+    receiver: sazon-ops
+    group_by: ["alertname"]
+    group_wait: 30s
+    group_interval: 5m
+    repeat_interval: 4h

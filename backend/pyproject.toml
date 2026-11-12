@@ -1,0 +1,82 @@
+[project]
+name = "sazon"
+version = "0.1.0"
+description = "Candidate-screening agent for delivery driver hiring"
+authors = [
+    { name = "IpastorSan" }
+]
+requires-python = ">=3.13"
+dependencies = [
+    "alembic>=1.20.0",
+    "apscheduler>=3.11.3",
+    "argon2-cffi>=25.1.0",
+    "cryptography>=44",
+    "fastapi>=0.148.0",
+    "fastembed>=0.9.0",
+    "google-auth>=2.40",
+    "httpx>=0.28",
+    "itsdangerous>=2.2.0",
+    "opentelemetry-exporter-otlp-proto-http>=1.45.1",
+    "opentelemetry-instrumentation-fastapi>=0.66b1",
+    "opentelemetry-sdk>=1.45.1",
+    "phonenumbers>=9.0.41",
+    "prometheus-client>=0.26.0",
+    "prometheus-fastapi-instrumentator>=8.1.0",
+    "pydantic>=2",
+    "pydantic-ai-slim[openrouter]>=2.57.0",
+    "pydantic-settings>=2.16.0",
+    "python-dateutil>=2.9.0.post0",
+    "pyyaml>=6.0.3",
+    "rapidfuzz>=3.14.6",
+    "sqlmodel>=0.0.48",
+    "uvicorn[standard]>=0.54.0",
+]
+
+[project.scripts]
+sazon = "sazon.cli:main"
+
+[build-system]
+requires = ["uv_build>=0.9.13,<0.10.0"]
+build-backend = "uv_build"
+
+[tool.ruff]
+line-length = 100
+target-version = "py313"
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "W", "F", "I", "B", "UP", "SIM", "C4", "RUF", "ASYNC", "PT"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["sazon"]
+
+[tool.pyright]
+pythonVersion = "3.13"
+typeCheckingMode = "standard"
+include = ["src", "tests", "scripts", "../evals"]
+venvPath = "."
+venv = ".venv"
+executionEnvironments = [
+    { root = "src" },
+    { root = "tests", extraPaths = ["src", "tests"] },
+    { root = "../evals", extraPaths = ["src", ".."] },
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests", "../evals"]
+pythonpath = ["..", "tests"]
+asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "function"
+addopts = "-m 'not live'"
+markers = ["live: calls OpenRouter; needs OPENROUTER_API_KEY (run with -m live)"]
+
+[dependency-groups]
+dev = [
+    "httpx2>=2.14.0",
+    "psycopg[binary]>=3.3.6",
+    "pyright>=1.1.414",
+    "pytest>=9.1.1",
+    "pytest-asyncio>=1.4.0",
+    "pytest-xdist>=3.8.0",
+    "ruff>=0.17.1",
+]

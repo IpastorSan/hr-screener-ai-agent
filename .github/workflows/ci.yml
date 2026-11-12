@@ -1,0 +1,66 @@
+name: CI
+
+on:
+  pull_request:
+  # Every branch, main included: with the deploy workflow disabled (the VM is gone), this is
+  # main's only check. Re-enabling deploy.yml runs them twice on main; drop main here then.
+  push:
+  workflow_call:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    name: make check
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      # Python 3.13 and Node from mise.toml, the versions pinned for the laptop.
+      - uses: jdx/mise-action@v2
+        with:
+          install: true
+          cache: true
+
+      - uses: astral-sh/setup-uv@v6
+        with:
+          version: "0.9.13"
+          enable-cache: true
+          cache-dependency-glob: backend/uv.lock
+
+      - name: Install dependencies
+        run: |
+          cd backend && uv sync --locked
+          cd ../web && npm ci --include=dev --no-audit --no-fund
+
+      # The embedding model (about 250 MB) for the FAQ and document retrieval tests, which fail
+      # in CI without it rather than skip. Keyed on the model; the vectors are rebuilt.
+      - uses: actions/cache@v4
+        with:
+          path: backend/.cache/models
+          key: fastembed-paraphrase-multilingual-MiniLM-L12-v2
+
+      - name: Retrieval index
+        run: cd backend && uv run sazon rag-index
+
+      - name: make check
+        run: make check
+
+  images:
+    name: Docker images build
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    strategy:
+      matrix:
+        image: [backend, web]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: docker/setup-buildx-action@v3
+      - uses: docker/build-push-action@v6
+        with:
+          context: ${{ matrix.image }}
+          push: false
+          cache-from: type=gha,scope=${{ matrix.image }}
+          cache-to: type=gha,mode=max,scope=${{ matrix.image }}

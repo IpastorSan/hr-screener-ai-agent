@@ -1,0 +1,66 @@
+# Langfuse (LLM traces) and Grafana (metrics, logs, alerts) on their own host names, with
+# automatic HTTPS like the main site. Both have their own login; signup is off in both.
+# Locally the names are ports (":3100", ":3200") on plain HTTP.
+#
+# The login POSTs are rate-limited per client IP (rate_limit, from github.com/mholt/caddy-ratelimit,
+# built into the image by deploy/caddy/Dockerfile): 10 per minute, then 429 with Retry-After.
+# Caddy is the edge, so {remote_host} is the client. Page loads and the API are not limited;
+# the API's traces reach Langfuse on the compose network and never pass through here.
+
+{$LANGFUSE_DOMAIN} {
+	encode zstd gzip
+	# `route` keeps rate_limit ahead of the proxy without a global `order` option.
+	route {
+		# NextAuth: the credentials form posts to callback/credentials; signin is the
+		# provider entry point.
+		rate_limit {
+			zone langfuse_login {
+				match {
+					method POST
+					path /api/auth/callback/credentials /api/auth/signin /api/auth/signin/*
+				}
+				key {remote_host}
+				events 10
+				window 1m
+			}
+		}
+		reverse_proxy langfuse-web:3000
+	}
+	header {
+		Strict-Transport-Security "max-age=31536000"
+		X-Content-Type-Options "nosniff"
+		-Server
+	}
+	log {
+		output stdout
+		format json
+	}
+}
+
+{$GRAFANA_DOMAIN} {
+	encode zstd gzip
+	# On top of Grafana's own lockout (5 failed logins lock the user for 5 minutes).
+	route {
+		rate_limit {
+			zone grafana_login {
+				match {
+					method POST
+					path /login
+				}
+				key {remote_host}
+				events 10
+				window 1m
+			}
+		}
+		reverse_proxy grafana:3000
+	}
+	header {
+		Strict-Transport-Security "max-age=31536000"
+		X-Content-Type-Options "nosniff"
+		-Server
+	}
+	log {
+		output stdout
+		format json
+	}
+}

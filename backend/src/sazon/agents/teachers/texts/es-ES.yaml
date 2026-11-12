@@ -1,0 +1,109 @@
+# What the teacher agent says in es-ES (Spain, tú): the domain's lines. The engine's own lines
+# are in llm/fallback_templates.py; `skeleton:` says some of them in the school's words.
+greet: ¡Hola! Soy Ana, la asistente de IA de selección del Colegio Albéniz. Son unas preguntas rápidas
+  y tus datos se tratan según el aviso de privacidad que tienes aquí abajo, ¿empezamos?
+greet_voice: ¡Hola! Soy Ana, la asistente de IA del Colegio Albéniz. ¿Aceptas el aviso de privacidad?
+overview: Te haré unas preguntas sobre tu formación y tu experiencia, son unos 4 minutos. Si encajas,
+  te reservo una entrevista con la jefatura de tu departamento.
+overview_voice: Son unas preguntas, unos 4 minutos. Si encajas, te reservo una entrevista.
+busy: ¡Hola! Soy Ana, la asistente de IA de selección del Colegio Albéniz. Ahora mismo no puedo abrir
+  solicitudes nuevas. Vuelve más tarde, por favor; mañana seguro que sí.
+clarify_open: ¿Me das un poco más de detalle?
+fields:
+  full_name:
+    ask: ¿Cuál es tu nombre completo?
+    refusal: Lo necesito para abrir tu solicitud y para la entrevista.
+    refusal_again: Sin tu nombre no puedo seguir con la solicitud.
+    unresolved: No he podido apuntar tu nombre y apellidos
+  phone:
+    ask: ¿Cuál es tu número de móvil?
+    refusal: Lo usamos solo para concertar, confirmar o cambiar la entrevista.
+    refusal_again: Sin móvil ni correo no puedo reservarte la entrevista.
+  email:
+    ask: ¿Y tu correo electrónico?
+    refusal: Sin el móvil, necesito al menos tu correo para la entrevista.
+    refusal_again: Sin móvil ni correo no puedo reservarte la entrevista.
+  levels:
+    ask: '¿En qué etapas quieres dar clase: Infantil, Primaria, ESO, Bachillerato o FP?'
+    ask_voice: ¿En qué etapas quieres dar clase?
+    refusal: Cada etapa pide una titulación distinta, así que necesito saberlo.
+    refusal_again: Sin saber la etapa no puedo seguir con la solicitud.
+    unresolved: No he podido confirmar en qué etapas quieres dar clase
+  subjects:
+    ask: ¿Qué materias puedes impartir?
+  grado_maestro:
+    ask: ¿Tienes el Grado en Maestro de Infantil o Primaria, o la diplomatura de Magisterio?
+  master_profesorado:
+    ask: ¿Tienes el Máster de Formación del Profesorado, o el CAP de antes de 2009?
+  certificado_delitos_sexuales:
+    ask: ¿Tienes el certificado negativo del Registro Central de Delincuentes Sexuales?
+    refusal: La ley lo exige a todo el que trabaja con menores, así que necesito saberlo.
+    refusal_again: Sin esa respuesta no puedo seguir con la solicitud.
+    unresolved: No he podido confirmar si tienes el certificado de delitos sexuales
+  english_c1:
+    ask: Somos un colegio bilingüe. ¿Tienes un nivel de inglés C1 o superior?
+  campus:
+    ask: '¿En qué sede te gustaría trabajar: Aravaca, Las Rozas o Pozuelo?'
+    ask_voice: ¿En qué sede te gustaría trabajar?
+    refusal: Lo necesito para buscarte la entrevista en esa sede.
+    refusal_again: Sin la sede no puedo seguir con la solicitud.
+    unresolved: No he podido confirmar en qué sede quieres trabajar
+  workload:
+    ask: '¿Qué buscas: jornada completa, media jornada o sustituciones?'
+    ask_voice: ¿Buscas jornada completa, media jornada o sustituciones?
+  experience_years:
+    ask: ¿Cuántos años de experiencia tienes dando clase?
+    read_back: Para confirmar, ¿son {years} dando clase?
+    read_back_voice: ¿Son {years} dando clase?
+  start_date:
+    ask: ¿Cuándo podrías incorporarte?
+    read_back: Tengo el {value} como fecha de incorporación. ¿Es correcto?
+hints:
+  name_too_short: Necesito tu nombre y apellido.
+  name_needs_surname: Necesito también tus apellidos.
+  name_too_long: Ese nombre es demasiado largo.
+  name_has_digits: El nombre no puede llevar números.
+  name_invalid_chars: El nombre solo puede llevar letras.
+  phone_invalid: Ese número no me cuadra, por ejemplo 612 345 678.
+  phone_not_mobile: Necesito un móvil, no un fijo.
+  email_invalid: Ese correo no parece válido.
+  license_invalid: No me ha quedado claro.
+  out_of_area: Tenemos sedes en Aravaca, Las Rozas y Pozuelo.
+  answer_invalid: No me ha quedado claro.
+  experience_invalid: Dímelo en años o meses, por ejemplo 2 años.
+  experience_out_of_range: Esa cifra no me cuadra.
+  experience_needs_number: Dime cuántos meses o años, más o menos.
+  date_invalid: No he entendido la fecha, por ejemplo el lunes o el 1 de septiembre.
+  past_date: Esa fecha ya ha pasado.
+closes:
+  no_grado_maestro: &grado Para Infantil y Primaria la ley pide el Grado en Maestro, así que ahora no podemos
+    seguir. Puedes volver a aplicar cuando lo tengas.
+  grado_maestro_not_valid: *grado
+  grado_maestro_in_progress: Para Infantil y Primaria necesitas el Grado en Maestro terminado, así que ahora
+    no podemos seguir. ¿Quieres que guardemos tus datos en nuestra bolsa de candidatos para cuando lo tengas?
+  no_master: &master Para ESO, Bachillerato y FP la ley pide el Máster de Formación del Profesorado o el CAP,
+    así que ahora no podemos seguir. Puedes volver a aplicar cuando lo tengas.
+  master_not_valid: *master
+  master_in_progress: Para ESO, Bachillerato y FP necesitas el Máster de Formación del Profesorado terminado,
+    así que ahora no podemos seguir. ¿Quieres que guardemos tus datos en nuestra bolsa de candidatos para
+    cuando lo tengas?
+  no_certificate: &certificate Para trabajar con menores la ley pide el certificado negativo del Registro
+    Central de Delincuentes Sexuales, así que no podemos seguir con la solicitud.
+  certificate_not_valid: *certificate
+# The interview is with the head of department, by video, or with the head of studies at the
+# campus.
+skeleton:
+  clarify_place: ¿Te refieres a la sede de {options}?
+  confirm_location: Te corresponde la sede de {location}. ¿Es correcto?
+  no_slots: Ahora mismo no tengo horarios de entrevista libres en tu sede.
+  offer_slots: 'Tengo estos huecos para la entrevista con la jefatura de estudios de la sede de {location}:
+    {slots}. ¿Cuál te viene mejor?'
+  offer_slots_video: 'Tengo estos huecos para la videollamada con la jefatura de tu departamento: {slots}.
+    ¿Cuál te viene mejor?'
+  confirm_booking: Listo, tu entrevista es el {when} con la jefatura de estudios de la sede de {location},
+    {address}. Prepara una clase demo de 15 minutos de un tema de tu elección. Si no puedes ir, escribe
+    aquí y la cambiamos.
+  confirm_booking_voice: Listo, tu entrevista es el {when} con la jefatura de estudios de la sede de {location}.
+  confirm_video: Listo, tu entrevista por videollamada con la jefatura de tu departamento es el {when}.
+    Prepara una clase demo de 15 minutos de un tema de tu elección.
+  confirm_video_voice: Listo, tu videollamada con la jefatura de tu departamento es el {when}.

@@ -1,0 +1,126 @@
+# Seed journeys: the written chat in Spain and Mexico. Format: evals/journeys/README.md.
+# The clock starts on Monday 19 October 2026, 10:00 in Madrid. Fictional people and data only.
+
+- id: happy_es_booked
+  description: Spain, country-wide posting. Answers every question, picks a video call and the first time offered.
+  country: ES
+  steps:
+    - tap: "yes"
+      expect: {asks: full_name, register: tu, language: es}
+    - say: Lucía Fernández Gil
+      expect: {asks: phone, ui: phone}
+    - tap: {country: ES, number: "612345601"}
+      expect: {asks: email, resumed: false}
+    - say: lucia.fernandez@example.com
+      expect: {asks: has_license}
+    - say: Sí, tengo el B
+      offline_say: sí
+      expect: {asks: city}
+    - say: Vivo en Lavapiés
+      offline_say: Lavapiés
+      expect: {asks: availability}
+    - say: Media jornada y los fines de semana
+      offline_say: tiempo parcial
+      expect: {asks: schedule}
+    - say: Por las tardes
+      offline_say: tardes
+      expect: {asks: experience_years}
+    - say: 2 años
+      offline_say: "2"
+      expect: {asks: platforms}
+    - say: Glovo
+      expect: {asks: start_date}
+    - say: El lunes que viene
+      offline_say: "2026-10-26"
+      expect: {asks: confirm, ui: confirm}
+    - tap: "yes"
+      expect: {asks: mode, outcome: qualified, ui: quick_replies}
+    - tap: video
+      expect: {asks: slot, ui: slots, register: tu}
+    - tap: slot:1
+      expect:
+        action: confirm_booking
+        booked: true
+        mode: video
+        ui: booking
+        outcome: qualified
+        live: {reply_not_matches: "https?://"}
+
+- id: mx_contact_question_no_license
+  description: Mexico. Asks why the email is needed while it is pending, gives it, has no license; usted throughout.
+  country: MX
+  steps:
+    - tap: "yes"
+      expect: {asks: full_name, register: usted}
+    - say: Jorge Ramírez Ortega
+      expect: {asks: phone, ui: phone}
+    - tap: {country: MX, number: "5512345602"}
+      expect: {asks: email}
+    - say: ¿Para qué quieren mi correo?
+      expect:
+        action: answer_question
+        asks: email
+        register: usted
+        live:
+          faq_source: any
+          reply_not_matches: "no tengo (esa|esta) informaci"
+    - say: jorge.ramirez@example.com
+      expect: {asks: has_license, register: usted}
+    - say: No, no tengo licencia
+      offline_say: "no"
+      expect:
+        action: disqualify
+        outcome: disqualified
+        reason: no_license
+        register: usted
+        closed: true
+
+- id: reapply_after_no_license
+  description: Spain. Closed for no license; three days later the same phone applies again, gets a fresh application and books.
+  country: ES
+  candidate:
+    language: Spanish from Spain, casual and brief.
+    truth:
+      full_name: Marta Ruiz Peña
+      phone: "+34612345604"
+      email: marta.ruiz@example.com
+      has_license: true
+      location_id: es-mad-centro
+      availability: [full_time]
+      schedule: morning
+      experience_years: 1
+      platforms: [uber_eats]
+      start_date: "2026-10-26"
+      interview_mode: onsite
+  sessions:
+    - steps:
+        - tap: "yes"
+          expect: {asks: full_name}
+        - say: Marta Ruiz Peña
+          expect: {asks: phone}
+        - tap: {country: ES, number: "612345604"}
+          expect: {asks: email}
+        - say: marta.ruiz@example.com
+          expect: {asks: has_license}
+        - say: No, todavía no tengo carnet
+          offline_say: "no"
+          expect: {action: disqualify, outcome: disqualified, reason: no_license}
+    - after: 3d
+      steps:
+        - tap: "yes"
+          expect: {asks: full_name, resumed: false}
+        - say: Marta Ruiz Peña
+          expect: {asks: phone}
+        - tap: {country: ES, number: "612345604"}
+          expect: {asks: email, resumed: false, outcome: in_progress}
+        - say: marta.ruiz@example.com
+          expect: {asks: has_license, resumed: false, outcome: in_progress}
+        - say: Ya tengo el carnet
+          offline_say: sí
+          expect: {asks: city, outcome: in_progress}
+        - persona: >-
+            Madrileña de 24 años que vive en Lavapiés y acaba de sacarse el carnet. Coopera, contesta
+            corto y en persona; coge la primera hora que le ofrezcan.
+          until: {action: confirm_booking}
+          max_turns: 14
+          expect: {booked: true, mode: onsite, outcome: qualified, resumed: false}

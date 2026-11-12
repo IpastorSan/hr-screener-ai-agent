@@ -1,0 +1,125 @@
+{
+  "_comment": "Demo recruiters for `sazon seed`. Demo passwords only: `sazon seed` leaves them unset when ENV=production (use `sazon set-password`).",
+  "recruiters": [
+    {
+      "name": "Lucía Fernández",
+      "email": "lucia.reclutadora@gruposazon.example",
+      "country": "ES",
+      "location_ids": [
+        "es-mad-centro",
+        "es-mad-norte",
+        "es-mad-sur",
+        "es-mad-este",
+        "es-vll-centro",
+        "es-zgz-centro",
+        "es-bio-centro"
+      ],
+      "interview_modes": [
+        "video"
+      ],
+      "password": "Sazon-Lucia-a97d57"
+    },
+    {
+      "name": "Jordi Puig",
+      "email": "jordi.reclutador@gruposazon.example",
+      "country": "ES",
+      "location_ids": [
+        "es-bcn-eixample",
+        "es-bcn-gracia",
+        "es-bcn-sants",
+        "es-bcn-hospitalet",
+        "es-vlc-centro",
+        "es-vlc-norte",
+        "es-pmi-centro",
+        "es-ali-centro",
+        "es-mur-centro"
+      ],
+      "interview_modes": [
+        "video"
+      ],
+      "password": "Sazon-Jordi-967adf"
+    },
+    {
+      "name": "Marta Ruiz",
+      "email": "marta.reclutadora@gruposazon.example",
+      "country": "ES",
+      "is_admin": true,
+      "location_ids": [
+        "es-sev-centro",
+        "es-mlg-centro",
+        "es-gra-centro",
+        "es-lpa-centro",
+        "es-mad-centro",
+        "es-mad-norte"
+      ],
+      "interview_modes": [
+        "video"
+      ],
+      "max_interviews_per_day": 6,
+      "password": "Sazon-Marta-996ad9"
+    },
+    {
+      "name": "Alejandra Hernández",
+      "email": "alejandra.reclutadora@gruposazon.example",
+      "country": "MX",
+      "location_ids": [
+        "mx-cdmx-bju",
+        "mx-cdmx-cuauh",
+        "mx-cdmx-coy",
+        "mx-cdmx-mh",
+        "mx-cdmx-ao",
+        "mx-cdmx-izt",
+        "mx-cdmx-gam",
+        "mx-cdmx-tlp",
+        "mx-mex-naucalpan",
+        "mx-tol-centro",
+        "mx-pue-centro",
+        "mx-qro-centro"
+      ],
+      "interview_modes": [
+        "video"
+      ],
+      "password": "Sazon-Alejandra-eb2e97"
+    },
+    {
+      "name": "Diego Ramírez",
+      "email": "diego.reclutador@gruposazon.example",
+      "country": "MX",
+      "location_ids": [
+        "mx-gdl-centro",
+        "mx-gdl-zapopan",
+        "mx-gdl-tlaquepaque",
+        "mx-leo-centro",
+        "mx-ags-centro",
+        "mx-slp-centro",
+        "mx-hmo-centro",
+        "mx-tij-centro",
+        "mx-cdmx-bju",
+        "mx-cdmx-cuauh"
+      ],
+      "interview_modes": [
+        "video"
+      ],
+      "password": "Sazon-Diego-6b4631"
+    },
+    {
+      "name": "Valeria Garza",
+      "email": "valeria.reclutadora@gruposazon.example",
+      "country": "MX",
+      "timezone": "America/Monterrey",
+      "location_ids": [
+        "mx-mty-centro",
+        "mx-mty-sanpedro",
+        "mx-mty-guadalupe",
+        "mx-mid-centro",
+        "mx-cun-centro",
+        "mx-cdmx-coy",
+        "mx-cdmx-mh"
+      ],
+      "interview_modes": [
+        "video"
+      ],
+      "password": "Sazon-Valeria-67216c"
+    }
+  ]
+}

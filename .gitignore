@@ -1,0 +1,47 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+*.egg-info/
+build/
+dist/
+
+# Node
+node_modules/
+.next/
+.vite/
+*.tsbuildinfo
+
+# Env and local data
+.env
+.env.*
+!.env.example
+*.db
+*.db-journal
+*.db-shm
+*.db-wal
+
+# Git worktrees kept inside the checkout
+.worktrees/
+.claude/worktrees/
+
+.DS_Store
+
+# Local model and FAQ vector cache (sazon faq-index)
+.cache/
+
+# Eval spend ledger: per machine, and MAX_EVAL_USD is a ceiling over its total
+evals/results/cost_ledger.jsonl
+
+# Deploy stack data (SQLite and backups)
+deploy/data/
+deploy/data-local/
+
+# Journey runner reports (evals/journeys): per run, never committed
+evals/results/journeys/
+
+# Dev API log (make dev-api), tailed by the local observability stack
+backend/logs/

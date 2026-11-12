@@ -1,0 +1,854 @@
+{
+ "meta": {
+  "run_id": "judge-20261020T012733",
+  "date": "2026-10-20",
+  "stage": "judge",
+  "repeat": 1,
+  "base_url": "https://openrouter.ai/api/v1",
+  "provider_preferences": {
+   "zdr": true,
+   "data_collection": "deny"
+  },
+  "run_cost_usd": 0.800748,
+  "ledger_total_usd": 21.097595,
+  "max_eval_usd": 35.0,
+  "aborted": null,
+  "cases": 41,
+  "judge": "anthropic/claude-opus-5.5",
+  "anchor": "anthropic/claude-haiku-5.5",
+  "comparisons": 82,
+  "replies": "evals/results/model_selection_2026-10-20_reply_reply-guard-haiku-vs-sonnet.json",
+  "position_bias_a": 0.5333,
+  "failed_verdicts": 0
+ },
+ "win_rates": {
+  "anthropic/claude-haiku-5.5": {
+   "win_rate": 0.25,
+   "comparisons": 82,
+   "wins": 17,
+   "ties": 7
+  },
+  "anthropic/claude-sonnet-5.5@low": {
+   "win_rate": 0.75,
+   "comparisons": 82,
+   "wins": 58,
+   "ties": 7
+  }
+ },
+ "calls": [
+  {
+   "case_id": "greet-es-es-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "anthropic/claude-sonnet-5.5@low",
+   "winner": "A",
+   "reason": "A sticks closely to the reference, says where to find the privacy notice and ends with a natural \"¿Empezamos?\", while B's wording reads stiffer, like a request for formal consent.",
+   "cost_usd": 0.016184,
+   "input_tokens": 1196,
+   "output_tokens": 570
+  },
+  {
+   "case_id": "greet-es-es-web",
+   "a": "anthropic/claude-sonnet-5.5@low",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "A",
+   "reason": "A says outright that Ana is an AI, which meets the disclosure requirement more clearly, and it fits the privacy notice and one question into fewer sentences.",
+   "cost_usd": 0.012864,
+   "input_tokens": 1196,
+   "output_tokens": 404
+  },
+  {
+   "case_id": "greet-es-mx-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "anthropic/claude-sonnet-5.5@low",
+   "winner": "B",
+   "reason": "B says outright that Ana is an AI and fits in two sentences, while A only says \"virtual\" and runs to three sentences.",
+   "cost_usd": 0.011832,
+   "input_tokens": 1198,
+   "output_tokens": 352
+  },
+  {
+   "case_id": "greet-es-mx-web",
+   "a": "anthropic/claude-sonnet-5.5@low",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "A",
+   "reason": "A says plainly that Ana is an AI and keeps to two sentences, while B uses three and only says \"virtual assistant\".",
+   "cost_usd": 0.013532,
+   "input_tokens": 1198,
+   "output_tokens": 437
+  },
+  {
+   "case_id": "greet-en-voice",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "anthropic/claude-sonnet-5.5@low",
+   "winner": "B",
+   "reason": "A mentions a privacy notice \"on screen\", which makes no sense on a voice call, while B handles the greeting, AI disclosure and privacy question correctly.",
+   "cost_usd": 0.008484,
+   "input_tokens": 1071,
+   "output_tokens": 210
+  },
+  {
+   "case_id": "greet-en-voice",
+   "a": "anthropic/claude-sonnet-5.5@low",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "A",
+   "reason": "On a voice call, B's \"on screen\" is a made-up detail that doesn't fit, while A does the greeting, AI disclosure and privacy question correctly.",
+   "cost_usd": 0.008264,
+   "input_tokens": 1071,
+   "output_tokens": 199
+  },
+  {
+   "case_id": "reask-phone-es-es-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "anthropic/claude-sonnet-5.5@low",
+   "winner": "B",
+   "reason": "B's \"9 dígitos\" is a more concrete fix, and the example number already backs it up, while A adds an unneeded claim that the number couldn't be saved.",
+   "cost_usd": 0.012756,
+   "input_tokens": 1099,
+   "output_tokens": 418
+  },
+  {
+   "case_id": "reask-phone-es-es-web",
+   "a": "anthropic/claude-sonnet-5.5@low",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "B",
+   "reason": "Both are correct, but B reads more smoothly and doesn't add the \"9 dígitos\" detail, which isn't in the action, context or FAQ.",
+   "cost_usd": 0.010796,
+   "input_tokens": 1099,
+   "output_tokens": 320
+  },
+  {
+   "case_id": "reask-experience-es-mx-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "anthropic/claude-sonnet-5.5@low",
+   "winner": "A",
+   "reason": "A acknowledges the Rappi answer and asks for a number in two short sentences with one question at the end, while B runs to three sentences and asks two questions.",
+   "cost_usd": 0.007744,
+   "input_tokens": 1116,
+   "output_tokens": 164
+  },
+  {
+   "case_id": "reask-experience-es-mx-web",
+   "a": "anthropic/claude-sonnet-5.5@low",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "B",
+   "reason": "B acknowledges the Rappi answer and asks for the number in one short question, while A asks two questions across three sentences.",
+   "cost_usd": 0.007244,
+   "input_tokens": 1116,
+   "output_tokens": 139
+  },
+  {
+   "case_id": "reask-schedule-en-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "anthropic/claude-sonnet-5.5@low",
+   "winner": "A",
+   "reason": "A re-asks for the shift correctly in two short sentences, while B runs to three sentences and has an awkward line (\"I just need to pick one\").",
+   "cost_usd": 0.008588,
+   "input_tokens": 1092,
+   "output_tokens": 211
+  },
+  {
+   "case_id": "reask-schedule-en-web",
+   "a": "anthropic/claude-sonnet-5.5@low",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "B",
+   "reason": "B asks the shift question again in two short, natural sentences, while A runs to three sentences and has an awkward line (\"I just need to pick one\").",
+   "cost_usd": 0.009248,
+   "input_tokens": 1092,
+   "output_tokens": 244
+  },
+  {
+   "case_id": "reask-email-es-mx-voice",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "anthropic/claude-sonnet-5.5@low",
+   "winner": "B",
+   "reason": "B asks again for the full email, including the ending, in natural usted phrasing that suits voice, while A is longer and puts a written address with \"@\" into a spoken message.",
+   "cost_usd": 0.014172,
+   "input_tokens": 1068,
+   "output_tokens": 495
+  },
+  {
+   "case_id": "reask-email-es-mx-voice",
+   "a": "anthropic/claude-sonnet-5.5@low",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "A",
+   "reason": "Both re-ask for the email correctly using usted, but A is shorter and sounds more natural on a voice call, while B goes past 15 words and reads out an awkward example address.",
+   "cost_usd": 0.011812,
+   "input_tokens": 1068,
+   "output_tokens": 377
+  },
+  {
+   "case_id": "clarify-city-es-mx-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "anthropic/claude-sonnet-5.5@low",
+   "winner": "A",
+   "reason": "A asks a short, correct question to confirm the city, while B adds a \"sucursal\" detail that isn't in the facts and wrongly places Zapopan inside Guadalajara.",
+   "cost_usd": 0.01116,
+   "input_tokens": 1015,
+   "output_tokens": 355
+  },
+  {
+   "case_id": "clarify-city-es-mx-web",
+   "a": "anthropic/claude-sonnet-5.5@low",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "A",
+   "reason": "A sticks to the option's own facts (the Zapopan branch in Guadalajara), while B adds \"Jalisco,\" which does not appear in the action or context.",
+   "cost_usd": 0.01148,
+   "input_tokens": 1015,
+   "output_tokens": 371
+  },
+  {
+   "case_id": "clarify-city-cdmx-es-mx-voice",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "anthropic/claude-sonnet-5.5@low",
+   "winner": "B",
+   "reason": "Both are correct and use usted, but B says \"Ciudad de México\" in full, which sounds more natural on a voice call than the acronym \"CDMX\".",
+   "cost_usd": 0.0108,
+   "input_tokens": 1025,
+   "output_tokens": 335
+  },
+  {
+   "case_id": "clarify-city-cdmx-es-mx-voice",
+   "a": "anthropic/claude-sonnet-5.5@low",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "A",
+   "reason": "Both messages are correct, use usted and stay short, but A spells out \"Ciudad de México\" instead of the abbreviation \"CDMX\", which sounds more natural on a voice call.",
+   "cost_usd": 0.00972,
+   "input_tokens": 1025,
+   "output_tokens": 281
+  },
+  {
+   "case_id": "clarify-city-es-es-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "anthropic/claude-sonnet-5.5@low",
+   "winner": "B",
+   "reason": "Both messages clarify the location correctly, but B sounds warmer and more natural, uses Spain register (\"Vale\", tú), and ends with a single question.",
+   "cost_usd": 0.009512,
+   "input_tokens": 1113,
+   "output_tokens": 253
+  },
+  {
+   "case_id": "clarify-city-es-es-web",
+   "a": "anthropic/claude-sonnet-5.5@low",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "A",
+   "reason": "Both clarify correctly in Spain Spanish, but A reads warmer and more natural than B's repetitive list of full location names.",
+   "cost_usd": 0.008732,
+   "input_tokens": 1113,
+   "output_tokens": 214
+  },
+  {
+   "case_id": "disqualify-license-es-es-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "anthropic/claude-sonnet-5.5@low",
+   "winner": "B",
+   "reason": "Both are correct and warm, but A adds \"por este mismo canal\", an unsupported detail, while B sticks to the facts in the action.",
+   "cost_usd": 0.011308,
+   "input_tokens": 1152,
+   "output_tokens": 335
+  },
+  {
+   "case_id": "disqualify-license-es-es-web",
+   "a": "anthropic/claude-sonnet-5.5@low",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "A",
+   "reason": "Message A sticks to the facts it was given, while B adds \"por este mismo canal\" (through this same channel), a reapply detail that is not in the action or context.",
+   "cost_usd": 0.009928,
+   "input_tokens": 1152,
+   "output_tokens": 266
+  },
+  {
+   "case_id": "disqualify-license-es-mx-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "anthropic/claude-sonnet-5.5@low",
+   "winner": "B",
+   "reason": "Both are correct and use usted, but B is warmer because it uses her name and thanks her, and it doesn't add the unsupported detail \"vigente\".",
+   "cost_usd": 0.00942,
+   "input_tokens": 1145,
+   "output_tokens": 242
+  },
+  {
+   "case_id": "disqualify-license-es-mx-web",
+   "a": "anthropic/claude-sonnet-5.5@low",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "A",
+   "reason": "A is warmer and uses her name, and it sticks to the facts, while B adds \"vigente,\" which the action never mentions.",
+   "cost_usd": 0.00902,
+   "input_tokens": 1145,
+   "output_tokens": 222
+  },
+  {
+   "case_id": "disqualify-license-en-voice",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "anthropic/claude-sonnet-5.5@low",
+   "winner": "B",
+   "reason": "Both messages are correct and about the same length, but B is warmer because it uses Tom's name and the reapply invitation flows naturally on a voice call.",
+   "cost_usd": 0.009048,
+   "input_tokens": 1057,
+   "output_tokens": 241
+  },
+  {
+   "case_id": "disqualify-license-en-voice",
+   "a": "anthropic/claude-sonnet-5.5@low",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "A",
+   "reason": "Both are correct and about the same length, but A is warmer because it uses Tom's name.",
+   "cost_usd": 0.009928,
+   "input_tokens": 1057,
+   "output_tokens": 285
+  },
+  {
+   "case_id": "license-in-progress-es-es-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "anthropic/claude-sonnet-5.5@low",
+   "winner": "B",
+   "reason": "Both are correct, but B is warmer because it thanks Pablo and wishes him luck, and it stays within two sentences.",
+   "cost_usd": 0.007812,
+   "input_tokens": 1128,
+   "output_tokens": 165
+  },
+  {
+   "case_id": "license-in-progress-es-es-web",
+   "a": "anthropic/claude-sonnet-5.5@low",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "A",
+   "reason": "Both are correct and use tú, but A is warmer because it thanks Pablo and wishes him luck while staying within two sentences.",
+   "cost_usd": 0.008132,
+   "input_tokens": 1128,
+   "output_tokens": 181
+  },
+  {
+   "case_id": "license-in-progress-es-mx-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "anthropic/claude-sonnet-5.5@low",
+   "winner": "A",
+   "reason": "Both are correct and use usted with Mexican wording, but A is shorter and quicker while saying the same thing.",
+   "cost_usd": 0.010728,
+   "input_tokens": 1132,
+   "output_tokens": 310
+  },
+  {
+   "case_id": "license-in-progress-es-mx-web",
+   "a": "anthropic/claude-sonnet-5.5@low",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "B",
+   "reason": "Both are correct and use usted with Mexican wording, but B is shorter and invites Luis to reapply more directly.",
+   "cost_usd": 0.010248,
+   "input_tokens": 1132,
+   "output_tokens": 286
+  },
+  {
+   "case_id": "license-in-progress-en-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "anthropic/claude-sonnet-5.5@low",
+   "winner": "B",
+   "reason": "Both turn Sam away correctly and invite him to reapply, but B is warmer because it mentions his upcoming test and still stays short.",
+   "cost_usd": 0.008404,
+   "input_tokens": 1086,
+   "output_tokens": 203
+  },
+  {
+   "case_id": "license-in-progress-en-web",
+   "a": "anthropic/claude-sonnet-5.5@low",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "A",
+   "reason": "Both messages are correct, but A is warmer because it mentions Sam's upcoming test and still makes the reapply invitation clear.",
+   "cost_usd": 0.008764,
+   "input_tokens": 1086,
+   "output_tokens": 221
+  },
+  {
+   "case_id": "disqualify-zone-es-es-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "anthropic/claude-sonnet-5.5@low",
+   "winner": "B",
+   "reason": "Both are correct, but B is shorter and warmer with its apology, and it stays close to the reference.",
+   "cost_usd": 0.008624,
+   "input_tokens": 1126,
+   "output_tokens": 206
+  },
+  {
+   "case_id": "disqualify-zone-es-es-web",
+   "a": "anthropic/claude-sonnet-5.5@low",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "A",
+   "reason": "Both messages are correct, but A is shorter and warmer, and its \"lo siento\" softens the bad news more naturally.",
+   "cost_usd": 0.007964,
+   "input_tokens": 1126,
+   "output_tokens": 173
+  },
+  {
+   "case_id": "disqualify-zone-es-mx-voice",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "anthropic/claude-sonnet-5.5@low",
+   "winner": "B",
+   "reason": "Both messages are correct and use usted, but B names Oaxaca, the place the candidate gave, so it sounds more personal and natural and is a bit shorter.",
+   "cost_usd": 0.009008,
+   "input_tokens": 1102,
+   "output_tokens": 230
+  },
+  {
+   "case_id": "disqualify-zone-es-mx-voice",
+   "a": "anthropic/claude-sonnet-5.5@low",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "A",
+   "reason": "Both are correct and use usted, but A names the candidate's own location, Oaxaca, which feels warmer and more natural on a call.",
+   "cost_usd": 0.009768,
+   "input_tokens": 1102,
+   "output_tokens": 268
+  },
+  {
+   "case_id": "disqualify-zone-en-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "anthropic/claude-sonnet-5.5@low",
+   "winner": "A",
+   "reason": "Both are correct, but A stays within two sentences, while B runs to three.",
+   "cost_usd": 0.008192,
+   "input_tokens": 1083,
+   "output_tokens": 193
+  },
+  {
+   "case_id": "disqualify-zone-en-web",
+   "a": "anthropic/claude-sonnet-5.5@low",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "B",
+   "reason": "Both messages handle the disqualification and talent-pool offer correctly, but A uses three sentences where the limit is two, while B stays concise.",
+   "cost_usd": 0.008172,
+   "input_tokens": 1083,
+   "output_tokens": 192
+  },
+  {
+   "case_id": "faq-pay-es-es-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "anthropic/claude-sonnet-5.5@low",
+   "winner": "B",
+   "reason": "B gives the same FAQ facts in neutral wording, while A says \"como repartidor… cobras\", which assumes the candidate's gender and reads a bit like the job is already theirs.",
+   "cost_usd": 0.010584,
+   "input_tokens": 1331,
+   "output_tokens": 263
+  },
+  {
+   "case_id": "faq-pay-es-es-web",
+   "a": "anthropic/claude-sonnet-5.5@low",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "A",
+   "reason": "Both messages are accurate, but A's impersonal \"se pagan\" avoids B's gendered \"repartidor\" and its \"cobras\", which sounds like the job is already promised.",
+   "cost_usd": 0.010064,
+   "input_tokens": 1331,
+   "output_tokens": 237
+  },
+  {
+   "case_id": "faq-vehicle-es-mx-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "anthropic/claude-sonnet-5.5@low",
+   "winner": "B",
+   "reason": "Both messages are accurate and use usted, but B fits the answer and the city question into two natural sentences, while A runs to three.",
+   "cost_usd": 0.009416,
+   "input_tokens": 1339,
+   "output_tokens": 203
+  },
+  {
+   "case_id": "faq-vehicle-es-mx-web",
+   "a": "anthropic/claude-sonnet-5.5@low",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "A",
+   "reason": "Both messages are accurate and use usted correctly, but A fits the two-sentence limit and reads more naturally, while B uses three sentences.",
+   "cost_usd": 0.009176,
+   "input_tokens": 1339,
+   "output_tokens": 191
+  },
+  {
+   "case_id": "faq-hours-en-voice",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "anthropic/claude-sonnet-5.5@low",
+   "winner": "B",
+   "reason": "Both answer the shift-length question and ask about availability, but B's 11 words fit the short voice limit, while A runs to about 25.",
+   "cost_usd": 0.01142,
+   "input_tokens": 1185,
+   "output_tokens": 334
+  },
+  {
+   "case_id": "faq-hours-en-voice",
+   "a": "anthropic/claude-sonnet-5.5@low",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "A",
+   "reason": "A gives an accurate answer and asks for availability in about 12 words, while B runs to about 24 words, well over the roughly 15-word voice limit.",
+   "cost_usd": 0.0094,
+   "input_tokens": 1185,
+   "output_tokens": 233
+  },
+  {
+   "case_id": "faq-bot-es-es-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "anthropic/claude-sonnet-5.5@low",
+   "winner": "B",
+   "reason": "Both say they are an AI, but A awkwardly repeats the virtual-assistant intro with a \"Hola\" mid-message, while B reads more naturally.",
+   "cost_usd": 0.010576,
+   "input_tokens": 1229,
+   "output_tokens": 283
+  },
+  {
+   "case_id": "faq-bot-es-es-web",
+   "a": "anthropic/claude-sonnet-5.5@low",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "A",
+   "reason": "Both confirm being an AI and ask for the name, but B's mid-message \"Hola\" and repeated \"asistente virtual\" read more awkwardly than A's filler.",
+   "cost_usd": 0.011636,
+   "input_tokens": 1229,
+   "output_tokens": 336
+  },
+  {
+   "case_id": "unknown-faq-es-es-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "anthropic/claude-sonnet-5.5@low",
+   "winner": "B",
+   "reason": "Both are correct, but B names the health insurance and uses \"pero\", so it reads a little more naturally than A's \"así que\".",
+   "cost_usd": 0.008544,
+   "input_tokens": 1191,
+   "output_tokens": 189
+  },
+  {
+   "case_id": "unknown-faq-es-es-web",
+   "a": "anthropic/claude-sonnet-5.5@low",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "A",
+   "reason": "Both are correct, but A names the topic and uses a more natural \"pero\" where B's \"así que\" reads awkwardly.",
+   "cost_usd": 0.007764,
+   "input_tokens": 1191,
+   "output_tokens": 150
+  },
+  {
+   "case_id": "unknown-faq-es-mx-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "anthropic/claude-sonnet-5.5@low",
+   "winner": "tie",
+   "reason": "Both messages are correct, use usted and natural Mexican Spanish, and differ only in trivial wording.",
+   "cost_usd": 0.009136,
+   "input_tokens": 1139,
+   "output_tokens": 229
+  },
+  {
+   "case_id": "unknown-faq-es-mx-web",
+   "a": "anthropic/claude-sonnet-5.5@low",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "tie",
+   "reason": "Both messages are correct, use usted and ask only the start-date question, and their small wording differences don't make either one better.",
+   "cost_usd": 0.009876,
+   "input_tokens": 1139,
+   "output_tokens": 266
+  },
+  {
+   "case_id": "unknown-faq-en-voice",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "anthropic/claude-sonnet-5.5@low",
+   "winner": "tie",
+   "reason": "no call: missing or identical reply"
+  },
+  {
+   "case_id": "unknown-faq-en-voice",
+   "a": "anthropic/claude-sonnet-5.5@low",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "tie",
+   "reason": "no call: missing or identical reply"
+  },
+  {
+   "case_id": "deescalate-es-es-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "anthropic/claude-sonnet-5.5@low",
+   "winner": "B",
+   "reason": "Both calm the candidate and ask the right question, but B's \"vamos al grano\" sounds more natural than A's awkward \"lo dejamos rápido\".",
+   "cost_usd": 0.008748,
+   "input_tokens": 1127,
+   "output_tokens": 212
+  },
+  {
+   "case_id": "deescalate-es-es-web",
+   "a": "anthropic/claude-sonnet-5.5@low",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "A",
+   "reason": "Both calm the candidate and ask the right field, but \"vamos al grano\" sounds more natural than the awkward \"lo dejamos rápido\".",
+   "cost_usd": 0.008388,
+   "input_tokens": 1127,
+   "output_tokens": 194
+  },
+  {
+   "case_id": "deescalate-es-mx-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "anthropic/claude-sonnet-5.5@low",
+   "winner": "B",
+   "reason": "Both calm the candidate correctly and use usted, but B is shorter and more direct, which fits the simplify flag better.",
+   "cost_usd": 0.008356,
+   "input_tokens": 1159,
+   "output_tokens": 186
+  },
+  {
+   "case_id": "deescalate-es-mx-web",
+   "a": "anthropic/claude-sonnet-5.5@low",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "A",
+   "reason": "A calms the candidate in plain words and asks for the schedule, which fits the simplify flag better than B's longer apology.",
+   "cost_usd": 0.009356,
+   "input_tokens": 1159,
+   "output_tokens": 236
+  },
+  {
+   "case_id": "deescalate-en-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "anthropic/claude-sonnet-5.5@low",
+   "winner": "A",
+   "reason": "Message A acknowledges the frustration more naturally and asks for \"city or area\", which is the fuller wording in the reference.",
+   "cost_usd": 0.009188,
+   "input_tokens": 1077,
+   "output_tokens": 244
+  },
+  {
+   "case_id": "deescalate-en-web",
+   "a": "anthropic/claude-sonnet-5.5@low",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "A",
+   "reason": "Both calm the candidate and ask for the city correctly, but A is shorter and plainer, which fits the simplify flag better.",
+   "cost_usd": 0.010708,
+   "input_tokens": 1077,
+   "output_tokens": 320
+  },
+  {
+   "case_id": "pause-es-es-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "anthropic/claude-sonnet-5.5@low",
+   "winner": "B",
+   "reason": "B offers the pause as a choice, while A opens with \"Sin problema\" as if replying to a request the candidate never made.",
+   "cost_usd": 0.008532,
+   "input_tokens": 1063,
+   "output_tokens": 214
+  },
+  {
+   "case_id": "pause-es-es-web",
+   "a": "anthropic/claude-sonnet-5.5@low",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "A",
+   "reason": "Both are correct, but B's opening \"Sin problema\" answers a request the candidate never made, while A offers the pause on its own, as the action intends.",
+   "cost_usd": 0.008732,
+   "input_tokens": 1063,
+   "output_tokens": 224
+  },
+  {
+   "case_id": "pause-es-mx-voice",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "anthropic/claude-sonnet-5.5@low",
+   "winner": "B",
+   "reason": "B's \"prefiere\" clearly uses the usted form expected for Mexico, and its pause question is more explicit, while A never marks the register.",
+   "cost_usd": 0.00888,
+   "input_tokens": 1050,
+   "output_tokens": 234
+  },
+  {
+   "case_id": "pause-es-mx-voice",
+   "a": "anthropic/claude-sonnet-5.5@low",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "A",
+   "reason": "Message A uses the usted form (\"Si prefiere\") and ends with a clearer question about pausing, which makes the offer simple and plain.",
+   "cost_usd": 0.00832,
+   "input_tokens": 1050,
+   "output_tokens": 206
+  },
+  {
+   "case_id": "pause-en-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "anthropic/claude-sonnet-5.5@low",
+   "winner": "B",
+   "reason": "Both are correct, but B's plainer wording (\"Would you like to pause?\") fits the simplify request better than A's \"If you like\" plus \"Shall we\".",
+   "cost_usd": 0.009708,
+   "input_tokens": 1002,
+   "output_tokens": 285
+  },
+  {
+   "case_id": "pause-en-web",
+   "a": "anthropic/claude-sonnet-5.5@low",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "tie",
+   "reason": "Both messages offer the pause correctly in plain English, in two short sentences that end with one question, and neither is meaningfully better.",
+   "cost_usd": 0.009408,
+   "input_tokens": 1002,
+   "output_tokens": 270
+  },
+  {
+   "case_id": "confirm-es-es-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "anthropic/claude-sonnet-5.5@low",
+   "winner": "B",
+   "reason": "B actually lists the profile data accurately, in Spain-style tú with \"carnet\", so Lucía can check it before confirming, while A asks for confirmation without showing anything.",
+   "cost_usd": 0.013812,
+   "input_tokens": 1183,
+   "output_tokens": 454
+  },
+  {
+   "case_id": "confirm-es-es-web",
+   "a": "anthropic/claude-sonnet-5.5@low",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "A",
+   "reason": "A gets every profile detail right and ends with a single question, while B is so bare it barely presents the summary.",
+   "cost_usd": 0.013332,
+   "input_tokens": 1183,
+   "output_tokens": 430
+  },
+  {
+   "case_id": "confirm-es-mx-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "anthropic/claude-sonnet-5.5@low",
+   "winner": "A",
+   "reason": "A asks for confirmation briefly in usted, while B is long and adds \"vigente\", which the profile never says.",
+   "cost_usd": 0.01308,
+   "input_tokens": 1205,
+   "output_tokens": 413
+  },
+  {
+   "case_id": "confirm-es-mx-web",
+   "a": "anthropic/claude-sonnet-5.5@low",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "A",
+   "reason": "A gives the actual summary from the profile, using usted and Mexican vocabulary, and asks one closing question, while B mentions a \"tarjeta de abajo\" (card below) that nothing in the action or context provides.",
+   "cost_usd": 0.01418,
+   "input_tokens": 1205,
+   "output_tokens": 468
+  },
+  {
+   "case_id": "confirm-en-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "anthropic/claude-sonnet-5.5@low",
+   "winner": "A",
+   "reason": "A matches the reference and stays short, while B packs the details into one long, list-like sentence that breaks the two-short-sentences limit.",
+   "cost_usd": 0.0117,
+   "input_tokens": 1145,
+   "output_tokens": 356
+  },
+  {
+   "case_id": "confirm-en-web",
+   "a": "anthropic/claude-sonnet-5.5@low",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "B",
+   "reason": "B is short and matches the reference, which points to the details card; A packs the whole profile into one long sentence that repeats what the card shows.",
+   "cost_usd": 0.01132,
+   "input_tokens": 1145,
+   "output_tokens": 337
+  },
+  {
+   "case_id": "slots-es-es-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "anthropic/claude-sonnet-5.5@low",
+   "winner": "B",
+   "reason": "Both are correct and offer the same three slots in Spain Spanish with tú, but B is shorter and reads more naturally because it doesn't repeat \"de octubre\".",
+   "cost_usd": 0.010748,
+   "input_tokens": 1507,
+   "output_tokens": 236
+  },
+  {
+   "case_id": "slots-es-es-web",
+   "a": "anthropic/claude-sonnet-5.5@low",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "A",
+   "reason": "Both are correct, but A reads more naturally because it doesn't repeat \"de octubre\" while keeping every slot clear.",
+   "cost_usd": 0.010208,
+   "input_tokens": 1507,
+   "output_tokens": 209
+  },
+  {
+   "case_id": "slots-es-mx-voice",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "anthropic/claude-sonnet-5.5@low",
+   "winner": "B",
+   "reason": "Both offer the two slots correctly using usted, but B is shorter and more natural on voice, with the numbers spoken out in words.",
+   "cost_usd": 0.0125,
+   "input_tokens": 1245,
+   "output_tokens": 376
+  },
+  {
+   "case_id": "slots-es-mx-voice",
+   "a": "anthropic/claude-sonnet-5.5@low",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "A",
+   "reason": "Both offer the two slots correctly and use usted, but A is shorter and better suited to voice, with numbers written out as words and a question that ends simply.",
+   "cost_usd": 0.01296,
+   "input_tokens": 1245,
+   "output_tokens": 399
+  },
+  {
+   "case_id": "slots-en-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "anthropic/claude-sonnet-5.5@low",
+   "winner": "tie",
+   "reason": "Both offer the same three slots correctly in English with one closing question, and \"these\" versus \"three\" makes no real difference.",
+   "cost_usd": 0.009272,
+   "input_tokens": 1373,
+   "output_tokens": 189
+  },
+  {
+   "case_id": "slots-en-web",
+   "a": "anthropic/claude-sonnet-5.5@low",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "tie",
+   "reason": "Both messages are correct, natural English and offer all three slots with one question at the end; they differ only in \"three\" vs \"these\".",
+   "cost_usd": 0.008192,
+   "input_tokens": 1373,
+   "output_tokens": 135
+  },
+  {
+   "case_id": "reengage-es-es-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "anthropic/claude-sonnet-5.5@low",
+   "winner": "A",
+   "reason": "A stays with the facts, while B says \"te falta poco\", which isn't supported because we don't know how much is left.",
+   "cost_usd": 0.009784,
+   "input_tokens": 1156,
+   "output_tokens": 258
+  },
+  {
+   "case_id": "reengage-es-es-web",
+   "a": "anthropic/claude-sonnet-5.5@low",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "B",
+   "reason": "Message B sticks to the facts it was given, while A claims \"te falta poco\" (you're nearly done), which nothing in the action or context supports.",
+   "cost_usd": 0.009044,
+   "input_tokens": 1156,
+   "output_tokens": 221
+  },
+  {
+   "case_id": "reengage-es-mx-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "anthropic/claude-sonnet-5.5@low",
+   "winner": "B",
+   "reason": "Both are correct and use usted, but B's \"solo le faltan\" is a little more encouraging for a re-engagement and stays closer to the reference.",
+   "cost_usd": 0.009816,
+   "input_tokens": 1144,
+   "output_tokens": 262
+  },
+  {
+   "case_id": "reengage-es-mx-web",
+   "a": "anthropic/claude-sonnet-5.5@low",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "A",
+   "reason": "Both are correct and use usted, but A's \"le faltan\" speaks to the candidate's own progress, which is more natural than B's \"nos faltan\" and closer to the reference.",
+   "cost_usd": 0.009256,
+   "input_tokens": 1144,
+   "output_tokens": 234
+  },
+  {
+   "case_id": "reengage-en-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "anthropic/claude-sonnet-5.5@low",
+   "winner": "B",
+   "reason": "Both are correct, but B is tighter and more natural, while A says \"almost done\" and \"only a few questions left\", which repeats the same point.",
+   "cost_usd": 0.008328,
+   "input_tokens": 1062,
+   "output_tokens": 204
+  },
+  {
+   "case_id": "reengage-en-web",
+   "a": "anthropic/claude-sonnet-5.5@low",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "A",
+   "reason": "Both are correct, but A says it more tightly and naturally, while B repeats itself with \"almost done\" and \"only a few questions left\".",
+   "cost_usd": 0.007908,
+   "input_tokens": 1062,
+   "output_tokens": 183
+  }
+ ]
+}

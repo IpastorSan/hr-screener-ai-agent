@@ -1,0 +1,1839 @@
+{
+ "meta": {
+  "date": "2026-10-20",
+  "combos": {
+   "A": {
+    "extractor": "google/gemini-3.5-flash-lite@minimal",
+    "responder": "anthropic/claude-haiku-5.5",
+    "summarizer": "anthropic/claude-haiku-5.5"
+   }
+  },
+  "simulator": "anthropic/claude-haiku-5.5",
+  "judge": "anthropic/claude-opus-5.5",
+  "judge_combos": null,
+  "repeat": 1,
+  "personas": [
+   "vague"
+  ],
+  "aborted": null,
+  "run_cost_usd": 0.047175,
+  "ledger_total_usd": 23.737494
+ },
+ "aggregates": {
+  "A": {
+   "conversations": 1,
+   "all_checks": 1.0,
+   "checks": {
+    "completed": 1.0,
+    "outcome": 1.0,
+    "fields": 1.0,
+    "message_length": 1.0,
+    "one_question": 1.0,
+    "language": 1.0,
+    "register": 1.0,
+    "no_emoji": 1.0,
+    "no_promises": 1.0,
+    "ai_disclosure": 1.0,
+    "real_slots": 1.0,
+    "no_fallback": 1.0,
+    "flags": 1.0,
+    "talent_pool_ask": null,
+    "no_slots_close": null,
+    "policy_close": null,
+    "read_back": null
+   },
+   "outcome_accuracy": 1.0,
+   "field_accuracy": 1.0,
+   "language_accuracy": 1.0,
+   "fallbacks": 0,
+   "judge": {
+    "tone": 4,
+    "naturalness": 4,
+    "empathy": 3,
+    "staying_in_role": 5,
+    "brevity": 5,
+    "mean": 4.2
+   },
+   "avg_turns": 17.0,
+   "avg_cost_usd": 0.02361,
+   "simulator_cost_usd": 0.00571,
+   "judge_cost_usd": 0.01785,
+   "latency_p50_s": 1.473,
+   "latency_p95_s": 2.357
+  }
+ },
+ "conversations": [
+  {
+   "persona": "vague",
+   "conversation_id": "7fee13fe9fb54de0bcc8729ae238eb12",
+   "resumed": false,
+   "outcome": "qualified",
+   "disqualify_reason": null,
+   "booked": true,
+   "booking": "martes 20 de octubre a las 09:00",
+   "interview_mode": "onsite",
+   "meet_url": null,
+   "talent_pool_opt_in": null,
+   "slots_declined": false,
+   "slot_search_days": null,
+   "quality_flags": [],
+   "abuse_strikes": 0,
+   "final_language": "es",
+   "country": "ES",
+   "profile": {
+    "full_name": "Diego Morales Vega",
+    "phone": "+34612345605",
+    "email": "diego.morales@example.com",
+    "has_license": true,
+    "location_id": "es-sev-centro",
+    "availability": [
+     "part_time"
+    ],
+    "schedule": [
+     "flexible"
+    ],
+    "experience_years": 0.33,
+    "platforms": [
+     "uber_eats"
+    ],
+    "platform_other": null,
+    "start_date": "2026-11-02",
+    "late_start_days": null,
+    "interview_mode": "onsite",
+    "experience_unverified": null,
+    "city": "Sevilla",
+    "location_name": "Sazón Sevilla"
+   },
+   "summary": {
+    "lines": [
+     "Diego Morales Vega, de Triana (Sevilla), con carnet de conducir y unos 4 meses de experiencia en reparto con Uber Eats.",
+     "Disponibilidad solo a tiempo parcial, horario flexible, y puede empezar el 2 de noviembre de 2026.",
+     "Perfil de entrada: conviene confirmar en la entrevista las horas semanales que puede cubrir en tiempo parcial."
+    ],
+    "key_fields": {
+     "Nombre": "Diego Morales Vega",
+     "Teléfono": "+34612345605",
+     "Email": "diego.morales@example.com",
+     "Carnet de conducir": "Sí",
+     "Zona": "Sevilla",
+     "Disponibilidad": "Tiempo parcial",
+     "Horario": "Flexible",
+     "Experiencia": "4 meses",
+     "Plataformas": "Uber Eats",
+     "Fecha de inicio": "lunes 2 de noviembre"
+    },
+    "flags": [
+     "El perfil indica 0,33 años de experiencia (unos 4 meses), que es poca experiencia en reparto.",
+     "Al principio dijo que estaba disponible para lo que hiciera falta, pero después corrigió a solo tiempo parcial; conviene aclarar cuántas horas puede hacer."
+    ]
+   },
+   "faq_misses": [],
+   "turns": [
+    {
+     "speaker": "ana",
+     "text": "¡Hola! Soy Ana, la asistente de IA de selección de Grupo Sazón. Son unas preguntas rápidas y tus datos se tratan según el aviso de privacidad que tienes aquí abajo. ¿Empezamos?",
+     "ui": {
+      "kind": "quick_replies",
+      "options": [
+       {
+        "value": "yes",
+        "label": "Sí"
+       },
+       {
+        "value": "no",
+        "label": "No"
+       }
+      ],
+      "link": {
+       "href": "/privacidad",
+       "label": "Leer el aviso de privacidad"
+      }
+     },
+     "action": {
+      "language": "es",
+      "country": "ES",
+      "simplify": false,
+      "ui": {
+       "kind": "quick_replies",
+       "options": [
+        {
+         "value": "yes",
+         "label": "Sí"
+        },
+        {
+         "value": "no",
+         "label": "No"
+        }
+       ],
+       "link": {
+        "href": "/privacidad",
+        "label": "Leer el aviso de privacidad"
+       }
+      },
+      "kind": "greet",
+      "ai_disclosure": true,
+      "privacy_notice": true,
+      "retry": 0
+     },
+     "fallback_used": false,
+     "sources": null,
+     "latency_s": 1.444
+    },
+    {
+     "speaker": "candidate",
+     "text": "Diego",
+     "sent": "Diego",
+     "widget": false,
+     "scripted": false,
+     "move": {
+      "kind": "text",
+      "text": "Diego",
+      "matrix_language": "es"
+     },
+     "extraction": null,
+     "latency_s": 2.803
+    },
+    {
+     "speaker": "ana",
+     "text": "Necesito que aceptes el aviso de privacidad que aparece debajo para poder empezar. ¿Te parece bien?",
+     "ui": {
+      "kind": "quick_replies",
+      "options": [
+       {
+        "value": "yes",
+        "label": "Sí"
+       },
+       {
+        "value": "no",
+        "label": "No"
+       }
+      ],
+      "link": {
+       "href": "/privacidad",
+       "label": "Leer el aviso de privacidad"
+      }
+     },
+     "action": {
+      "language": "es",
+      "country": "ES",
+      "simplify": false,
+      "ui": {
+       "kind": "quick_replies",
+       "options": [
+        {
+         "value": "yes",
+         "label": "Sí"
+        },
+        {
+         "value": "no",
+         "label": "No"
+        }
+       ],
+       "link": {
+        "href": "/privacidad",
+        "label": "Leer el aviso de privacidad"
+       }
+      },
+      "kind": "greet",
+      "ai_disclosure": true,
+      "privacy_notice": true,
+      "retry": 1
+     },
+     "fallback_used": false,
+     "sources": null
+    },
+    {
+     "speaker": "candidate",
+     "text": "Sí",
+     "sent": null,
+     "widget": true,
+     "scripted": false,
+     "move": {
+      "kind": "tap",
+      "value": "yes",
+      "matrix_language": "es"
+     },
+     "extraction": {
+      "intent": "confirm",
+      "fields": {},
+      "language": "es",
+      "matrix_language": "es",
+      "english_ratio": 0.0,
+      "explicit_language_request": null,
+      "code_switched": false,
+      "sentiment": "neutral",
+      "question": null,
+      "question_topic": null,
+      "slot": null,
+      "mode": null
+     },
+     "latency_s": 0.543
+    },
+    {
+     "speaker": "ana",
+     "text": "Te haré unas preguntas sobre ti y tu experiencia, son unos 3 minutos. Si encajas, te reservo una entrevista con alguien del equipo. ¿Cuál es tu nombre completo?",
+     "ui": null,
+     "action": {
+      "language": "es",
+      "country": "ES",
+      "simplify": false,
+      "ui": null,
+      "kind": "ask_field",
+      "field": "full_name",
+      "retry": 0,
+      "hint": null,
+      "options": [],
+      "again": false
+     },
+     "fallback_used": false,
+     "sources": null
+    },
+    {
+     "speaker": "candidate",
+     "text": "Diego Morales Vega",
+     "sent": "Diego Morales Vega",
+     "widget": false,
+     "scripted": false,
+     "move": {
+      "kind": "text",
+      "text": "Diego Morales Vega",
+      "matrix_language": "es"
+     },
+     "extraction": {
+      "intent": "answer",
+      "fields": {
+       "full_name": {
+        "value": "Diego Morales Vega",
+        "confidence": 1.0
+       }
+      },
+      "language": "es",
+      "matrix_language": "es",
+      "english_ratio": 0.0,
+      "explicit_language_request": null,
+      "code_switched": false,
+      "sentiment": "neutral",
+      "question": null,
+      "question_topic": null,
+      "slot": null,
+      "mode": null
+     },
+     "latency_s": 1.335
+    },
+    {
+     "speaker": "ana",
+     "text": "¿Cuál es tu número de móvil?",
+     "ui": {
+      "kind": "phone",
+      "countries": [
+       {
+        "code": "ES",
+        "dial": "+34",
+        "label": "ES +34"
+       },
+       {
+        "code": "MX",
+        "dial": "+52",
+        "label": "MX +52"
+       }
+      ],
+      "selected": "ES"
+     },
+     "action": {
+      "language": "es",
+      "country": "ES",
+      "simplify": false,
+      "ui": {
+       "kind": "phone",
+       "countries": [
+        {
+         "code": "ES",
+         "dial": "+34",
+         "label": "ES +34"
+        },
+        {
+         "code": "MX",
+         "dial": "+52",
+         "label": "MX +52"
+        }
+       ],
+       "selected": "ES"
+      },
+      "kind": "ask_field",
+      "field": "phone",
+      "retry": 0,
+      "hint": null,
+      "options": [],
+      "again": false
+     },
+     "fallback_used": false,
+     "sources": null
+    },
+    {
+     "speaker": "candidate",
+     "text": "612345605",
+     "sent": "612345605",
+     "widget": false,
+     "scripted": false,
+     "move": {
+      "kind": "text",
+      "text": "612345605",
+      "matrix_language": "es"
+     },
+     "extraction": {
+      "intent": "answer",
+      "fields": {
+       "phone": {
+        "value": "612345605",
+        "confidence": 1.0
+       }
+      },
+      "language": "es",
+      "matrix_language": "es",
+      "english_ratio": 0.0,
+      "explicit_language_request": null,
+      "code_switched": false,
+      "sentiment": "neutral",
+      "question": null,
+      "question_topic": null,
+      "slot": null,
+      "mode": null
+     },
+     "latency_s": 1.616
+    },
+    {
+     "speaker": "ana",
+     "text": "¿Y tu correo electrónico?",
+     "ui": null,
+     "action": {
+      "language": "es",
+      "country": "ES",
+      "simplify": false,
+      "ui": null,
+      "kind": "ask_field",
+      "field": "email",
+      "retry": 0,
+      "hint": null,
+      "options": [],
+      "again": false
+     },
+     "fallback_used": false,
+     "sources": null
+    },
+    {
+     "speaker": "candidate",
+     "text": "diego.morales@example.com",
+     "sent": "diego.morales@example.com",
+     "widget": false,
+     "scripted": false,
+     "move": {
+      "kind": "text",
+      "text": "diego.morales@example.com",
+      "matrix_language": "es"
+     },
+     "extraction": {
+      "intent": "answer",
+      "fields": {
+       "email": {
+        "value": "diego.morales@example.com",
+        "confidence": 1.0
+       }
+      },
+      "language": "es",
+      "matrix_language": "es",
+      "english_ratio": 0.0,
+      "explicit_language_request": null,
+      "code_switched": false,
+      "sentiment": "neutral",
+      "question": null,
+      "question_topic": null,
+      "slot": null,
+      "mode": null
+     },
+     "latency_s": 1.519
+    },
+    {
+     "speaker": "ana",
+     "text": "¿Tienes carnet de conducir en vigor?",
+     "ui": null,
+     "action": {
+      "language": "es",
+      "country": "ES",
+      "simplify": false,
+      "ui": null,
+      "kind": "ask_field",
+      "field": "has_license",
+      "retry": 0,
+      "hint": null,
+      "options": [],
+      "again": false
+     },
+     "fallback_used": false,
+     "sources": null
+    },
+    {
+     "speaker": "candidate",
+     "text": "si tengo carnet",
+     "sent": "si tengo carnet",
+     "widget": false,
+     "scripted": false,
+     "move": {
+      "kind": "text",
+      "text": "si tengo carnet",
+      "matrix_language": "es"
+     },
+     "extraction": {
+      "intent": "answer",
+      "fields": {
+       "has_license": {
+        "value": true,
+        "confidence": 1.0
+       }
+      },
+      "language": "es",
+      "matrix_language": "es",
+      "english_ratio": 0.0,
+      "explicit_language_request": null,
+      "code_switched": false,
+      "sentiment": "neutral",
+      "question": null,
+      "question_topic": null,
+      "slot": null,
+      "mode": null
+     },
+     "latency_s": 1.34
+    },
+    {
+     "speaker": "ana",
+     "text": "Perfecto, Diego. ¿En qué ciudad o barrio vives?",
+     "ui": null,
+     "action": {
+      "language": "es",
+      "country": "ES",
+      "simplify": false,
+      "ui": null,
+      "kind": "ask_field",
+      "field": "city",
+      "retry": 0,
+      "hint": null,
+      "options": [],
+      "again": false
+     },
+     "fallback_used": false,
+     "sources": null
+    },
+    {
+     "speaker": "candidate",
+     "text": "Triana, Sevilla",
+     "sent": "Triana, Sevilla",
+     "widget": false,
+     "scripted": false,
+     "move": {
+      "kind": "text",
+      "text": "Triana, Sevilla",
+      "matrix_language": "es"
+     },
+     "extraction": {
+      "intent": "answer",
+      "fields": {
+       "city": {
+        "value": "Sevilla, Triana",
+        "confidence": 1.0
+       }
+      },
+      "language": "es",
+      "matrix_language": "es",
+      "english_ratio": 0.0,
+      "explicit_language_request": null,
+      "code_switched": false,
+      "sentiment": "neutral",
+      "question": null,
+      "question_topic": null,
+      "slot": null,
+      "mode": null
+     },
+     "latency_s": 1.733
+    },
+    {
+     "speaker": "ana",
+     "text": "Gracias, Diego. ¿Qué disponibilidad tienes: tiempo completo, tiempo parcial o fines de semana?",
+     "ui": null,
+     "action": {
+      "language": "es",
+      "country": "ES",
+      "simplify": false,
+      "ui": null,
+      "kind": "ask_field",
+      "field": "availability",
+      "retry": 0,
+      "hint": null,
+      "options": [],
+      "again": false
+     },
+     "fallback_used": false,
+     "sources": null
+    },
+    {
+     "speaker": "candidate",
+     "text": "pues lo que haga falta la verdad",
+     "sent": "pues lo que haga falta la verdad",
+     "widget": false,
+     "scripted": false,
+     "move": {
+      "kind": "text",
+      "text": "pues lo que haga falta la verdad",
+      "matrix_language": "es"
+     },
+     "extraction": {
+      "intent": "answer",
+      "fields": {
+       "availability": {
+        "value": [
+         "full_time",
+         "part_time",
+         "weekends"
+        ],
+        "confidence": 0.95
+       }
+      },
+      "language": "es",
+      "matrix_language": "es",
+      "english_ratio": 0.0,
+      "explicit_language_request": null,
+      "code_switched": false,
+      "sentiment": "positive",
+      "question": null,
+      "question_topic": null,
+      "slot": null,
+      "mode": null
+     },
+     "latency_s": 1.473
+    },
+    {
+     "speaker": "ana",
+     "text": "¿Qué horarios te van bien: mañana, tarde, noche o flexible?",
+     "ui": null,
+     "action": {
+      "language": "es",
+      "country": "ES",
+      "simplify": false,
+      "ui": null,
+      "kind": "ask_field",
+      "field": "schedule",
+      "retry": 0,
+      "hint": null,
+      "options": [],
+      "again": false
+     },
+     "fallback_used": false,
+     "sources": null
+    },
+    {
+     "speaker": "candidate",
+     "text": "pues me da igual",
+     "sent": "pues me da igual",
+     "widget": false,
+     "scripted": false,
+     "move": {
+      "kind": "text",
+      "text": "pues me da igual",
+      "matrix_language": "es"
+     },
+     "extraction": {
+      "intent": "answer",
+      "fields": {
+       "schedule": {
+        "value": [
+         "flexible"
+        ],
+        "confidence": 0.95
+       }
+      },
+      "language": "es",
+      "matrix_language": "es",
+      "english_ratio": 0.0,
+      "explicit_language_request": null,
+      "code_switched": false,
+      "sentiment": "neutral",
+      "question": null,
+      "question_topic": null,
+      "slot": null,
+      "mode": null
+     },
+     "latency_s": 1.454
+    },
+    {
+     "speaker": "ana",
+     "text": "¿Cuánta experiencia tienes haciendo reparto?",
+     "ui": null,
+     "action": {
+      "language": "es",
+      "country": "ES",
+      "simplify": false,
+      "ui": null,
+      "kind": "ask_field",
+      "field": "experience_years",
+      "retry": 0,
+      "hint": null,
+      "options": [],
+      "again": false
+     },
+     "fallback_used": false,
+     "sources": null
+    },
+    {
+     "speaker": "candidate",
+     "text": "pues unos meses, nada serio",
+     "sent": "pues unos meses, nada serio",
+     "widget": false,
+     "scripted": false,
+     "move": {
+      "kind": "text",
+      "text": "pues unos meses, nada serio",
+      "matrix_language": "es"
+     },
+     "extraction": {
+      "intent": "answer",
+      "fields": {
+       "experience_years": {
+        "value": "unos meses",
+        "confidence": 0.95
+       }
+      },
+      "language": "es",
+      "matrix_language": "es",
+      "english_ratio": 0.0,
+      "explicit_language_request": null,
+      "code_switched": false,
+      "sentiment": "neutral",
+      "question": null,
+      "question_topic": null,
+      "slot": null,
+      "mode": null
+     },
+     "latency_s": 2.068
+    },
+    {
+     "speaker": "ana",
+     "text": "Diego, necesito un número aproximado para continuar. ¿Cuántos meses llevas haciendo reparto, más o menos?",
+     "ui": null,
+     "action": {
+      "language": "es",
+      "country": "ES",
+      "simplify": false,
+      "ui": null,
+      "kind": "ask_field",
+      "field": "experience_years",
+      "retry": 1,
+      "hint": "experience_needs_number",
+      "options": [],
+      "again": false
+     },
+     "fallback_used": false,
+     "sources": null
+    },
+    {
+     "speaker": "candidate",
+     "text": "Pues unos 4 meses, en Uber Eats",
+     "sent": "Pues unos 4 meses, en Uber Eats",
+     "widget": false,
+     "scripted": false,
+     "move": {
+      "kind": "text",
+      "text": "Pues unos 4 meses, en Uber Eats",
+      "matrix_language": "es"
+     },
+     "extraction": {
+      "intent": "answer",
+      "fields": {
+       "experience_years": {
+        "value": 0.33,
+        "confidence": 0.95
+       },
+       "platforms": {
+        "value": [
+         "uber_eats"
+        ],
+        "confidence": 1.0
+       }
+      },
+      "language": "es",
+      "matrix_language": "es",
+      "english_ratio": 0.17,
+      "explicit_language_request": null,
+      "code_switched": true,
+      "sentiment": "neutral",
+      "question": null,
+      "question_topic": null,
+      "slot": null,
+      "mode": null
+     },
+     "latency_s": 2.246
+    },
+    {
+     "speaker": "ana",
+     "text": "Genial, Diego, con Uber Eats ya tienes experiencia. ¿Cuándo podrías empezar?",
+     "ui": null,
+     "action": {
+      "language": "es",
+      "country": "ES",
+      "simplify": false,
+      "ui": null,
+      "kind": "ask_field",
+      "field": "start_date",
+      "retry": 0,
+      "hint": null,
+      "options": [],
+      "again": false
+     },
+     "fallback_used": false,
+     "sources": null
+    },
+    {
+     "speaker": "candidate",
+     "text": "pues cuando sea, me adapto",
+     "sent": "pues cuando sea, me adapto",
+     "widget": false,
+     "scripted": false,
+     "move": {
+      "kind": "text",
+      "text": "pues cuando sea, me adapto",
+      "matrix_language": "es"
+     },
+     "extraction": {
+      "intent": "answer",
+      "fields": {
+       "start_date": {
+        "value": "2026-10-19",
+        "confidence": 0.95
+       }
+      },
+      "language": "es",
+      "matrix_language": "es",
+      "english_ratio": 0.0,
+      "explicit_language_request": null,
+      "code_switched": false,
+      "sentiment": "neutral",
+      "question": null,
+      "question_topic": null,
+      "slot": null,
+      "mode": null
+     },
+     "latency_s": 1.55
+    },
+    {
+     "speaker": "ana",
+     "text": "¿Está todo correcto?",
+     "ui": {
+      "kind": "confirm",
+      "fields": [
+       {
+        "label": "Nombre",
+        "value": "Diego Morales Vega"
+       },
+       {
+        "label": "Teléfono",
+        "value": "+34612345605"
+       },
+       {
+        "label": "Email",
+        "value": "diego.morales@example.com"
+       },
+       {
+        "label": "Carnet de conducir",
+        "value": "Sí"
+       },
+       {
+        "label": "Zona",
+        "value": "Sevilla"
+       },
+       {
+        "label": "Disponibilidad",
+        "value": "Tiempo completo, Tiempo parcial, Fines de semana"
+       },
+       {
+        "label": "Horario",
+        "value": "Flexible"
+       },
+       {
+        "label": "Experiencia",
+        "value": "4 meses"
+       },
+       {
+        "label": "Plataformas",
+        "value": "Uber Eats"
+       },
+       {
+        "label": "Fecha de inicio",
+        "value": "lunes 19 de octubre"
+       }
+      ]
+     },
+     "action": {
+      "language": "es",
+      "country": "ES",
+      "simplify": false,
+      "ui": {
+       "kind": "confirm",
+       "fields": [
+        {
+         "label": "Nombre",
+         "value": "Diego Morales Vega"
+        },
+        {
+         "label": "Teléfono",
+         "value": "+34612345605"
+        },
+        {
+         "label": "Email",
+         "value": "diego.morales@example.com"
+        },
+        {
+         "label": "Carnet de conducir",
+         "value": "Sí"
+        },
+        {
+         "label": "Zona",
+         "value": "Sevilla"
+        },
+        {
+         "label": "Disponibilidad",
+         "value": "Tiempo completo, Tiempo parcial, Fines de semana"
+        },
+        {
+         "label": "Horario",
+         "value": "Flexible"
+        },
+        {
+         "label": "Experiencia",
+         "value": "4 meses"
+        },
+        {
+         "label": "Plataformas",
+         "value": "Uber Eats"
+        },
+        {
+         "label": "Fecha de inicio",
+         "value": "lunes 19 de octubre"
+        }
+       ]
+      },
+      "kind": "confirm_summary",
+      "profile": {
+       "full_name": "Diego Morales Vega",
+       "phone": "+34612345605",
+       "email": "diego.morales@example.com",
+       "has_license": true,
+       "location_id": "es-sev-centro",
+       "availability": [
+        "full_time",
+        "part_time",
+        "weekends"
+       ],
+       "schedule": [
+        "flexible"
+       ],
+       "experience_years": 0.33,
+       "platforms": [
+        "uber_eats"
+       ],
+       "platform_other": null,
+       "start_date": "2026-10-19",
+       "late_start_days": null,
+       "interview_mode": null,
+       "experience_unverified": null
+      },
+      "correcting": false
+     },
+     "fallback_used": false,
+     "sources": null
+    },
+    {
+     "speaker": "candidate",
+     "text": "Corregir algo",
+     "sent": null,
+     "widget": true,
+     "scripted": false,
+     "move": {
+      "kind": "tap",
+      "value": "no",
+      "matrix_language": "es"
+     },
+     "extraction": {
+      "intent": "correction",
+      "fields": {},
+      "language": "es",
+      "matrix_language": "es",
+      "english_ratio": 0.0,
+      "explicit_language_request": null,
+      "code_switched": false,
+      "sentiment": "neutral",
+      "question": null,
+      "question_topic": null,
+      "slot": null,
+      "mode": null
+     },
+     "latency_s": 0.411
+    },
+    {
+     "speaker": "ana",
+     "text": "Vale, Diego. ¿Qué dato quieres cambiar?",
+     "ui": {
+      "kind": "confirm",
+      "fields": [
+       {
+        "label": "Nombre",
+        "value": "Diego Morales Vega"
+       },
+       {
+        "label": "Teléfono",
+        "value": "+34612345605"
+       },
+       {
+        "label": "Email",
+        "value": "diego.morales@example.com"
+       },
+       {
+        "label": "Carnet de conducir",
+        "value": "Sí"
+       },
+       {
+        "label": "Zona",
+        "value": "Sevilla"
+       },
+       {
+        "label": "Disponibilidad",
+        "value": "Tiempo completo, Tiempo parcial, Fines de semana"
+       },
+       {
+        "label": "Horario",
+        "value": "Flexible"
+       },
+       {
+        "label": "Experiencia",
+        "value": "4 meses"
+       },
+       {
+        "label": "Plataformas",
+        "value": "Uber Eats"
+       },
+       {
+        "label": "Fecha de inicio",
+        "value": "lunes 19 de octubre"
+       }
+      ]
+     },
+     "action": {
+      "language": "es",
+      "country": "ES",
+      "simplify": false,
+      "ui": {
+       "kind": "confirm",
+       "fields": [
+        {
+         "label": "Nombre",
+         "value": "Diego Morales Vega"
+        },
+        {
+         "label": "Teléfono",
+         "value": "+34612345605"
+        },
+        {
+         "label": "Email",
+         "value": "diego.morales@example.com"
+        },
+        {
+         "label": "Carnet de conducir",
+         "value": "Sí"
+        },
+        {
+         "label": "Zona",
+         "value": "Sevilla"
+        },
+        {
+         "label": "Disponibilidad",
+         "value": "Tiempo completo, Tiempo parcial, Fines de semana"
+        },
+        {
+         "label": "Horario",
+         "value": "Flexible"
+        },
+        {
+         "label": "Experiencia",
+         "value": "4 meses"
+        },
+        {
+         "label": "Plataformas",
+         "value": "Uber Eats"
+        },
+        {
+         "label": "Fecha de inicio",
+         "value": "lunes 19 de octubre"
+        }
+       ]
+      },
+      "kind": "confirm_summary",
+      "profile": {
+       "full_name": "Diego Morales Vega",
+       "phone": "+34612345605",
+       "email": "diego.morales@example.com",
+       "has_license": true,
+       "location_id": "es-sev-centro",
+       "availability": [
+        "full_time",
+        "part_time",
+        "weekends"
+       ],
+       "schedule": [
+        "flexible"
+       ],
+       "experience_years": 0.33,
+       "platforms": [
+        "uber_eats"
+       ],
+       "platform_other": null,
+       "start_date": "2026-10-19",
+       "late_start_days": null,
+       "interview_mode": null,
+       "experience_unverified": null
+      },
+      "correcting": true
+     },
+     "fallback_used": false,
+     "sources": null
+    },
+    {
+     "speaker": "candidate",
+     "text": "la disponibilidad, solo tiempo parcial. y la fecha de inicio seria el 2 de noviembre",
+     "sent": "la disponibilidad, solo tiempo parcial. y la fecha de inicio seria el 2 de noviembre",
+     "widget": false,
+     "scripted": false,
+     "move": {
+      "kind": "text",
+      "text": "la disponibilidad, solo tiempo parcial. y la fecha de inicio seria el 2 de noviembre",
+      "matrix_language": "es"
+     },
+     "extraction": {
+      "intent": "correction",
+      "fields": {
+       "availability": {
+        "value": [
+         "part_time"
+        ],
+        "confidence": 1.0
+       },
+       "start_date": {
+        "value": "2026-11-02",
+        "confidence": 1.0
+       }
+      },
+      "language": "es",
+      "matrix_language": "es",
+      "english_ratio": 0.0,
+      "explicit_language_request": null,
+      "code_switched": false,
+      "sentiment": "neutral",
+      "question": null,
+      "question_topic": null,
+      "slot": null,
+      "mode": null
+     },
+     "latency_s": 1.498
+    },
+    {
+     "speaker": "ana",
+     "text": "¿Está todo bien con estos datos?",
+     "ui": {
+      "kind": "confirm",
+      "fields": [
+       {
+        "label": "Nombre",
+        "value": "Diego Morales Vega"
+       },
+       {
+        "label": "Teléfono",
+        "value": "+34612345605"
+       },
+       {
+        "label": "Email",
+        "value": "diego.morales@example.com"
+       },
+       {
+        "label": "Carnet de conducir",
+        "value": "Sí"
+       },
+       {
+        "label": "Zona",
+        "value": "Sevilla"
+       },
+       {
+        "label": "Disponibilidad",
+        "value": "Tiempo parcial"
+       },
+       {
+        "label": "Horario",
+        "value": "Flexible"
+       },
+       {
+        "label": "Experiencia",
+        "value": "4 meses"
+       },
+       {
+        "label": "Plataformas",
+        "value": "Uber Eats"
+       },
+       {
+        "label": "Fecha de inicio",
+        "value": "lunes 2 de noviembre"
+       }
+      ]
+     },
+     "action": {
+      "language": "es",
+      "country": "ES",
+      "simplify": false,
+      "ui": {
+       "kind": "confirm",
+       "fields": [
+        {
+         "label": "Nombre",
+         "value": "Diego Morales Vega"
+        },
+        {
+         "label": "Teléfono",
+         "value": "+34612345605"
+        },
+        {
+         "label": "Email",
+         "value": "diego.morales@example.com"
+        },
+        {
+         "label": "Carnet de conducir",
+         "value": "Sí"
+        },
+        {
+         "label": "Zona",
+         "value": "Sevilla"
+        },
+        {
+         "label": "Disponibilidad",
+         "value": "Tiempo parcial"
+        },
+        {
+         "label": "Horario",
+         "value": "Flexible"
+        },
+        {
+         "label": "Experiencia",
+         "value": "4 meses"
+        },
+        {
+         "label": "Plataformas",
+         "value": "Uber Eats"
+        },
+        {
+         "label": "Fecha de inicio",
+         "value": "lunes 2 de noviembre"
+        }
+       ]
+      },
+      "kind": "confirm_summary",
+      "profile": {
+       "full_name": "Diego Morales Vega",
+       "phone": "+34612345605",
+       "email": "diego.morales@example.com",
+       "has_license": true,
+       "location_id": "es-sev-centro",
+       "availability": [
+        "part_time"
+       ],
+       "schedule": [
+        "flexible"
+       ],
+       "experience_years": 0.33,
+       "platforms": [
+        "uber_eats"
+       ],
+       "platform_other": null,
+       "start_date": "2026-11-02",
+       "late_start_days": null,
+       "interview_mode": null,
+       "experience_unverified": null
+      },
+      "correcting": false
+     },
+     "fallback_used": false,
+     "sources": null
+    },
+    {
+     "speaker": "candidate",
+     "text": "Sí, es correcto",
+     "sent": null,
+     "widget": true,
+     "scripted": false,
+     "move": {
+      "kind": "tap",
+      "value": "yes",
+      "matrix_language": "es"
+     },
+     "extraction": {
+      "intent": "confirm",
+      "fields": {},
+      "language": "es",
+      "matrix_language": "es",
+      "english_ratio": 0.0,
+      "explicit_language_request": null,
+      "code_switched": false,
+      "sentiment": "neutral",
+      "question": null,
+      "question_topic": null,
+      "slot": null,
+      "mode": null
+     },
+     "latency_s": 0.499
+    },
+    {
+     "speaker": "ana",
+     "text": "Gracias, ya tengo todo. ¿Prefieres hacer la entrevista en persona o por videollamada?",
+     "ui": {
+      "kind": "quick_replies",
+      "options": [
+       {
+        "value": "onsite",
+        "label": "En persona"
+       },
+       {
+        "value": "video",
+        "label": "Videollamada"
+       }
+      ],
+      "link": null
+     },
+     "action": {
+      "language": "es",
+      "country": "ES",
+      "simplify": false,
+      "ui": {
+       "kind": "quick_replies",
+       "options": [
+        {
+         "value": "onsite",
+         "label": "En persona"
+        },
+        {
+         "value": "video",
+         "label": "Videollamada"
+        }
+       ],
+       "link": null
+      },
+      "kind": "ask_mode",
+      "options": [
+       "onsite",
+       "video"
+      ],
+      "qualified": true,
+      "retry": 0
+     },
+     "fallback_used": false,
+     "sources": null
+    },
+    {
+     "speaker": "candidate",
+     "text": "En persona",
+     "sent": null,
+     "widget": true,
+     "scripted": false,
+     "move": {
+      "kind": "tap",
+      "value": "onsite",
+      "matrix_language": "es"
+     },
+     "extraction": {
+      "intent": "answer",
+      "fields": {},
+      "language": "es",
+      "matrix_language": "es",
+      "english_ratio": 0.0,
+      "explicit_language_request": null,
+      "code_switched": false,
+      "sentiment": "neutral",
+      "question": null,
+      "question_topic": null,
+      "slot": null,
+      "mode": "onsite"
+     },
+     "latency_s": 0.666
+    },
+    {
+     "speaker": "ana",
+     "text": "Perfecto, en persona. Tengo estos huecos para la entrevista en el local de Sevilla: martes 20 a las 09:00, miércoles 21 a las 09:00 o jueves 22 a las 09:00. ¿Cuál te viene mejor?",
+     "ui": {
+      "kind": "slots",
+      "slots": [
+       {
+        "id": "98e4c97ce3864543bb36316c442cfa41",
+        "startsAt": "2026-10-20T09:00:00+02:00",
+        "label": "martes 20 a las 09:00",
+        "location": "Sevilla",
+        "time": "09:00"
+       },
+       {
+        "id": "89725f8254eb4135b9f2c640c0528030",
+        "startsAt": "2026-10-21T09:00:00+02:00",
+        "label": "miércoles 21 a las 09:00",
+        "location": "Sevilla",
+        "time": "09:00"
+       },
+       {
+        "id": "e814ffc28f6a45f69a9b8c9605b43d67",
+        "startsAt": "2026-10-22T09:00:00+02:00",
+        "label": "jueves 22 a las 09:00",
+        "location": "Sevilla",
+        "time": "09:00"
+       }
+      ]
+     },
+     "action": {
+      "language": "es",
+      "country": "ES",
+      "simplify": false,
+      "ui": {
+       "kind": "slots",
+       "slots": [
+        {
+         "id": "98e4c97ce3864543bb36316c442cfa41",
+         "startsAt": "2026-10-20T09:00:00+02:00",
+         "label": "martes 20 a las 09:00",
+         "location": "Sevilla",
+         "time": "09:00"
+        },
+        {
+         "id": "89725f8254eb4135b9f2c640c0528030",
+         "startsAt": "2026-10-21T09:00:00+02:00",
+         "label": "miércoles 21 a las 09:00",
+         "location": "Sevilla",
+         "time": "09:00"
+        },
+        {
+         "id": "e814ffc28f6a45f69a9b8c9605b43d67",
+         "startsAt": "2026-10-22T09:00:00+02:00",
+         "label": "jueves 22 a las 09:00",
+         "location": "Sevilla",
+         "time": "09:00"
+        }
+       ]
+      },
+      "kind": "offer_slots",
+      "location_id": "es-sev-centro",
+      "slots": [
+       {
+        "id": "98e4c97ce3864543bb36316c442cfa41",
+        "startsAt": "2026-10-20T09:00:00+02:00",
+        "label": "martes 20 a las 09:00",
+        "location": "Sevilla",
+        "time": "09:00"
+       },
+       {
+        "id": "89725f8254eb4135b9f2c640c0528030",
+        "startsAt": "2026-10-21T09:00:00+02:00",
+        "label": "miércoles 21 a las 09:00",
+        "location": "Sevilla",
+        "time": "09:00"
+       },
+       {
+        "id": "e814ffc28f6a45f69a9b8c9605b43d67",
+        "startsAt": "2026-10-22T09:00:00+02:00",
+        "label": "jueves 22 a las 09:00",
+        "location": "Sevilla",
+        "time": "09:00"
+       }
+      ],
+      "reason": "mode",
+      "retry": 0,
+      "mode": "onsite"
+     },
+     "fallback_used": false,
+     "sources": null
+    },
+    {
+     "speaker": "candidate",
+     "text": "martes 20 a las 09:00",
+     "sent": null,
+     "widget": true,
+     "scripted": false,
+     "move": {
+      "kind": "tap",
+      "value": "98e4c97ce3864543bb36316c442cfa41",
+      "matrix_language": "es"
+     },
+     "extraction": {
+      "intent": "answer",
+      "fields": {},
+      "language": "es",
+      "matrix_language": "es",
+      "english_ratio": 0.0,
+      "explicit_language_request": null,
+      "code_switched": false,
+      "sentiment": "neutral",
+      "question": null,
+      "question_topic": null,
+      "slot": "98e4c97ce3864543bb36316c442cfa41",
+      "mode": null
+     },
+     "latency_s": 0.743
+    },
+    {
+     "speaker": "ana",
+     "text": "Listo, tu entrevista es el martes 20 de octubre a las 09:00 en el local de Sevilla, Calle Feria 74, 41003 Sevilla. Si no puedes ir, escribe aquí y la cambiamos.",
+     "ui": {
+      "kind": "booking",
+      "slotId": "98e4c97ce3864543bb36316c442cfa41",
+      "startsAt": "2026-10-20T09:00:00+02:00",
+      "label": "martes 20 de octubre a las 09:00",
+      "location": "Sevilla",
+      "address": "Calle Feria 74, 41003 Sevilla",
+      "mode": "onsite",
+      "meetUrl": null
+     },
+     "action": {
+      "language": "es",
+      "country": "ES",
+      "simplify": false,
+      "ui": {
+       "kind": "booking",
+       "slotId": "98e4c97ce3864543bb36316c442cfa41",
+       "startsAt": "2026-10-20T09:00:00+02:00",
+       "label": "martes 20 de octubre a las 09:00",
+       "location": "Sevilla",
+       "address": "Calle Feria 74, 41003 Sevilla",
+       "mode": "onsite",
+       "meetUrl": null
+      },
+      "kind": "confirm_booking",
+      "booking": {
+       "kind": "booking",
+       "slotId": "98e4c97ce3864543bb36316c442cfa41",
+       "startsAt": "2026-10-20T09:00:00+02:00",
+       "label": "martes 20 de octubre a las 09:00",
+       "location": "Sevilla",
+       "address": "Calle Feria 74, 41003 Sevilla",
+       "mode": "onsite",
+       "meetUrl": null
+      },
+      "has_email": true,
+      "rescheduled": false,
+      "kept": false
+     },
+     "fallback_used": false,
+     "sources": null
+    }
+   ],
+   "candidate_turns": 17,
+   "hit_turn_cap": false,
+   "error": null,
+   "offered_slots": [
+    "98e4c97ce3864543bb36316c442cfa41",
+    "89725f8254eb4135b9f2c640c0528030",
+    "e814ffc28f6a45f69a9b8c9605b43d67"
+   ],
+   "invented_slots": [],
+   "fallback_count": 0,
+   "cost_usd": 0.023608,
+   "simulator_cost_usd": 0.005714,
+   "calls": [
+    {
+     "role": "responder",
+     "model": "anthropic/claude-haiku-5.5",
+     "latency_ms": 1434,
+     "cost_usd": 0.0003997,
+     "fallback_used": false,
+     "error": null
+    },
+    {
+     "role": "extractor",
+     "model": "google/gemini-3.5-flash-lite",
+     "latency_ms": 1318,
+     "cost_usd": 0.0013926,
+     "fallback_used": false,
+     "error": null
+    },
+    {
+     "role": "responder",
+     "model": "anthropic/claude-haiku-5.5",
+     "latency_ms": 1480,
+     "cost_usd": 0.0003736,
+     "fallback_used": false,
+     "error": null
+    },
+    {
+     "role": "responder",
+     "model": "anthropic/claude-haiku-5.5",
+     "latency_ms": 536,
+     "cost_usd": 0.0003608,
+     "fallback_used": false,
+     "error": null
+    },
+    {
+     "role": "extractor",
+     "model": "google/gemini-3.5-flash-lite",
+     "latency_ms": 994,
+     "cost_usd": 0.0013585,
+     "fallback_used": false,
+     "error": null
+    },
+    {
+     "role": "responder",
+     "model": "anthropic/claude-haiku-5.5",
+     "latency_ms": 336,
+     "cost_usd": 0.0003617,
+     "fallback_used": false,
+     "error": null
+    },
+    {
+     "role": "extractor",
+     "model": "google/gemini-3.5-flash-lite",
+     "latency_ms": 1177,
+     "cost_usd": 0.0014379,
+     "fallback_used": false,
+     "error": null
+    },
+    {
+     "role": "responder",
+     "model": "anthropic/claude-haiku-5.5",
+     "latency_ms": 433,
+     "cost_usd": 0.0003598,
+     "fallback_used": false,
+     "error": null
+    },
+    {
+     "role": "extractor",
+     "model": "google/gemini-3.5-flash-lite",
+     "latency_ms": 1147,
+     "cost_usd": 0.001336,
+     "fallback_used": false,
+     "error": null
+    },
+    {
+     "role": "responder",
+     "model": "anthropic/claude-haiku-5.5",
+     "latency_ms": 365,
+     "cost_usd": 0.0003636,
+     "fallback_used": false,
+     "error": null
+    },
+    {
+     "role": "extractor",
+     "model": "google/gemini-3.5-flash-lite",
+     "latency_ms": 722,
+     "cost_usd": 0.001311,
+     "fallback_used": false,
+     "error": null
+    },
+    {
+     "role": "responder",
+     "model": "anthropic/claude-haiku-5.5",
+     "latency_ms": 612,
+     "cost_usd": 0.0003675,
+     "fallback_used": false,
+     "error": null
+    },
+    {
+     "role": "extractor",
+     "model": "google/gemini-3.5-flash-lite",
+     "latency_ms": 1139,
+     "cost_usd": 0.00131,
+     "fallback_used": false,
+     "error": null
+    },
+    {
+     "role": "responder",
+     "model": "anthropic/claude-haiku-5.5",
+     "latency_ms": 588,
+     "cost_usd": 0.0003793,
+     "fallback_used": false,
+     "error": null
+    },
+    {
+     "role": "extractor",
+     "model": "google/gemini-3.5-flash-lite",
+     "latency_ms": 1043,
+     "cost_usd": 0.0013686,
+     "fallback_used": false,
+     "error": null
+    },
+    {
+     "role": "responder",
+     "model": "anthropic/claude-haiku-5.5",
+     "latency_ms": 424,
+     "cost_usd": 0.00037,
+     "fallback_used": false,
+     "error": null
+    },
+    {
+     "role": "extractor",
+     "model": "google/gemini-3.5-flash-lite",
+     "latency_ms": 960,
+     "cost_usd": 0.0013564,
+     "fallback_used": false,
+     "error": null
+    },
+    {
+     "role": "responder",
+     "model": "anthropic/claude-haiku-5.5",
+     "latency_ms": 489,
+     "cost_usd": 0.0003658,
+     "fallback_used": false,
+     "error": null
+    },
+    {
+     "role": "extractor",
+     "model": "google/gemini-3.5-flash-lite",
+     "latency_ms": 1334,
+     "cost_usd": 0.0013233,
+     "fallback_used": false,
+     "error": null
+    },
+    {
+     "role": "responder",
+     "model": "anthropic/claude-haiku-5.5",
+     "latency_ms": 728,
+     "cost_usd": 0.0003797,
+     "fallback_used": false,
+     "error": null
+    },
+    {
+     "role": "extractor",
+     "model": "google/gemini-3.5-flash-lite",
+     "latency_ms": 1770,
+     "cost_usd": 0.001421,
+     "fallback_used": false,
+     "error": null
+    },
+    {
+     "role": "responder",
+     "model": "anthropic/claude-haiku-5.5",
+     "latency_ms": 471,
+     "cost_usd": 0.0003751,
+     "fallback_used": false,
+     "error": null
+    },
+    {
+     "role": "extractor",
+     "model": "google/gemini-3.5-flash-lite",
+     "latency_ms": 1034,
+     "cost_usd": 0.0013431,
+     "fallback_used": false,
+     "error": null
+    },
+    {
+     "role": "responder",
+     "model": "anthropic/claude-haiku-5.5",
+     "latency_ms": 511,
+     "cost_usd": 0.0003743,
+     "fallback_used": false,
+     "error": null
+    },
+    {
+     "role": "responder",
+     "model": "anthropic/claude-haiku-5.5",
+     "latency_ms": 406,
+     "cost_usd": 0.0003808,
+     "fallback_used": false,
+     "error": null
+    },
+    {
+     "role": "extractor",
+     "model": "google/gemini-3.5-flash-lite",
+     "latency_ms": 1117,
+     "cost_usd": 0.0014529,
+     "fallback_used": false,
+     "error": null
+    },
+    {
+     "role": "responder",
+     "model": "anthropic/claude-haiku-5.5",
+     "latency_ms": 376,
+     "cost_usd": 0.0003781,
+     "fallback_used": false,
+     "error": null
+    },
+    {
+     "role": "responder",
+     "model": "anthropic/claude-haiku-5.5",
+     "latency_ms": 489,
+     "cost_usd": 0.0003757,
+     "fallback_used": false,
+     "error": null
+    },
+    {
+     "role": "summarizer",
+     "model": "anthropic/claude-haiku-5.5",
+     "latency_ms": 2253,
+     "cost_usd": 0.0003865,
+     "fallback_used": false,
+     "error": null
+    },
+    {
+     "role": "responder",
+     "model": "anthropic/claude-haiku-5.5",
+     "latency_ms": 653,
+     "cost_usd": 0.0004318,
+     "fallback_used": false,
+     "error": null
+    },
+    {
+     "role": "responder",
+     "model": "anthropic/claude-haiku-5.5",
+     "latency_ms": 731,
+     "cost_usd": 0.0004133,
+     "fallback_used": false,
+     "error": null
+    }
+   ],
+   "judge": {
+    "tone": 4,
+    "naturalness": 4,
+    "empathy": 3,
+    "staying_in_role": 5,
+    "brevity": 5,
+    "rationale": "Ana stays brief, uses tú correctly and stays in role, but she never acknowledges Diego's vague answers or his corrections (part-time, start on 2 November) and just moves to the next bare question.",
+    "mean": 4.2,
+    "cost_usd": 0.017852
+   },
+   "combo": "A",
+   "repeat": 1,
+   "title": "Vague answers",
+   "result": {
+    "checks": {
+     "completed": true,
+     "outcome": true,
+     "fields": true,
+     "message_length": true,
+     "one_question": true,
+     "no_emoji": true,
+     "no_promises": true,
+     "register": true,
+     "language": true,
+     "ai_disclosure": true,
+     "real_slots": true,
+     "no_fallback": true,
+     "flags": true,
+     "talent_pool_ask": null,
+     "no_slots_close": null,
+     "policy_close": null,
+     "read_back": null
+    },
+    "passed": true,
+    "failures": [],
+    "metrics": {
+     "fields_matched": 10,
+     "fields_scored": 10,
+     "language_ok": 18,
+     "language_total": 18,
+     "fallback_count": 0
+    }
+   }
+  }
+ ]
+}

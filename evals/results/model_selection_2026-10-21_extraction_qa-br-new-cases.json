@@ -1,0 +1,3154 @@
+{
+ "meta": {
+  "run_id": "extraction-20261021T173554",
+  "date": "2026-10-21",
+  "stage": "extraction",
+  "repeat": 3,
+  "base_url": "https://openrouter.ai/api/v1",
+  "provider_preferences": {
+   "zdr": true,
+   "data_collection": "deny"
+  },
+  "run_cost_usd": 0.040402,
+  "ledger_total_usd": 32.582384,
+  "max_eval_usd": 34.4,
+  "aborted": null,
+  "cases": 18
+ },
+ "models": {
+  "google/gemini-3.5-flash-lite@minimal": {
+   "model": "google/gemini-3.5-flash-lite",
+   "effort": "minimal",
+   "quality": {
+    "cases": 54,
+    "schema_valid": 1.0,
+    "schema_valid_first_try": 0.9815,
+    "field_precision": 1.0,
+    "field_recall": 1.0,
+    "field_f1": 1.0,
+    "fields_exact": 1.0,
+    "checks": {
+     "code_switched": 1.0,
+     "explicit_language_request": 1.0,
+     "intent": 1.0,
+     "language": 1.0,
+     "matrix_language": 1.0,
+     "question": 1.0,
+     "question_standalone": 0.9722,
+     "sentiment": 1.0,
+     "sub_questions": 0.9444
+    },
+    "per_field": {
+     "has_license": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "exact": 1.0,
+      "support": 3
+     }
+    },
+    "case_pass": 1.0,
+    "engine_contract": null,
+    "all_cases_schema_valid": 1.0,
+    "empty_fields_when_expected": 0.0,
+    "consistency": 1.0,
+    "by_category": {
+     "multi_part": {
+      "cases": 21,
+      "pass": 1.0,
+      "fields_exact": 1.0,
+      "intent": 1.0
+     },
+     "standalone_question": {
+      "cases": 33,
+      "pass": 1.0,
+      "fields_exact": 1.0,
+      "intent": 1.0
+     }
+    }
+   },
+   "telemetry": {
+    "calls": 54,
+    "errors": 0,
+    "latency_p50": 1.028,
+    "latency_p95": 1.512,
+    "ttft_p50": null,
+    "ttft_p95": null,
+    "cost_usd": 0.040402,
+    "cost_per_call": 0.00074819,
+    "measurement_cost_usd": 0,
+    "input_tokens": 233002,
+    "output_tokens": 5904,
+    "providers": {
+     "Google": 54
+    },
+    "cost_sources": {
+     "usage": 54
+    },
+    "error_samples": []
+   }
+  }
+ },
+ "calls": [
+  {
+   "model": "google/gemini-3.5-flash-lite@minimal",
+   "case_id": "br-standalone-es-01",
+   "output": {
+    "intent": "question",
+    "fields": {},
+    "language": "es",
+    "matrix_language": "es",
+    "english_ratio": 0.0,
+    "explicit_language_request": null,
+    "code_switched": false,
+    "sentiment": "neutral",
+    "question": "¿Cuánto se paga a los repartidores en México?",
+    "sub_questions": [],
+    "question_topic": null,
+    "slot": null,
+    "declines_field": false,
+    "mode": null
+   },
+   "record": {
+    "model": "google/gemini-3.5-flash-lite@minimal",
+    "role": "extractor",
+    "case_id": "br-standalone-es-01",
+    "ok": true,
+    "latency_s": 0.916,
+    "ttft_s": null,
+    "input_tokens": 4335,
+    "output_tokens": 118,
+    "cost_usd": 0.0015955,
+    "cost_source": "usage",
+    "provider": "Google",
+    "requests": 1,
+    "output_retries": 0,
+    "error": null,
+    "generation_ids": [
+     "gen-1792604155-PeYEkSgHhdYk86RHDUIx"
+    ]
+   },
+   "score": {
+    "pass": true,
+    "fields_exact": true,
+    "fp": {},
+    "fn": {},
+    "checks": {
+     "intent": true,
+     "language": true,
+     "matrix_language": true,
+     "explicit_language_request": true,
+     "sentiment": true,
+     "code_switched": true,
+     "question": true,
+     "question_standalone": true,
+     "sub_questions": true
+    }
+   }
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite@minimal",
+   "case_id": "br-standalone-mx-01",
+   "output": {
+    "intent": "question",
+    "fields": {},
+    "language": "es",
+    "matrix_language": "es",
+    "english_ratio": 0.0,
+    "explicit_language_request": null,
+    "code_switched": false,
+    "sentiment": "neutral",
+    "question": "¿El salario semanal de 2,100 a 2,600 MXN ya incluye las propinas?",
+    "sub_questions": [],
+    "question_topic": null,
+    "slot": null,
+    "declines_field": false,
+    "mode": null
+   },
+   "record": {
+    "model": "google/gemini-3.5-flash-lite@minimal",
+    "role": "extractor",
+    "case_id": "br-standalone-mx-01",
+    "ok": true,
+    "latency_s": 1.07,
+    "ttft_s": null,
+    "input_tokens": 4330,
+    "output_tokens": 83,
+    "cost_usd": 0.0015065,
+    "cost_source": "usage",
+    "provider": "Google",
+    "requests": 1,
+    "output_retries": 0,
+    "error": null,
+    "generation_ids": [
+     "gen-1792604155-vP8aOIwTDT5flAHdfjDe"
+    ]
+   },
+   "score": {
+    "pass": true,
+    "fields_exact": true,
+    "fp": {},
+    "fn": {},
+    "checks": {
+     "intent": true,
+     "language": true,
+     "matrix_language": true,
+     "explicit_language_request": true,
+     "sentiment": true,
+     "code_switched": true,
+     "question": true,
+     "question_standalone": true,
+     "sub_questions": true
+    }
+   }
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite@minimal",
+   "case_id": "br-standalone-es-02",
+   "output": {
+    "intent": "question",
+    "fields": {},
+    "language": "es",
+    "matrix_language": "es",
+    "english_ratio": 0.0,
+    "explicit_language_request": null,
+    "code_switched": false,
+    "sentiment": "neutral",
+    "question": "¿Estoy asegurado si reparto con mi moto propia?",
+    "sub_questions": [],
+    "question_topic": null,
+    "slot": null,
+    "declines_field": false,
+    "mode": null
+   },
+   "record": {
+    "model": "google/gemini-3.5-flash-lite@minimal",
+    "role": "extractor",
+    "case_id": "br-standalone-es-02",
+    "ok": true,
+    "latency_s": 0.804,
+    "ttft_s": null,
+    "input_tokens": 4333,
+    "output_tokens": 75,
+    "cost_usd": 0.00040767,
+    "cost_source": "usage",
+    "provider": "Google",
+    "requests": 1,
+    "output_retries": 0,
+    "error": null,
+    "generation_ids": [
+     "gen-1792604155-wFlWhkgLmXtnrne8ia6K"
+    ]
+   },
+   "score": {
+    "pass": true,
+    "fields_exact": true,
+    "fp": {},
+    "fn": {},
+    "checks": {
+     "intent": true,
+     "language": true,
+     "matrix_language": true,
+     "explicit_language_request": true,
+     "sentiment": true,
+     "code_switched": true,
+     "question": true,
+     "question_standalone": true,
+     "sub_questions": true
+    }
+   }
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite@minimal",
+   "case_id": "br-standalone-en-01",
+   "output": {
+    "intent": "question",
+    "fields": {},
+    "language": "en",
+    "matrix_language": "en",
+    "english_ratio": 1.0,
+    "explicit_language_request": null,
+    "code_switched": false,
+    "sentiment": "neutral",
+    "question": "Are shifts available on Sundays?",
+    "sub_questions": [],
+    "question_topic": null,
+    "slot": null,
+    "declines_field": false,
+    "mode": null
+   },
+   "record": {
+    "model": "google/gemini-3.5-flash-lite@minimal",
+    "role": "extractor",
+    "case_id": "br-standalone-en-01",
+    "ok": true,
+    "latency_s": 0.991,
+    "ttft_s": null,
+    "input_tokens": 4324,
+    "output_tokens": 99,
+    "cost_usd": 0.0015447,
+    "cost_source": "usage",
+    "provider": "Google",
+    "requests": 1,
+    "output_retries": 0,
+    "error": null,
+    "generation_ids": [
+     "gen-1792604155-wkDlwz4sa6tgZabwQ5hi"
+    ]
+   },
+   "score": {
+    "pass": true,
+    "fields_exact": true,
+    "fp": {},
+    "fn": {},
+    "checks": {
+     "intent": true,
+     "language": true,
+     "matrix_language": true,
+     "explicit_language_request": true,
+     "sentiment": true,
+     "code_switched": true,
+     "question": true,
+     "question_standalone": true,
+     "sub_questions": true
+    }
+   }
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite@minimal",
+   "case_id": "br-standalone-mx-02",
+   "output": {
+    "intent": "question",
+    "fields": {},
+    "language": "es",
+    "matrix_language": "es",
+    "english_ratio": 0.0,
+    "explicit_language_request": null,
+    "code_switched": false,
+    "sentiment": "neutral",
+    "question": "¿Cómo es el contrato en España?",
+    "sub_questions": [],
+    "question_topic": null,
+    "slot": null,
+    "declines_field": false,
+    "mode": null
+   },
+   "record": {
+    "model": "google/gemini-3.5-flash-lite@minimal",
+    "role": "extractor",
+    "case_id": "br-standalone-mx-02",
+    "ok": true,
+    "latency_s": 1.101,
+    "ttft_s": null,
+    "input_tokens": 4328,
+    "output_tokens": 78,
+    "cost_usd": 0.0014934,
+    "cost_source": "usage",
+    "provider": "Google",
+    "requests": 1,
+    "output_retries": 0,
+    "error": null,
+    "generation_ids": [
+     "gen-1792604155-l1NQSlNWDgHknEa1Mpq1"
+    ]
+   },
+   "score": {
+    "pass": true,
+    "fields_exact": true,
+    "fp": {},
+    "fn": {},
+    "checks": {
+     "intent": true,
+     "language": true,
+     "matrix_language": true,
+     "explicit_language_request": true,
+     "sentiment": true,
+     "code_switched": true,
+     "question": true,
+     "question_standalone": true,
+     "sub_questions": true
+    }
+   }
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite@minimal",
+   "case_id": "br-standalone-en-02",
+   "output": {
+    "intent": "question",
+    "fields": {},
+    "language": "en",
+    "matrix_language": "en",
+    "english_ratio": 1.0,
+    "explicit_language_request": null,
+    "code_switched": false,
+    "sentiment": "neutral",
+    "question": "Is the pay of 2,100 to 2,600 MXN a week before tax?",
+    "sub_questions": [],
+    "question_topic": null,
+    "slot": null,
+    "declines_field": false,
+    "mode": null
+   },
+   "record": {
+    "model": "google/gemini-3.5-flash-lite@minimal",
+    "role": "extractor",
+    "case_id": "br-standalone-en-02",
+    "ok": true,
+    "latency_s": 1.213,
+    "ttft_s": null,
+    "input_tokens": 4330,
+    "output_tokens": 132,
+    "cost_usd": 0.00054927,
+    "cost_source": "usage",
+    "provider": "Google",
+    "requests": 1,
+    "output_retries": 0,
+    "error": null,
+    "generation_ids": [
+     "gen-1792604155-PoSTvcQosSBzHygiZOwE"
+    ]
+   },
+   "score": {
+    "pass": true,
+    "fields_exact": true,
+    "fp": {},
+    "fn": {},
+    "checks": {
+     "intent": true,
+     "language": true,
+     "matrix_language": true,
+     "explicit_language_request": true,
+     "sentiment": true,
+     "code_switched": true,
+     "question": true,
+     "question_standalone": true,
+     "sub_questions": true
+    }
+   }
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite@minimal",
+   "case_id": "br-standalone-es-03",
+   "output": {
+    "intent": "question",
+    "fields": {},
+    "language": "es",
+    "matrix_language": "es",
+    "english_ratio": 0.0,
+    "explicit_language_request": null,
+    "code_switched": false,
+    "sentiment": "neutral",
+    "question": "¿Para qué necesitáis mi correo electrónico?",
+    "sub_questions": [],
+    "question_topic": null,
+    "slot": null,
+    "declines_field": false,
+    "mode": null
+   },
+   "record": {
+    "model": "google/gemini-3.5-flash-lite@minimal",
+    "role": "extractor",
+    "case_id": "br-standalone-es-03",
+    "ok": true,
+    "latency_s": 1.072,
+    "ttft_s": null,
+    "input_tokens": 4289,
+    "output_tokens": 116,
+    "cost_usd": 0.00049724,
+    "cost_source": "usage",
+    "provider": "Google",
+    "requests": 1,
+    "output_retries": 0,
+    "error": null,
+    "generation_ids": [
+     "gen-1792604155-R4hvmYOGUantKOmOVSEX"
+    ]
+   },
+   "score": {
+    "pass": true,
+    "fields_exact": true,
+    "fp": {},
+    "fn": {},
+    "checks": {
+     "intent": true,
+     "language": true,
+     "matrix_language": true,
+     "explicit_language_request": true,
+     "sentiment": true,
+     "code_switched": true,
+     "question": true,
+     "question_standalone": true,
+     "sub_questions": true
+    }
+   }
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite@minimal",
+   "case_id": "br-standalone-mx-03",
+   "output": {
+    "intent": "question",
+    "fields": {},
+    "language": "es",
+    "matrix_language": "es",
+    "english_ratio": 0.0,
+    "explicit_language_request": null,
+    "code_switched": false,
+    "sentiment": "neutral",
+    "question": "¿También dan chamarra?",
+    "sub_questions": [],
+    "question_topic": null,
+    "slot": null,
+    "declines_field": false,
+    "mode": null
+   },
+   "record": {
+    "model": "google/gemini-3.5-flash-lite@minimal",
+    "role": "extractor",
+    "case_id": "br-standalone-mx-03",
+    "ok": true,
+    "latency_s": 0.906,
+    "ttft_s": null,
+    "input_tokens": 4315,
+    "output_tokens": 71,
+    "cost_usd": 0.00039254,
+    "cost_source": "usage",
+    "provider": "Google",
+    "requests": 1,
+    "output_retries": 0,
+    "error": null,
+    "generation_ids": [
+     "gen-1792604155-znFqSbIoTyIKPxkrEhgD"
+    ]
+   },
+   "score": {
+    "pass": true,
+    "fields_exact": true,
+    "fp": {},
+    "fn": {},
+    "checks": {
+     "intent": true,
+     "language": true,
+     "matrix_language": true,
+     "explicit_language_request": true,
+     "sentiment": true,
+     "code_switched": true,
+     "question": true,
+     "question_standalone": true,
+     "sub_questions": true
+    }
+   }
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite@minimal",
+   "case_id": "br-standalone-neg-es-01",
+   "output": {
+    "intent": "question",
+    "fields": {},
+    "language": "es",
+    "matrix_language": "es",
+    "english_ratio": 0.0,
+    "explicit_language_request": null,
+    "code_switched": false,
+    "sentiment": "neutral",
+    "question": "¿Dan casco?",
+    "sub_questions": [],
+    "question_topic": null,
+    "slot": null,
+    "declines_field": false,
+    "mode": null
+   },
+   "record": {
+    "model": "google/gemini-3.5-flash-lite@minimal",
+    "role": "extractor",
+    "case_id": "br-standalone-neg-es-01",
+    "ok": true,
+    "latency_s": 53.858,
+    "ttft_s": null,
+    "input_tokens": 4452,
+    "output_tokens": 66,
+    "cost_usd": 0.00042276,
+    "cost_source": "usage",
+    "provider": "Google",
+    "requests": 2,
+    "output_retries": 1,
+    "error": null,
+    "generation_ids": [
+     "gen-1792604155-5mAz417V0EkMLgeT1H27",
+     "gen-1792604208-jmdPPr4kzLVM03277LCl"
+    ]
+   },
+   "score": {
+    "pass": true,
+    "fields_exact": true,
+    "fp": {},
+    "fn": {},
+    "checks": {
+     "intent": true,
+     "language": true,
+     "matrix_language": true,
+     "explicit_language_request": true,
+     "sentiment": true,
+     "code_switched": true,
+     "question": true,
+     "question_standalone": true,
+     "sub_questions": true
+    }
+   }
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite@minimal",
+   "case_id": "br-standalone-neg-mx-01",
+   "output": {
+    "intent": "question",
+    "fields": {},
+    "language": "es",
+    "matrix_language": "es",
+    "english_ratio": 0.0,
+    "explicit_language_request": null,
+    "code_switched": false,
+    "sentiment": "neutral",
+    "question": "¿Necesito experiencia previa para el puesto de repartidor?",
+    "sub_questions": [],
+    "question_topic": null,
+    "slot": null,
+    "declines_field": false,
+    "mode": null
+   },
+   "record": {
+    "model": "google/gemini-3.5-flash-lite@minimal",
+    "role": "extractor",
+    "case_id": "br-standalone-neg-mx-01",
+    "ok": true,
+    "latency_s": 1.03,
+    "ttft_s": null,
+    "input_tokens": 4327,
+    "output_tokens": 119,
+    "cost_usd": 0.00051614,
+    "cost_source": "usage",
+    "provider": "Google",
+    "requests": 1,
+    "output_retries": 0,
+    "error": null,
+    "generation_ids": [
+     "gen-1792604155-CFabJuLIDuoepo49jKOz"
+    ]
+   },
+   "score": {
+    "pass": true,
+    "fields_exact": true,
+    "fp": {},
+    "fn": {},
+    "checks": {
+     "intent": true,
+     "language": true,
+     "matrix_language": true,
+     "explicit_language_request": true,
+     "sentiment": true,
+     "code_switched": true,
+     "question": true,
+     "question_standalone": true,
+     "sub_questions": true
+    }
+   }
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite@minimal",
+   "case_id": "br-standalone-neg-en-01",
+   "output": {
+    "intent": "question",
+    "fields": {},
+    "language": "en",
+    "matrix_language": "en",
+    "english_ratio": 1.0,
+    "explicit_language_request": null,
+    "code_switched": false,
+    "sentiment": "neutral",
+    "question": "Do I keep my tips?",
+    "sub_questions": [],
+    "question_topic": null,
+    "slot": null,
+    "declines_field": false,
+    "mode": null
+   },
+   "record": {
+    "model": "google/gemini-3.5-flash-lite@minimal",
+    "role": "extractor",
+    "case_id": "br-standalone-neg-en-01",
+    "ok": true,
+    "latency_s": 1.066,
+    "ttft_s": null,
+    "input_tokens": 4318,
+    "output_tokens": 114,
+    "cost_usd": 0.00050094,
+    "cost_source": "usage",
+    "provider": "Google",
+    "requests": 1,
+    "output_retries": 0,
+    "error": null,
+    "generation_ids": [
+     "gen-1792604155-iegGJlHfvAD4dIf8zbdM"
+    ]
+   },
+   "score": {
+    "pass": true,
+    "fields_exact": true,
+    "fp": {},
+    "fn": {},
+    "checks": {
+     "intent": true,
+     "language": true,
+     "matrix_language": true,
+     "explicit_language_request": true,
+     "sentiment": true,
+     "code_switched": true,
+     "question": true,
+     "question_standalone": true,
+     "sub_questions": true
+    }
+   }
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite@minimal",
+   "case_id": "br-multi-es-01",
+   "output": {
+    "intent": "question",
+    "fields": {},
+    "language": "es",
+    "matrix_language": "es",
+    "english_ratio": 0.0,
+    "explicit_language_request": null,
+    "code_switched": false,
+    "sentiment": "neutral",
+    "question": "¿Cuánto se paga a los repartidores y dan casco?",
+    "sub_questions": [
+     "¿Cuánto se paga?",
+     "¿Dan casco?"
+    ],
+    "question_topic": null,
+    "slot": null,
+    "declines_field": false,
+    "mode": null
+   },
+   "record": {
+    "model": "google/gemini-3.5-flash-lite@minimal",
+    "role": "extractor",
+    "case_id": "br-multi-es-01",
+    "ok": true,
+    "latency_s": 0.807,
+    "ttft_s": null,
+    "input_tokens": 4296,
+    "output_tokens": 106,
+    "cost_usd": 0.00047434,
+    "cost_source": "usage",
+    "provider": "Google",
+    "requests": 1,
+    "output_retries": 0,
+    "error": null,
+    "generation_ids": [
+     "gen-1792604156-I0hOGlFSSGrgW6gpoAvC"
+    ]
+   },
+   "score": {
+    "pass": true,
+    "fields_exact": true,
+    "fp": {},
+    "fn": {},
+    "checks": {
+     "intent": true,
+     "language": true,
+     "matrix_language": true,
+     "explicit_language_request": true,
+     "sentiment": true,
+     "code_switched": true,
+     "question": true,
+     "sub_questions": true
+    }
+   }
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite@minimal",
+   "case_id": "br-multi-mx-01",
+   "output": {
+    "intent": "question",
+    "fields": {},
+    "language": "es",
+    "matrix_language": "es",
+    "english_ratio": 0.0,
+    "explicit_language_request": null,
+    "code_switched": false,
+    "sentiment": "neutral",
+    "question": "¿Cuánto pagan, tengo seguro si me accidento y quién pone la gasolina?",
+    "sub_questions": [
+     "¿Cuánto pagan?",
+     "¿Tengo seguro si me accidento?",
+     "¿Quién pone la gasolina?"
+    ],
+    "question_topic": null,
+    "slot": null,
+    "declines_field": false,
+    "mode": null
+   },
+   "record": {
+    "model": "google/gemini-3.5-flash-lite@minimal",
+    "role": "extractor",
+    "case_id": "br-multi-mx-01",
+    "ok": true,
+    "latency_s": 1.169,
+    "ttft_s": null,
+    "input_tokens": 4298,
+    "output_tokens": 153,
+    "cost_usd": 0.0016719,
+    "cost_source": "usage",
+    "provider": "Google",
+    "requests": 1,
+    "output_retries": 0,
+    "error": null,
+    "generation_ids": [
+     "gen-1792604156-UngnpdKeDwB1SQuoEZjV"
+    ]
+   },
+   "score": {
+    "pass": true,
+    "fields_exact": true,
+    "fp": {},
+    "fn": {},
+    "checks": {
+     "intent": true,
+     "language": true,
+     "matrix_language": true,
+     "explicit_language_request": true,
+     "sentiment": true,
+     "code_switched": true,
+     "question": true,
+     "sub_questions": true
+    }
+   }
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite@minimal",
+   "case_id": "br-multi-en-01",
+   "output": {
+    "intent": "question",
+    "fields": {},
+    "language": "en",
+    "matrix_language": "en",
+    "english_ratio": 1.0,
+    "explicit_language_request": null,
+    "code_switched": false,
+    "sentiment": "neutral",
+    "question": "What is the hourly rate and do I have to bring my own scooter?",
+    "sub_questions": [
+     "What is the hourly rate?",
+     "Do I have to bring my own scooter?"
+    ],
+    "question_topic": null,
+    "slot": null,
+    "declines_field": false,
+    "mode": null
+   },
+   "record": {
+    "model": "google/gemini-3.5-flash-lite@minimal",
+    "role": "extractor",
+    "case_id": "br-multi-en-01",
+    "ok": true,
+    "latency_s": 1.138,
+    "ttft_s": null,
+    "input_tokens": 4298,
+    "output_tokens": 146,
+    "cost_usd": 0.0016544,
+    "cost_source": "usage",
+    "provider": "Google",
+    "requests": 1,
+    "output_retries": 0,
+    "error": null,
+    "generation_ids": [
+     "gen-1792604156-5x0XcxBxAHBJ77VYfRZr"
+    ]
+   },
+   "score": {
+    "pass": true,
+    "fields_exact": true,
+    "fp": {},
+    "fn": {},
+    "checks": {
+     "intent": true,
+     "language": true,
+     "matrix_language": true,
+     "explicit_language_request": true,
+     "sentiment": true,
+     "code_switched": true,
+     "question": true,
+     "sub_questions": true
+    }
+   }
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite@minimal",
+   "case_id": "br-multi-mx-02",
+   "output": {
+    "intent": "answer",
+    "fields": {
+     "has_license": {
+      "value": true,
+      "confidence": 1.0
+     }
+    },
+    "language": "es",
+    "matrix_language": "es",
+    "english_ratio": 0.0,
+    "explicit_language_request": null,
+    "code_switched": false,
+    "sentiment": "neutral",
+    "question": "¿Ustedes dan la moto y cuánto se gana?",
+    "sub_questions": [
+     "¿Ustedes dan la moto?",
+     "¿Cuánto se gana?"
+    ],
+    "question_topic": null,
+    "slot": null,
+    "declines_field": false,
+    "mode": null
+   },
+   "record": {
+    "model": "google/gemini-3.5-flash-lite@minimal",
+    "role": "extractor",
+    "case_id": "br-multi-mx-02",
+    "ok": true,
+    "latency_s": 0.975,
+    "ttft_s": null,
+    "input_tokens": 4298,
+    "output_tokens": 138,
+    "cost_usd": 0.0016344,
+    "cost_source": "usage",
+    "provider": "Google",
+    "requests": 1,
+    "output_retries": 0,
+    "error": null,
+    "generation_ids": [
+     "gen-1792604156-CJxLluIiwqgB129RFOWf"
+    ]
+   },
+   "score": {
+    "pass": true,
+    "fields_exact": true,
+    "fp": {},
+    "fn": {},
+    "checks": {
+     "intent": true,
+     "language": true,
+     "matrix_language": true,
+     "explicit_language_request": true,
+     "sentiment": true,
+     "code_switched": true,
+     "question": true,
+     "sub_questions": true
+    }
+   }
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite@minimal",
+   "case_id": "br-multi-es-02",
+   "output": {
+    "intent": "question",
+    "fields": {},
+    "language": "es",
+    "matrix_language": "es",
+    "english_ratio": 0.0,
+    "explicit_language_request": null,
+    "code_switched": false,
+    "sentiment": "neutral",
+    "question": "¿El uniforme y el casco los da la empresa?",
+    "sub_questions": [],
+    "question_topic": null,
+    "slot": null,
+    "declines_field": false,
+    "mode": null
+   },
+   "record": {
+    "model": "google/gemini-3.5-flash-lite@minimal",
+    "role": "extractor",
+    "case_id": "br-multi-es-02",
+    "ok": true,
+    "latency_s": 1.052,
+    "ttft_s": null,
+    "input_tokens": 4296,
+    "output_tokens": 80,
+    "cost_usd": 0.00040934,
+    "cost_source": "usage",
+    "provider": "Google",
+    "requests": 1,
+    "output_retries": 0,
+    "error": null,
+    "generation_ids": [
+     "gen-1792604156-7nwGiAl4zfRNRTmSlEMv"
+    ]
+   },
+   "score": {
+    "pass": true,
+    "fields_exact": true,
+    "fp": {},
+    "fn": {},
+    "checks": {
+     "intent": true,
+     "language": true,
+     "matrix_language": true,
+     "explicit_language_request": true,
+     "sentiment": true,
+     "code_switched": true,
+     "question": true,
+     "sub_questions": false
+    }
+   }
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite@minimal",
+   "case_id": "br-multi-neg-es-01",
+   "output": {
+    "intent": "question",
+    "fields": {},
+    "language": "es",
+    "matrix_language": "es",
+    "english_ratio": 0.0,
+    "explicit_language_request": null,
+    "code_switched": false,
+    "sentiment": "neutral",
+    "question": "¿Cuánto se paga a la hora por trabajar de noche los fines de semana?",
+    "sub_questions": [],
+    "question_topic": null,
+    "slot": null,
+    "declines_field": false,
+    "mode": null
+   },
+   "record": {
+    "model": "google/gemini-3.5-flash-lite@minimal",
+    "role": "extractor",
+    "case_id": "br-multi-neg-es-01",
+    "ok": true,
+    "latency_s": 1.402,
+    "ttft_s": null,
+    "input_tokens": 4294,
+    "output_tokens": 123,
+    "cost_usd": 0.00051624,
+    "cost_source": "usage",
+    "provider": "Google",
+    "requests": 1,
+    "output_retries": 0,
+    "error": null,
+    "generation_ids": [
+     "gen-1792604156-fxvfw6ein2TKQTYPLKOu"
+    ]
+   },
+   "score": {
+    "pass": true,
+    "fields_exact": true,
+    "fp": {},
+    "fn": {},
+    "checks": {
+     "intent": true,
+     "language": true,
+     "matrix_language": true,
+     "explicit_language_request": true,
+     "sentiment": true,
+     "code_switched": true,
+     "question": true,
+     "question_standalone": true,
+     "sub_questions": true
+    }
+   }
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite@minimal",
+   "case_id": "br-multi-neg-en-01",
+   "output": {
+    "intent": "question",
+    "fields": {},
+    "language": "en",
+    "matrix_language": "en",
+    "english_ratio": 1.0,
+    "explicit_language_request": null,
+    "code_switched": false,
+    "sentiment": "neutral",
+    "question": "How much do you pay? What is the salary?",
+    "sub_questions": [],
+    "question_topic": null,
+    "slot": null,
+    "declines_field": false,
+    "mode": null
+   },
+   "record": {
+    "model": "google/gemini-3.5-flash-lite@minimal",
+    "role": "extractor",
+    "case_id": "br-multi-neg-en-01",
+    "ok": true,
+    "latency_s": 1.082,
+    "ttft_s": null,
+    "input_tokens": 4293,
+    "output_tokens": 119,
+    "cost_usd": 0.00050594,
+    "cost_source": "usage",
+    "provider": "Google",
+    "requests": 1,
+    "output_retries": 0,
+    "error": null,
+    "generation_ids": [
+     "gen-1792604156-nkOfBh2oT6ZuZoheb32S"
+    ]
+   },
+   "score": {
+    "pass": true,
+    "fields_exact": true,
+    "fp": {},
+    "fn": {},
+    "checks": {
+     "intent": true,
+     "language": true,
+     "matrix_language": true,
+     "explicit_language_request": true,
+     "sentiment": true,
+     "code_switched": true,
+     "question": true,
+     "sub_questions": true
+    }
+   }
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite@minimal",
+   "case_id": "br-standalone-es-01",
+   "output": {
+    "intent": "question",
+    "fields": {},
+    "language": "es",
+    "matrix_language": "es",
+    "english_ratio": 0.0,
+    "explicit_language_request": null,
+    "code_switched": false,
+    "sentiment": "neutral",
+    "question": "¿Cuánto se paga a los repartidores en México?",
+    "sub_questions": [],
+    "question_topic": null,
+    "slot": null,
+    "declines_field": false,
+    "mode": null
+   },
+   "record": {
+    "model": "google/gemini-3.5-flash-lite@minimal",
+    "role": "extractor",
+    "case_id": "br-standalone-es-01",
+    "ok": true,
+    "latency_s": 1.715,
+    "ttft_s": null,
+    "input_tokens": 4335,
+    "output_tokens": 108,
+    "cost_usd": 0.00049077,
+    "cost_source": "usage",
+    "provider": "Google",
+    "requests": 1,
+    "output_retries": 0,
+    "error": null,
+    "generation_ids": [
+     "gen-1792604157-wLG0qocVQkZLP8ixg5ci"
+    ]
+   },
+   "score": {
+    "pass": true,
+    "fields_exact": true,
+    "fp": {},
+    "fn": {},
+    "checks": {
+     "intent": true,
+     "language": true,
+     "matrix_language": true,
+     "explicit_language_request": true,
+     "sentiment": true,
+     "code_switched": true,
+     "question": true,
+     "question_standalone": true,
+     "sub_questions": true
+    }
+   }
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite@minimal",
+   "case_id": "br-standalone-mx-01",
+   "output": {
+    "intent": "question",
+    "fields": {},
+    "language": "es",
+    "matrix_language": "es",
+    "english_ratio": 0.0,
+    "explicit_language_request": null,
+    "code_switched": false,
+    "sentiment": "neutral",
+    "question": "¿La cantidad mencionada incluye las propinas?",
+    "sub_questions": [],
+    "question_topic": null,
+    "slot": null,
+    "declines_field": false,
+    "mode": null
+   },
+   "record": {
+    "model": "google/gemini-3.5-flash-lite@minimal",
+    "role": "extractor",
+    "case_id": "br-standalone-mx-01",
+    "ok": true,
+    "latency_s": 0.903,
+    "ttft_s": null,
+    "input_tokens": 4330,
+    "output_tokens": 67,
+    "cost_usd": 0.0014665,
+    "cost_source": "usage",
+    "provider": "Google",
+    "requests": 1,
+    "output_retries": 0,
+    "error": null,
+    "generation_ids": [
+     "gen-1792604157-2DxdgAjAggpiVm4Ocp1Z"
+    ]
+   },
+   "score": {
+    "pass": true,
+    "fields_exact": true,
+    "fp": {},
+    "fn": {},
+    "checks": {
+     "intent": true,
+     "language": true,
+     "matrix_language": true,
+     "explicit_language_request": true,
+     "sentiment": true,
+     "code_switched": true,
+     "question": true,
+     "question_standalone": false,
+     "sub_questions": true
+    }
+   }
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite@minimal",
+   "case_id": "br-standalone-es-02",
+   "output": {
+    "intent": "question",
+    "fields": {},
+    "language": "es",
+    "matrix_language": "es",
+    "english_ratio": 0.0,
+    "explicit_language_request": null,
+    "code_switched": false,
+    "sentiment": "neutral",
+    "question": "¿Estoy asegurado si reparto con mi moto propia?",
+    "sub_questions": [],
+    "question_topic": null,
+    "slot": null,
+    "declines_field": false,
+    "mode": null
+   },
+   "record": {
+    "model": "google/gemini-3.5-flash-lite@minimal",
+    "role": "extractor",
+    "case_id": "br-standalone-es-02",
+    "ok": true,
+    "latency_s": 0.758,
+    "ttft_s": null,
+    "input_tokens": 4333,
+    "output_tokens": 75,
+    "cost_usd": 0.00040767,
+    "cost_source": "usage",
+    "provider": "Google",
+    "requests": 1,
+    "output_retries": 0,
+    "error": null,
+    "generation_ids": [
+     "gen-1792604157-Wd4Y6LHshUHFseu4Hku7"
+    ]
+   },
+   "score": {
+    "pass": true,
+    "fields_exact": true,
+    "fp": {},
+    "fn": {},
+    "checks": {
+     "intent": true,
+     "language": true,
+     "matrix_language": true,
+     "explicit_language_request": true,
+     "sentiment": true,
+     "code_switched": true,
+     "question": true,
+     "question_standalone": true,
+     "sub_questions": true
+    }
+   }
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite@minimal",
+   "case_id": "br-standalone-en-01",
+   "output": {
+    "intent": "question",
+    "fields": {},
+    "language": "en",
+    "matrix_language": "en",
+    "english_ratio": 1.0,
+    "explicit_language_request": null,
+    "code_switched": false,
+    "sentiment": "neutral",
+    "question": "Can I work on Sundays?",
+    "sub_questions": [],
+    "question_topic": null,
+    "slot": null,
+    "declines_field": false,
+    "mode": null
+   },
+   "record": {
+    "model": "google/gemini-3.5-flash-lite@minimal",
+    "role": "extractor",
+    "case_id": "br-standalone-en-01",
+    "ok": true,
+    "latency_s": 1.086,
+    "ttft_s": null,
+    "input_tokens": 4324,
+    "output_tokens": 114,
+    "cost_usd": 0.00050274,
+    "cost_source": "usage",
+    "provider": "Google",
+    "requests": 1,
+    "output_retries": 0,
+    "error": null,
+    "generation_ids": [
+     "gen-1792604157-TUGBP6ZJHsNa7pdy8xxH"
+    ]
+   },
+   "score": {
+    "pass": true,
+    "fields_exact": true,
+    "fp": {},
+    "fn": {},
+    "checks": {
+     "intent": true,
+     "language": true,
+     "matrix_language": true,
+     "explicit_language_request": true,
+     "sentiment": true,
+     "code_switched": true,
+     "question": true,
+     "question_standalone": true,
+     "sub_questions": true
+    }
+   }
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite@minimal",
+   "case_id": "br-standalone-mx-02",
+   "output": {
+    "intent": "question",
+    "fields": {},
+    "language": "es",
+    "matrix_language": "es",
+    "english_ratio": 0.0,
+    "explicit_language_request": null,
+    "code_switched": false,
+    "sentiment": "neutral",
+    "question": "¿Cómo es el contrato en España?",
+    "sub_questions": [],
+    "question_topic": null,
+    "slot": null,
+    "declines_field": false,
+    "mode": null
+   },
+   "record": {
+    "model": "google/gemini-3.5-flash-lite@minimal",
+    "role": "extractor",
+    "case_id": "br-standalone-mx-02",
+    "ok": true,
+    "latency_s": 1.013,
+    "ttft_s": null,
+    "input_tokens": 4328,
+    "output_tokens": 105,
+    "cost_usd": 0.0015609,
+    "cost_source": "usage",
+    "provider": "Google",
+    "requests": 1,
+    "output_retries": 0,
+    "error": null,
+    "generation_ids": [
+     "gen-1792604157-nwKcDKteGCAWgnx4h6R8"
+    ]
+   },
+   "score": {
+    "pass": true,
+    "fields_exact": true,
+    "fp": {},
+    "fn": {},
+    "checks": {
+     "intent": true,
+     "language": true,
+     "matrix_language": true,
+     "explicit_language_request": true,
+     "sentiment": true,
+     "code_switched": true,
+     "question": true,
+     "question_standalone": true,
+     "sub_questions": true
+    }
+   }
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite@minimal",
+   "case_id": "br-standalone-en-02",
+   "output": {
+    "intent": "question",
+    "fields": {},
+    "language": "en",
+    "matrix_language": "en",
+    "english_ratio": 1.0,
+    "explicit_language_request": null,
+    "code_switched": false,
+    "sentiment": "neutral",
+    "question": "Is that pay before tax?",
+    "sub_questions": [],
+    "question_topic": null,
+    "slot": null,
+    "declines_field": false,
+    "mode": null
+   },
+   "record": {
+    "model": "google/gemini-3.5-flash-lite@minimal",
+    "role": "extractor",
+    "case_id": "br-standalone-en-02",
+    "ok": true,
+    "latency_s": 1.028,
+    "ttft_s": null,
+    "input_tokens": 4330,
+    "output_tokens": 114,
+    "cost_usd": 0.001584,
+    "cost_source": "usage",
+    "provider": "Google",
+    "requests": 1,
+    "output_retries": 0,
+    "error": null,
+    "generation_ids": [
+     "gen-1792604158-fyHg1NmRzKiNwipnGEXk"
+    ]
+   },
+   "score": {
+    "pass": true,
+    "fields_exact": true,
+    "fp": {},
+    "fn": {},
+    "checks": {
+     "intent": true,
+     "language": true,
+     "matrix_language": true,
+     "explicit_language_request": true,
+     "sentiment": true,
+     "code_switched": true,
+     "question": true,
+     "question_standalone": true,
+     "sub_questions": true
+    }
+   }
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite@minimal",
+   "case_id": "br-standalone-es-03",
+   "output": {
+    "intent": "question",
+    "fields": {},
+    "language": "es",
+    "matrix_language": "es",
+    "english_ratio": 0.0,
+    "explicit_language_request": null,
+    "code_switched": false,
+    "sentiment": "neutral",
+    "question": "¿Para qué necesitáis mi correo electrónico?",
+    "sub_questions": [],
+    "question_topic": null,
+    "slot": null,
+    "declines_field": false,
+    "mode": null
+   },
+   "record": {
+    "model": "google/gemini-3.5-flash-lite@minimal",
+    "role": "extractor",
+    "case_id": "br-standalone-es-03",
+    "ok": true,
+    "latency_s": 1.029,
+    "ttft_s": null,
+    "input_tokens": 4289,
+    "output_tokens": 79,
+    "cost_usd": 0.00040474,
+    "cost_source": "usage",
+    "provider": "Google",
+    "requests": 1,
+    "output_retries": 0,
+    "error": null,
+    "generation_ids": [
+     "gen-1792604158-8lHlMasZKqC4cqtrqILY"
+    ]
+   },
+   "score": {
+    "pass": true,
+    "fields_exact": true,
+    "fp": {},
+    "fn": {},
+    "checks": {
+     "intent": true,
+     "language": true,
+     "matrix_language": true,
+     "explicit_language_request": true,
+     "sentiment": true,
+     "code_switched": true,
+     "question": true,
+     "question_standalone": true,
+     "sub_questions": true
+    }
+   }
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite@minimal",
+   "case_id": "br-standalone-mx-03",
+   "output": {
+    "intent": "question",
+    "fields": {},
+    "language": "es",
+    "matrix_language": "es",
+    "english_ratio": 0.0,
+    "explicit_language_request": null,
+    "code_switched": false,
+    "sentiment": "neutral",
+    "question": "¿La empresa también da chamarra?",
+    "sub_questions": [],
+    "question_topic": null,
+    "slot": null,
+    "declines_field": false,
+    "mode": null
+   },
+   "record": {
+    "model": "google/gemini-3.5-flash-lite@minimal",
+    "role": "extractor",
+    "case_id": "br-standalone-mx-03",
+    "ok": true,
+    "latency_s": 0.985,
+    "ttft_s": null,
+    "input_tokens": 4315,
+    "output_tokens": 115,
+    "cost_usd": 0.00050254,
+    "cost_source": "usage",
+    "provider": "Google",
+    "requests": 1,
+    "output_retries": 0,
+    "error": null,
+    "generation_ids": [
+     "gen-1792604158-eztPKuAvup7CuLLHLVrP"
+    ]
+   },
+   "score": {
+    "pass": true,
+    "fields_exact": true,
+    "fp": {},
+    "fn": {},
+    "checks": {
+     "intent": true,
+     "language": true,
+     "matrix_language": true,
+     "explicit_language_request": true,
+     "sentiment": true,
+     "code_switched": true,
+     "question": true,
+     "question_standalone": true,
+     "sub_questions": true
+    }
+   }
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite@minimal",
+   "case_id": "br-standalone-neg-es-01",
+   "output": {
+    "intent": "question",
+    "fields": {},
+    "language": "es",
+    "matrix_language": "es",
+    "english_ratio": 0.0,
+    "explicit_language_request": null,
+    "code_switched": false,
+    "sentiment": "neutral",
+    "question": "¿Dan casco?",
+    "sub_questions": [],
+    "question_topic": null,
+    "slot": null,
+    "declines_field": false,
+    "mode": null
+   },
+   "record": {
+    "model": "google/gemini-3.5-flash-lite@minimal",
+    "role": "extractor",
+    "case_id": "br-standalone-neg-es-01",
+    "ok": true,
+    "latency_s": 0.88,
+    "ttft_s": null,
+    "input_tokens": 4322,
+    "output_tokens": 111,
+    "cost_usd": 0.00049464,
+    "cost_source": "usage",
+    "provider": "Google",
+    "requests": 1,
+    "output_retries": 0,
+    "error": null,
+    "generation_ids": [
+     "gen-1792604158-gTYG62aNYmdiIYVvwKob"
+    ]
+   },
+   "score": {
+    "pass": true,
+    "fields_exact": true,
+    "fp": {},
+    "fn": {},
+    "checks": {
+     "intent": true,
+     "language": true,
+     "matrix_language": true,
+     "explicit_language_request": true,
+     "sentiment": true,
+     "code_switched": true,
+     "question": true,
+     "question_standalone": true,
+     "sub_questions": true
+    }
+   }
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite@minimal",
+   "case_id": "br-standalone-neg-mx-01",
+   "output": {
+    "intent": "question",
+    "fields": {},
+    "language": "es",
+    "matrix_language": "es",
+    "english_ratio": 0.0,
+    "explicit_language_request": null,
+    "code_switched": false,
+    "sentiment": "neutral",
+    "question": "¿Necesito experiencia previa para el puesto de repartidor?",
+    "sub_questions": [],
+    "question_topic": null,
+    "slot": null,
+    "declines_field": false,
+    "mode": null
+   },
+   "record": {
+    "model": "google/gemini-3.5-flash-lite@minimal",
+    "role": "extractor",
+    "case_id": "br-standalone-neg-mx-01",
+    "ok": true,
+    "latency_s": 0.802,
+    "ttft_s": null,
+    "input_tokens": 4327,
+    "output_tokens": 89,
+    "cost_usd": 0.00044114,
+    "cost_source": "usage",
+    "provider": "Google",
+    "requests": 1,
+    "output_retries": 0,
+    "error": null,
+    "generation_ids": [
+     "gen-1792604158-zs9KoxzvbljWQlFrberO"
+    ]
+   },
+   "score": {
+    "pass": true,
+    "fields_exact": true,
+    "fp": {},
+    "fn": {},
+    "checks": {
+     "intent": true,
+     "language": true,
+     "matrix_language": true,
+     "explicit_language_request": true,
+     "sentiment": true,
+     "code_switched": true,
+     "question": true,
+     "question_standalone": true,
+     "sub_questions": true
+    }
+   }
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite@minimal",
+   "case_id": "br-standalone-neg-en-01",
+   "output": {
+    "intent": "question",
+    "fields": {},
+    "language": "en",
+    "matrix_language": "en",
+    "english_ratio": 1.0,
+    "explicit_language_request": null,
+    "code_switched": false,
+    "sentiment": "neutral",
+    "question": "Do I keep my tips?",
+    "sub_questions": [],
+    "question_topic": null,
+    "slot": null,
+    "declines_field": false,
+    "mode": null
+   },
+   "record": {
+    "model": "google/gemini-3.5-flash-lite@minimal",
+    "role": "extractor",
+    "case_id": "br-standalone-neg-en-01",
+    "ok": true,
+    "latency_s": 0.912,
+    "ttft_s": null,
+    "input_tokens": 4318,
+    "output_tokens": 114,
+    "cost_usd": 0.00050094,
+    "cost_source": "usage",
+    "provider": "Google",
+    "requests": 1,
+    "output_retries": 0,
+    "error": null,
+    "generation_ids": [
+     "gen-1792604158-jBgREv8qj9kiAqt27i40"
+    ]
+   },
+   "score": {
+    "pass": true,
+    "fields_exact": true,
+    "fp": {},
+    "fn": {},
+    "checks": {
+     "intent": true,
+     "language": true,
+     "matrix_language": true,
+     "explicit_language_request": true,
+     "sentiment": true,
+     "code_switched": true,
+     "question": true,
+     "question_standalone": true,
+     "sub_questions": true
+    }
+   }
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite@minimal",
+   "case_id": "br-multi-es-01",
+   "output": {
+    "intent": "question",
+    "fields": {},
+    "language": "es",
+    "matrix_language": "es",
+    "english_ratio": 0.0,
+    "explicit_language_request": null,
+    "code_switched": false,
+    "sentiment": "neutral",
+    "question": "¿Cuánto se paga a los repartidores y dan casco?",
+    "sub_questions": [
+     "¿Cuánto se paga?",
+     "¿Dan casco?"
+    ],
+    "question_topic": null,
+    "slot": null,
+    "declines_field": false,
+    "mode": null
+   },
+   "record": {
+    "model": "google/gemini-3.5-flash-lite@minimal",
+    "role": "extractor",
+    "case_id": "br-multi-es-01",
+    "ok": true,
+    "latency_s": 0.816,
+    "ttft_s": null,
+    "input_tokens": 4296,
+    "output_tokens": 126,
+    "cost_usd": 0.00052434,
+    "cost_source": "usage",
+    "provider": "Google",
+    "requests": 1,
+    "output_retries": 0,
+    "error": null,
+    "generation_ids": [
+     "gen-1792604158-Ro2GS6fz0ZnzlyYHTb3l"
+    ]
+   },
+   "score": {
+    "pass": true,
+    "fields_exact": true,
+    "fp": {},
+    "fn": {},
+    "checks": {
+     "intent": true,
+     "language": true,
+     "matrix_language": true,
+     "explicit_language_request": true,
+     "sentiment": true,
+     "code_switched": true,
+     "question": true,
+     "sub_questions": true
+    }
+   }
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite@minimal",
+   "case_id": "br-multi-mx-01",
+   "output": {
+    "intent": "question",
+    "fields": {},
+    "language": "es",
+    "matrix_language": "es",
+    "english_ratio": 0.0,
+    "explicit_language_request": null,
+    "code_switched": false,
+    "sentiment": "neutral",
+    "question": "¿Cuánto pagan, tengo seguro si me accidento y quién pone la gasolina?",
+    "sub_questions": [
+     "¿Cuánto pagan?",
+     "¿Tengo seguro si me accidento?",
+     "¿Quién pone la gasolina?"
+    ],
+    "question_topic": null,
+    "slot": null,
+    "declines_field": false,
+    "mode": null
+   },
+   "record": {
+    "model": "google/gemini-3.5-flash-lite@minimal",
+    "role": "extractor",
+    "case_id": "br-multi-mx-01",
+    "ok": true,
+    "latency_s": 1.316,
+    "ttft_s": null,
+    "input_tokens": 4298,
+    "output_tokens": 153,
+    "cost_usd": 0.00059244,
+    "cost_source": "usage",
+    "provider": "Google",
+    "requests": 1,
+    "output_retries": 0,
+    "error": null,
+    "generation_ids": [
+     "gen-1792604159-x7sPNtKMWgUIfZIcGcgg"
+    ]
+   },
+   "score": {
+    "pass": true,
+    "fields_exact": true,
+    "fp": {},
+    "fn": {},
+    "checks": {
+     "intent": true,
+     "language": true,
+     "matrix_language": true,
+     "explicit_language_request": true,
+     "sentiment": true,
+     "code_switched": true,
+     "question": true,
+     "sub_questions": true
+    }
+   }
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite@minimal",
+   "case_id": "br-multi-en-01",
+   "output": {
+    "intent": "question",
+    "fields": {},
+    "language": "en",
+    "matrix_language": "en",
+    "english_ratio": 1.0,
+    "explicit_language_request": null,
+    "code_switched": false,
+    "sentiment": "neutral",
+    "question": "What is the hourly rate and do I have to bring my own scooter?",
+    "sub_questions": [
+     "What is the hourly rate?",
+     "Do I have to bring my own scooter?"
+    ],
+    "question_topic": null,
+    "slot": null,
+    "declines_field": false,
+    "mode": null
+   },
+   "record": {
+    "model": "google/gemini-3.5-flash-lite@minimal",
+    "role": "extractor",
+    "case_id": "br-multi-en-01",
+    "ok": true,
+    "latency_s": 1.023,
+    "ttft_s": null,
+    "input_tokens": 4298,
+    "output_tokens": 111,
+    "cost_usd": 0.0015669,
+    "cost_source": "usage",
+    "provider": "Google",
+    "requests": 1,
+    "output_retries": 0,
+    "error": null,
+    "generation_ids": [
+     "gen-1792604159-0SnaFKEHtgfbTm5lzBCh"
+    ]
+   },
+   "score": {
+    "pass": true,
+    "fields_exact": true,
+    "fp": {},
+    "fn": {},
+    "checks": {
+     "intent": true,
+     "language": true,
+     "matrix_language": true,
+     "explicit_language_request": true,
+     "sentiment": true,
+     "code_switched": true,
+     "question": true,
+     "sub_questions": true
+    }
+   }
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite@minimal",
+   "case_id": "br-multi-mx-02",
+   "output": {
+    "intent": "answer",
+    "fields": {
+     "has_license": {
+      "value": true,
+      "confidence": 1.0
+     }
+    },
+    "language": "es",
+    "matrix_language": "es",
+    "english_ratio": 0.0,
+    "explicit_language_request": null,
+    "code_switched": false,
+    "sentiment": "neutral",
+    "question": "¿Cuánto se gana?",
+    "sub_questions": [
+     "¿Dan la moto?",
+     "¿Cuánto se gana?"
+    ],
+    "question_topic": null,
+    "slot": null,
+    "declines_field": false,
+    "mode": null
+   },
+   "record": {
+    "model": "google/gemini-3.5-flash-lite@minimal",
+    "role": "extractor",
+    "case_id": "br-multi-mx-02",
+    "ok": true,
+    "latency_s": 1.13,
+    "ttft_s": null,
+    "input_tokens": 4298,
+    "output_tokens": 159,
+    "cost_usd": 0.00060744,
+    "cost_source": "usage",
+    "provider": "Google",
+    "requests": 1,
+    "output_retries": 0,
+    "error": null,
+    "generation_ids": [
+     "gen-1792604159-qm31xNLmSIVgI7lCKVLy"
+    ]
+   },
+   "score": {
+    "pass": true,
+    "fields_exact": true,
+    "fp": {},
+    "fn": {},
+    "checks": {
+     "intent": true,
+     "language": true,
+     "matrix_language": true,
+     "explicit_language_request": true,
+     "sentiment": true,
+     "code_switched": true,
+     "question": true,
+     "sub_questions": true
+    }
+   }
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite@minimal",
+   "case_id": "br-multi-es-02",
+   "output": {
+    "intent": "question",
+    "fields": {},
+    "language": "es",
+    "matrix_language": "es",
+    "english_ratio": 0.0,
+    "explicit_language_request": null,
+    "code_switched": false,
+    "sentiment": "neutral",
+    "question": "¿El uniforme y el casco los dais vosotros?",
+    "sub_questions": [],
+    "question_topic": null,
+    "slot": null,
+    "declines_field": false,
+    "mode": null
+   },
+   "record": {
+    "model": "google/gemini-3.5-flash-lite@minimal",
+    "role": "extractor",
+    "case_id": "br-multi-es-02",
+    "ok": true,
+    "latency_s": 0.963,
+    "ttft_s": null,
+    "input_tokens": 4296,
+    "output_tokens": 117,
+    "cost_usd": 0.00050184,
+    "cost_source": "usage",
+    "provider": "Google",
+    "requests": 1,
+    "output_retries": 0,
+    "error": null,
+    "generation_ids": [
+     "gen-1792604159-oGhSyB6rZ2BWSO0F9M9k"
+    ]
+   },
+   "score": {
+    "pass": true,
+    "fields_exact": true,
+    "fp": {},
+    "fn": {},
+    "checks": {
+     "intent": true,
+     "language": true,
+     "matrix_language": true,
+     "explicit_language_request": true,
+     "sentiment": true,
+     "code_switched": true,
+     "question": true,
+     "sub_questions": false
+    }
+   }
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite@minimal",
+   "case_id": "br-multi-neg-es-01",
+   "output": {
+    "intent": "question",
+    "fields": {},
+    "language": "es",
+    "matrix_language": "es",
+    "english_ratio": 0.0,
+    "explicit_language_request": null,
+    "code_switched": false,
+    "sentiment": "neutral",
+    "question": "¿Cuánto se paga a la hora si trabajo de noche los fines de semana?",
+    "sub_questions": [],
+    "question_topic": null,
+    "slot": null,
+    "declines_field": false,
+    "mode": null
+   },
+   "record": {
+    "model": "google/gemini-3.5-flash-lite@minimal",
+    "role": "extractor",
+    "case_id": "br-multi-neg-es-01",
+    "ok": true,
+    "latency_s": 1.216,
+    "ttft_s": null,
+    "input_tokens": 4294,
+    "output_tokens": 123,
+    "cost_usd": 0.00051624,
+    "cost_source": "usage",
+    "provider": "Google",
+    "requests": 1,
+    "output_retries": 0,
+    "error": null,
+    "generation_ids": [
+     "gen-1792604159-PfoHrmwBfgsi5zxvyygL"
+    ]
+   },
+   "score": {
+    "pass": true,
+    "fields_exact": true,
+    "fp": {},
+    "fn": {},
+    "checks": {
+     "intent": true,
+     "language": true,
+     "matrix_language": true,
+     "explicit_language_request": true,
+     "sentiment": true,
+     "code_switched": true,
+     "question": true,
+     "question_standalone": true,
+     "sub_questions": true
+    }
+   }
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite@minimal",
+   "case_id": "br-multi-neg-en-01",
+   "output": {
+    "intent": "question",
+    "fields": {},
+    "language": "en",
+    "matrix_language": "en",
+    "english_ratio": 1.0,
+    "explicit_language_request": null,
+    "code_switched": false,
+    "sentiment": "neutral",
+    "question": "how much do you pay? like what's the salary?",
+    "sub_questions": [],
+    "question_topic": null,
+    "slot": null,
+    "declines_field": false,
+    "mode": null
+   },
+   "record": {
+    "model": "google/gemini-3.5-flash-lite@minimal",
+    "role": "extractor",
+    "case_id": "br-multi-neg-en-01",
+    "ok": true,
+    "latency_s": 1.08,
+    "ttft_s": null,
+    "input_tokens": 4293,
+    "output_tokens": 121,
+    "cost_usd": 0.00051094,
+    "cost_source": "usage",
+    "provider": "Google",
+    "requests": 1,
+    "output_retries": 0,
+    "error": null,
+    "generation_ids": [
+     "gen-1792604159-uh2ec3ikrxjhnTXJKCMT"
+    ]
+   },
+   "score": {
+    "pass": true,
+    "fields_exact": true,
+    "fp": {},
+    "fn": {},
+    "checks": {
+     "intent": true,
+     "language": true,
+     "matrix_language": true,
+     "explicit_language_request": true,
+     "sentiment": true,
+     "code_switched": true,
+     "question": true,
+     "sub_questions": true
+    }
+   }
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite@minimal",
+   "case_id": "br-standalone-es-01",
+   "output": {
+    "intent": "question",
+    "fields": {},
+    "language": "es",
+    "matrix_language": "es",
+    "english_ratio": 0.0,
+    "explicit_language_request": null,
+    "code_switched": false,
+    "sentiment": "neutral",
+    "question": "¿Cuánto se paga a los repartidores en México?",
+    "sub_questions": [],
+    "question_topic": null,
+    "slot": null,
+    "declines_field": false,
+    "mode": null
+   },
+   "record": {
+    "model": "google/gemini-3.5-flash-lite@minimal",
+    "role": "extractor",
+    "case_id": "br-standalone-es-01",
+    "ok": true,
+    "latency_s": 0.691,
+    "ttft_s": null,
+    "input_tokens": 4335,
+    "output_tokens": 73,
+    "cost_usd": 0.00040327,
+    "cost_source": "usage",
+    "provider": "Google",
+    "requests": 1,
+    "output_retries": 0,
+    "error": null,
+    "generation_ids": [
+     "gen-1792604159-ogu2fkI457HFHOVciCyv"
+    ]
+   },
+   "score": {
+    "pass": true,
+    "fields_exact": true,
+    "fp": {},
+    "fn": {},
+    "checks": {
+     "intent": true,
+     "language": true,
+     "matrix_language": true,
+     "explicit_language_request": true,
+     "sentiment": true,
+     "code_switched": true,
+     "question": true,
+     "question_standalone": true,
+     "sub_questions": true
+    }
+   }
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite@minimal",
+   "case_id": "br-standalone-mx-01",
+   "output": {
+    "intent": "question",
+    "fields": {},
+    "language": "es",
+    "matrix_language": "es",
+    "english_ratio": 0.0,
+    "explicit_language_request": null,
+    "code_switched": false,
+    "sentiment": "neutral",
+    "question": "¿El pago semanal a los repartidores incluye propinas?",
+    "sub_questions": [],
+    "question_topic": null,
+    "slot": null,
+    "declines_field": false,
+    "mode": null
+   },
+   "record": {
+    "model": "google/gemini-3.5-flash-lite@minimal",
+    "role": "extractor",
+    "case_id": "br-standalone-mx-01",
+    "ok": true,
+    "latency_s": 1.133,
+    "ttft_s": null,
+    "input_tokens": 4330,
+    "output_tokens": 69,
+    "cost_usd": 0.00039177,
+    "cost_source": "usage",
+    "provider": "Google",
+    "requests": 1,
+    "output_retries": 0,
+    "error": null,
+    "generation_ids": [
+     "gen-1792604160-RK5NjHwBAIQv78BKLG23"
+    ]
+   },
+   "score": {
+    "pass": true,
+    "fields_exact": true,
+    "fp": {},
+    "fn": {},
+    "checks": {
+     "intent": true,
+     "language": true,
+     "matrix_language": true,
+     "explicit_language_request": true,
+     "sentiment": true,
+     "code_switched": true,
+     "question": true,
+     "question_standalone": true,
+     "sub_questions": true
+    }
+   }
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite@minimal",
+   "case_id": "br-standalone-es-02",
+   "output": {
+    "intent": "question",
+    "fields": {},
+    "language": "es",
+    "matrix_language": "es",
+    "english_ratio": 0.0,
+    "explicit_language_request": null,
+    "code_switched": false,
+    "sentiment": "neutral",
+    "question": "¿Estoy asegurado si reparto con mi moto propia?",
+    "sub_questions": [],
+    "question_topic": null,
+    "slot": null,
+    "declines_field": false,
+    "mode": null
+   },
+   "record": {
+    "model": "google/gemini-3.5-flash-lite@minimal",
+    "role": "extractor",
+    "case_id": "br-standalone-es-02",
+    "ok": true,
+    "latency_s": 0.881,
+    "ttft_s": null,
+    "input_tokens": 4333,
+    "output_tokens": 118,
+    "cost_usd": 0.00051517,
+    "cost_source": "usage",
+    "provider": "Google",
+    "requests": 1,
+    "output_retries": 0,
+    "error": null,
+    "generation_ids": [
+     "gen-1792604160-oZHucpWX2fy6mcyA3PUM"
+    ]
+   },
+   "score": {
+    "pass": true,
+    "fields_exact": true,
+    "fp": {},
+    "fn": {},
+    "checks": {
+     "intent": true,
+     "language": true,
+     "matrix_language": true,
+     "explicit_language_request": true,
+     "sentiment": true,
+     "code_switched": true,
+     "question": true,
+     "question_standalone": true,
+     "sub_questions": true
+    }
+   }
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite@minimal",
+   "case_id": "br-standalone-en-01",
+   "output": {
+    "intent": "question",
+    "fields": {},
+    "language": "en",
+    "matrix_language": "en",
+    "english_ratio": 1.0,
+    "explicit_language_request": null,
+    "code_switched": false,
+    "sentiment": "neutral",
+    "question": "What about working on Sundays?",
+    "sub_questions": [],
+    "question_topic": null,
+    "slot": null,
+    "declines_field": false,
+    "mode": null
+   },
+   "record": {
+    "model": "google/gemini-3.5-flash-lite@minimal",
+    "role": "extractor",
+    "case_id": "br-standalone-en-01",
+    "ok": true,
+    "latency_s": 0.799,
+    "ttft_s": null,
+    "input_tokens": 4324,
+    "output_tokens": 71,
+    "cost_usd": 0.00039524,
+    "cost_source": "usage",
+    "provider": "Google",
+    "requests": 1,
+    "output_retries": 0,
+    "error": null,
+    "generation_ids": [
+     "gen-1792604160-pObxdMcx9flJLscHYFJr"
+    ]
+   },
+   "score": {
+    "pass": true,
+    "fields_exact": true,
+    "fp": {},
+    "fn": {},
+    "checks": {
+     "intent": true,
+     "language": true,
+     "matrix_language": true,
+     "explicit_language_request": true,
+     "sentiment": true,
+     "code_switched": true,
+     "question": true,
+     "question_standalone": true,
+     "sub_questions": true
+    }
+   }
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite@minimal",
+   "case_id": "br-standalone-mx-02",
+   "output": {
+    "intent": "question",
+    "fields": {},
+    "language": "es",
+    "matrix_language": "es",
+    "english_ratio": 0.0,
+    "explicit_language_request": null,
+    "code_switched": false,
+    "sentiment": "neutral",
+    "question": "¿Cómo es el contrato en España?",
+    "sub_questions": [],
+    "question_topic": null,
+    "slot": null,
+    "declines_field": false,
+    "mode": null
+   },
+   "record": {
+    "model": "google/gemini-3.5-flash-lite@minimal",
+    "role": "extractor",
+    "case_id": "br-standalone-mx-02",
+    "ok": true,
+    "latency_s": 1.265,
+    "ttft_s": null,
+    "input_tokens": 4328,
+    "output_tokens": 110,
+    "cost_usd": 0.00049394,
+    "cost_source": "usage",
+    "provider": "Google",
+    "requests": 1,
+    "output_retries": 0,
+    "error": null,
+    "generation_ids": [
+     "gen-1792604160-nvvoYwwK5urAkagTad2W"
+    ]
+   },
+   "score": {
+    "pass": true,
+    "fields_exact": true,
+    "fp": {},
+    "fn": {},
+    "checks": {
+     "intent": true,
+     "language": true,
+     "matrix_language": true,
+     "explicit_language_request": true,
+     "sentiment": true,
+     "code_switched": true,
+     "question": true,
+     "question_standalone": true,
+     "sub_questions": true
+    }
+   }
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite@minimal",
+   "case_id": "br-standalone-en-02",
+   "output": {
+    "intent": "question",
+    "fields": {},
+    "language": "en",
+    "matrix_language": "en",
+    "english_ratio": 1.0,
+    "explicit_language_request": null,
+    "code_switched": false,
+    "sentiment": "neutral",
+    "question": "Is that pay before tax?",
+    "sub_questions": [],
+    "question_topic": null,
+    "slot": null,
+    "declines_field": false,
+    "mode": null
+   },
+   "record": {
+    "model": "google/gemini-3.5-flash-lite@minimal",
+    "role": "extractor",
+    "case_id": "br-standalone-en-02",
+    "ok": true,
+    "latency_s": 1.047,
+    "ttft_s": null,
+    "input_tokens": 4330,
+    "output_tokens": 114,
+    "cost_usd": 0.001584,
+    "cost_source": "usage",
+    "provider": "Google",
+    "requests": 1,
+    "output_retries": 0,
+    "error": null,
+    "generation_ids": [
+     "gen-1792604160-Frl5bHrPDVaM8MhxUlMQ"
+    ]
+   },
+   "score": {
+    "pass": true,
+    "fields_exact": true,
+    "fp": {},
+    "fn": {},
+    "checks": {
+     "intent": true,
+     "language": true,
+     "matrix_language": true,
+     "explicit_language_request": true,
+     "sentiment": true,
+     "code_switched": true,
+     "question": true,
+     "question_standalone": true,
+     "sub_questions": true
+    }
+   }
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite@minimal",
+   "case_id": "br-standalone-es-03",
+   "output": {
+    "intent": "question",
+    "fields": {},
+    "language": "es",
+    "matrix_language": "es",
+    "english_ratio": 0.0,
+    "explicit_language_request": null,
+    "code_switched": false,
+    "sentiment": "neutral",
+    "question": "¿Para qué necesitáis mi correo electrónico?",
+    "sub_questions": [],
+    "question_topic": null,
+    "slot": null,
+    "declines_field": false,
+    "mode": null
+   },
+   "record": {
+    "model": "google/gemini-3.5-flash-lite@minimal",
+    "role": "extractor",
+    "case_id": "br-standalone-es-03",
+    "ok": true,
+    "latency_s": 0.902,
+    "ttft_s": null,
+    "input_tokens": 4289,
+    "output_tokens": 116,
+    "cost_usd": 0.00049724,
+    "cost_source": "usage",
+    "provider": "Google",
+    "requests": 1,
+    "output_retries": 0,
+    "error": null,
+    "generation_ids": [
+     "gen-1792604160-B0PRjwbzOwvNP7pM6EpM"
+    ]
+   },
+   "score": {
+    "pass": true,
+    "fields_exact": true,
+    "fp": {},
+    "fn": {},
+    "checks": {
+     "intent": true,
+     "language": true,
+     "matrix_language": true,
+     "explicit_language_request": true,
+     "sentiment": true,
+     "code_switched": true,
+     "question": true,
+     "question_standalone": true,
+     "sub_questions": true
+    }
+   }
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite@minimal",
+   "case_id": "br-standalone-mx-03",
+   "output": {
+    "intent": "question",
+    "fields": {},
+    "language": "es",
+    "matrix_language": "es",
+    "english_ratio": 0.0,
+    "explicit_language_request": null,
+    "code_switched": false,
+    "sentiment": "neutral",
+    "question": "¿También dan chamarra?",
+    "sub_questions": [],
+    "question_topic": null,
+    "slot": null,
+    "declines_field": false,
+    "mode": null
+   },
+   "record": {
+    "model": "google/gemini-3.5-flash-lite@minimal",
+    "role": "extractor",
+    "case_id": "br-standalone-mx-03",
+    "ok": true,
+    "latency_s": 0.706,
+    "ttft_s": null,
+    "input_tokens": 4315,
+    "output_tokens": 83,
+    "cost_usd": 0.00042254,
+    "cost_source": "usage",
+    "provider": "Google",
+    "requests": 1,
+    "output_retries": 0,
+    "error": null,
+    "generation_ids": [
+     "gen-1792604160-Z0qCtOS0ABCvdS1jE0jU"
+    ]
+   },
+   "score": {
+    "pass": true,
+    "fields_exact": true,
+    "fp": {},
+    "fn": {},
+    "checks": {
+     "intent": true,
+     "language": true,
+     "matrix_language": true,
+     "explicit_language_request": true,
+     "sentiment": true,
+     "code_switched": true,
+     "question": true,
+     "question_standalone": true,
+     "sub_questions": true
+    }
+   }
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite@minimal",
+   "case_id": "br-standalone-neg-es-01",
+   "output": {
+    "intent": "question",
+    "fields": {},
+    "language": "es",
+    "matrix_language": "es",
+    "english_ratio": 0.0,
+    "explicit_language_request": null,
+    "code_switched": false,
+    "sentiment": "neutral",
+    "question": "¿Dan casco?",
+    "sub_questions": [],
+    "question_topic": null,
+    "slot": null,
+    "declines_field": false,
+    "mode": null
+   },
+   "record": {
+    "model": "google/gemini-3.5-flash-lite@minimal",
+    "role": "extractor",
+    "case_id": "br-standalone-neg-es-01",
+    "ok": true,
+    "latency_s": 1.019,
+    "ttft_s": null,
+    "input_tokens": 4322,
+    "output_tokens": 66,
+    "cost_usd": 0.00038214,
+    "cost_source": "usage",
+    "provider": "Google",
+    "requests": 1,
+    "output_retries": 0,
+    "error": null,
+    "generation_ids": [
+     "gen-1792604160-D3vEkxcX03byVTCnUczd"
+    ]
+   },
+   "score": {
+    "pass": true,
+    "fields_exact": true,
+    "fp": {},
+    "fn": {},
+    "checks": {
+     "intent": true,
+     "language": true,
+     "matrix_language": true,
+     "explicit_language_request": true,
+     "sentiment": true,
+     "code_switched": true,
+     "question": true,
+     "question_standalone": true,
+     "sub_questions": true
+    }
+   }
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite@minimal",
+   "case_id": "br-standalone-neg-mx-01",
+   "output": {
+    "intent": "question",
+    "fields": {},
+    "language": "es",
+    "matrix_language": "es",
+    "english_ratio": 0.0,
+    "explicit_language_request": null,
+    "code_switched": false,
+    "sentiment": "neutral",
+    "question": "¿Necesito experiencia previa para trabajar de repartidor?",
+    "sub_questions": [],
+    "question_topic": null,
+    "slot": null,
+    "declines_field": false,
+    "mode": null
+   },
+   "record": {
+    "model": "google/gemini-3.5-flash-lite@minimal",
+    "role": "extractor",
+    "case_id": "br-standalone-neg-mx-01",
+    "ok": true,
+    "latency_s": 1.006,
+    "ttft_s": null,
+    "input_tokens": 4327,
+    "output_tokens": 118,
+    "cost_usd": 0.00051364,
+    "cost_source": "usage",
+    "provider": "Google",
+    "requests": 1,
+    "output_retries": 0,
+    "error": null,
+    "generation_ids": [
+     "gen-1792604160-yr6cj4mTQmwEMlOeNBal"
+    ]
+   },
+   "score": {
+    "pass": true,
+    "fields_exact": true,
+    "fp": {},
+    "fn": {},
+    "checks": {
+     "intent": true,
+     "language": true,
+     "matrix_language": true,
+     "explicit_language_request": true,
+     "sentiment": true,
+     "code_switched": true,
+     "question": true,
+     "question_standalone": true,
+     "sub_questions": true
+    }
+   }
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite@minimal",
+   "case_id": "br-standalone-neg-en-01",
+   "output": {
+    "intent": "question",
+    "fields": {},
+    "language": "en",
+    "matrix_language": "en",
+    "english_ratio": 1.0,
+    "explicit_language_request": null,
+    "code_switched": false,
+    "sentiment": "neutral",
+    "question": "Do I keep my tips?",
+    "sub_questions": [],
+    "question_topic": null,
+    "slot": null,
+    "declines_field": false,
+    "mode": null
+   },
+   "record": {
+    "model": "google/gemini-3.5-flash-lite@minimal",
+    "role": "extractor",
+    "case_id": "br-standalone-neg-en-01",
+    "ok": true,
+    "latency_s": 1.061,
+    "ttft_s": null,
+    "input_tokens": 4318,
+    "output_tokens": 114,
+    "cost_usd": 0.00050094,
+    "cost_source": "usage",
+    "provider": "Google",
+    "requests": 1,
+    "output_retries": 0,
+    "error": null,
+    "generation_ids": [
+     "gen-1792604161-IBAXSjzarGE7R7hBjnx1"
+    ]
+   },
+   "score": {
+    "pass": true,
+    "fields_exact": true,
+    "fp": {},
+    "fn": {},
+    "checks": {
+     "intent": true,
+     "language": true,
+     "matrix_language": true,
+     "explicit_language_request": true,
+     "sentiment": true,
+     "code_switched": true,
+     "question": true,
+     "question_standalone": true,
+     "sub_questions": true
+    }
+   }
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite@minimal",
+   "case_id": "br-multi-es-01",
+   "output": {
+    "intent": "question",
+    "fields": {},
+    "language": "es",
+    "matrix_language": "es",
+    "english_ratio": 0.0,
+    "explicit_language_request": null,
+    "code_switched": false,
+    "sentiment": "neutral",
+    "question": "¿Cuánto se paga a los repartidores y dan casco?",
+    "sub_questions": [
+     "¿Cuánto se paga a los repartidores?",
+     "¿Dan casco?"
+    ],
+    "question_topic": null,
+    "slot": null,
+    "declines_field": false,
+    "mode": null
+   },
+   "record": {
+    "model": "google/gemini-3.5-flash-lite@minimal",
+    "role": "extractor",
+    "case_id": "br-multi-es-01",
+    "ok": true,
+    "latency_s": 0.829,
+    "ttft_s": null,
+    "input_tokens": 4296,
+    "output_tokens": 110,
+    "cost_usd": 0.00048434,
+    "cost_source": "usage",
+    "provider": "Google",
+    "requests": 1,
+    "output_retries": 0,
+    "error": null,
+    "generation_ids": [
+     "gen-1792604161-bz4NKBaSfpPwLiPBOUjU"
+    ]
+   },
+   "score": {
+    "pass": true,
+    "fields_exact": true,
+    "fp": {},
+    "fn": {},
+    "checks": {
+     "intent": true,
+     "language": true,
+     "matrix_language": true,
+     "explicit_language_request": true,
+     "sentiment": true,
+     "code_switched": true,
+     "question": true,
+     "sub_questions": true
+    }
+   }
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite@minimal",
+   "case_id": "br-multi-mx-01",
+   "output": {
+    "intent": "question",
+    "fields": {},
+    "language": "es",
+    "matrix_language": "es",
+    "english_ratio": 0.0,
+    "explicit_language_request": null,
+    "code_switched": false,
+    "sentiment": "neutral",
+    "question": "¿Cuánto pagan, tengo seguro si me accidento y quién pone la gasolina?",
+    "sub_questions": [
+     "¿Cuánto pagan?",
+     "¿Tengo seguro si me accidento?",
+     "¿Quién pone la gasolina?"
+    ],
+    "question_topic": null,
+    "slot": null,
+    "declines_field": false,
+    "mode": null
+   },
+   "record": {
+    "model": "google/gemini-3.5-flash-lite@minimal",
+    "role": "extractor",
+    "case_id": "br-multi-mx-01",
+    "ok": true,
+    "latency_s": 1.109,
+    "ttft_s": null,
+    "input_tokens": 4298,
+    "output_tokens": 153,
+    "cost_usd": 0.00059244,
+    "cost_source": "usage",
+    "provider": "Google",
+    "requests": 1,
+    "output_retries": 0,
+    "error": null,
+    "generation_ids": [
+     "gen-1792604161-VJLq3pQ0TbvXRdouq9Cf"
+    ]
+   },
+   "score": {
+    "pass": true,
+    "fields_exact": true,
+    "fp": {},
+    "fn": {},
+    "checks": {
+     "intent": true,
+     "language": true,
+     "matrix_language": true,
+     "explicit_language_request": true,
+     "sentiment": true,
+     "code_switched": true,
+     "question": true,
+     "sub_questions": true
+    }
+   }
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite@minimal",
+   "case_id": "br-multi-en-01",
+   "output": {
+    "intent": "question",
+    "fields": {},
+    "language": "en",
+    "matrix_language": "en",
+    "english_ratio": 1.0,
+    "explicit_language_request": null,
+    "code_switched": false,
+    "sentiment": "neutral",
+    "question": "What is the hourly rate for delivery drivers and do I have to bring my own scooter?",
+    "sub_questions": [
+     "What is the hourly rate?",
+     "Do I have to bring my own scooter?"
+    ],
+    "question_topic": null,
+    "slot": null,
+    "declines_field": false,
+    "mode": null
+   },
+   "record": {
+    "model": "google/gemini-3.5-flash-lite@minimal",
+    "role": "extractor",
+    "case_id": "br-multi-en-01",
+    "ok": true,
+    "latency_s": 1.077,
+    "ttft_s": null,
+    "input_tokens": 4298,
+    "output_tokens": 149,
+    "cost_usd": 0.00058244,
+    "cost_source": "usage",
+    "provider": "Google",
+    "requests": 1,
+    "output_retries": 0,
+    "error": null,
+    "generation_ids": [
+     "gen-1792604161-D6QZZBuPq65Ks6B3qcYh"
+    ]
+   },
+   "score": {
+    "pass": true,
+    "fields_exact": true,
+    "fp": {},
+    "fn": {},
+    "checks": {
+     "intent": true,
+     "language": true,
+     "matrix_language": true,
+     "explicit_language_request": true,
+     "sentiment": true,
+     "code_switched": true,
+     "question": true,
+     "sub_questions": true
+    }
+   }
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite@minimal",
+   "case_id": "br-multi-mx-02",
+   "output": {
+    "intent": "answer",
+    "fields": {
+     "has_license": {
+      "value": true,
+      "confidence": 1.0
+     }
+    },
+    "language": "es",
+    "matrix_language": "es",
+    "english_ratio": 0.0,
+    "explicit_language_request": null,
+    "code_switched": false,
+    "sentiment": "neutral",
+    "question": "¿Cuánto se gana?",
+    "sub_questions": [
+     "¿Dan la moto?",
+     "¿Cuánto se gana?"
+    ],
+    "question_topic": null,
+    "slot": null,
+    "declines_field": false,
+    "mode": null
+   },
+   "record": {
+    "model": "google/gemini-3.5-flash-lite@minimal",
+    "role": "extractor",
+    "case_id": "br-multi-mx-02",
+    "ok": true,
+    "latency_s": 1.098,
+    "ttft_s": null,
+    "input_tokens": 4298,
+    "output_tokens": 159,
+    "cost_usd": 0.00060744,
+    "cost_source": "usage",
+    "provider": "Google",
+    "requests": 1,
+    "output_retries": 0,
+    "error": null,
+    "generation_ids": [
+     "gen-1792604161-Tl0PJRO1vuhxLbtfMyi1"
+    ]
+   },
+   "score": {
+    "pass": true,
+    "fields_exact": true,
+    "fp": {},
+    "fn": {},
+    "checks": {
+     "intent": true,
+     "language": true,
+     "matrix_language": true,
+     "explicit_language_request": true,
+     "sentiment": true,
+     "code_switched": true,
+     "question": true,
+     "sub_questions": true
+    }
+   }
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite@minimal",
+   "case_id": "br-multi-es-02",
+   "output": {
+    "intent": "question",
+    "fields": {},
+    "language": "es",
+    "matrix_language": "es",
+    "english_ratio": 0.0,
+    "explicit_language_request": null,
+    "code_switched": false,
+    "sentiment": "neutral",
+    "question": "¿El uniforme y el casco los dais vosotros?",
+    "sub_questions": [],
+    "question_topic": null,
+    "slot": null,
+    "declines_field": false,
+    "mode": null
+   },
+   "record": {
+    "model": "google/gemini-3.5-flash-lite@minimal",
+    "role": "extractor",
+    "case_id": "br-multi-es-02",
+    "ok": true,
+    "latency_s": 1.006,
+    "ttft_s": null,
+    "input_tokens": 4296,
+    "output_tokens": 107,
+    "cost_usd": 0.00047684,
+    "cost_source": "usage",
+    "provider": "Google",
+    "requests": 1,
+    "output_retries": 0,
+    "error": null,
+    "generation_ids": [
+     "gen-1792604161-ZEiY1RGymW3uAFstBz6s"
+    ]
+   },
+   "score": {
+    "pass": true,
+    "fields_exact": true,
+    "fp": {},
+    "fn": {},
+    "checks": {
+     "intent": true,
+     "language": true,
+     "matrix_language": true,
+     "explicit_language_request": true,
+     "sentiment": true,
+     "code_switched": true,
+     "question": true,
+     "sub_questions": false
+    }
+   }
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite@minimal",
+   "case_id": "br-multi-neg-es-01",
+   "output": {
+    "intent": "question",
+    "fields": {},
+    "language": "es",
+    "matrix_language": "es",
+    "english_ratio": 0.0,
+    "explicit_language_request": null,
+    "code_switched": false,
+    "sentiment": "neutral",
+    "question": "¿Cuánto se paga a la hora si trabajo de noche los fines de semana?",
+    "sub_questions": [],
+    "question_topic": null,
+    "slot": null,
+    "declines_field": false,
+    "mode": null
+   },
+   "record": {
+    "model": "google/gemini-3.5-flash-lite@minimal",
+    "role": "extractor",
+    "case_id": "br-multi-neg-es-01",
+    "ok": true,
+    "latency_s": 2.548,
+    "ttft_s": null,
+    "input_tokens": 4294,
+    "output_tokens": 123,
+    "cost_usd": 0.00051624,
+    "cost_source": "usage",
+    "provider": "Google",
+    "requests": 1,
+    "output_retries": 0,
+    "error": null,
+    "generation_ids": [
+     "gen-1792604161-lnTuUa7D8XWmNlxS90Gh"
+    ]
+   },
+   "score": {
+    "pass": true,
+    "fields_exact": true,
+    "fp": {},
+    "fn": {},
+    "checks": {
+     "intent": true,
+     "language": true,
+     "matrix_language": true,
+     "explicit_language_request": true,
+     "sentiment": true,
+     "code_switched": true,
+     "question": true,
+     "question_standalone": true,
+     "sub_questions": true
+    }
+   }
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite@minimal",
+   "case_id": "br-multi-neg-en-01",
+   "output": {
+    "intent": "question",
+    "fields": {},
+    "language": "en",
+    "matrix_language": "en",
+    "english_ratio": 1.0,
+    "explicit_language_request": null,
+    "code_switched": false,
+    "sentiment": "neutral",
+    "question": "How much do you pay?",
+    "sub_questions": [],
+    "question_topic": null,
+    "slot": null,
+    "declines_field": false,
+    "mode": null
+   },
+   "record": {
+    "model": "google/gemini-3.5-flash-lite@minimal",
+    "role": "extractor",
+    "case_id": "br-multi-neg-en-01",
+    "ok": true,
+    "latency_s": 0.95,
+    "ttft_s": null,
+    "input_tokens": 4293,
+    "output_tokens": 114,
+    "cost_usd": 0.0015729,
+    "cost_source": "usage",
+    "provider": "Google",
+    "requests": 1,
+    "output_retries": 0,
+    "error": null,
+    "generation_ids": [
+     "gen-1792604162-HP1XwGz4IBzmsHZglCGJ"
+    ]
+   },
+   "score": {
+    "pass": true,
+    "fields_exact": true,
+    "fp": {},
+    "fn": {},
+    "checks": {
+     "intent": true,
+     "language": true,
+     "matrix_language": true,
+     "explicit_language_request": true,
+     "sentiment": true,
+     "code_switched": true,
+     "question": true,
+     "sub_questions": true
+    }
+   }
+  }
+ ]
+}

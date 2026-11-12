@@ -1,0 +1,182 @@
+# What the rider agent calls things, by language (`es`, `en`; a field's name the same in both
+# countries unless `country_labels` says otherwise): the fields and their options on the summary
+# card and for recruiters, and the recruiters' dashboard, in Spanish.
+fields:
+  full_name:
+    label:
+      es: Nombre
+      en: Name
+  phone:
+    label:
+      es: Teléfono
+      en: Phone
+  email:
+    label:
+      es: Email
+      en: Email
+  has_license:
+    label:
+      es: Carnet de conducir
+      en: Driving licence
+    country_labels:
+      ES:
+        es: Carnet de conducir
+        en: Driving licence
+      MX:
+        es: Licencia de conducir
+        en: Driver's license
+  city:
+    label:
+      es: Zona
+      en: Area
+  availability:
+    label:
+      es: Disponibilidad
+      en: Availability
+    option_labels:
+      es:
+        full_time: Tiempo completo
+        part_time: Tiempo parcial
+        weekends: Fines de semana
+      en:
+        full_time: Full time
+        part_time: Part time
+        weekends: Weekends
+  schedule:
+    label:
+      es: Horario
+      en: Schedule
+    option_labels:
+      es:
+        morning: Mañana
+        afternoon: Tarde
+        evening: Noche
+        flexible: Flexible
+      en:
+        morning: Morning
+        afternoon: Afternoon
+        evening: Evening
+        flexible: Flexible
+  experience_years:
+    label:
+      es: Experiencia
+      en: Experience
+  platforms:
+    label:
+      es: Plataformas
+      en: Platforms
+    option_labels:
+      es:
+        glovo: Glovo
+        uber_eats: Uber Eats
+        just_eat: Just Eat
+        rappi: Rappi
+        didi_food: DiDi Food
+        deliveroo: Deliveroo
+        amazon_flex: Amazon Flex
+        other: Otra
+      en:
+        glovo: Glovo
+        uber_eats: Uber Eats
+        just_eat: Just Eat
+        rappi: Rappi
+        didi_food: DiDi Food
+        deliveroo: Deliveroo
+        amazon_flex: Amazon Flex
+        other: Other
+    none_label:
+      es: Ninguna
+      en: None
+  start_date:
+    label:
+      es: Fecha de inicio
+      en: Start date
+dashboard:
+  fields:
+    has_license: Carnet
+    city: Ubicación
+  by_country:
+    has_license:
+      MX: Licencia
+  steps:
+    contact: Contacto
+    city: Ciudad
+  columns:
+    start_date: Inicio
+# The words that name each field in "mi email está mal", "quiero cambiar la zona", "you got my
+# number wrong" (`text.field_to_fix`): regexes on folded text, any of them, tried field by field
+# in this order: the years before the phone ("el número de años"), the email before the city ("my
+# email address"). The interview's own words come before all of them.
+fix_words:
+  experience_years:
+  - experiencia
+  - '(?:numero de )?anos(?: de experiencia)?'
+  - experience
+  - 'years(?: of experience)?'
+  start_date:
+  - 'fecha(?: de (?:inicio|incorporacion|comienzo|entrada))?'
+  - dia de inicio
+  - cuando (?:empiezo|empezaria|puedo empezar|empiezo a trabajar)
+  - start(?:ing)? date
+  - when i (?:can )?start
+  availability:
+  - disponibilidad
+  - jornada
+  - 'dias(?: que puedo)?'
+  - fines de semana
+  - availability
+  - days
+  schedule:
+  - horarios?
+  - turnos?
+  - 'franja(?: horaria)?'
+  - schedule
+  - shifts?
+  - working hours
+  platforms:
+  - plataformas?
+  - apps?
+  - aplicaciones
+  - platforms?
+  has_license:
+  - 'carnet(?: de conducir)?'
+  - 'licencia(?: de (?:conducir|manejo|manejar))?'
+  - permiso de conducir
+  - (?:driving |driver s |drivers )?licen[cs]e
+  email:
+  - 'correo(?: electronico)?'
+  - '(?:e ?)?mail(?: address)?'
+  phone:
+  - telefono
+  - movil
+  - celular
+  - 'numero(?: de (?:telefono|movil|celular))?'
+  - 'phone(?: number)?'
+  - 'mobile(?: number)?'
+  - number
+  full_name:
+  - 'nombre(?: completo)?'
+  - apellidos?
+  - (?:full |last |sur)?name
+  city:
+  - zona
+  - colonia
+  - alcaldia
+  - delegacion
+  - ciudad
+  - barrio
+  - municipio
+  - direccion
+  - domicilio
+  - ubicacion
+  - local
+  - sucursal
+  - donde vivo
+  - area
+  - city
+  - zone
+  - neighbou?rhood
+  - location
+  - address
+  - branch
+  - where i live

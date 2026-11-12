@@ -1,0 +1,50 @@
+// Local only (`alloy-dev` in observability.local.yaml): the dev API on the host (`make dev-api`,
+// 127.0.0.1:8000) into the local Prometheus and Loki. It runs on the host network, the one place
+// that reaches the API's loopback port, and pushes to their loopback ports; containers cannot
+// reach the host past the firewall.
+
+prometheus.scrape "dev_api" {
+  job_name        = "api-dev"
+  scrape_interval = "15s"
+  targets         = [{"__address__" = sys.env("DEV_API_ADDR")}]
+  forward_to      = [prometheus.remote_write.local.receiver]
+}
+
+prometheus.remote_write "local" {
+  endpoint {
+    url = sys.env("PROMETHEUS_WRITE_URL")
+  }
+}
+
+// The log `make dev-api` writes, JSON with LOG_FORMAT=json, masked like the stack API's.
+// Matched every 10 s, so a log created after this starts is picked up.
+local.file_match "dev_api" {
+  path_targets = [{
+    "__path__" = "/dev-api-logs/dev-api.log",
+    "service"  = "api-dev",
+    "project"  = sys.env("COMPOSE_PROJECT"),
+  }]
+}
+
+loki.source.file "dev_api" {
+  targets    = local.file_match.dev_api.targets
+  forward_to = [loki.process.levels.receiver]
+}
+
+loki.process "levels" {
+  stage.json {
+    expressions = { level = "level" }
+  }
+
+  stage.labels {
+    values = { level = "" }
+  }
+
+  forward_to = [loki.write.local.receiver]
+}
+
+loki.write "local" {
+  endpoint {
+    url = sys.env("LOKI_PUSH_URL")
+  }
+}

@@ -1,0 +1,80 @@
+# What the rider agent says in es-ES (Spain, tú): the domain's lines. The engine's own lines
+# are in llm/fallback_templates.py; `skeleton:` would say one of them otherwise.
+greet: ¡Hola! Soy Ana, la asistente de IA de selección de Grupo Sazón. Son unas preguntas rápidas
+  y tus datos se tratan según el aviso de privacidad que tienes aquí abajo, ¿empezamos?
+greet_voice: ¡Hola! Soy Ana, la asistente de IA de Grupo Sazón. ¿Aceptas el aviso de privacidad?
+overview: Te haré unas preguntas sobre ti y tu experiencia, son unos 3 minutos. Si encajas, te reservo
+  una entrevista con alguien del equipo.
+overview_voice: Son unas preguntas, unos 3 minutos. Si encajas, te reservo una entrevista.
+busy: ¡Hola! Soy Ana, la asistente de IA de selección de Grupo Sazón. Ahora mismo no puedo abrir solicitudes
+  nuevas. Vuelve más tarde, por favor; mañana seguro que sí.
+clarify_open: ¿Me das un poco más de detalle, por ejemplo el barrio?
+fields:
+  full_name:
+    ask: ¿Cuál es tu nombre completo?
+    refusal: Lo necesito para abrir tu solicitud y para la entrevista.
+    refusal_again: Sin tu nombre no puedo seguir con la solicitud.
+    unresolved: No he podido apuntar tu nombre y apellidos
+  phone:
+    ask: ¿Cuál es tu número de móvil?
+    refusal: Lo usamos solo para concertar, confirmar o cambiar la entrevista.
+    refusal_again: Sin móvil ni correo no puedo reservarte la entrevista.
+  email:
+    ask: ¿Y tu correo electrónico?
+    refusal: Sin el móvil, necesito al menos tu correo para la entrevista.
+    refusal_again: Sin móvil ni correo no puedo reservarte la entrevista.
+  has_license:
+    ask: ¿Tienes carnet de conducir en vigor?
+    refusal: Es un requisito del puesto, así que necesito saberlo.
+    refusal_again: Sin esa respuesta no puedo seguir con la solicitud.
+    unresolved: No he podido confirmar si tienes carnet de conducir vigente
+    read_back: ¿Entonces ahora no tienes carnet en vigor?
+  city:
+    ask: ¿En qué ciudad o barrio vives?
+    refusal: Lo necesito para buscarte el local más cercano y la entrevista.
+    refusal_again: Sin saber dónde vives no puedo seguir con la solicitud.
+    unresolved: No he podido confirmar dónde vives
+    read_back: 'Para asegurarme: ¿vives ahora en {value}?'
+    zone: ¿En qué barrio de {city} vives?
+  availability:
+    ask: '¿Qué disponibilidad tienes: tiempo completo, tiempo parcial o fines de semana?'
+    ask_voice: ¿Buscas jornada completa, parcial o solo fines de semana?
+  schedule:
+    ask: '¿Qué horarios te van bien: mañana, tarde, noche o flexible?'
+    ask_voice: ¿Qué horarios te van bien?
+  experience_years:
+    ask: ¿Cuánta experiencia tienes haciendo reparto?
+    read_back: Para confirmar, ¿son {years} de experiencia en reparto?
+    read_back_voice: ¿Son {years} de experiencia en reparto?
+    check: ¿Me confirmas cuántos años has repartido con {option}?
+  platforms:
+    ask: ¿Con qué plataformas de reparto has trabajado?
+  start_date:
+    ask: ¿Cuándo podrías empezar?
+    read_back: Tengo el {value} como fecha de inicio. ¿Es correcto?
+hints:
+  name_too_short: Necesito tu nombre y apellido.
+  name_needs_surname: Necesito también tus apellidos.
+  name_too_long: Ese nombre es demasiado largo.
+  name_has_digits: El nombre no puede llevar números.
+  name_invalid_chars: El nombre solo puede llevar letras.
+  phone_invalid: Ese número no me cuadra, por ejemplo 612 345 678.
+  phone_not_mobile: Necesito un móvil, no un fijo.
+  email_invalid: Ese correo no parece válido.
+  license_invalid: No me ha quedado claro.
+  city_ambiguous: Hay varias zonas con ese nombre.
+  availability_invalid: No me ha quedado claro.
+  schedule_invalid: No me ha quedado claro.
+  experience_invalid: Dímelo en años o meses, por ejemplo 2 años.
+  experience_out_of_range: Esa cifra no me cuadra.
+  experience_needs_number: Dime cuántos meses o años, más o menos.
+  platforms_invalid: No me ha quedado claro.
+  date_invalid: No he entendido la fecha, por ejemplo el lunes o el 3 de mayo.
+  past_date: Esa fecha ya ha pasado.
+closes:
+  no_license: &license Para este puesto necesitas un carnet de conducir vigente en el momento de aplicar, así
+    que ahora no podemos seguir. Puedes volver a aplicar cuando lo tengas.
+  license_in_progress: *license
+  license_not_valid: *license
+  out_of_area: No tenemos local en tu zona ahora mismo, lo siento. ¿Quieres que guardemos tus datos
+    en nuestra bolsa de candidatos para futuras vacantes?

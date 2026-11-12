@@ -1,0 +1,344 @@
+# Self-hosted observability, added to the stage 1 stack on the same VM:
+#   COMPOSE_FILE=compose.yaml:observability.compose.yaml   (in .env; see deploy/README.md)
+# Langfuse v4 (LLM traces; Postgres, ClickHouse, Redis, MinIO), Prometheus + blackbox exporter
+# (metrics, /readyz probe), Loki + Alloy (container logs) and Grafana (dashboard, alerts).
+# Nothing here calls a hosted service: Langfuse and Grafana telemetry are off.
+#
+# Secrets come from observability.env, appended to .env on each deploy (deploy/README.md).
+# Only Caddy publishes ports; every service here is on the internal compose network.
+
+x-logging: &logging
+  driver: json-file
+  options:
+    max-size: "10m"
+    max-file: "3"
+
+x-langfuse-env: &langfuse-env
+  NEXTAUTH_URL: ${LANGFUSE_URL:?LANGFUSE_URL is required, e.g. https://langfuse.example.com}
+  DATABASE_URL: postgresql://langfuse:${LANGFUSE_POSTGRES_PASSWORD:?}@langfuse-postgres:5432/langfuse
+  SALT: ${LANGFUSE_SALT:?}
+  ENCRYPTION_KEY: ${LANGFUSE_ENCRYPTION_KEY:?LANGFUSE_ENCRYPTION_KEY is required (openssl rand -hex 32)}
+  TELEMETRY_ENABLED: "false"
+  LANGFUSE_ENABLE_EXPERIMENTAL_FEATURES: "false"
+  CLICKHOUSE_MIGRATION_URL: clickhouse://langfuse-clickhouse:9000
+  CLICKHOUSE_URL: http://langfuse-clickhouse:8123
+  CLICKHOUSE_USER: langfuse
+  CLICKHOUSE_PASSWORD: ${LANGFUSE_CLICKHOUSE_PASSWORD:?}
+  CLICKHOUSE_CLUSTER_ENABLED: "false"
+  LANGFUSE_S3_EVENT_UPLOAD_BUCKET: langfuse
+  LANGFUSE_S3_EVENT_UPLOAD_REGION: auto
+  LANGFUSE_S3_EVENT_UPLOAD_ACCESS_KEY_ID: langfuse
+  LANGFUSE_S3_EVENT_UPLOAD_SECRET_ACCESS_KEY: ${LANGFUSE_MINIO_PASSWORD:?}
+  LANGFUSE_S3_EVENT_UPLOAD_ENDPOINT: http://langfuse-minio:9000
+  LANGFUSE_S3_EVENT_UPLOAD_FORCE_PATH_STYLE: "true"
+  LANGFUSE_S3_EVENT_UPLOAD_PREFIX: events/
+  LANGFUSE_S3_MEDIA_UPLOAD_BUCKET: langfuse
+  LANGFUSE_S3_MEDIA_UPLOAD_REGION: auto
+  LANGFUSE_S3_MEDIA_UPLOAD_ACCESS_KEY_ID: langfuse
+  LANGFUSE_S3_MEDIA_UPLOAD_SECRET_ACCESS_KEY: ${LANGFUSE_MINIO_PASSWORD:?}
+  LANGFUSE_S3_MEDIA_UPLOAD_ENDPOINT: http://langfuse-minio:9000
+  LANGFUSE_S3_MEDIA_UPLOAD_FORCE_PATH_STYLE: "true"
+  LANGFUSE_S3_MEDIA_UPLOAD_PREFIX: media/
+  REDIS_HOST: langfuse-redis
+  REDIS_PORT: "6379"
+  REDIS_AUTH: ${LANGFUSE_REDIS_PASSWORD:?}
+
+x-langfuse-depends: &langfuse-depends
+  langfuse-postgres:
+    condition: service_healthy
+  langfuse-clickhouse:
+    condition: service_healthy
+  langfuse-redis:
+    condition: service_healthy
+  langfuse-minio:
+    condition: service_healthy
+
+services:
+  # --- the app stack, extended ---
+
+  api:
+    environment:
+      # Tracing switches on with this file; without it the API never tries to export.
+      OTEL_EXPORTER_OTLP_ENDPOINT: http://langfuse-web:3000/api/public/otel
+      LANGFUSE_PUBLIC_KEY: ${LANGFUSE_PUBLIC_KEY:?}
+      LANGFUSE_SECRET_KEY: ${LANGFUSE_SECRET_KEY:?}
+      # Empty: JSON in production, text elsewhere.
+      LOG_FORMAT: ${LOG_FORMAT:-}
+
+  caddy:
+    environment:
+      LANGFUSE_DOMAIN: ${LANGFUSE_DOMAIN:?LANGFUSE_DOMAIN is required, e.g. langfuse.example.com}
+      GRAFANA_DOMAIN: ${GRAFANA_DOMAIN:?GRAFANA_DOMAIN is required, e.g. grafana.example.com}
+    volumes:
+      - ./observability/caddy:/etc/caddy-sites:ro
+
+  # --- Langfuse v4 ---
+
+  langfuse-web:
+    image: docker.langfuse.com/langfuse/langfuse:4.57.0
+    restart: unless-stopped
+    depends_on: *langfuse-depends
+    expose:
+      - "3000"
+    environment:
+      <<: *langfuse-env
+      NEXTAUTH_SECRET: ${LANGFUSE_NEXTAUTH_SECRET:?}
+      # Next.js binds to $HOSTNAME, which Docker sets to the container id: listen everywhere.
+      HOSTNAME: 0.0.0.0
+      LANGFUSE_S3_MEDIA_UPLOAD_INTERNAL_ENDPOINT: http://langfuse-minio:9000
+      AUTH_DISABLE_SIGNUP: "true"
+      LANGFUSE_DISABLE_SIGNUP_ONBOARDING: "true"
+      LANGFUSE_TRUSTED_PROXY_COUNT: "1"
+      # Headless setup: organization, project, API keys and the first user on first start.
+      LANGFUSE_INIT_ORG_ID: sazon
+      LANGFUSE_INIT_ORG_NAME: Sazón
+      LANGFUSE_INIT_PROJECT_ID: sazon-screener
+      LANGFUSE_INIT_PROJECT_NAME: sazon-screener
+      LANGFUSE_INIT_PROJECT_PUBLIC_KEY: ${LANGFUSE_PUBLIC_KEY:?}
+      LANGFUSE_INIT_PROJECT_SECRET_KEY: ${LANGFUSE_SECRET_KEY:?}
+      LANGFUSE_INIT_USER_EMAIL: ${LANGFUSE_ADMIN_EMAIL:?}
+      LANGFUSE_INIT_USER_NAME: Admin
+      LANGFUSE_INIT_USER_PASSWORD: ${LANGFUSE_ADMIN_PASSWORD:?}
+    healthcheck:
+      test: ["CMD-SHELL", "wget -q -O /dev/null http://127.0.0.1:3000/api/public/health || exit 1"]
+      interval: 15s
+      timeout: 5s
+      start_period: 120s
+      start_interval: 3s
+      retries: 5
+    deploy:
+      resources:
+        limits:
+          memory: 1536M
+    logging: *logging
+
+  langfuse-worker:
+    image: docker.langfuse.com/langfuse/langfuse-worker:4.57.0
+    restart: unless-stopped
+    depends_on: *langfuse-depends
+    expose:
+      - "3030"
+    environment:
+      <<: *langfuse-env
+    deploy:
+      resources:
+        limits:
+          memory: 1536M
+    logging: *logging
+
+  langfuse-postgres:
+    image: postgres:17.6-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: langfuse
+      POSTGRES_PASSWORD: ${LANGFUSE_POSTGRES_PASSWORD:?}
+      POSTGRES_DB: langfuse
+      TZ: UTC
+      PGTZ: UTC
+    volumes:
+      - langfuse_postgres:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U langfuse -d langfuse"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+    logging: *logging
+
+  langfuse-clickhouse:
+    image: clickhouse/clickhouse-server:25.12.11.4
+    restart: unless-stopped
+    user: "101:101"
+    environment:
+      CLICKHOUSE_DB: default
+      CLICKHOUSE_USER: langfuse
+      CLICKHOUSE_PASSWORD: ${LANGFUSE_CLICKHOUSE_PASSWORD:?}
+    volumes:
+      - langfuse_clickhouse:/var/lib/clickhouse
+      - langfuse_clickhouse_logs:/var/log/clickhouse-server
+      - ./observability/clickhouse/low-memory.xml:/etc/clickhouse-server/config.d/low-memory.xml:ro
+    ulimits:
+      nofile:
+        soft: 262144
+        hard: 262144
+    healthcheck:
+      test: ["CMD-SHELL", "wget --no-verbose --tries=1 --spider http://localhost:8123/ping || exit 1"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+    deploy:
+      resources:
+        limits:
+          memory: 3G
+    logging: *logging
+
+  langfuse-redis:
+    image: redis:7.4.11-alpine
+    restart: unless-stopped
+    command: ["sh", "-c", "exec redis-server --requirepass \"$$REDIS_PASSWORD\" --maxmemory-policy noeviction --appendonly yes"]
+    environment:
+      REDIS_PASSWORD: ${LANGFUSE_REDIS_PASSWORD:?}
+    volumes:
+      - langfuse_redis:/data
+    healthcheck:
+      test: ["CMD-SHELL", "redis-cli -a \"$$REDIS_PASSWORD\" --no-auth-warning ping | grep -q PONG"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    deploy:
+      resources:
+        limits:
+          memory: 256M
+    logging: *logging
+
+  langfuse-minio:
+    # Chainguard publishes only a moving tag for free; the digest pins
+    # RELEASE.2026-09-22T19-25-18Z.
+    image: cgr.dev/chainguard/minio@sha256:2915cb406f38ed6ff9634de0a3e4a9423e2dda06a6f1aca18f8c968aa37a01f6
+    restart: unless-stopped
+    entrypoint: sh
+    command: -c 'mkdir -p /data/langfuse && exec minio server --address ":9000" --console-address ":9001" /data'
+    environment:
+      MINIO_ROOT_USER: langfuse
+      MINIO_ROOT_PASSWORD: ${LANGFUSE_MINIO_PASSWORD:?}
+      MINIO_BROWSER: "off"
+    volumes:
+      - langfuse_minio:/data
+    healthcheck:
+      test: ["CMD", "mc", "ready", "local"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+    logging: *logging
+
+  # --- metrics ---
+
+  prometheus:
+    image: prom/prometheus:v3.15.0
+    restart: unless-stopped
+    command:
+      - --config.file=/etc/prometheus/prometheus.yml
+      - --storage.tsdb.path=/prometheus
+      - --storage.tsdb.retention.time=15d
+      - --web.enable-lifecycle
+    volumes:
+      - ./observability/prometheus:/etc/prometheus:ro
+      - prometheus:/prometheus
+    expose:
+      - "9090"
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+    logging: *logging
+
+  blackbox:
+    image: prom/blackbox-exporter:v0.29.0
+    restart: unless-stopped
+    command: ["--config.file=/etc/blackbox/blackbox.yml"]
+    volumes:
+      - ./observability/blackbox:/etc/blackbox:ro
+    expose:
+      - "9115"
+    deploy:
+      resources:
+        limits:
+          memory: 64M
+    logging: *logging
+
+  # --- logs ---
+
+  loki:
+    image: grafana/loki:3.7.8
+    restart: unless-stopped
+    command: ["-config.file=/etc/loki/loki.yaml"]
+    volumes:
+      - ./observability/loki:/etc/loki:ro
+      - loki:/loki
+    expose:
+      - "3100"
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+    logging: *logging
+
+  alloy:
+    image: grafana/alloy:v1.20.1
+    restart: unless-stopped
+    command:
+      - run
+      - --server.http.listen-addr=0.0.0.0:12345
+      - --storage.path=/var/lib/alloy/data
+      - --disable-reporting
+      - /etc/alloy/config.alloy
+    volumes:
+      - ./observability/alloy:/etc/alloy:ro
+      - alloy:/var/lib/alloy/data
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    environment:
+      COMPOSE_PROJECT: ${COMPOSE_PROJECT_NAME}
+    depends_on:
+      - loki
+    deploy:
+      resources:
+        limits:
+          memory: 256M
+    logging: *logging
+
+  # --- dashboards and alerts ---
+
+  grafana:
+    image: grafana/grafana:13.2.4
+    restart: unless-stopped
+    environment:
+      GF_SERVER_ROOT_URL: ${GRAFANA_URL:?GRAFANA_URL is required, e.g. https://grafana.example.com}
+      GF_SECURITY_ADMIN_USER: admin
+      GF_SECURITY_ADMIN_PASSWORD: ${GRAFANA_ADMIN_PASSWORD:?}
+      GF_SECURITY_DISABLE_GRAVATAR: "true"
+      GF_USERS_ALLOW_SIGN_UP: "false"
+      GF_AUTH_ANONYMOUS_ENABLED: "false"
+      GF_ANALYTICS_REPORTING_ENABLED: "false"
+      GF_ANALYTICS_CHECK_FOR_UPDATES: "false"
+      GF_ANALYTICS_CHECK_FOR_PLUGIN_UPDATES: "false"
+      GF_NEWS_NEWS_FEED_ENABLED: "false"
+      GF_PLUGINS_PREINSTALL_DISABLED: "true"
+      GF_DASHBOARDS_DEFAULT_HOME_DASHBOARD_PATH: /var/lib/grafana/dashboards/sazon-operacion.json
+      GF_SMTP_ENABLED: ${GRAFANA_SMTP_ENABLED:-false}
+      GF_SMTP_HOST: ${GRAFANA_SMTP_HOST:-}
+      GF_SMTP_USER: ${GRAFANA_SMTP_USER:-}
+      GF_SMTP_PASSWORD: ${GRAFANA_SMTP_PASSWORD:-}
+      GF_SMTP_FROM_ADDRESS: ${GRAFANA_SMTP_FROM:-alerts@example.com}
+      # Read by the provisioned contact point (provisioning/alerting/contact-points.yaml).
+      ALERT_EMAIL: ${ALERT_EMAIL:-ops@example.invalid}
+      ALERT_WEBHOOK_URL: ${ALERT_WEBHOOK_URL:-http://127.0.0.1:9/alerts-not-configured}
+    volumes:
+      - ./observability/grafana/provisioning:/etc/grafana/provisioning:ro
+      - ./observability/grafana/dashboards:/var/lib/grafana/dashboards:ro
+      - grafana:/var/lib/grafana
+    depends_on:
+      - prometheus
+      - loki
+    deploy:
+      resources:
+        limits:
+          memory: 1G
+    logging: *logging
+
+volumes:
+  langfuse_postgres:
+  langfuse_clickhouse:
+  langfuse_clickhouse_logs:
+  langfuse_redis:
+  langfuse_minio:
+  prometheus:
+  loki:
+  alloy:
+  grafana:

@@ -1,0 +1,107 @@
+# What the teacher agent says in English: the domain's lines. The engine's own lines are in
+# llm/fallback_templates.py; `skeleton:` says some of them in the school's words.
+greet: Hi! I'm Ana, Colegio Albéniz's AI recruiting assistant. It's a few quick questions and your data
+  is handled under the privacy notice linked below. Shall we start?
+greet_voice: Hi! I'm Ana, Colegio Albéniz's AI assistant. Do you accept our privacy notice?
+overview: I'll ask you a few questions about your qualifications and experience, about 4 minutes. If
+  it's a match, I'll book you an interview with your head of department.
+overview_voice: It's a few questions, about 4 minutes. If it's a match, I'll book your interview.
+busy: Hi! I'm Ana, Colegio Albéniz's AI recruiting assistant. I can't open new applications right now.
+  Please come back later; tomorrow will work.
+clarify_open: Could you give me a bit more detail?
+fields:
+  full_name:
+    ask: What's your full name?
+    refusal: I need it to open your application and for the interview.
+    refusal_again: Without your name I can't continue with the application.
+    unresolved: I couldn't get your full name
+  phone:
+    ask: What's your mobile number?
+    refusal: We only use it to arrange, confirm or move your interview.
+    refusal_again: Without a phone or an email I can't book your interview.
+  email:
+    ask: And your email address?
+    refusal: Without your phone, I need at least your email for the interview.
+    refusal_again: Without a phone or an email I can't book your interview.
+  levels:
+    ask: 'Which stages would you like to teach: Infantil, Primaria, ESO, Bachillerato or FP?'
+    ask_voice: Which stages would you like to teach?
+    refusal: Each stage calls for a different qualification, so I need to know.
+    refusal_again: Without the stage I can't continue with the application.
+    unresolved: I couldn't confirm which stages you'd like to teach
+  subjects:
+    ask: Which subjects can you teach?
+  grado_maestro:
+    ask: Do you have a degree in primary or early-years teaching (Grado en Maestro)?
+  master_profesorado:
+    ask: Do you have the Master's in Teacher Training, or a CAP from before 2009?
+  certificado_delitos_sexuales:
+    ask: Do you have a clear certificate from Spain's Central Register of Sex Offenders?
+    refusal: The law requires it of anyone who works with minors, so I need to know.
+    refusal_again: Without that answer I can't continue with the application.
+    unresolved: I couldn't confirm whether you have the sex offenders register certificate
+  english_c1:
+    ask: We're a bilingual school. Is your English at C1 level or above?
+  campus:
+    ask: 'Which campus would you like to work at: Aravaca, Las Rozas or Pozuelo?'
+    ask_voice: Which campus would you like to work at?
+    refusal: I need it to set up your interview at that campus.
+    refusal_again: Without the campus I can't continue with the application.
+    unresolved: I couldn't confirm which campus you'd like to work at
+  workload:
+    ask: 'What are you looking for: full time, part time or cover work?'
+    ask_voice: Are you after full time, part time or cover work?
+  experience_years:
+    ask: How many years of teaching experience do you have?
+    read_back: '{years} of teaching experience, is that right?'
+    read_back_voice: Is that {years} of teaching experience?
+  start_date:
+    ask: When could you start?
+    read_back: I have {value} as your start date. Is that right?
+hints:
+  name_too_short: I need your first and last name.
+  name_needs_surname: I need your surname too.
+  name_too_long: That name is too long.
+  name_has_digits: A name can't contain numbers.
+  name_invalid_chars: A name can only contain letters.
+  phone_invalid: That number doesn't look right.
+  phone_not_mobile: I need a mobile number, not a landline.
+  email_invalid: That email doesn't look valid.
+  license_invalid: I didn't quite get that.
+  out_of_area: Our campuses are in Aravaca, Las Rozas and Pozuelo.
+  answer_invalid: I didn't quite get that.
+  experience_invalid: Tell me in years or months, for example 2 years.
+  experience_out_of_range: That number doesn't look right.
+  experience_needs_number: Tell me roughly how many months or years.
+  date_invalid: I didn't understand the date, for example Monday or 1 September.
+  past_date: That date has already passed.
+closes:
+  no_grado_maestro: &grado By law, Infantil and Primaria call for the Grado en Maestro, so we can't go
+    ahead for now. You're welcome to apply again once you have it.
+  grado_maestro_not_valid: *grado
+  grado_maestro_in_progress: Infantil and Primaria need a completed Grado en Maestro, so we can't go ahead
+    for now. Would you like us to keep your details in our talent pool for when you have it?
+  no_master: &master By law, ESO, Bachillerato and FP call for the Master's in Teacher Training or the CAP,
+    so we can't go ahead for now. You're welcome to apply again once you have it.
+  master_not_valid: *master
+  master_in_progress: ESO, Bachillerato and FP need a completed Master's in Teacher Training, so we can't
+    go ahead for now. Would you like us to keep your details in our talent pool for when you have it?
+  no_certificate: &certificate By law, anyone who works with minors needs a clear certificate from the
+    Central Register of Sex Offenders, so we can't go ahead with the application.
+  certificate_not_valid: *certificate
+skeleton:
+  clarify_place: Do you mean our {options} campus?
+  confirm_location: That's our {location} campus. Is that right?
+  no_slots: I don't have any interview times free at your campus right now.
+  offer_slots: 'I have these interview times with the head of studies at our {location} campus: {slots}.
+    Which one suits you?'
+  offer_slots_video: 'I have these times for the video call with your head of department: {slots}. Which
+    one suits you?'
+  confirm_booking: Done, your interview is on {when} with the head of studies at our {location} campus,
+    {address}. Prepare a 15-minute demo lesson on a topic of your choice. If you can't make it, reply here
+    and we'll move it.
+  confirm_booking_voice: Done, your interview is on {when} with the head of studies at our {location}
+    campus.
+  confirm_video: Done, your video interview with your head of department is on {when}. Prepare a 15-minute
+    demo lesson on a topic of your choice.
+  confirm_video_voice: Done, your video call with your head of department is on {when}.

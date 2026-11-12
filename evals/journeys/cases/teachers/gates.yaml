@@ -1,0 +1,182 @@
+# Teachers for Colegio Albéniz (`agents/teachers`): the gates. The credential a candidate is asked
+# for depends on the stages they teach (Grado en Maestro for Infantil and Primaria, the Máster de
+# Profesorado for ESO, Bachillerato and FP); the certificate of the sex offenders register is asked
+# of everyone, and one still being requested is flagged for the recruiter, never a close. Format:
+# evals/journeys/README.md.
+
+# --- the master's, for secondary ---
+
+- id: tch_master_no_closes_and_invites_to_reapply
+  description: No master's (and no CAP) closes for ESO, with the invitation to apply once they have it.
+  country: ES
+  steps:
+    - {tap: 'yes', expect: {asks: full_name}}
+    - {say: Pablo Serrano Díaz, expect: {asks: phone}}
+    - {tap: {country: ES, number: '612340001'}, expect: {asks: email}}
+    - {say: pablo.serrano@example.com, expect: {asks: levels}}
+    - {say: ESO, expect: {asks: subjects}}
+    - {say: Geografía e Historia, expect: {asks: master_profesorado}}
+    - say: 'No'
+      expect: {outcome: disqualified, reason: no_master, closed: true, reply_matches: volver a aplicar}
+
+- id: tch_master_in_progress_offers_the_talent_pool
+  description: A master's still being studied closes for now and offers the talent pool, which the
+    candidate takes.
+  country: ES
+  steps:
+    - {tap: 'yes', expect: {asks: full_name}}
+    - {say: Irene Lozano Prieto, expect: {asks: phone}}
+    - {tap: {country: ES, number: '612340002'}, expect: {asks: email}}
+    - {say: irene.lozano@example.com, expect: {asks: levels}}
+    - {say: Bachillerato, expect: {asks: subjects}}
+    - {say: Biología, expect: {asks: master_profesorado}}
+    - say: Me falta el TFM, lo presento en junio
+      expect: {outcome: disqualified, reason: master_in_progress, asks: talent_pool, ui: quick_replies}
+    - {tap: 'yes', expect: {outcome: disqualified, closed: true}}
+
+- id: tch_master_not_recognised_closes
+  description: A foreign master's still waiting for its recognition in Spain is not valid now.
+  country: ES
+  steps:
+    - {tap: 'yes', expect: {asks: full_name}}
+    - {say: Martina Rossi Bianchi, expect: {asks: phone}}
+    - {tap: {country: ES, number: '612340003'}, expect: {asks: email}}
+    - {say: martina.rossi@example.com, expect: {asks: levels}}
+    - {say: FP, expect: {asks: subjects}}
+    - {say: Tecnología, expect: {asks: master_profesorado}}
+    - say: Lo tengo de Italia pero no está homologado todavía
+      expect: {outcome: disqualified, reason: master_not_valid}
+
+# --- the Grado en Maestro, for Infantil and Primaria ---
+
+- id: tch_grado_no_closes
+  description: Without the Grado en Maestro, Primaria closes; the master's is never asked.
+  country: ES
+  steps:
+    - {tap: 'yes', expect: {asks: full_name}}
+    - {say: Raúl Medina Cano, expect: {asks: phone}}
+    - {tap: {country: ES, number: '612340004'}, expect: {asks: email}}
+    - {say: raul.medina@example.com, expect: {asks: levels}}
+    - {say: Primaria, expect: {asks: subjects}}
+    - {say: Educación Física, expect: {asks: grado_maestro}}
+    - {say: 'No', expect: {outcome: disqualified, reason: no_grado_maestro, reply_matches: Grado en Maestro}}
+
+- id: tch_grado_in_progress_offers_the_talent_pool
+  description: A Grado en Maestro in its last year closes for now and offers the talent pool, which
+    the candidate turns down.
+  country: ES
+  steps:
+    - {tap: 'yes', expect: {asks: full_name}}
+    - {say: Sofía Navarro Gil, expect: {asks: phone}}
+    - {tap: {country: ES, number: '612340005'}, expect: {asks: email}}
+    - {say: sofia.navarro@example.com, expect: {asks: levels}}
+    - {say: Infantil, expect: {asks: subjects}}
+    - {say: Música, expect: {asks: grado_maestro}}
+    - say: Lo estoy terminando, estoy en cuarto
+      expect: {outcome: disqualified, reason: grado_maestro_in_progress, asks: talent_pool}
+    - {tap: 'no', expect: {outcome: disqualified, closed: true}}
+
+- id: tch_grado_not_recognised_closes
+  description: A teaching degree from abroad without its recognition closes.
+  country: ES
+  steps:
+    - {tap: 'yes', expect: {asks: full_name}}
+    - {say: Daniela Pérez Rojas, expect: {asks: phone}}
+    - {tap: {country: ES, number: '612340006'}, expect: {asks: email}}
+    - {say: daniela.perez@example.com, expect: {asks: levels}}
+    - {say: Primaria, expect: {asks: subjects}}
+    - {say: Lengua, expect: {asks: grado_maestro}}
+    - {say: Sin homologar aún, expect: {outcome: disqualified, reason: grado_maestro_not_valid}}
+
+# --- dependent gates: which credential the stages call for ---
+
+- id: tch_primaria_and_eso_ask_both_credentials
+  description: Primaria and ESO call for both the Grado en Maestro and the master's, in that order.
+  country: ES
+  steps:
+    - {tap: 'yes', expect: {asks: full_name}}
+    - {say: Lucas Moreno Vega, expect: {asks: phone}}
+    - {tap: {country: ES, number: '612340007'}, expect: {asks: email}}
+    - {say: lucas.moreno@example.com, expect: {asks: levels}}
+    - {say: Primaria y ESO, expect: {asks: subjects}}
+    - {say: Matemáticas, expect: {asks: grado_maestro}}
+    - {say: Sí, expect: {asks: master_profesorado}}
+    - {say: Sí, expect: {asks: certificado_delitos_sexuales}}
+
+- id: tch_a_new_stage_at_the_summary_asks_its_credential
+  description: Changing ESO for Primaria at the summary asks the Grado en Maestro, which the
+    first answers never needed, before the summary again.
+  country: ES
+  steps:
+    - {tap: 'yes', expect: {asks: full_name}}
+    - {say: Alba Ruiz Campos, expect: {asks: phone}}
+    - {tap: {country: ES, number: '612340008'}, expect: {asks: email}}
+    - {say: alba.ruiz@example.com, expect: {asks: levels}}
+    - {say: ESO, expect: {asks: subjects}}
+    - {say: Lengua, expect: {asks: master_profesorado}}
+    - {say: Sí, expect: {asks: certificado_delitos_sexuales}}
+    - {say: Sí, expect: {asks: english_c1}}
+    - {say: 'No', expect: {asks: campus}}
+    - {say: Aravaca, expect: {asks: workload}}
+    - {say: Media jornada, expect: {asks: experience_years}}
+    - {say: '4', expect: {asks: start_date}}
+    - {say: ya, expect: {asks: confirm, card_matches: 'Etapas: ESO;'}}
+    - say: Las etapas están mal
+      expect: {asks: levels}
+    - {say: Primaria, expect: {asks: grado_maestro}}
+    - say: Sí
+      expect: {asks: confirm, card_matches: 'Etapas: Primaria; .*Grado en Maestro: Sí; Máster de Profesorado: Sí'}
+
+# --- the certificate: asked of everyone, flagged while it is being requested ---
+
+- id: tch_certificate_being_requested_is_flagged_not_closed
+  description: '"Todavía no, lo pido mañana" to the certificate goes on: the summary shows it being
+    requested and the recruiter sees the flag.'
+  country: ES
+  steps:
+    - {tap: 'yes', expect: {asks: full_name}}
+    - {say: Hugo Castro Peña, expect: {asks: phone}}
+    - {tap: {country: ES, number: '612340009'}, expect: {asks: email}}
+    - {say: hugo.castro@example.com, expect: {asks: levels}}
+    - {say: Bachillerato, expect: {asks: subjects}}
+    - {say: Física y Química, expect: {asks: master_profesorado}}
+    - {say: Sí, expect: {asks: certificado_delitos_sexuales}}
+    - {say: 'Todavía no, lo pido mañana', expect: {asks: english_c1, outcome: in_progress}}
+    - {say: Sí, expect: {asks: campus}}
+    - {say: Las Matas, expect: {asks: workload}}
+    - {say: Jornada completa, expect: {asks: experience_years}}
+    - {say: '2', expect: {asks: start_date}}
+    - say: ya
+      expect: {asks: confirm, card_matches: 'Certificado de delitos sexuales: En trámite; .*Sede: Las Matas · .*Las Rozas'}
+    - {tap: 'yes', expect: {outcome: qualified}}
+
+- id: tch_certificate_no_closes_and_reopens_on_a_yes
+  description: A no to the certificate closes; "perdona, sí lo tengo" in the next message undoes
+    the close and the screening goes on.
+  country: ES
+  steps:
+    - {tap: 'yes', expect: {asks: full_name}}
+    - {say: Clara Iglesias Mora, expect: {asks: phone}}
+    - {tap: {country: ES, number: '612340010'}, expect: {asks: email}}
+    - {say: clara.iglesias@example.com, expect: {asks: levels}}
+    - {say: Infantil, expect: {asks: subjects}}
+    - {say: Inglés, expect: {asks: grado_maestro}}
+    - {say: Sí, expect: {asks: certificado_delitos_sexuales}}
+    - {say: 'No', expect: {outcome: disqualified, reason: no_certificate}}
+    # The keyword extractor reads nothing once the application is closed: the reopening is the
+    # model's to read.
+    - say: Perdona, sí lo tengo
+      expect: {live: {outcome: in_progress, asks: english_c1}}
+
+- id: tch_certificate_expired_closes
+  description: An expired certificate is no certificate now.
+  country: ES
+  steps:
+    - {tap: 'yes', expect: {asks: full_name}}
+    - {say: Diego Herrera León, expect: {asks: phone}}
+    - {tap: {country: ES, number: '612340011'}, expect: {asks: email}}
+    - {say: diego.herrera@example.com, expect: {asks: levels}}
+    - {say: ESO, expect: {asks: subjects}}
+    - {say: Educación Física, expect: {asks: master_profesorado}}
+    - {say: Sí, expect: {asks: certificado_delitos_sexuales}}
+    - {say: Lo tengo caducado, expect: {outcome: disqualified, reason: certificate_not_valid}}

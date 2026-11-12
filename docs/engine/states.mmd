@@ -1,0 +1,89 @@
+%% Generated from the edges the engine declares (`sazon/engine/diagram.py`). Regenerate with `make diagram`;
+%% `make check` fails while it differs from the code.
+stateDiagram-v2
+    state "asking" as asking {
+        state "awaiting" as asking_awaiting
+        state "confirming" as asking_confirming
+        state "clarifying" as asking_clarifying
+        asking_awaiting --> asking_confirming: value needs a read-back
+        asking_awaiting --> asking_clarifying: ambiguous match
+        asking_confirming --> asking_awaiting: yes, or no with a new value
+        asking_clarifying --> asking_awaiting: picks one
+    }
+    state "contact" as contact {
+        state "checking" as contact_checking
+        state "identity" as contact_identity
+        contact_checking --> contact_identity: match
+    }
+    state "interview" as interview {
+        state "choosing_mode" as interview_choosing_mode
+        state "offering" as interview_offering
+        state "booked" as interview_booked {
+            state "idle" as interview_booked_idle
+            state "amending" as interview_booked_amending
+            state "moving" as interview_booked_moving
+            state "cancel_confirm" as interview_booked_cancel_confirm
+            interview_booked_idle --> interview_booked_amending: fix a detail
+            interview_booked_idle --> interview_booked_moving: new location
+            interview_booked_idle --> interview_booked_cancel_confirm: cancel
+            interview_booked_amending --> interview_booked_idle: corrected, or given up
+            interview_booked_amending --> interview_booked_moving: new location
+            interview_booked_amending --> interview_booked_cancel_confirm: cancel
+            interview_booked_moving --> interview_booked_idle: no
+            interview_booked_moving --> interview_booked_cancel_confirm: cancel
+            interview_booked_cancel_confirm --> interview_booked_idle: answered
+            interview_booked_cancel_confirm --> interview_booked_amending: answered
+            interview_booked_cancel_confirm --> interview_booked_moving: answered
+        }
+        interview_choosing_mode --> interview_offering: mode
+        interview_offering --> interview_booked_idle: booked, or none suits a booking
+        interview_booked --> interview_offering: cancelled in the calendar
+        interview_booked_idle --> interview_offering: change of time or mode
+        interview_booked_moving --> interview_choosing_mode: yes
+    }
+    state "closed" as closed {
+        state "disqualified" as closed_disqualified
+        state "qualified" as closed_qualified
+        state "withdrawn" as closed_withdrawn
+        state "abandoned" as closed_abandoned
+        state "declined_consent" as closed_declined_consent
+        state "handed_over" as closed_handed_over
+        closed_qualified --> closed_disqualified: injection
+    }
+    [*] --> consent: a new chat
+    consent --> asking_awaiting: yes
+    consent --> closed_disqualified: an injection with the yes
+    consent --> closed_abandoned: second insult / silence / empezar de nuevo
+    consent --> closed_declined_consent: opt-out
+    asking --> closed_disqualified: gate fails, or required field unresolved / injection
+    asking --> closed_abandoned: opt-out / second insult / silence / empezar de nuevo
+    asking_awaiting --> contact_checking: phone or email in
+    asking_awaiting --> summary: all fields in
+    contact --> closed_disqualified: injection
+    contact --> closed_abandoned: opt-out / second insult / silence / empezar de nuevo
+    contact_checking --> asking_awaiting: no match
+    contact_checking --> summary: no match, every field in
+    contact_checking --> closed_disqualified: three policy closes
+    contact_identity --> asking_awaiting: no, or unclear twice
+    contact_identity --> summary: no, every field in
+    contact_identity --> closed_handed_over: yes
+    summary --> asking_awaiting: a field dropped
+    summary --> asking_confirming: a changed value needs a read-back
+    summary --> contact_checking: an email to check
+    summary --> interview_choosing_mode: yes, nothing changed
+    summary --> closed_disqualified: gate fails / injection
+    summary --> closed_abandoned: opt-out / second insult / silence / empezar de nuevo
+    interview --> closed_qualified: second insult
+    interview_choosing_mode --> closed_disqualified: injection
+    interview_choosing_mode --> closed_qualified: opt-out
+    interview_offering --> closed_disqualified: injection
+    interview_offering --> closed_qualified: none free, or none suits after two offers / opt-out
+    interview_offering --> closed_withdrawn: opt-out, moving a booking / cancel again, or yes
+    interview_booked --> closed_disqualified: no license / injection
+    interview_booked --> closed_withdrawn: opt-out / cancel again, or yes
+    closed_disqualified --> asking_awaiting: contradicts the gate
+    closed_qualified --> interview_offering: returns, saved with no interview
+    closed_abandoned --> consent: returns
+    closed_abandoned --> asking: returns
+    closed_abandoned --> contact: returns
+    closed_abandoned --> summary: returns

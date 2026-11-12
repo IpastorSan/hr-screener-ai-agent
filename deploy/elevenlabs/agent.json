@@ -1,0 +1,86 @@
+{
+  "name": "Sazón screener (Ana, voice)",
+  "tags": ["sazon", "screening"],
+  "conversation_config": {
+    "agent": {
+      "first_message": "{{opening_line}}",
+      "language": "es",
+      "dynamic_variables": {
+        "dynamic_variable_placeholders": {
+          "sazon_conversation_id": "00000000000000000000000000000000",
+          "opening_line": "¡Hola! Soy Ana, la asistente de IA de Grupo Sazón. ¿Aceptas el aviso de privacidad?"
+        }
+      },
+      "prompt": {
+        "prompt": "Sazón screening agent. Every reply comes from the Sazón API, which runs the screening; this prompt only carries the session.\nsazon_conversation_id={{sazon_conversation_id}}\nelevenlabs_conversation_id={{system__conversation_id}}",
+        "llm": "custom-llm",
+        "temperature": null,
+        "max_tokens": -1,
+        "custom_llm": {
+          "url": "https://<DOMAIN>/v1",
+          "model_id": "sazon-screener",
+          "api_type": "chat_completions",
+          "api_key": { "secret_id": "<VOICE_LLM_SECRET secret id>" },
+          "request_headers": {
+            "X-Sazon-Conversation-Id": { "variable_name": "sazon_conversation_id" },
+            "X-ElevenLabs-Conversation-Id": { "variable_name": "system__conversation_id" }
+          }
+        },
+        "built_in_tools": {
+          "end_call": {
+            "type": "system",
+            "name": "end_call",
+            "description": "End the call once the screening has ended.",
+            "pre_tool_speech": "off",
+            "params": { "system_tool_type": "end_call" }
+          },
+          "language_detection": {
+            "type": "system",
+            "name": "language_detection",
+            "description": "",
+            "params": { "system_tool_type": "language_detection" }
+          }
+        },
+        "timezone": "Europe/Madrid"
+      }
+    },
+    "tts": {
+      "model_id": "eleven_flash_v2_5",
+      "voice_id": "<ELEVENLABS_VOICE_ES>",
+      "text_normalisation_type": "elevenlabs"
+    },
+    "turn": {
+      "turn_timeout": 7,
+      "speculative_turn": false,
+      "soft_timeout_config": { "timeout_seconds": -1 }
+    },
+    "conversation": {
+      "max_duration_seconds": 600
+    },
+    "language_presets": {
+      "en": {
+        "overrides": {
+          "agent": { "first_message": "{{opening_line}}" },
+          "tts": { "voice_id": "<ELEVENLABS_VOICE_EN>" }
+        }
+      }
+    }
+  },
+  "platform_settings": {
+    "auth": {
+      "enable_auth": true,
+      "allowlist": [{ "hostname": "<DOMAIN>" }]
+    },
+    "overrides": {
+      "conversation_config_override": {
+        "agent": { "language": true },
+        "tts": { "voice_id": true }
+      },
+      "custom_llm_extra_body": true
+    },
+    "privacy": {
+      "record_voice": false,
+      "retention_days": 0
+    }
+  }
+}

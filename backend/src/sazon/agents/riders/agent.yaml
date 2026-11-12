@@ -1,0 +1,90 @@
+# The rider agent: who Grupo Sazón screens to deliver for it, in Spain and Mexico, as the spec
+# the engine reads (`engine/spec.py`). What it says and what it calls things are in `texts/`:
+# a pack of lines per register, the labels and the prompts' text. The Python a rule needs is
+# named here and found in `hooks`.
+agent: riders
+hooks: sazon.agents.riders.hooks
+texts: texts
+countries: [ES, MX]
+locations: data/service_areas.json  # the kitchens, their zones and their managers
+recruiters: data/recruiters.json    # the demo team (`sazon seed`)
+
+# In the order they are asked. `funnel_step` is the analytics bucket; `required` the close when
+# the last try fails; a gate's `reasons` the close each closing reading is recorded with.
+fields:
+  - {id: full_name, type: person_name, funnel_step: name, required: unresolved_name}
+  - {id: phone, type: contact, channel: phone, funnel_step: contact}
+  - id: email
+    type: contact
+    channel: email
+    funnel_step: contact
+    max_tries: 2
+    read_back: {domain_typo: true}
+  - id: has_license
+    type: credential
+    funnel_step: license
+    required: unresolved_license
+    min_confidence: 0.7
+    voice_read_back: true
+    gate:
+      readings: {'no': close, in_progress: close, not_valid: close}
+      reasons: {'no': no_license, in_progress: license_in_progress, not_valid: license_not_valid}
+      reopenable: true
+      reapply: true
+  - id: city
+    type: location
+    funnel_step: city
+    stored_as: [location_id, place_said]
+    required: unresolved_city
+    zone_question_from: 3
+    read_back: {loose_match: true}
+    gate:
+      readings: {out_of_area: close_talent_pool}
+      reasons: {out_of_area: out_of_area}
+      reopenable: true
+  - id: availability
+    type: multi_enum
+    funnel_step: availability
+    options: [full_time, part_time, weekends]
+    reader: availability
+  - id: schedule
+    type: multi_enum
+    funnel_step: schedule
+    options: [morning, afternoon, evening, flexible]
+    exclusive: [flexible]
+    reader: schedule
+  - id: experience_years
+    type: years
+    funnel_step: experience
+    stored_as: [experience_years, experience_unverified]
+    most: 20
+    read_back: {over: 10}
+    checks: [platform_years]
+  - id: platforms
+    type: multi_enum
+    funnel_step: experience
+    stored_as: [platforms, platform_other]
+    options: [glovo, uber_eats, just_eat, rappi, didi_food, deliveroo, amazon_flex]
+    other: true
+    buttons:
+      ES: [glovo, uber_eats, just_eat, other]
+      MX: [rappi, didi_food, uber_eats, other]
+    reader: platforms
+    ask_if: {experience_years: {gt: 0}}
+  - id: start_date
+    type: date
+    funnel_step: start_date
+    stored_as: [start_date, late_start_days]
+    late_after_days: 60
+    read_back: {after_days: 90}
+
+apply_order: [has_license, city]  # the gates first: a close stores nothing after it
+interview: {blocks: schedule, before: start_date}
+
+dashboard:
+  columns:
+    - {field: availability, wrap: true}
+    - {field: schedule}
+    - {field: experience_years, sortable: true}
+    - {field: start_date, sortable: true}
+  filters: [availability, schedule]

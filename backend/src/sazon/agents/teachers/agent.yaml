@@ -1,0 +1,115 @@
+# The teacher agent: who Colegio Albéniz, a private bilingual school with three campuses in the
+# northwest of Madrid, screens to teach Infantil to Bachillerato and FP, as the spec the engine
+# reads (`engine/spec.py`). What it says and what it calls things are in `texts/`; the campuses
+# and the heads of department who interview are in `data/`.
+#
+# Two legal requirements make the gates. ESO, Bachillerato and FP need the Máster en Formación del
+# Profesorado, or the CAP obtained before October 2009 (LOE art. 94-95 and 100.2, RD 860/2010);
+# Infantil and Primaria need the Grado en Maestro. Anyone who works with minors needs the
+# certificado negativo del Registro Central de Delincuentes Sexuales (LO 1/1996 art. 13.5, LO
+# 8/2021 art. 57): it takes minutes online, so one still being requested is flagged, not closed.
+agent: teachers
+texts: texts
+countries: [ES]
+locations: data/campuses.json
+recruiters: data/recruiters.json
+
+# In the order they are asked. `funnel_step` is the analytics bucket; `required` the close when
+# the last try fails; a gate's `reasons` the close each closing reading is recorded with.
+fields:
+  - {id: full_name, type: person_name, funnel_step: name, required: unresolved_name}
+  - {id: phone, type: contact, channel: phone, funnel_step: contact}
+  - id: email
+    type: contact
+    channel: email
+    funnel_step: contact
+    max_tries: 2
+    read_back: {domain_typo: true}
+  - id: levels
+    type: multi_enum
+    funnel_step: levels
+    required: unresolved_levels
+    options: [infantil, primaria, eso, bachillerato, fp]
+  - id: subjects
+    type: multi_enum
+    funnel_step: subjects
+    stored_as: [subjects, subjects_other]
+    options: [matematicas, lengua, ingles, fisica_quimica, biologia, geografia_historia,
+      educacion_fisica, musica, tecnologia]
+    other: true
+    aliases:
+      matematicas: [mates, 'maths?', matematica]
+      lengua: [lengua castellana, castellano, literatura, spanish]
+      ingles: [english]
+      fisica_quimica: [fisica, quimica, fyq, physics, chemistry]
+      biologia: [biologia y geologia, ciencias naturales, byg, biology]
+      geografia_historia: [geografia, historia, sociales, ciencias sociales, history, geography]
+      educacion_fisica: [ef, gimnasia, deporte, pe, physical education]
+      musica: [music]
+      tecnologia: [informatica, technology, computing]
+  # The credential each level needs: asked only when the levels call for it (`ask_if`).
+  - id: grado_maestro
+    type: credential
+    funnel_step: credentials
+    ask_if: {levels: {any_of: [infantil, primaria]}}
+    gate:
+      readings: {'no': close, in_progress: close_talent_pool, not_valid: close}
+      reasons: {'no': no_grado_maestro, in_progress: grado_maestro_in_progress,
+        not_valid: grado_maestro_not_valid}
+      reapply: true
+  - id: master_profesorado
+    type: credential
+    funnel_step: credentials
+    ask_if: {levels: {any_of: [eso, bachillerato, fp]}}
+    gate:
+      readings: {'no': close, in_progress: close_talent_pool, not_valid: close}
+      reasons: {'no': no_master, in_progress: master_in_progress, not_valid: master_not_valid}
+      reapply: true
+  - id: certificado_delitos_sexuales
+    type: credential
+    funnel_step: certificate
+    required: unresolved_certificate
+    gate:
+      readings: {'no': close, in_progress: flag, not_valid: close}
+      reasons: {'no': no_certificate, not_valid: certificate_not_valid}
+      reopenable: true
+      reapply: true
+  - {id: english_c1, type: yes_no, funnel_step: english}
+  # Where they would teach: a choice among the campuses, never a gate. A place that is none of
+  # them is asked again.
+  - id: campus
+    type: location
+    funnel_step: campus
+    stored_as: [location_id, place_said]
+    required: unresolved_campus
+  - id: workload
+    type: enum
+    funnel_step: workload
+    options: [jornada_completa, media_jornada, sustituciones]
+  - id: experience_years
+    type: years
+    funnel_step: experience
+    most: 40
+    read_back: {over: 25}
+  - id: start_date
+    type: date
+    funnel_step: start_date
+    stored_as: [start_date, late_start_days]
+    late_after_days: 120
+    read_back: {after_days: 180}
+
+apply_order: [grado_maestro, master_profesorado, certificado_delitos_sexuales]
+summary: [full_name, phone, email, levels, subjects, grado_maestro, master_profesorado,
+  certificado_delitos_sexuales, english_c1, campus, workload, experience_years, start_date]
+# The head of department of the candidate's subject at their campus interviews them by video:
+# recruiters are matched on the subjects as well as the campus.
+interview: {before: start_date, scope: [campus, subjects]}
+
+dashboard:
+  columns:
+    - {field: levels, wrap: true}
+    - {field: subjects, wrap: true}
+    - {field: workload}
+    - {field: experience_years, sortable: true}
+    - {field: start_date, sortable: true}
+  filters: [levels, subjects, workload]

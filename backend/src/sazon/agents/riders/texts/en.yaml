@@ -1,0 +1,80 @@
+# What the rider agent says in en (English, both countries): the domain's lines. The engine's own lines
+# are in llm/fallback_templates.py; `skeleton:` would say one of them otherwise.
+greet: Hi! I'm Ana, Grupo Sazón's AI recruiting assistant. It's a few quick questions and your data
+  is handled under the privacy notice linked below. Shall we start?
+greet_voice: Hi! I'm Ana, Grupo Sazón's AI assistant. Do you accept our privacy notice?
+overview: I'll ask you a few questions about you and your experience, about 3 minutes. If it's a match,
+  I'll book you an interview with someone from the team.
+overview_voice: It's a few questions, about 3 minutes. If it's a match, I'll book your interview.
+busy: Hi! I'm Ana, Grupo Sazón's AI hiring assistant. I can't open new applications right now. Please
+  come back later; tomorrow will work.
+clarify_open: Could you give me a bit more detail, like the neighbourhood?
+fields:
+  full_name:
+    ask: What's your full name?
+    refusal: I need it to open your application and for the interview.
+    refusal_again: Without your name I can't continue with the application.
+    unresolved: I couldn't get your full name
+  phone:
+    ask: What's your mobile number?
+    refusal: We only use it to arrange, confirm or move your interview.
+    refusal_again: Without a phone or an email I can't book your interview.
+  email:
+    ask: And your email address?
+    refusal: Without your phone, I need at least your email for the interview.
+    refusal_again: Without a phone or an email I can't book your interview.
+  has_license:
+    ask: Do you have a valid driving licence?
+    refusal: It's a requirement for the role, so I need to know.
+    refusal_again: Without that answer I can't continue with the application.
+    unresolved: I couldn't confirm whether you have a valid driving licence
+    read_back: So you don't have a valid driving licence right now?
+  city:
+    ask: Which city or area do you live in?
+    refusal: I need it to find your nearest location and set up the interview.
+    refusal_again: Without knowing where you live I can't continue with the application.
+    unresolved: I couldn't confirm where you live
+    read_back: 'Just to check: do you currently live in {value}?'
+    zone: Which part of {city} do you live in?
+  availability:
+    ask: 'What''s your availability: full time, part time or weekends?'
+    ask_voice: Are you after full time, part time or weekends?
+  schedule:
+    ask: 'Which shifts suit you: morning, afternoon, evening or flexible?'
+    ask_voice: Which shifts suit you?
+  experience_years:
+    ask: How much delivery experience do you have?
+    read_back: '{years} of delivery experience, is that right?'
+    read_back_voice: Is that {years} of delivery experience?
+    check: Could you confirm how many years you've delivered with {option}?
+  platforms:
+    ask: Which delivery platforms have you worked with?
+  start_date:
+    ask: When could you start?
+    read_back: I have {value} as your start date. Is that right?
+hints:
+  name_too_short: I need your first and last name.
+  name_needs_surname: I need your surname too.
+  name_too_long: That name is too long.
+  name_has_digits: A name can't contain numbers.
+  name_invalid_chars: A name can only contain letters.
+  phone_invalid: That number doesn't look right.
+  phone_not_mobile: I need a mobile number, not a landline.
+  email_invalid: That email doesn't look valid.
+  license_invalid: I didn't quite get that.
+  city_ambiguous: Several areas have that name.
+  availability_invalid: I didn't quite get that.
+  schedule_invalid: I didn't quite get that.
+  experience_invalid: Tell me in years or months, for example 2 years.
+  experience_out_of_range: That number doesn't look right.
+  experience_needs_number: Tell me roughly how many months or years.
+  platforms_invalid: I didn't quite get that.
+  date_invalid: I didn't get the date, for example Monday or 3 May.
+  past_date: That date has already passed.
+closes:
+  no_license: &license This role needs a valid driving licence at the time you apply, so we can't go further
+    for now. You can apply again once you have one.
+  license_in_progress: *license
+  license_not_valid: *license
+  out_of_area: We don't have a location in your area right now, sorry. Would you like us to keep your
+    details in our talent pool for future vacancies?

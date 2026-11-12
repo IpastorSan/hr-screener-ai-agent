@@ -1,0 +1,162 @@
+# Teachers for Colegio Albéniz (`agents/teachers`): one journey per field type, each read by the
+# engine with no hook of the agent's. Format: evals/journeys/README.md.
+
+- id: tch_person_name_joins_a_lone_surname
+  description: A first name alone asks for the surnames, and the answer is joined to it.
+  country: ES
+  steps:
+    - {tap: 'yes', expect: {asks: full_name}}
+    - {say: Lucía, expect: {asks: full_name, reply_matches: apellidos}}
+    - {say: Fernández Gil, expect: {asks: phone}}
+
+- id: tch_contact_reads_back_a_mistyped_email
+  description: An email at "gmail.con" is read back corrected; a yes keeps it.
+  country: ES
+  steps:
+    - {tap: 'yes', expect: {asks: full_name}}
+    - {say: Marta Gómez Ruiz, expect: {asks: phone}}
+    - {tap: {country: ES, number: '612340101'}, expect: {asks: email}}
+    - {say: marta.gomez@gmail.con, expect: {asks: email, reply_matches: gmail\.com}}
+    - {tap: 'yes', expect: {asks: levels}}
+
+- id: tch_multi_enum_reads_stages_and_another_subject
+  description: Stages by their names, and a subject the school does not list kept in the
+    candidate's words beside the ones it does.
+  country: ES
+  steps:
+    - {tap: 'yes', expect: {asks: full_name}}
+    - {say: Óscar Blanco Pardo, expect: {asks: phone}}
+    - {tap: {country: ES, number: '612340102'}, expect: {asks: email}}
+    - {say: oscar.blanco@example.com, expect: {asks: levels}}
+    - {say: 'eso, bachillerato', expect: {asks: subjects}}
+    - {say: Filosofía, expect: {asks: master_profesorado}}
+    - {say: Sí, expect: {asks: certificado_delitos_sexuales}}
+    - {say: Sí, expect: {asks: english_c1}}
+    - {say: 'No', expect: {asks: campus}}
+    - {say: Aravaca, expect: {asks: workload}}
+    - {say: Jornada completa, expect: {asks: experience_years}}
+    - {say: '8', expect: {asks: start_date}}
+    - say: ya
+      expect: {asks: confirm, card_matches: 'Etapas: ESO, Bachillerato; Materias: Filosofía;'}
+
+- id: tch_multi_enum_unread_stages_close_as_unresolved
+  description: Stages that name none of them, three times, close as unresolved; the stages are
+    required because they decide the credential asked.
+  country: ES
+  steps:
+    - {tap: 'yes', expect: {asks: full_name}}
+    - {say: Paula Ortiz Sanz, expect: {asks: phone}}
+    - {tap: {country: ES, number: '612340103'}, expect: {asks: email}}
+    - {say: paula.ortiz@example.com, expect: {asks: levels}}
+    - {say: Universidad, expect: {asks: levels, reply_matches: No me ha quedado claro}}
+    - {say: Academias, expect: {asks: levels}}
+    - {say: Clases particulares, expect: {outcome: disqualified, reason: unresolved_levels}}
+
+- id: tch_yes_no_asks_again_on_a_hedge
+  description: A hedge to the English question is asked again; a yes goes on.
+  country: ES
+  steps:
+    - {tap: 'yes', expect: {asks: full_name}}
+    - {say: Iván Rubio Marín, expect: {asks: phone}}
+    - {tap: {country: ES, number: '612340104'}, expect: {asks: email}}
+    - {say: ivan.rubio@example.com, expect: {asks: levels}}
+    - {say: Infantil, expect: {asks: subjects}}
+    - {say: Música, expect: {asks: grado_maestro}}
+    - {say: Sí, expect: {asks: certificado_delitos_sexuales}}
+    - {say: Sí, expect: {asks: english_c1}}
+    - {say: Creo que un B2 o así, expect: {asks: english_c1}}
+    - {say: 'No', expect: {asks: campus}}
+
+- id: tch_location_is_a_choice_not_a_gate
+  description: A town without a campus is asked again, never closed; a zone of a campus picks it,
+    shown as said.
+  country: ES
+  steps:
+    - {tap: 'yes', expect: {asks: full_name}}
+    - {say: Laura Peña Ríos, expect: {asks: phone}}
+    - {tap: {country: ES, number: '612340105'}, expect: {asks: email}}
+    - {say: laura.pena@example.com, expect: {asks: levels}}
+    - {say: Primaria, expect: {asks: subjects}}
+    - {say: Lengua, expect: {asks: grado_maestro}}
+    - {say: Sí, expect: {asks: certificado_delitos_sexuales}}
+    - {say: Sí, expect: {asks: english_c1}}
+    - {say: Sí, expect: {asks: campus}}
+    - {say: Getafe, expect: {asks: campus, outcome: in_progress, reply_matches: 'Aravaca, Las Rozas y Pozuelo'}}
+    - {say: Somosaguas, expect: {asks: workload}}
+    - {say: Sustituciones, expect: {asks: experience_years}}
+    - {say: '1', expect: {asks: start_date}}
+    - {say: ya, expect: {asks: confirm, card_matches: 'Sede: Somosaguas · sede de Pozuelo;'}}
+
+- id: tch_location_unresolved_closes
+  description: Three answers that name no campus close as unresolved.
+  country: ES
+  steps:
+    - {tap: 'yes', expect: {asks: full_name}}
+    - {say: Ramón Gil Soler, expect: {asks: phone}}
+    - {tap: {country: ES, number: '612340106'}, expect: {asks: email}}
+    - {say: ramon.gil@example.com, expect: {asks: levels}}
+    - {say: Bachillerato, expect: {asks: subjects}}
+    - {say: Matemáticas, expect: {asks: master_profesorado}}
+    - {say: Sí, expect: {asks: certificado_delitos_sexuales}}
+    - {say: Sí, expect: {asks: english_c1}}
+    - {say: Sí, expect: {asks: campus}}
+    - {say: Getafe, expect: {asks: campus}}
+    - {say: Alcorcón, expect: {asks: campus}}
+    - {say: Leganés, expect: {outcome: disqualified, reason: unresolved_campus}}
+
+- id: tch_enum_asks_which_of_two
+  description: '"Jornada completa o media jornada" names two workloads: which one, as buttons.'
+  country: ES
+  steps:
+    - {tap: 'yes', expect: {asks: full_name}}
+    - {say: Elisa Cano Vidal, expect: {asks: phone}}
+    - {tap: {country: ES, number: '612340107'}, expect: {asks: email}}
+    - {say: elisa.cano@example.com, expect: {asks: levels}}
+    - {say: ESO, expect: {asks: subjects}}
+    - {say: Inglés, expect: {asks: master_profesorado}}
+    - {say: Sí, expect: {asks: certificado_delitos_sexuales}}
+    - {say: Sí, expect: {asks: english_c1}}
+    - {say: Sí, expect: {asks: campus}}
+    - {say: Las Rozas, expect: {asks: workload}}
+    - {say: Jornada completa o media jornada, expect: {asks: workload, ui: quick_replies}}
+    - {tap: media_jornada, expect: {asks: experience_years}}
+
+- id: tch_years_read_back_past_twenty_five
+  description: Thirty years of teaching are read back before they are kept; the cap is forty.
+  country: ES
+  steps:
+    - {tap: 'yes', expect: {asks: full_name}}
+    - {say: Antonio Prieto Lara, expect: {asks: phone}}
+    - {tap: {country: ES, number: '612340108'}, expect: {asks: email}}
+    - {say: antonio.prieto@example.com, expect: {asks: levels}}
+    - {say: FP, expect: {asks: subjects}}
+    - {say: Tecnología, expect: {asks: master_profesorado}}
+    - {say: 'Sí, el CAP de 2004', expect: {asks: certificado_delitos_sexuales}}
+    - {say: Sí, expect: {asks: english_c1}}
+    - {say: 'No', expect: {asks: campus}}
+    - {say: Aravaca, expect: {asks: workload}}
+    - {say: Jornada completa, expect: {asks: experience_years}}
+    - {say: '30', expect: {asks: experience_years, reply_matches: '30 años'}}
+    - {tap: 'yes', expect: {asks: start_date}}
+    - {say: ya, expect: {asks: confirm, card_matches: 'Experiencia: 30 años'}}
+
+- id: tch_date_far_away_is_read_back
+  description: A start next school year, more than 180 days away, is read back; a yes keeps it.
+  country: ES
+  steps:
+    - {tap: 'yes', expect: {asks: full_name}}
+    - {say: Noelia Vega Romero, expect: {asks: phone}}
+    - {tap: {country: ES, number: '612340109'}, expect: {asks: email}}
+    - {say: noelia.vega@example.com, expect: {asks: levels}}
+    - {say: Infantil, expect: {asks: subjects}}
+    - {say: Música, expect: {asks: grado_maestro}}
+    - {say: Sí, expect: {asks: certificado_delitos_sexuales}}
+    - {say: Sí, expect: {asks: english_c1}}
+    - {say: Sí, expect: {asks: campus}}
+    - {say: Pozuelo, expect: {asks: workload}}
+    - {say: Jornada completa, expect: {asks: experience_years}}
+    - {say: '5', expect: {asks: start_date}}
+    - say: En septiembre del año que viene
+      offline_say: '2027-09-01'
+      expect: {asks: start_date, reply_matches: septiembre}
+    - {tap: 'yes', expect: {asks: confirm, card_matches: 'Incorporación: .*1 de septiembre'}}

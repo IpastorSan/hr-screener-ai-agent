@@ -1,0 +1,98 @@
+# Stage 1: the whole product on one VM. CI writes .env next to this file on every deploy
+# (see .github/workflows/deploy.yml) and pins API_IMAGE / WEB_IMAGE to the commit SHA and
+# CADDY_IMAGE (Caddy with the rate-limit plugin, caddy/Dockerfile) to its Dockerfile's hash.
+#   docker compose pull && docker compose up -d
+# Local run without TLS: compose.local.yaml (`make stack-up`).
+name: sazon
+
+x-logging: &logging
+  driver: json-file
+  options:
+    max-size: "10m"
+    max-file: "5"
+
+services:
+  api:
+    image: ${API_IMAGE:?API_IMAGE is required}
+    pull_policy: ${PULL_POLICY:-missing}
+    restart: unless-stopped
+    env_file:
+      - path: .env
+        required: true
+    environment:
+      DATABASE_URL: sqlite:////data/sazon.db
+    volumes:
+      # A directory, not the database file: SQLite also writes -wal and -shm files next to it,
+      # and backups land in data/backups. It must be owned by uid 1000 (the image's user).
+      - ./data:/data
+    expose:
+      - "8000"
+    healthcheck:
+      test:
+        - CMD
+        - python
+        - -c
+        - "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/healthz', timeout=3)"
+      interval: 30s
+      timeout: 5s
+      start_period: 60s
+      start_interval: 2s
+      retries: 3
+    deploy:
+      resources:
+        limits:
+          memory: 1536M
+    logging: *logging
+
+  web:
+    image: ${WEB_IMAGE:?WEB_IMAGE is required}
+    pull_policy: ${PULL_POLICY:-missing}
+    restart: unless-stopped
+    expose:
+      - "3000"
+    healthcheck:
+      test:
+        - CMD
+        - node
+        - -e
+        - "fetch('http://127.0.0.1:3000/').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"
+      interval: 30s
+      timeout: 5s
+      start_period: 20s
+      start_interval: 2s
+      retries: 3
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+    logging: *logging
+
+  caddy:
+    image: ${CADDY_IMAGE:?CADDY_IMAGE is required}
+    pull_policy: ${PULL_POLICY:-missing}
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+      - "443:443/udp"
+    environment:
+      DOMAIN: ${DOMAIN:?DOMAIN is required (an empty one serves plain HTTP)}
+      ACME_EMAIL: ${ACME_EMAIL:?ACME_EMAIL is required (Let's Encrypt expiry notices)}
+      # The shared site login (caddy/Caddyfile); both empty leaves the site open. The deploy
+      # writes the bcrypt hash single-quoted in .env, so compose keeps its `$` literally.
+      SITE_AUTH_USER: ${SITE_AUTH_USER:-}
+      SITE_AUTH_HASH: ${SITE_AUTH_HASH:-}
+    volumes:
+      - ./caddy:/etc/caddy:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    depends_on:
+      api:
+        condition: service_healthy
+      web:
+        condition: service_started
+    logging: *logging
+
+volumes:
+  caddy_data:
+  caddy_config:

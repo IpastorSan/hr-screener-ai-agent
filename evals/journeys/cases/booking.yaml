@@ -1,0 +1,2883 @@
+# Booking journeys: interview mode, slots, booking, moving and cancelling, in Spain (tú) and
+# Mexico (usted). Format: evals/journeys/README.md. The clock starts on Monday 19 October 2026,
+# 10:00 in Madrid. Fictional people and data only. Every location offers both modes in the runner
+# (a manager everywhere, video recruiters everywhere, fake calendar) unless a journey's
+# `scheduling` limits the modes or fills the recruiters' calendars.
+
+- id: bk_es_onsite_tap
+  description: Spain, Madrid Centro posting. Both modes offered; taps in person; times inside 10-14/16-20
+    on the interview grid; books the first; the confirmation names the manager of the local and the address,
+    no Meet link.
+  country: ES
+  location: es-mad-centro
+  steps:
+  - tap: 'yes'
+    expect:
+      asks: full_name
+      register: tu
+  - say: Lucía Fernández Gil
+    expect:
+      asks: phone
+  - tap:
+      country: ES
+      number: '612340001'
+    expect:
+      asks: email
+  - say: lucia.bk1@example.com
+    expect:
+      asks: has_license
+  - say: Sí, tengo el B
+    offline_say: sí
+    expect:
+      asks: city
+  - say: Vivo en Lavapiés
+    offline_say: Lavapiés
+    expect:
+      asks: availability
+  - say: Jornada completa
+    offline_say: tiempo completo
+    expect:
+      asks: schedule
+  - say: Por las mañanas
+    offline_say: mañanas
+    expect:
+      asks: experience_years
+  - say: 2 años
+    offline_say: '2'
+    expect:
+      asks: platforms
+  - say: Glovo
+    expect:
+      asks: start_date
+  - say: El lunes que viene
+    offline_say: '2026-10-26'
+    expect:
+      asks: confirm
+  - tap: 'yes'
+    expect:
+      asks: mode
+      outcome: qualified
+      ui: quick_replies
+      reply_matches: en persona.*videollamada|videollamada.*en persona
+  - tap: onsite
+    expect:
+      asks: slot
+      ui: slots
+      mode: onsite
+      register: tu
+      reply_not_matches: \b(?!(?:1[0-3]|1[6-9]):(?:00|15|30|45)\b)\d{1,2}:\d{2}\b
+      live:
+        reply_matches: persona encargada del local de Madrid Centro
+  - tap: slot:1
+    expect:
+      action: confirm_booking
+      booked: true
+      mode: onsite
+      ui: booking
+      outcome: qualified
+      register: tu
+      reply_matches: Fuencarral 112
+      reply_not_matches: meet|https?://
+      live:
+        reply_matches: persona encargada del local de Madrid Centro
+- id: bk_es_video_tap
+  description: Spain. Taps video call; books the second time; the confirmation speaks of the Google Meet
+    invitation, gives no address and no link in the text.
+  country: ES
+  location: es-mad-centro
+  steps:
+  - tap: 'yes'
+    expect:
+      asks: full_name
+      register: tu
+  - say: Lucía Fernández Gil
+    expect:
+      asks: phone
+  - tap:
+      country: ES
+      number: '612340002'
+    expect:
+      asks: email
+  - say: lucia.bk2@example.com
+    expect:
+      asks: has_license
+  - say: Sí, tengo el B
+    offline_say: sí
+    expect:
+      asks: city
+  - say: Vivo en Lavapiés
+    offline_say: Lavapiés
+    expect:
+      asks: availability
+  - say: Jornada completa
+    offline_say: tiempo completo
+    expect:
+      asks: schedule
+  - say: Por las mañanas
+    offline_say: mañanas
+    expect:
+      asks: experience_years
+  - say: 2 años
+    offline_say: '2'
+    expect:
+      asks: platforms
+  - say: Glovo
+    expect:
+      asks: start_date
+  - say: El lunes que viene
+    offline_say: '2026-10-26'
+    expect:
+      asks: confirm
+  - tap: 'yes'
+    expect:
+      asks: mode
+      outcome: qualified
+      ui: quick_replies
+  - tap: video
+    expect:
+      asks: slot
+      ui: slots
+      mode: video
+      register: tu
+      reply_not_matches: \b\d{1,2}:(?!(?:00|15|30|45)\b)\d{2}\b
+  - tap: slot:2
+    expect:
+      action: confirm_booking
+      booked: true
+      mode: video
+      ui: booking
+      outcome: qualified
+      register: tu
+      reply_matches: Google Meet
+      reply_not_matches: Fuencarral|Calle|https?://|encargad|gerencia
+- id: bk_es_text_mode_and_day
+  description: 'Spain. Types the mode (''Mejor en persona, en el local'') and picks a time in words: ''el
+    jueves a las diez''.'
+  country: ES
+  location: es-mad-centro
+  steps:
+  - tap: 'yes'
+    expect:
+      asks: full_name
+      register: tu
+  - say: Lucía Fernández Gil
+    expect:
+      asks: phone
+  - tap:
+      country: ES
+      number: '612340003'
+    expect:
+      asks: email
+  - say: lucia.bk3@example.com
+    expect:
+      asks: has_license
+  - say: Sí, tengo el B
+    offline_say: sí
+    expect:
+      asks: city
+  - say: Vivo en Lavapiés
+    offline_say: Lavapiés
+    expect:
+      asks: availability
+  - say: Jornada completa
+    offline_say: tiempo completo
+    expect:
+      asks: schedule
+  - say: Por las mañanas
+    offline_say: mañanas
+    expect:
+      asks: experience_years
+  - say: 2 años
+    offline_say: '2'
+    expect:
+      asks: platforms
+  - say: Glovo
+    expect:
+      asks: start_date
+  - say: El lunes que viene
+    offline_say: '2026-10-26'
+    expect:
+      asks: confirm
+  - tap: 'yes'
+    expect:
+      asks: mode
+      outcome: qualified
+      ui: quick_replies
+  - say: Mejor en persona, en el local
+    expect:
+      asks: slot
+      ui: slots
+      mode: onsite
+      register: tu
+      reply_not_matches: \b(?!(?:1[0-3]|1[6-9]):(?:00|15|30|45)\b)\d{1,2}:\d{2}\b
+      live:
+        reply_matches: persona encargada del local de Madrid Centro
+  - say: El jueves a las diez
+    expect:
+      action: confirm_booking
+      booked: true
+      mode: onsite
+      ui: booking
+      outcome: qualified
+      register: tu
+      reply_matches: jueves 22
+      reply_not_matches: meet|https?://
+      live:
+        reply_matches: persona encargada del local de Madrid Centro
+- id: bk_es_mode_unclear
+  description: 'Spain. ''Me da igual'' to the mode question is unclear: the question is asked again; then
+    ''por videollamada''.'
+  country: ES
+  location: es-mad-centro
+  steps:
+  - tap: 'yes'
+    expect:
+      asks: full_name
+      register: tu
+  - say: Lucía Fernández Gil
+    expect:
+      asks: phone
+  - tap:
+      country: ES
+      number: '612340004'
+    expect:
+      asks: email
+  - say: lucia.bk4@example.com
+    expect:
+      asks: has_license
+  - say: Sí, tengo el B
+    offline_say: sí
+    expect:
+      asks: city
+  - say: Vivo en Lavapiés
+    offline_say: Lavapiés
+    expect:
+      asks: availability
+  - say: Jornada completa
+    offline_say: tiempo completo
+    expect:
+      asks: schedule
+  - say: Por las mañanas
+    offline_say: mañanas
+    expect:
+      asks: experience_years
+  - say: 2 años
+    offline_say: '2'
+    expect:
+      asks: platforms
+  - say: Glovo
+    expect:
+      asks: start_date
+  - say: El lunes que viene
+    offline_say: '2026-10-26'
+    expect:
+      asks: confirm
+  - tap: 'yes'
+    expect:
+      asks: mode
+      outcome: qualified
+      ui: quick_replies
+  - say: Me da igual
+    expect:
+      asks: mode
+      booked: false
+      ui: quick_replies
+  - say: Vale, por videollamada
+    expect:
+      asks: slot
+      ui: slots
+      mode: video
+      register: tu
+      reply_not_matches: \b\d{1,2}:(?!(?:00|15|30|45)\b)\d{2}\b
+- id: bk_es_mode_refused
+  description: 'Spain. ''No quiero videollamada'' refuses a mode: never video. Offline it chooses nothing
+    and asks again; live the extractor''s hint may choose in person.'
+  country: ES
+  location: es-mad-centro
+  steps:
+  - tap: 'yes'
+    expect:
+      asks: full_name
+      register: tu
+  - say: Lucía Fernández Gil
+    expect:
+      asks: phone
+  - tap:
+      country: ES
+      number: '612340005'
+    expect:
+      asks: email
+  - say: lucia.bk5@example.com
+    expect:
+      asks: has_license
+  - say: Sí, tengo el B
+    offline_say: sí
+    expect:
+      asks: city
+  - say: Vivo en Lavapiés
+    offline_say: Lavapiés
+    expect:
+      asks: availability
+  - say: Jornada completa
+    offline_say: tiempo completo
+    expect:
+      asks: schedule
+  - say: Por las mañanas
+    offline_say: mañanas
+    expect:
+      asks: experience_years
+  - say: 2 años
+    offline_say: '2'
+    expect:
+      asks: platforms
+  - say: Glovo
+    expect:
+      asks: start_date
+  - say: El lunes que viene
+    offline_say: '2026-10-26'
+    expect:
+      asks: confirm
+  - tap: 'yes'
+    expect:
+      asks: mode
+      outcome: qualified
+      ui: quick_replies
+  - say: No quiero videollamada
+    expect:
+      booked: false
+      reply_not_matches: para la videollamada
+      live:
+        mode: onsite
+- id: bk_es_none_twice_saved
+  description: 'Spain. None of the first times suits, a second round comes, none suits either: saved,
+    qualified, without an interview, no promise of new dates.'
+  country: ES
+  location: es-mad-centro
+  steps:
+  - tap: 'yes'
+    expect:
+      asks: full_name
+      register: tu
+  - say: Lucía Fernández Gil
+    expect:
+      asks: phone
+  - tap:
+      country: ES
+      number: '612340006'
+    expect:
+      asks: email
+  - say: lucia.bk6@example.com
+    expect:
+      asks: has_license
+  - say: Sí, tengo el B
+    offline_say: sí
+    expect:
+      asks: city
+  - say: Vivo en Lavapiés
+    offline_say: Lavapiés
+    expect:
+      asks: availability
+  - say: Jornada completa
+    offline_say: tiempo completo
+    expect:
+      asks: schedule
+  - say: Por las mañanas
+    offline_say: mañanas
+    expect:
+      asks: experience_years
+  - say: 2 años
+    offline_say: '2'
+    expect:
+      asks: platforms
+  - say: Glovo
+    expect:
+      asks: start_date
+  - say: El lunes que viene
+    offline_say: '2026-10-26'
+    expect:
+      asks: confirm
+  - tap: 'yes'
+    expect:
+      asks: mode
+      outcome: qualified
+      ui: quick_replies
+  - tap: onsite
+    expect:
+      asks: slot
+      ui: slots
+      mode: onsite
+      register: tu
+      reply_not_matches: \b(?!(?:1[0-3]|1[6-9]):(?:00|15|30|45)\b)\d{1,2}:\d{2}\b
+      live:
+        reply_matches: persona encargada del local de Madrid Centro
+  - say: No me viene bien ninguno
+    expect:
+      asks: slot
+      ui: slots
+      mode: onsite
+      register: tu
+      reply_not_matches: \b(?!(?:1[0-3]|1[6-9]):(?:00|15|30|45)\b)\d{1,2}:\d{2}\b
+      live:
+        reply_matches: persona encargada del local de Madrid Centro
+      action: offer_slots
+  - say: Tampoco puedo ninguno de esos
+    expect:
+      action: application_saved
+      outcome: qualified
+      booked: false
+      asks: none
+      register: tu
+      reply_matches: guardada
+      reply_not_matches: te (llamar|contact|avis|escribir)|le (llamar|contact|avis|escribir)|nos pondremos|nuevas
+        fechas
+- id: bk_es_none_ask_afternoon
+  description: 'Spain, in person, mornings preferred. ''Ninguno, ¿tienes algo por la tarde?'': the next
+    offer answers it with afternoon times (16-20).'
+  country: ES
+  location: es-mad-centro
+  steps:
+  - tap: 'yes'
+    expect:
+      asks: full_name
+      register: tu
+  - say: Lucía Fernández Gil
+    expect:
+      asks: phone
+  - tap:
+      country: ES
+      number: '612340008'
+    expect:
+      asks: email
+  - say: lucia.bk8@example.com
+    expect:
+      asks: has_license
+  - say: Sí, tengo el B
+    offline_say: sí
+    expect:
+      asks: city
+  - say: Vivo en Lavapiés
+    offline_say: Lavapiés
+    expect:
+      asks: availability
+  - say: Jornada completa
+    offline_say: tiempo completo
+    expect:
+      asks: schedule
+  - say: Por las mañanas
+    offline_say: mañanas
+    expect:
+      asks: experience_years
+  - say: 2 años
+    offline_say: '2'
+    expect:
+      asks: platforms
+  - say: Glovo
+    expect:
+      asks: start_date
+  - say: El lunes que viene
+    offline_say: '2026-10-26'
+    expect:
+      asks: confirm
+  - tap: 'yes'
+    expect:
+      asks: mode
+      outcome: qualified
+      ui: quick_replies
+  - tap: onsite
+    expect:
+      asks: slot
+      ui: slots
+      mode: onsite
+      register: tu
+      reply_not_matches: \b(?!(?:1[0-3]|1[6-9]):(?:00|15|30|45)\b)\d{1,2}:\d{2}\b
+      live:
+        reply_matches: persona encargada del local de Madrid Centro
+  - say: Ninguno me va, ¿tienes algo por la tarde?
+    expect:
+      asks: slot
+      ui: slots
+      mode: onsite
+      register: tu
+      reply_not_matches: \b(?!(?:1[0-3]|1[6-9]):(?:00|15|30|45)\b)\d{1,2}:\d{2}\b
+      live:
+        reply_not_matches: no tengo (esa|esta) informaci
+      action: offer_slots
+      reply_matches: \b1[6-9]:(?:00|15|30|45)\b
+- id: bk_es_ask_friday
+  description: 'Spain, in person. Asks about another day without turning the times down: ''¿Y el viernes
+    tienes algo?''. Ana answers with times (not ''no tengo esa información'') and keeps the slots.'
+  country: ES
+  location: es-mad-centro
+  steps:
+  - tap: 'yes'
+    expect:
+      asks: full_name
+      register: tu
+  - say: Lucía Fernández Gil
+    expect:
+      asks: phone
+  - tap:
+      country: ES
+      number: '612340009'
+    expect:
+      asks: email
+  - say: lucia.bk9@example.com
+    expect:
+      asks: has_license
+  - say: Sí, tengo el B
+    offline_say: sí
+    expect:
+      asks: city
+  - say: Vivo en Lavapiés
+    offline_say: Lavapiés
+    expect:
+      asks: availability
+  - say: Jornada completa
+    offline_say: tiempo completo
+    expect:
+      asks: schedule
+  - say: Por las mañanas
+    offline_say: mañanas
+    expect:
+      asks: experience_years
+  - say: 2 años
+    offline_say: '2'
+    expect:
+      asks: platforms
+  - say: Glovo
+    expect:
+      asks: start_date
+  - say: El lunes que viene
+    offline_say: '2026-10-26'
+    expect:
+      asks: confirm
+  - tap: 'yes'
+    expect:
+      asks: mode
+      outcome: qualified
+      ui: quick_replies
+  - tap: onsite
+    expect:
+      asks: slot
+      ui: slots
+      mode: onsite
+      register: tu
+      reply_not_matches: \b(?!(?:1[0-3]|1[6-9]):(?:00|15|30|45)\b)\d{1,2}:\d{2}\b
+      live:
+        reply_matches: persona encargada del local de Madrid Centro
+  - say: ¿Y el viernes tienes algo?
+    expect:
+      asks: slot
+      ui: slots
+      booked: false
+      live:
+        reply_not_matches: no tengo.{0,30}informaci|dato no lo tengo
+        reply_matches: viernes 23
+- id: bk_es_faq_mid_slots
+  description: 'Spain, in person. Asks what to bring to the interview while the times are on offer: answered
+    from the FAQ, the times stay; then books by tap.'
+  country: ES
+  location: es-mad-centro
+  steps:
+  - tap: 'yes'
+    expect:
+      asks: full_name
+      register: tu
+  - say: Lucía Fernández Gil
+    expect:
+      asks: phone
+  - tap:
+      country: ES
+      number: '612340010'
+    expect:
+      asks: email
+  - say: lucia.bk10@example.com
+    expect:
+      asks: has_license
+  - say: Sí, tengo el B
+    offline_say: sí
+    expect:
+      asks: city
+  - say: Vivo en Lavapiés
+    offline_say: Lavapiés
+    expect:
+      asks: availability
+  - say: Jornada completa
+    offline_say: tiempo completo
+    expect:
+      asks: schedule
+  - say: Por las mañanas
+    offline_say: mañanas
+    expect:
+      asks: experience_years
+  - say: 2 años
+    offline_say: '2'
+    expect:
+      asks: platforms
+  - say: Glovo
+    expect:
+      asks: start_date
+  - say: El lunes que viene
+    offline_say: '2026-10-26'
+    expect:
+      asks: confirm
+  - tap: 'yes'
+    expect:
+      asks: mode
+      outcome: qualified
+      ui: quick_replies
+  - tap: onsite
+    expect:
+      asks: slot
+      ui: slots
+      mode: onsite
+      register: tu
+      reply_not_matches: \b(?!(?:1[0-3]|1[6-9]):(?:00|15|30|45)\b)\d{1,2}:\d{2}\b
+      live:
+        reply_matches: persona encargada del local de Madrid Centro
+  - say: ¿Qué tengo que llevar a la entrevista?
+    expect:
+      action: answer_question
+      asks: slot
+      ui: slots
+      register: tu
+      live:
+        faq_source: documents-es
+        reply_matches: DNI|NIE
+  - tap: slot:1
+    expect:
+      action: confirm_booking
+      booked: true
+      mode: onsite
+      ui: booking
+      outcome: qualified
+      register: tu
+      reply_matches: Fuencarral 112
+      reply_not_matches: meet|https?://
+      live:
+        reply_matches: persona encargada del local de Madrid Centro
+- id: bk_es_move_after_booking
+  description: 'Spain, in person. Books, then writes that they can''t make it: new times (the booked one
+    not among them), picks one; the booking moves.'
+  country: ES
+  location: es-mad-centro
+  steps:
+  - tap: 'yes'
+    expect:
+      asks: full_name
+      register: tu
+  - say: Lucía Fernández Gil
+    expect:
+      asks: phone
+  - tap:
+      country: ES
+      number: '612340012'
+    expect:
+      asks: email
+  - say: lucia.bk12@example.com
+    expect:
+      asks: has_license
+  - say: Sí, tengo el B
+    offline_say: sí
+    expect:
+      asks: city
+  - say: Vivo en Lavapiés
+    offline_say: Lavapiés
+    expect:
+      asks: availability
+  - say: Jornada completa
+    offline_say: tiempo completo
+    expect:
+      asks: schedule
+  - say: Por las mañanas
+    offline_say: mañanas
+    expect:
+      asks: experience_years
+  - say: 2 años
+    offline_say: '2'
+    expect:
+      asks: platforms
+  - say: Glovo
+    expect:
+      asks: start_date
+  - say: El lunes que viene
+    offline_say: '2026-10-26'
+    expect:
+      asks: confirm
+  - tap: 'yes'
+    expect:
+      asks: mode
+      outcome: qualified
+      ui: quick_replies
+  - tap: onsite
+    expect:
+      asks: slot
+      ui: slots
+      mode: onsite
+      register: tu
+      reply_not_matches: \b(?!(?:1[0-3]|1[6-9]):(?:00|15|30|45)\b)\d{1,2}:\d{2}\b
+      live:
+        reply_matches: persona encargada del local de Madrid Centro
+  - tap: slot:1
+    expect:
+      action: confirm_booking
+      booked: true
+      mode: onsite
+      ui: booking
+      outcome: qualified
+      register: tu
+      reply_matches: Fuencarral 112
+      reply_not_matches: meet|https?://
+      live:
+        reply_matches: persona encargada del local de Madrid Centro
+  - say: Al final no voy a poder ir ese día, ¿la podemos cambiar?
+    offline_say: 'no'
+    expect:
+      action: offer_slots
+      asks: slot
+      ui: slots
+      booked: true
+      reply_not_matches: \b(?!(?:1[0-3]|1[6-9]):(?:00|15|30|45)\b)\d{1,2}:\d{2}\b|martes 20 a las 10:00
+  - tap: slot:2
+    expect:
+      action: confirm_booking
+      booked: true
+      mode: onsite
+      ui: booking
+      outcome: qualified
+      register: tu
+      reply_matches: Fuencarral 112
+      reply_not_matches: meet|https?://
+      live:
+        reply_matches: persona encargada del local de Madrid Centro
+- id: bk_es_switch_to_video_after_booking
+  description: 'Spain. Books in person, then ''mejor por videollamada'': video times, picks one; the booking
+    is now a video call.'
+  country: ES
+  location: es-mad-centro
+  steps:
+  - tap: 'yes'
+    expect:
+      asks: full_name
+      register: tu
+  - say: Lucía Fernández Gil
+    expect:
+      asks: phone
+  - tap:
+      country: ES
+      number: '612340013'
+    expect:
+      asks: email
+  - say: lucia.bk13@example.com
+    expect:
+      asks: has_license
+  - say: Sí, tengo el B
+    offline_say: sí
+    expect:
+      asks: city
+  - say: Vivo en Lavapiés
+    offline_say: Lavapiés
+    expect:
+      asks: availability
+  - say: Jornada completa
+    offline_say: tiempo completo
+    expect:
+      asks: schedule
+  - say: Por las mañanas
+    offline_say: mañanas
+    expect:
+      asks: experience_years
+  - say: 2 años
+    offline_say: '2'
+    expect:
+      asks: platforms
+  - say: Glovo
+    expect:
+      asks: start_date
+  - say: El lunes que viene
+    offline_say: '2026-10-26'
+    expect:
+      asks: confirm
+  - tap: 'yes'
+    expect:
+      asks: mode
+      outcome: qualified
+      ui: quick_replies
+  - tap: onsite
+  - tap: slot:1
+    expect:
+      booked: true
+      mode: onsite
+  - say: Oye, mejor por videollamada
+    expect:
+      asks: slot
+      ui: slots
+      register: tu
+      reply_not_matches: \b\d{1,2}:(?!(?:00|15|30|45)\b)\d{2}\b
+  - tap: slot:1
+    expect:
+      action: confirm_booking
+      booked: true
+      mode: video
+      ui: booking
+      outcome: qualified
+      register: tu
+      reply_matches: Google Meet
+      reply_not_matches: Fuencarral|Calle|https?://|encargad|gerencia
+- id: bk_es_reschedule_none_keeps
+  description: 'Spain, video. Books, asks to move it, none of two rounds suits: the original interview
+    is kept.'
+  country: ES
+  location: es-mad-centro
+  steps:
+  - tap: 'yes'
+    expect:
+      asks: full_name
+      register: tu
+  - say: Lucía Fernández Gil
+    expect:
+      asks: phone
+  - tap:
+      country: ES
+      number: '612340014'
+    expect:
+      asks: email
+  - say: lucia.bk14@example.com
+    expect:
+      asks: has_license
+  - say: Sí, tengo el B
+    offline_say: sí
+    expect:
+      asks: city
+  - say: Vivo en Lavapiés
+    offline_say: Lavapiés
+    expect:
+      asks: availability
+  - say: Jornada completa
+    offline_say: tiempo completo
+    expect:
+      asks: schedule
+  - say: Por las mañanas
+    offline_say: mañanas
+    expect:
+      asks: experience_years
+  - say: 2 años
+    offline_say: '2'
+    expect:
+      asks: platforms
+  - say: Glovo
+    expect:
+      asks: start_date
+  - say: El lunes que viene
+    offline_say: '2026-10-26'
+    expect:
+      asks: confirm
+  - tap: 'yes'
+    expect:
+      asks: mode
+      outcome: qualified
+      ui: quick_replies
+  - tap: video
+  - tap: slot:1
+    expect:
+      booked: true
+      mode: video
+  - say: ¿Podemos cambiar la entrevista a otro día?
+    offline_say: 'no'
+    expect:
+      action: offer_slots
+      asks: slot
+      booked: true
+  - say: Ninguno me viene bien
+    expect:
+      action: offer_slots
+      asks: slot
+      booked: true
+  - say: Tampoco, ninguno
+    expect:
+      action: confirm_booking
+      booked: true
+      mode: video
+      asks: none
+      reply_matches: mantengo
+- id: bk_es_cancel
+  description: 'Spain, in person. Books, then cancels and gives up on the job (an opt-out): the interview is dropped at once, the goodbye says so and the chat closes. The application is withdrawn.'
+  country: ES
+  location: es-mad-centro
+  steps:
+  - tap: 'yes'
+    expect:
+      asks: full_name
+      register: tu
+  - say: Lucía Fernández Gil
+    expect:
+      asks: phone
+  - tap:
+      country: ES
+      number: '612340015'
+    expect:
+      asks: email
+  - say: lucia.bk15@example.com
+    expect:
+      asks: has_license
+  - say: Sí, tengo el B
+    offline_say: sí
+    expect:
+      asks: city
+  - say: Vivo en Lavapiés
+    offline_say: Lavapiés
+    expect:
+      asks: availability
+  - say: Jornada completa
+    offline_say: tiempo completo
+    expect:
+      asks: schedule
+  - say: Por las mañanas
+    offline_say: mañanas
+    expect:
+      asks: experience_years
+  - say: 2 años
+    offline_say: '2'
+    expect:
+      asks: platforms
+  - say: Glovo
+    expect:
+      asks: start_date
+  - say: El lunes que viene
+    offline_say: '2026-10-26'
+    expect:
+      asks: confirm
+  - tap: 'yes'
+    expect:
+      asks: mode
+      outcome: qualified
+      ui: quick_replies
+  - tap: onsite
+  - tap: slot:1
+    expect:
+      booked: true
+  - say: Quiero cancelar la entrevista, ya no me interesa
+    expect:
+      action: end
+      booked: false
+      closed: true
+      outcome: withdrawn
+      register: tu
+      reply_matches: he cancelado tu entrevista del (?:lunes|martes|miércoles|jueves|viernes) \d+
+- id: bk_es_cancel_confirm
+  description: 'Spain, in person. Books, then "No puedo ir, cancela la entrevista": asked once whether to cancel or move it (no times), taps Cancelar: cancelled, the day named, withdrawn, the chat closes.'
+  country: ES
+  location: es-mad-centro
+  steps:
+  - tap: 'yes'
+    expect:
+      asks: full_name
+      register: tu
+  - say: Lucía Fernández Gil
+    expect:
+      asks: phone
+  - tap:
+      country: ES
+      number: '612340031'
+    expect:
+      asks: email
+  - say: lucia.bk31@example.com
+    expect:
+      asks: has_license
+  - say: Sí, tengo el B
+    offline_say: sí
+    expect:
+      asks: city
+  - say: Vivo en Lavapiés
+    offline_say: Lavapiés
+    expect:
+      asks: availability
+  - say: Jornada completa
+    offline_say: tiempo completo
+    expect:
+      asks: schedule
+  - say: Por las mañanas
+    offline_say: mañanas
+    expect:
+      asks: experience_years
+  - say: 2 años
+    offline_say: '2'
+    expect:
+      asks: platforms
+  - say: Glovo
+    expect:
+      asks: start_date
+  - say: El lunes que viene
+    offline_say: '2026-10-26'
+    expect:
+      asks: confirm
+  - tap: 'yes'
+    expect:
+      asks: mode
+      outcome: qualified
+      ui: quick_replies
+  - tap: onsite
+  - tap: slot:1
+    expect:
+      booked: true
+  - say: No puedo ir, cancela la entrevista
+    expect:
+      action: ask_cancel
+      asks: cancel
+      ui: quick_replies
+      booked: true
+      reply_matches: ^¿La cancelo o prefieres otra hora\?$
+  - tap: cancel
+    expect:
+      action: end
+      booked: false
+      closed: true
+      outcome: withdrawn
+      register: tu
+      reply_matches: ^He cancelado tu entrevista del (?:lunes|martes|miércoles|jueves|viernes) \d+\.
+- id: bk_es_cancel_then_return_fresh
+  description: 'Spain, in person. Books, cancels with the Cancelar button (withdrawn); two days later the same phone applies again: a withdrawn application is closed, so there is no "¿Quieres continuar como...?" and a new application starts.'
+  country: ES
+  location: es-mad-centro
+  sessions:
+  - steps:
+    - tap: 'yes'
+    - say: Lucía Fernández Gil
+      expect:
+        asks: phone
+    - tap:
+        country: ES
+        number: '612340041'
+      expect:
+        asks: email
+    - say: lucia.bk41@example.com
+      expect:
+        asks: has_license
+    - say: Sí, tengo el B
+      offline_say: sí
+      expect:
+        asks: city
+    - say: Vivo en Lavapiés
+      offline_say: Lavapiés
+      expect:
+        asks: availability
+    - say: Jornada completa
+      offline_say: tiempo completo
+      expect:
+        asks: schedule
+    - say: Por las mañanas
+      offline_say: mañanas
+      expect:
+        asks: experience_years
+    - say: 2 años
+      offline_say: '2'
+      expect:
+        asks: platforms
+    - say: Glovo
+      expect:
+        asks: start_date
+    - say: El lunes que viene
+      offline_say: '2026-10-26'
+      expect:
+        asks: confirm
+    - tap: 'yes'
+      expect:
+        asks: mode
+        outcome: qualified
+    - tap: onsite
+    - tap: slot:1
+      expect:
+        booked: true
+    - say: Cancela la entrevista
+      expect:
+        action: ask_cancel
+        asks: cancel
+    - tap: cancel
+      expect:
+        action: end
+        booked: false
+        closed: true
+        outcome: withdrawn
+  - after: 2d
+    steps:
+    - tap: 'yes'
+    - say: Lucía Fernández Gil
+      expect:
+        asks: phone
+    - tap:
+        country: ES
+        number: '612340041'
+      expect:
+        asks: email
+        resumed: false
+        outcome: in_progress
+        reply_not_matches: continuar como
+- id: bk_es_cancel_other_time
+  description: 'Spain, in person. Books, then "Cancela la entrevista": the question, taps Otra hora: new times, picks one; the booking moves.'
+  country: ES
+  location: es-mad-centro
+  steps:
+  - tap: 'yes'
+    expect:
+      asks: full_name
+      register: tu
+  - say: Lucía Fernández Gil
+    expect:
+      asks: phone
+  - tap:
+      country: ES
+      number: '612340032'
+    expect:
+      asks: email
+  - say: lucia.bk32@example.com
+    expect:
+      asks: has_license
+  - say: Sí, tengo el B
+    offline_say: sí
+    expect:
+      asks: city
+  - say: Vivo en Lavapiés
+    offline_say: Lavapiés
+    expect:
+      asks: availability
+  - say: Jornada completa
+    offline_say: tiempo completo
+    expect:
+      asks: schedule
+  - say: Por las mañanas
+    offline_say: mañanas
+    expect:
+      asks: experience_years
+  - say: 2 años
+    offline_say: '2'
+    expect:
+      asks: platforms
+  - say: Glovo
+    expect:
+      asks: start_date
+  - say: El lunes que viene
+    offline_say: '2026-10-26'
+    expect:
+      asks: confirm
+  - tap: 'yes'
+    expect:
+      asks: mode
+      outcome: qualified
+      ui: quick_replies
+  - tap: onsite
+  - tap: slot:1
+    expect:
+      booked: true
+  - say: Cancela la entrevista
+    expect:
+      action: ask_cancel
+      asks: cancel
+      booked: true
+  - tap: reschedule
+    expect:
+      action: offer_slots
+      asks: slot
+      ui: slots
+      booked: true
+  - tap: slot:1
+    expect:
+      action: confirm_booking
+      booked: true
+      ui: booking
+      outcome: qualified
+- id: bk_es_opt_out_while_moving
+  description: 'Spain, in person. Books, "No puedo ir" still gets new times; then "Ya no me interesa, cancela la entrevista" while they are on offer: the interview is cancelled in that turn and the goodbye says so (QA smoke test). The application is withdrawn.'
+  country: ES
+  location: es-mad-centro
+  steps:
+  - tap: 'yes'
+    expect:
+      asks: full_name
+      register: tu
+  - say: Lucía Fernández Gil
+    expect:
+      asks: phone
+  - tap:
+      country: ES
+      number: '612340033'
+    expect:
+      asks: email
+  - say: lucia.bk33@example.com
+    expect:
+      asks: has_license
+  - say: Sí, tengo el B
+    offline_say: sí
+    expect:
+      asks: city
+  - say: Vivo en Lavapiés
+    offline_say: Lavapiés
+    expect:
+      asks: availability
+  - say: Jornada completa
+    offline_say: tiempo completo
+    expect:
+      asks: schedule
+  - say: Por las mañanas
+    offline_say: mañanas
+    expect:
+      asks: experience_years
+  - say: 2 años
+    offline_say: '2'
+    expect:
+      asks: platforms
+  - say: Glovo
+    expect:
+      asks: start_date
+  - say: El lunes que viene
+    offline_say: '2026-10-26'
+    expect:
+      asks: confirm
+  - tap: 'yes'
+    expect:
+      asks: mode
+      outcome: qualified
+      ui: quick_replies
+  - tap: onsite
+  - tap: slot:1
+    expect:
+      booked: true
+  - say: No puedo ir
+    expect:
+      action: offer_slots
+      asks: slot
+      booked: true
+  - say: Ya no me interesa, cancela la entrevista
+    expect:
+      action: end
+      booked: false
+      closed: true
+      outcome: withdrawn
+      reply_matches: he cancelado tu entrevista del (?:lunes|martes|miércoles|jueves|viernes) \d+
+- id: bk_es_frustrated_at_slots
+  description: 'Spain, in person. Frustrated twice at the times without picking: shorter replies and,
+    as it continues, the pause offer (rules: Frustration).'
+  country: ES
+  location: es-mad-centro
+  steps:
+  - tap: 'yes'
+    expect:
+      asks: full_name
+      register: tu
+  - say: Lucía Fernández Gil
+    expect:
+      asks: phone
+  - tap:
+      country: ES
+      number: '612340016'
+    expect:
+      asks: email
+  - say: lucia.bk16@example.com
+    expect:
+      asks: has_license
+  - say: Sí, tengo el B
+    offline_say: sí
+    expect:
+      asks: city
+  - say: Vivo en Lavapiés
+    offline_say: Lavapiés
+    expect:
+      asks: availability
+  - say: Jornada completa
+    offline_say: tiempo completo
+    expect:
+      asks: schedule
+  - say: Por las mañanas
+    offline_say: mañanas
+    expect:
+      asks: experience_years
+  - say: 2 años
+    offline_say: '2'
+    expect:
+      asks: platforms
+  - say: Glovo
+    expect:
+      asks: start_date
+  - say: El lunes que viene
+    offline_say: '2026-10-26'
+    expect:
+      asks: confirm
+  - tap: 'yes'
+    expect:
+      asks: mode
+      outcome: qualified
+      ui: quick_replies
+  - tap: onsite
+    expect:
+      asks: slot
+      ui: slots
+      mode: onsite
+      register: tu
+      reply_not_matches: \b(?!(?:1[0-3]|1[6-9]):(?:00|15|30|45)\b)\d{1,2}:\d{2}\b
+      live:
+        reply_matches: persona encargada del local de Madrid Centro
+  - say: Uf, qué pesadez todo esto, llevo un rato ya
+    expect:
+      asks: slot
+      booked: false
+  - say: En serio, esto es eterno, qué rollo
+    expect:
+      booked: false
+      live:
+        asks: pause
+- id: bk_es_video_interview_faq
+  description: 'Spain. Books a video call, then asks how the interview is: the answer must not say it
+    is at the local.'
+  country: ES
+  location: es-mad-centro
+  steps:
+  - tap: 'yes'
+    expect:
+      asks: full_name
+      register: tu
+  - say: Lucía Fernández Gil
+    expect:
+      asks: phone
+  - tap:
+      country: ES
+      number: '612340017'
+    expect:
+      asks: email
+  - say: lucia.bk17@example.com
+    expect:
+      asks: has_license
+  - say: Sí, tengo el B
+    offline_say: sí
+    expect:
+      asks: city
+  - say: Vivo en Lavapiés
+    offline_say: Lavapiés
+    expect:
+      asks: availability
+  - say: Jornada completa
+    offline_say: tiempo completo
+    expect:
+      asks: schedule
+  - say: Por las mañanas
+    offline_say: mañanas
+    expect:
+      asks: experience_years
+  - say: 2 años
+    offline_say: '2'
+    expect:
+      asks: platforms
+  - say: Glovo
+    expect:
+      asks: start_date
+  - say: El lunes que viene
+    offline_say: '2026-10-26'
+    expect:
+      asks: confirm
+  - tap: 'yes'
+    expect:
+      asks: mode
+      outcome: qualified
+      ui: quick_replies
+  - tap: video
+  - tap: slot:1
+    expect:
+      booked: true
+      mode: video
+  - say: ¿Cómo va a ser la entrevista?
+    expect:
+      action: answer_question
+      booked: true
+      live:
+        reply_not_matches: en el local|presencial
+- id: bk_es_saved_then_returns
+  description: 'Spain. Saved without an interview after two rounds; two days later the same phone comes
+    back: welcome back and new times, books.'
+  country: ES
+  location: es-mad-centro
+  sessions:
+  - steps:
+    - tap: 'yes'
+      expect:
+        asks: full_name
+        register: tu
+    - say: Lucía Fernández Gil
+      expect:
+        asks: phone
+    - tap:
+        country: ES
+        number: '612340018'
+      expect:
+        asks: email
+    - say: lucia.bk18@example.com
+      expect:
+        asks: has_license
+    - say: Sí, tengo el B
+      offline_say: sí
+      expect:
+        asks: city
+    - say: Vivo en Lavapiés
+      offline_say: Lavapiés
+      expect:
+        asks: availability
+    - say: Jornada completa
+      offline_say: tiempo completo
+      expect:
+        asks: schedule
+    - say: Por las mañanas
+      offline_say: mañanas
+      expect:
+        asks: experience_years
+    - say: 2 años
+      offline_say: '2'
+      expect:
+        asks: platforms
+    - say: Glovo
+      expect:
+        asks: start_date
+    - say: El lunes que viene
+      offline_say: '2026-10-26'
+      expect:
+        asks: confirm
+    - tap: 'yes'
+      expect:
+        asks: mode
+        outcome: qualified
+        ui: quick_replies
+    - tap: onsite
+    - say: Ninguno
+      expect:
+        action: offer_slots
+    - say: Ninguno tampoco
+      expect:
+        action: application_saved
+        booked: false
+  - after: 2d
+    steps:
+    - tap: 'yes'
+      expect:
+        asks: full_name
+    - say: Lucía Fernández Gil
+      expect:
+        asks: phone
+    - tap:
+        country: ES
+        number: '612340018'
+      expect: {reply_matches: "continuar como Lucía|continue as Lucía", outcome: in_progress}
+    - tap: "yes"
+      expect:
+        resumed: true
+        asks: slot
+        ui: slots
+        outcome: qualified
+        reply_not_matches: \b(?!(?:1[0-3]|1[6-9]):(?:00|15|30|45)\b)\d{1,2}:\d{2}\b
+    - tap: slot:1
+      expect:
+        action: confirm_booking
+        booked: true
+        mode: onsite
+        ui: booking
+        outcome: qualified
+        register: tu
+        reply_matches: Fuencarral 112
+        reply_not_matches: meet|https?://
+        live:
+          reply_matches: persona encargada del local de Madrid Centro
+        resumed: true
+- id: bk_mx_onsite_tap
+  description: 'Mexico, country-wide posting, Zapopan. Taps in person: times inside the hours, ''con la
+    gerencia del local de Zapopan'', address, no Meet link; usted.'
+  country: MX
+  steps:
+  - tap: 'yes'
+    expect:
+      asks: full_name
+      register: usted
+  - say: Jorge Ramírez Ortega
+    expect:
+      asks: phone
+  - tap:
+      country: MX
+      number: '5512340001'
+    expect:
+      asks: email
+  - say: jorge.bk1@example.com
+    expect:
+      asks: has_license
+  - say: Sí, tengo licencia
+    offline_say: sí
+    expect:
+      asks: city
+  - say: Vivo en Zapopan
+    offline_say: Zapopan
+    expect:
+      asks: availability
+  - say: Tiempo completo
+    offline_say: tiempo completo
+    expect:
+      asks: schedule
+  - say: Por las tardes
+    offline_say: tardes
+    expect:
+      asks: experience_years
+  - say: 3 años
+    offline_say: '3'
+    expect:
+      asks: platforms
+  - say: Rappi
+    expect:
+      asks: start_date
+  - say: El lunes que viene
+    offline_say: '2026-10-26'
+    expect:
+      asks: confirm
+  - tap: 'yes'
+    expect:
+      asks: mode
+      outcome: qualified
+      ui: quick_replies
+  - tap: onsite
+    expect:
+      asks: slot
+      ui: slots
+      mode: onsite
+      register: usted
+      reply_not_matches: \b(?!(?:1[0-3]|1[6-9]):(?:00|15|30|45)\b)\d{1,2}:\d{2}\b
+      live:
+        reply_matches: gerencia del local de Zapopan
+  - tap: slot:3
+    expect:
+      action: confirm_booking
+      booked: true
+      mode: onsite
+      ui: booking
+      outcome: qualified
+      register: usted
+      reply_matches: Patria 1200
+      reply_not_matches: meet|https?://
+      live:
+        reply_matches: gerencia del local de Zapopan
+- id: bk_mx_video_text
+  description: 'Mexico. Types ''Por videollamada, por favor'' and picks ''el miércoles en la tarde'':
+    Meet invitation, no address, usted.'
+  country: MX
+  steps:
+  - tap: 'yes'
+    expect:
+      asks: full_name
+      register: usted
+  - say: Jorge Ramírez Ortega
+    expect:
+      asks: phone
+  - tap:
+      country: MX
+      number: '5512340002'
+    expect:
+      asks: email
+  - say: jorge.bk2@example.com
+    expect:
+      asks: has_license
+  - say: Sí, tengo licencia
+    offline_say: sí
+    expect:
+      asks: city
+  - say: Vivo en Zapopan
+    offline_say: Zapopan
+    expect:
+      asks: availability
+  - say: Tiempo completo
+    offline_say: tiempo completo
+    expect:
+      asks: schedule
+  - say: Por las tardes
+    offline_say: tardes
+    expect:
+      asks: experience_years
+  - say: 3 años
+    offline_say: '3'
+    expect:
+      asks: platforms
+  - say: Rappi
+    expect:
+      asks: start_date
+  - say: El lunes que viene
+    offline_say: '2026-10-26'
+    expect:
+      asks: confirm
+  - tap: 'yes'
+    expect:
+      asks: mode
+      outcome: qualified
+      ui: quick_replies
+  - say: Por videollamada, por favor
+    expect:
+      asks: slot
+      ui: slots
+      mode: video
+      register: usted
+      reply_not_matches: \b\d{1,2}:(?!(?:00|15|30|45)\b)\d{2}\b
+  - say: El miércoles en la tarde
+    expect:
+      action: confirm_booking
+      booked: true
+      mode: video
+      ui: booking
+      outcome: qualified
+      register: usted
+      reply_matches: miércoles 21
+      reply_not_matches: Patria|Av\.|https?://|encargad|gerencia
+- id: bk_mx_none_twice_saved
+  description: 'Mexico, in person. Two rounds, none suits: saved, usted, no promise.'
+  country: MX
+  steps:
+  - tap: 'yes'
+    expect:
+      asks: full_name
+      register: usted
+  - say: Jorge Ramírez Ortega
+    expect:
+      asks: phone
+  - tap:
+      country: MX
+      number: '5512340003'
+    expect:
+      asks: email
+  - say: jorge.bk3@example.com
+    expect:
+      asks: has_license
+  - say: Sí, tengo licencia
+    offline_say: sí
+    expect:
+      asks: city
+  - say: Vivo en Zapopan
+    offline_say: Zapopan
+    expect:
+      asks: availability
+  - say: Tiempo completo
+    offline_say: tiempo completo
+    expect:
+      asks: schedule
+  - say: Por las tardes
+    offline_say: tardes
+    expect:
+      asks: experience_years
+  - say: 3 años
+    offline_say: '3'
+    expect:
+      asks: platforms
+  - say: Rappi
+    expect:
+      asks: start_date
+  - say: El lunes que viene
+    offline_say: '2026-10-26'
+    expect:
+      asks: confirm
+  - tap: 'yes'
+    expect:
+      asks: mode
+      outcome: qualified
+      ui: quick_replies
+  - tap: onsite
+    expect:
+      asks: slot
+      ui: slots
+      mode: onsite
+      register: usted
+      reply_not_matches: \b(?!(?:1[0-3]|1[6-9]):(?:00|15|30|45)\b)\d{1,2}:\d{2}\b
+      live:
+        reply_matches: gerencia del local de Zapopan
+  - say: Ninguno me acomoda
+    expect:
+      asks: slot
+      ui: slots
+      mode: onsite
+      register: usted
+      reply_not_matches: \b(?!(?:1[0-3]|1[6-9]):(?:00|15|30|45)\b)\d{1,2}:\d{2}\b
+      live:
+        reply_matches: gerencia del local de Zapopan
+      action: offer_slots
+  - say: No, tampoco me acomoda ninguno
+    expect:
+      action: application_saved
+      outcome: qualified
+      booked: false
+      register: usted
+      reply_matches: guardada
+      reply_not_matches: te (llamar|contact|avis|escribir)|le (llamar|contact|avis|escribir)|nos pondremos|nuevas
+        fechas
+- id: bk_mx_move_after_booking
+  description: 'Mexico, video. Books, then ''no voy a poder asistir, ¿la podemos mover?'': new times,
+    picks ''el jueves''.'
+  country: MX
+  steps:
+  - tap: 'yes'
+    expect:
+      asks: full_name
+      register: usted
+  - say: Jorge Ramírez Ortega
+    expect:
+      asks: phone
+  - tap:
+      country: MX
+      number: '5512340004'
+    expect:
+      asks: email
+  - say: jorge.bk4@example.com
+    expect:
+      asks: has_license
+  - say: Sí, tengo licencia
+    offline_say: sí
+    expect:
+      asks: city
+  - say: Vivo en Zapopan
+    offline_say: Zapopan
+    expect:
+      asks: availability
+  - say: Tiempo completo
+    offline_say: tiempo completo
+    expect:
+      asks: schedule
+  - say: Por las tardes
+    offline_say: tardes
+    expect:
+      asks: experience_years
+  - say: 3 años
+    offline_say: '3'
+    expect:
+      asks: platforms
+  - say: Rappi
+    expect:
+      asks: start_date
+  - say: El lunes que viene
+    offline_say: '2026-10-26'
+    expect:
+      asks: confirm
+  - tap: 'yes'
+    expect:
+      asks: mode
+      outcome: qualified
+      ui: quick_replies
+  - tap: video
+  - tap: slot:1
+    expect:
+      booked: true
+      mode: video
+  - say: Disculpe, no voy a poder asistir, ¿la podemos mover?
+    offline_say: 'no'
+    expect:
+      action: offer_slots
+      asks: slot
+      booked: true
+      register: usted
+  - say: El jueves
+    expect:
+      action: confirm_booking
+      booked: true
+      mode: video
+      ui: booking
+      outcome: qualified
+      register: usted
+      reply_matches: jueves 22
+      reply_not_matches: Patria|Av\.|https?://|encargad|gerencia
+- id: bk_mx_faq_at_mode
+  description: 'Mexico. Asks which documents to bring at the mode question: answered from the FAQ, the
+    mode question again; then ''presencial''.'
+  country: MX
+  steps:
+  - tap: 'yes'
+    expect:
+      asks: full_name
+      register: usted
+  - say: Jorge Ramírez Ortega
+    expect:
+      asks: phone
+  - tap:
+      country: MX
+      number: '5512340005'
+    expect:
+      asks: email
+  - say: jorge.bk5@example.com
+    expect:
+      asks: has_license
+  - say: Sí, tengo licencia
+    offline_say: sí
+    expect:
+      asks: city
+  - say: Vivo en Zapopan
+    offline_say: Zapopan
+    expect:
+      asks: availability
+  - say: Tiempo completo
+    offline_say: tiempo completo
+    expect:
+      asks: schedule
+  - say: Por las tardes
+    offline_say: tardes
+    expect:
+      asks: experience_years
+  - say: 3 años
+    offline_say: '3'
+    expect:
+      asks: platforms
+  - say: Rappi
+    expect:
+      asks: start_date
+  - say: El lunes que viene
+    offline_say: '2026-10-26'
+    expect:
+      asks: confirm
+  - tap: 'yes'
+    expect:
+      asks: mode
+      outcome: qualified
+      ui: quick_replies
+  - say: ¿Qué documentos debo llevar a la entrevista?
+    expect:
+      action: answer_question
+      asks: mode
+      ui: quick_replies
+      register: usted
+      live:
+        faq_source: documents-mx
+  - say: Presencial
+    expect:
+      asks: slot
+      ui: slots
+      mode: onsite
+      register: usted
+      reply_not_matches: \b(?!(?:1[0-3]|1[6-9]):(?:00|15|30|45)\b)\d{1,2}:\d{2}\b
+      live:
+        reply_matches: gerencia del local de Zapopan
+- id: bk_mx_cancel
+  description: 'Mexico, in person. Books, then gives up and asks to cancel (an opt-out): dropped at once, the goodbye says so, closed, usted. The application is withdrawn.'
+  country: MX
+  steps:
+  - tap: 'yes'
+    expect:
+      asks: full_name
+      register: usted
+  - say: Jorge Ramírez Ortega
+    expect:
+      asks: phone
+  - tap:
+      country: MX
+      number: '5512340006'
+    expect:
+      asks: email
+  - say: jorge.bk6@example.com
+    expect:
+      asks: has_license
+  - say: Sí, tengo licencia
+    offline_say: sí
+    expect:
+      asks: city
+  - say: Vivo en Zapopan
+    offline_say: Zapopan
+    expect:
+      asks: availability
+  - say: Tiempo completo
+    offline_say: tiempo completo
+    expect:
+      asks: schedule
+  - say: Por las tardes
+    offline_say: tardes
+    expect:
+      asks: experience_years
+  - say: 3 años
+    offline_say: '3'
+    expect:
+      asks: platforms
+  - say: Rappi
+    expect:
+      asks: start_date
+  - say: El lunes que viene
+    offline_say: '2026-10-26'
+    expect:
+      asks: confirm
+  - tap: 'yes'
+    expect:
+      asks: mode
+      outcome: qualified
+      ui: quick_replies
+  - tap: onsite
+  - tap: slot:1
+    expect:
+      booked: true
+  - say: Ya no me interesa, cancele la cita por favor
+    expect:
+      action: end
+      booked: false
+      closed: true
+      outcome: withdrawn
+      register: usted
+      reply_matches: cancelé su entrevista del (?:lunes|martes|miércoles|jueves|viernes) \d+
+- id: bk_mx_cancel_confirm
+  description: 'Mexico, in person. Books, then "Ya no voy a ir": asked once whether to cancel or move it, writes "Sí, cancélela": cancelled, the day named, usted, closed. The application is withdrawn.'
+  country: MX
+  steps:
+  - tap: 'yes'
+    expect:
+      asks: full_name
+      register: usted
+  - say: Jorge Ramírez Ortega
+    expect:
+      asks: phone
+  - tap:
+      country: MX
+      number: '5512340031'
+    expect:
+      asks: email
+  - say: jorge.bk31@example.com
+    expect:
+      asks: has_license
+  - say: Sí, tengo licencia
+    offline_say: sí
+    expect:
+      asks: city
+  - say: Vivo en Zapopan
+    offline_say: Zapopan
+    expect:
+      asks: availability
+  - say: Tiempo completo
+    offline_say: tiempo completo
+    expect:
+      asks: schedule
+  - say: Por las tardes
+    offline_say: tardes
+    expect:
+      asks: experience_years
+  - say: 3 años
+    offline_say: '3'
+    expect:
+      asks: platforms
+  - say: Rappi
+    expect:
+      asks: start_date
+  - say: El lunes que viene
+    offline_say: '2026-10-26'
+    expect:
+      asks: confirm
+  - tap: 'yes'
+    expect:
+      asks: mode
+      outcome: qualified
+      ui: quick_replies
+  - tap: onsite
+  - tap: slot:1
+    expect:
+      booked: true
+  - say: Ya no voy a ir
+    expect:
+      action: ask_cancel
+      asks: cancel
+      ui: quick_replies
+      booked: true
+      reply_matches: ^¿La cancelo o prefiere otra hora\?$
+  - say: Sí, cancélela
+    expect:
+      action: end
+      booked: false
+      closed: true
+      outcome: withdrawn
+      register: usted
+      reply_matches: ^Cancelé su entrevista del (?:lunes|martes|miércoles|jueves|viernes) \d+\.
+- id: bk_mx_cancel_other_time
+  description: 'Mexico, in person. Books, then "Anule la entrevista": the question, writes "Mejor otra hora": new times, picks one; the booking moves.'
+  country: MX
+  steps:
+  - tap: 'yes'
+    expect:
+      asks: full_name
+      register: usted
+  - say: Jorge Ramírez Ortega
+    expect:
+      asks: phone
+  - tap:
+      country: MX
+      number: '5512340032'
+    expect:
+      asks: email
+  - say: jorge.bk32@example.com
+    expect:
+      asks: has_license
+  - say: Sí, tengo licencia
+    offline_say: sí
+    expect:
+      asks: city
+  - say: Vivo en Zapopan
+    offline_say: Zapopan
+    expect:
+      asks: availability
+  - say: Tiempo completo
+    offline_say: tiempo completo
+    expect:
+      asks: schedule
+  - say: Por las tardes
+    offline_say: tardes
+    expect:
+      asks: experience_years
+  - say: 3 años
+    offline_say: '3'
+    expect:
+      asks: platforms
+  - say: Rappi
+    expect:
+      asks: start_date
+  - say: El lunes que viene
+    offline_say: '2026-10-26'
+    expect:
+      asks: confirm
+  - tap: 'yes'
+    expect:
+      asks: mode
+      outcome: qualified
+      ui: quick_replies
+  - tap: onsite
+  - tap: slot:1
+    expect:
+      booked: true
+  - say: Anule la entrevista, por favor
+    expect:
+      action: ask_cancel
+      asks: cancel
+      booked: true
+  - say: Mejor otra hora
+    expect:
+      action: offer_slots
+      asks: slot
+      booked: true
+      register: usted
+  - tap: slot:1
+    expect:
+      action: confirm_booking
+      booked: true
+      outcome: qualified
+- id: bk_mx_opt_out_while_moving
+  description: 'Mexico, in person. Books, "No puedo ir" still gets new times; then "Ya no me interesa, cancélela" while they are on offer: cancelled in that turn, the goodbye says so. The application is withdrawn.'
+  country: MX
+  steps:
+  - tap: 'yes'
+    expect:
+      asks: full_name
+      register: usted
+  - say: Jorge Ramírez Ortega
+    expect:
+      asks: phone
+  - tap:
+      country: MX
+      number: '5512340033'
+    expect:
+      asks: email
+  - say: jorge.bk33@example.com
+    expect:
+      asks: has_license
+  - say: Sí, tengo licencia
+    offline_say: sí
+    expect:
+      asks: city
+  - say: Vivo en Zapopan
+    offline_say: Zapopan
+    expect:
+      asks: availability
+  - say: Tiempo completo
+    offline_say: tiempo completo
+    expect:
+      asks: schedule
+  - say: Por las tardes
+    offline_say: tardes
+    expect:
+      asks: experience_years
+  - say: 3 años
+    offline_say: '3'
+    expect:
+      asks: platforms
+  - say: Rappi
+    expect:
+      asks: start_date
+  - say: El lunes que viene
+    offline_say: '2026-10-26'
+    expect:
+      asks: confirm
+  - tap: 'yes'
+    expect:
+      asks: mode
+      outcome: qualified
+      ui: quick_replies
+  - tap: onsite
+  - tap: slot:1
+    expect:
+      booked: true
+  - say: No puedo ir
+    expect:
+      action: offer_slots
+      asks: slot
+      booked: true
+  - say: Ya no me interesa, cancélela
+    expect:
+      action: end
+      booked: false
+      closed: true
+      outcome: withdrawn
+      register: usted
+      reply_matches: cancelé su entrevista del (?:lunes|martes|miércoles|jueves|viernes) \d+
+- id: bk_mx_tijuana_onsite
+  description: 'Mexico, Tijuana posting (its own time zone). In person: times in local hours inside 10-14/16-20
+    on the grid; the address of Tijuana.'
+  country: MX
+  location: mx-tij-centro
+  context:
+    timezone: America/Tijuana
+  steps:
+  - tap: 'yes'
+    expect:
+      asks: full_name
+      register: usted
+  - say: Jorge Ramírez Ortega
+    expect:
+      asks: phone
+  - tap:
+      country: MX
+      number: '5512340007'
+    expect:
+      asks: email
+  - say: jorge.bk7@example.com
+    expect:
+      asks: has_license
+  - say: Sí, tengo licencia
+    offline_say: sí
+    expect:
+      asks: city
+  - say: Vivo en Tijuana
+    offline_say: Tijuana
+    expect:
+      asks: availability
+  - say: Tiempo completo
+    offline_say: tiempo completo
+    expect:
+      asks: schedule
+  - say: Por las tardes
+    offline_say: tardes
+    expect:
+      asks: experience_years
+  - say: 3 años
+    offline_say: '3'
+    expect:
+      asks: platforms
+  - say: Rappi
+    expect:
+      asks: start_date
+  - say: El lunes que viene
+    offline_say: '2026-10-26'
+    expect:
+      asks: confirm
+  - tap: 'yes'
+    expect:
+      asks: mode
+      outcome: qualified
+      ui: quick_replies
+  - tap: onsite
+    expect:
+      asks: slot
+      ui: slots
+      mode: onsite
+      register: usted
+      reply_not_matches: \b(?!(?:1[0-3]|1[6-9]):(?:00|15|30|45)\b)\d{1,2}:\d{2}\b
+      live:
+        reply_matches: gerencia del local de Tijuana
+  - tap: slot:1
+    expect:
+      action: confirm_booking
+      booked: true
+      mode: onsite
+      ui: booking
+      outcome: qualified
+      register: usted
+      reply_matches: Revolución 1120
+      reply_not_matches: meet|https?://
+      live:
+        reply_matches: gerencia del local de Tijuana
+- id: bk_mx_frustrated_at_mode
+  description: 'Mexico. Frustrated twice at the mode question: shorter replies, then the pause offer.'
+  country: MX
+  steps:
+  - tap: 'yes'
+    expect:
+      asks: full_name
+      register: usted
+  - say: Jorge Ramírez Ortega
+    expect:
+      asks: phone
+  - tap:
+      country: MX
+      number: '5512340008'
+    expect:
+      asks: email
+  - say: jorge.bk8@example.com
+    expect:
+      asks: has_license
+  - say: Sí, tengo licencia
+    offline_say: sí
+    expect:
+      asks: city
+  - say: Vivo en Zapopan
+    offline_say: Zapopan
+    expect:
+      asks: availability
+  - say: Tiempo completo
+    offline_say: tiempo completo
+    expect:
+      asks: schedule
+  - say: Por las tardes
+    offline_say: tardes
+    expect:
+      asks: experience_years
+  - say: 3 años
+    offline_say: '3'
+    expect:
+      asks: platforms
+  - say: Rappi
+    expect:
+      asks: start_date
+  - say: El lunes que viene
+    offline_say: '2026-10-26'
+    expect:
+      asks: confirm
+  - tap: 'yes'
+    expect:
+      asks: mode
+      outcome: qualified
+      ui: quick_replies
+  - say: Ay ya, cuánto falta, qué fastidio
+    expect:
+      asks: mode
+  - say: Ya me cansé, esto no se acaba nunca
+    expect:
+      live:
+        asks: pause
+        register: usted
+- id: bk_mx_bare_time
+  description: 'Mexico, in person, three times at the same hour. ''A las cuatro'' does not single one
+    out: the times are offered again, nothing booked.'
+  country: MX
+  steps:
+  - tap: 'yes'
+    expect:
+      asks: full_name
+      register: usted
+  - say: Jorge Ramírez Ortega
+    expect:
+      asks: phone
+  - tap:
+      country: MX
+      number: '5512340009'
+    expect:
+      asks: email
+  - say: jorge.bk9@example.com
+    expect:
+      asks: has_license
+  - say: Sí, tengo licencia
+    offline_say: sí
+    expect:
+      asks: city
+  - say: Vivo en Zapopan
+    offline_say: Zapopan
+    expect:
+      asks: availability
+  - say: Tiempo completo
+    offline_say: tiempo completo
+    expect:
+      asks: schedule
+  - say: Por las tardes
+    offline_say: tardes
+    expect:
+      asks: experience_years
+  - say: 3 años
+    offline_say: '3'
+    expect:
+      asks: platforms
+  - say: Rappi
+    expect:
+      asks: start_date
+  - say: El lunes que viene
+    offline_say: '2026-10-26'
+    expect:
+      asks: confirm
+  - tap: 'yes'
+    expect:
+      asks: mode
+      outcome: qualified
+      ui: quick_replies
+  - tap: onsite
+    expect:
+      asks: slot
+      ui: slots
+      mode: onsite
+      register: usted
+      reply_not_matches: \b(?!(?:1[0-3]|1[6-9]):(?:00|15|30|45)\b)\d{1,2}:\d{2}\b
+      live:
+        reply_matches: gerencia del local de Zapopan
+  - say: A las cuatro
+    expect:
+      asks: slot
+      ui: slots
+      booked: false
+
+# --- QA batch 2: one mode, no free time, the second round, typed times ---
+
+- id: bk_es_only_onsite
+  description: 'Spain, Madrid Centro, in person only (no recruiter does video). No mode question:
+    straight to in-person times with the manager of the local, then books.'
+  country: ES
+  location: es-mad-centro
+  scheduling: {modes: [onsite]}
+  steps:
+  - tap: 'yes'
+  - say: Lucía Fernández Gil
+  - tap: {country: ES, number: '612340031'}
+  - say: lucia.bk31@example.com
+  - say: Sí, tengo el B
+    offline_say: sí
+  - say: Vivo en Lavapiés
+    offline_say: Lavapiés
+  - say: Jornada completa
+    offline_say: tiempo completo
+  - say: Por las mañanas
+    offline_say: mañanas
+  - say: 2 años
+    offline_say: '2'
+  - say: Glovo
+  - say: El lunes que viene
+    offline_say: '2026-10-26'
+    expect: {asks: confirm}
+  - tap: 'yes'
+    expect:
+      asks: slot
+      ui: slots
+      mode: onsite
+      outcome: qualified
+      register: tu
+      reply_not_matches: videollamada
+      live:
+        reply_matches: persona encargada del local de Madrid Centro
+  - tap: slot:1
+    expect: {action: confirm_booking, booked: true, mode: onsite, reply_matches: Fuencarral 112}
+- id: bk_mx_only_video
+  description: 'Mexico, Zapopan, video only (no manager can hold it in person), with the recruiters
+    busy on Tuesday 20. No mode question: video times from Wednesday, usted, then books.'
+  country: MX
+  scheduling: {modes: [video], busy: ['2026-10-20']}
+  steps:
+  - tap: 'yes'
+  - say: Jorge Ramírez Ortega
+  - tap: {country: MX, number: '5512340031'}
+  - say: jorge.bk31@example.com
+  - say: Sí, tengo licencia
+    offline_say: sí
+  - say: Vivo en Zapopan
+    offline_say: Zapopan
+  - say: Tiempo completo
+  - say: Por las tardes
+    offline_say: tardes
+  - say: 3 años
+    offline_say: '3'
+  - say: Rappi
+  - say: El lunes que viene
+    offline_say: '2026-10-26'
+    expect: {asks: confirm}
+  - tap: 'yes'
+    expect:
+      asks: slot
+      ui: slots
+      mode: video
+      outcome: qualified
+      register: usted
+      reply_not_matches: martes 20|en persona|gerencia
+  - tap: slot:1
+    expect: {action: confirm_booking, booked: true, mode: video, register: usted}
+- id: bk_es_no_times_saved
+  description: 'Spain, Madrid Centro, video only and every recruiter busy for weeks: no time is free,
+    so the application is saved, qualified, with no promise of dates.'
+  country: ES
+  location: es-mad-centro
+  scheduling: {modes: [video], busy: all}
+  steps:
+  - tap: 'yes'
+  - say: Lucía Fernández Gil
+  - tap: {country: ES, number: '612340032'}
+  - say: lucia.bk32@example.com
+  - say: Sí, tengo el B
+    offline_say: sí
+  - say: Vivo en Lavapiés
+    offline_say: Lavapiés
+  - say: Jornada completa
+    offline_say: tiempo completo
+  - say: Por las mañanas
+    offline_say: mañanas
+  - say: 2 años
+    offline_say: '2'
+  - say: Glovo
+  - say: El lunes que viene
+    offline_say: '2026-10-26'
+    expect: {asks: confirm}
+  - tap: 'yes'
+    expect:
+      action: application_saved
+      outcome: qualified
+      booked: false
+      closed: true
+      register: tu
+      reply_matches: guardada
+      reply_not_matches: \d{1,2}:\d{2}|te avisaremos|te contactaremos|nos pondremos
+- id: bk_mx_no_times_saved
+  description: 'Mexico, Zapopan, video only and every recruiter busy for weeks: no time is free, so
+    the application is saved, qualified, in usted, with no promise of dates.'
+  country: MX
+  scheduling: {modes: [video], busy: all}
+  steps:
+  - tap: 'yes'
+  - say: Jorge Ramírez Ortega
+  - tap: {country: MX, number: '5512340032'}
+  - say: jorge.bk32@example.com
+  - say: Sí, tengo licencia
+    offline_say: sí
+  - say: Vivo en Zapopan
+    offline_say: Zapopan
+  - say: Tiempo completo
+  - say: Por las tardes
+    offline_say: tardes
+  - say: 3 años
+    offline_say: '3'
+  - say: Rappi
+  - say: El lunes que viene
+    offline_say: '2026-10-26'
+    expect: {asks: confirm}
+  - tap: 'yes'
+    expect:
+      action: application_saved
+      outcome: qualified
+      booked: false
+      closed: true
+      register: usted
+      reply_matches: guardada
+      reply_not_matches: \d{1,2}:\d{2}|le avisaremos|le contactaremos|nos pondremos
+- id: bk_es_second_round_other_days
+  description: 'Spain, Madrid Centro, in person. Turns the first three days down: the second round is on
+    other days (D9), never the same days fifteen minutes later.'
+  country: ES
+  location: es-mad-centro
+  steps:
+  - tap: 'yes'
+  - say: Lucía Fernández Gil
+  - tap: {country: ES, number: '612340033'}
+  - say: lucia.bk33@example.com
+  - say: Sí, tengo el B
+    offline_say: sí
+  - say: Vivo en Lavapiés
+    offline_say: Lavapiés
+  - say: Jornada completa
+    offline_say: tiempo completo
+  - say: Por las mañanas
+    offline_say: mañanas
+  - say: 2 años
+    offline_say: '2'
+  - say: Glovo
+  - say: El lunes que viene
+    offline_say: '2026-10-26'
+  - tap: 'yes'
+    expect: {asks: mode}
+  - tap: onsite
+    expect: {asks: slot, reply_matches: martes 20.*miércoles 21.*jueves 22}
+  - say: Ninguno de esos días me va
+    expect:
+      action: offer_slots
+      asks: slot
+      reply_not_matches: martes 20|miércoles 21|jueves 22
+- id: bk_mx_typed_time_not_offered
+  description: 'Mexico, Zapopan, in person. Types a time none of the offers has ("16:20"): nothing is
+    booked and the times come again; then "a las cuatro" fits all three and Ana asks which; then the
+    day books it.'
+  country: MX
+  steps:
+  - tap: 'yes'
+  - say: Jorge Ramírez Ortega
+  - tap: {country: MX, number: '5512340033'}
+  - say: jorge.bk33@example.com
+  - say: Sí, tengo licencia
+    offline_say: sí
+  - say: Vivo en Zapopan
+    offline_say: Zapopan
+  - say: Tiempo completo
+  - say: Por las tardes
+    offline_say: tardes
+  - say: 3 años
+    offline_say: '3'
+  - say: Rappi
+  - say: El lunes que viene
+    offline_say: '2026-10-26'
+  - tap: 'yes'
+    expect: {asks: mode}
+  - tap: onsite
+    expect: {asks: slot, reply_matches: martes 20 a las 16:00.*miércoles 21 a las 16:00.*jueves 22 a las 16:00}
+  - say: '16:20'
+    expect: {asks: slot, ui: slots, booked: false}
+  - say: A las cuatro
+    expect: {asks: slot, ui: slots, booked: false, action: offer_slots}
+  - say: El miércoles
+    expect: {action: confirm_booking, booked: true, mode: onsite, reply_matches: 'miércoles 21( de octubre)? a las 16:00'}
+- id: bk_es_two_tuesdays_day_of_month
+  description: 'Spain, in person. Asks ''¿no podría ser los martes a las 12?'': several Tuesdays at the
+    same time (a weekday alone gets the nearest one''s times). ''El martes''
+    asks which once (''Hay más de uno así''); the same words again get the buttons and a one-line ask,
+    never the same question; ''El martes 27 está bien.'' books the 27th (a production loop).'
+  country: ES
+  location: es-mad-centro
+  steps:
+  - tap: 'yes'
+    expect:
+      asks: full_name
+      register: tu
+  - say: Lucía Fernández Gil
+    expect:
+      asks: phone
+  - tap:
+      country: ES
+      number: '612340077'
+    expect:
+      asks: email
+  - say: lucia.bk77@example.com
+    expect:
+      asks: has_license
+  - say: Sí, tengo el B
+    offline_say: sí
+    expect:
+      asks: city
+  - say: Vivo en Lavapiés
+    offline_say: Lavapiés
+    expect:
+      asks: availability
+  - say: Jornada completa
+    offline_say: tiempo completo
+    expect:
+      asks: schedule
+  - say: Por las mañanas
+    offline_say: mañanas
+    expect:
+      asks: experience_years
+  - say: 2 años
+    offline_say: '2'
+    expect:
+      asks: platforms
+  - say: Glovo
+    expect:
+      asks: start_date
+  - say: El lunes que viene
+    offline_say: '2026-10-26'
+    expect:
+      asks: confirm
+  - tap: 'yes'
+    expect:
+      asks: mode
+      outcome: qualified
+      ui: quick_replies
+  - tap: onsite
+    expect:
+      asks: slot
+      ui: slots
+      mode: onsite
+  - say: Pueees, ¿no podría ser los martes a las 12?
+    expect:
+      asks: slot
+      ui: slots
+      booked: false
+      reply_matches: martes 27 a las \d{2}:\d{2}.*martes 3 a las
+  - say: El martes
+    expect:
+      asks: slot
+      ui: slots
+      booked: false
+      reply_matches: ^Hay más de uno así\.
+  - say: El martes
+    expect:
+      asks: slot
+      ui: slots
+      booked: false
+      reply_matches: ^Elige en los botones
+      reply_not_matches: más de uno
+  - say: El martes 27 está bien.
+    expect:
+      action: confirm_booking
+      booked: true
+      mode: onsite
+      register: tu
+      reply_matches: martes 27 de octubre
+- id: bk_mx_two_tuesdays_day_of_month
+  description: 'Mexico, in person, usted. Asks ''¿y los martes a las 12?'': several Tuesdays at the
+    same time;
+    ''el martes 27'' books the 27th, never ''Hay más de uno así'' (a production loop).'
+  country: MX
+  steps:
+  - tap: 'yes'
+    expect:
+      asks: full_name
+      register: usted
+  - say: Jorge Ramírez Ortega
+    expect:
+      asks: phone
+  - tap:
+      country: MX
+      number: '5512340077'
+    expect:
+      asks: email
+  - say: jorge.bk77@example.com
+    expect:
+      asks: has_license
+  - say: Sí, tengo licencia
+    offline_say: sí
+    expect:
+      asks: city
+  - say: Vivo en Zapopan
+    offline_say: Zapopan
+    expect:
+      asks: availability
+  - say: Tiempo completo
+    offline_say: tiempo completo
+    expect:
+      asks: schedule
+  - say: Por las mañanas
+    offline_say: mañanas
+    expect:
+      asks: experience_years
+  - say: 3 años
+    offline_say: '3'
+    expect:
+      asks: platforms
+  - say: Rappi
+    expect:
+      asks: start_date
+  - say: El lunes que viene
+    offline_say: '2026-10-26'
+    expect:
+      asks: confirm
+  - tap: 'yes'
+    expect:
+      asks: mode
+      outcome: qualified
+      ui: quick_replies
+  - tap: onsite
+    expect:
+      asks: slot
+      ui: slots
+      mode: onsite
+      register: usted
+  - say: ¿y los martes a las 12?
+    expect:
+      asks: slot
+      ui: slots
+      booked: false
+      register: usted
+      reply_matches: martes 27 a las \d{2}:\d{2}.*martes 3 a las
+  - say: el martes 27
+    expect:
+      action: confirm_booking
+      booked: true
+      mode: onsite
+      register: usted
+      reply_matches: martes 27 de octubre
+      reply_not_matches: más de uno
+
+# --- times asked about: a weekday, a clock time, other options (call of 2026-10-22) ---
+
+- id: bk_es_time_lookup
+  description: 'Spain, Madrid Centro, by video, the recruiters free on Tuesday 27 only from 12:00 to
+    13:00. A weekday alone gets the nearest one''s times; a time that is not free is said by the
+    lookup''s fixed line with the closest; "¿y otras opciones?" gives the rest of that day, then says
+    it has no more; a free time asked about comes first. Never the FAQ, never a time twice.'
+  country: ES
+  location: es-mad-centro
+  scheduling:
+    modes: [video]
+    busy: ["2026-10-27 00:00-11:50", "2026-10-27 13:10-23:59"]
+  steps:
+  - tap: 'yes'
+  - say: Lucía Fernández Gil
+  - tap: {country: ES, number: '612340101'}
+  - say: lucia.bk101@example.com
+  - say: Sí, tengo el B
+    offline_say: sí
+  - say: Vivo en Lavapiés
+    offline_say: Lavapiés
+  - say: Jornada completa
+    offline_say: tiempo completo
+  - say: Por las mañanas
+    offline_say: mañanas
+  - say: 2 años
+    offline_say: '2'
+  - say: Glovo
+  - say: El lunes que viene
+    offline_say: '2026-10-26'
+  - tap: 'yes'
+    expect: {asks: slot, mode: video, reply_matches: martes 20 a las 09:00.*miércoles 21 a las 09:00}
+  - say: Ninguna. ¿Puede ser el martes?
+    expect:
+      action: offer_slots
+      asks: slot
+      faq_source: none
+      reply_matches: '^Claro\. .*martes 20 a las 09:15, martes 20 a las 09:30 o martes 20 a las 09:45\.'
+  - say: ¿Y el martes 27 a las 11?
+    expect:
+      action: offer_slots
+      asks: slot
+      faq_source: none
+      reply_matches: '^A esa hora no tengo hueco libre, pero sí otros cercanos\. .*martes 27 a las 12:00,
+        martes 27 a las 12:15 o martes 27 a las 12:30\.'
+  - say: ¿Y otras opciones?
+    expect:
+      action: offer_slots
+      asks: slot
+      faq_source: none
+      reply_matches: '^Claro\. .*: martes 27 a las 12:45\.'
+      reply_not_matches: '12:00|12:15|12:30'
+  - say: ¿Y otras opciones?
+    expect:
+      action: offer_slots
+      asks: slot
+      faq_source: none
+      reply_matches: '^No me quedan más huecos libres para eso, pero sí otros cercanos\.'
+      reply_not_matches: martes 27
+  - say: ¿Podría ser el martes 27 a las 12?
+    expect:
+      action: offer_slots
+      asks: slot
+      faq_source: none
+      reply_matches: '^Claro\. .*: martes 27 a las 12:00,'
+  - tap: slot:1
+    expect: {action: confirm_booking, booked: true, mode: video, reply_matches: martes 27 de octubre a las 12:00}
+- id: bk_es_time_lookup_voice
+  description: 'Spain, a call, by video, the recruiters free on Tuesday 27 only from 12:00 to 13:00.
+    The questions of bk_es_time_lookup: two times are read aloud, so only those count as offered and
+    the unread third comes in the next offer; the lookup''s lines are said as written.'
+  country: ES
+  location: es-mad-centro
+  channel: voice
+  scheduling:
+    modes: [video]
+    busy: ["2026-10-27 00:00-11:50", "2026-10-27 13:10-23:59"]
+  steps:
+  - say: Sí
+  - say: Lucía Fernández Gil
+  - say: '612340102'
+  - say: lucia.bk102@example.com
+  - say: Sí, tengo el B
+    offline_say: sí
+  - say: Vivo en Lavapiés
+    offline_say: Lavapiés
+  - say: Jornada completa
+    offline_say: tiempo completo
+  - say: Por las mañanas
+    offline_say: mañanas
+  - say: 2 años
+    offline_say: '2'
+  - say: Glovo
+  - say: El lunes que viene
+    offline_say: '2026-10-26'
+  - say: Sí
+    expect: {asks: slot, mode: video}
+  - say: Ninguna. ¿Puede ser el martes?
+    expect:
+      action: offer_slots
+      asks: slot
+      faq_source: none
+      reply_matches: ^Claro\. .*el martes 20, a las nueve y cuarto de la mañana o a las nueve y media
+  - say: ¿Y el martes 27 a las 11?
+    expect:
+      action: offer_slots
+      asks: slot
+      faq_source: none
+      reply_matches: ^A esa hora no tengo hueco libre, pero sí otros cercanos\. .*martes 27, a las doce
+        del mediodía o a las doce y cuarto
+  - say: ¿Y otras opciones?
+    expect:
+      action: offer_slots
+      asks: slot
+      faq_source: none
+      reply_matches: ^Claro\. .*martes 27, a las doce y media del mediodía o a la una menos cuarto
+  - say: ¿Y otras opciones?
+    expect:
+      action: offer_slots
+      asks: slot
+      faq_source: none
+      reply_matches: ^No me quedan más huecos libres para eso, pero sí otros cercanos\.
+      reply_not_matches: martes 27
+  - say: ¿Podría ser el martes 27 a las 12?
+    expect:
+      action: offer_slots
+      asks: slot
+      faq_source: none
+      reply_matches: ^Claro\. .*martes 27, a las doce del mediodía
+  - say: A las doce
+    expect: {action: confirm_booking, booked: true, mode: video, reply_matches: martes 27}
+- id: bk_mx_time_lookup
+  description: 'Mexico, Zapopan, by video, usted, the recruiters free on Tuesday 27 only from 12:00 to
+    13:00. A weekday alone, a time that is not free, other options until the day has none left, a
+    free time asked about: all from the lookup, in usted.'
+  country: MX
+  location: mx-gdl-zapopan
+  scheduling:
+    modes: [video]
+    busy: ["2026-10-27 00:00-11:50", "2026-10-27 13:10-23:59"]
+  steps:
+  - tap: 'yes'
+  - say: Jorge Ramírez Ortega
+  - tap: {country: MX, number: '5512340101'}
+  - say: jorge.bk101@example.com
+  - say: Sí, tengo licencia
+    offline_say: sí
+  - say: Vivo en Zapopan
+    offline_say: Zapopan
+  - say: Tiempo completo
+  - say: Por las mañanas
+    offline_say: mañanas
+  - say: 3 años
+    offline_say: '3'
+  - say: Rappi
+  - say: El lunes que viene
+    offline_say: '2026-10-26'
+  - tap: 'yes'
+    expect: {asks: slot, mode: video, register: usted}
+  - say: Ninguno. ¿Puede ser el martes?
+    expect:
+      action: offer_slots
+      asks: slot
+      register: usted
+      faq_source: none
+      reply_matches: '^Claro\. .*martes 20 a las 09:15, martes 20 a las 09:30 o martes 20 a las 09:45\.'
+  - say: ¿Y el martes 27 a las 11?
+    expect:
+      action: offer_slots
+      asks: slot
+      register: usted
+      faq_source: none
+      reply_matches: '^A esa hora no tengo horario libre, pero sí otros cercanos\. .*martes 27 a las
+        12:00, martes 27 a las 12:15 o martes 27 a las 12:30\.'
+  - say: ¿Y otras opciones?
+    expect:
+      action: offer_slots
+      asks: slot
+      register: usted
+      faq_source: none
+      reply_matches: '^Claro\. .*: martes 27 a las 12:45\.'
+  - say: ¿Y otras opciones?
+    expect:
+      action: offer_slots
+      asks: slot
+      register: usted
+      faq_source: none
+      reply_matches: '^No me quedan más horarios libres para eso, pero sí otros cercanos\.'
+      reply_not_matches: martes 27
+  - say: ¿Podría ser el martes 27 a las 12?
+    expect:
+      action: offer_slots
+      asks: slot
+      register: usted
+      faq_source: none
+      reply_matches: '^Claro\. .*: martes 27 a las 12:00,'
+  - tap: slot:1
+    expect: {action: confirm_booking, booked: true, mode: video, register: usted, reply_matches: martes 27 de octubre a las 12:00}

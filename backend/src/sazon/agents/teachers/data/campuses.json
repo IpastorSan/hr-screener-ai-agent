@@ -1,0 +1,55 @@
+{
+  "_note": "Fictional client data: Colegio Albéniz and its three campuses in the northwest of Madrid. In-person interviews are with each campus's head of studies, at the fictional colegioalbeniz.example domain.",
+  "brand": "Colegio Albéniz",
+  "interview_defaults": {
+    "ES": {
+      "interview_hours": {
+        "mon": [["16:30", "19:00"]],
+        "tue": [["16:30", "19:00"]],
+        "wed": [["16:30", "19:00"]],
+        "thu": [["16:30", "19:00"]],
+        "fri": [["15:00", "17:00"]]
+      },
+      "interviews_per_slot": 1,
+      "max_interviews_per_day": 4
+    }
+  },
+  "locations": [
+    {
+      "location_id": "alb-aravaca",
+      "name": "Colegio Albéniz Aravaca",
+      "city": "Madrid",
+      "region": "madrid",
+      "country": "ES",
+      "timezone": "Europe/Madrid",
+      "address": "Calle de la Golondrina 22, 28023 Madrid",
+      "manager": {"name": "Teresa Ibarra", "email": "estudios.aravaca@colegioalbeniz.example"},
+      "zones": ["Aravaca", "Valdemarín", "El Plantío", "Moncloa-Aravaca"],
+      "aliases": ["Valdemarin", "Plantio"]
+    },
+    {
+      "location_id": "alb-las-rozas",
+      "name": "Colegio Albéniz Las Rozas",
+      "city": "Las Rozas de Madrid",
+      "region": "madrid",
+      "country": "ES",
+      "timezone": "Europe/Madrid",
+      "address": "Avenida de Esparta 9, 28232 Las Rozas de Madrid",
+      "manager": {"name": "Andrés Collado", "email": "estudios.lasrozas@colegioalbeniz.example"},
+      "zones": ["Las Matas", "Európolis", "El Burgo", "Monterrozas"],
+      "aliases": ["Las Rozas", "Rozas", "Europolis"]
+    },
+    {
+      "location_id": "alb-pozuelo",
+      "name": "Colegio Albéniz Pozuelo",
+      "city": "Pozuelo de Alarcón",
+      "region": "madrid",
+      "country": "ES",
+      "timezone": "Europe/Madrid",
+      "address": "Calle de los Almendros 14, 28224 Pozuelo de Alarcón",
+      "manager": {"name": "Marta Quiroga", "email": "estudios.pozuelo@colegioalbeniz.example"},
+      "zones": ["Somosaguas", "La Estación", "Húmera", "Prado de Somosaguas"],
+      "aliases": ["Pozuelo", "Humera"]
+    }
+  ]
+}

@@ -1,0 +1,377 @@
+name: Deploy
+
+# Push to main: make check -> build the api and web images tagged with the commit SHA, and
+# Caddy (with the rate-limit plugin) tagged with its Dockerfile's hash -> push them to
+# Artifact Registry -> copy deploy/ to the VM -> rebuild .env from the `production` environment
+# -> docker compose pull && up -> smoke test /readyz (on the VM and over HTTPS).
+#
+# Rollback: run this workflow by hand with `sha` set to an earlier commit whose images were
+# pushed. It skips the checks and the build and pins that SHA until the next push to main.
+# Deploy freeze (event days): set the repository variable DEPLOY_FREEZE=true.
+# Setup and the list of secrets and variables: deploy/README.md.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      sha:
+        description: Full commit SHA to roll back to (its images must exist). Empty = this commit.
+        required: false
+        default: ""
+
+concurrency:
+  group: deploy-production
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  preflight:
+    name: Deploy configured?
+    runs-on: ubuntu-latest
+    environment: production
+    outputs:
+      configured: ${{ steps.check.outputs.configured }}
+      sha: ${{ steps.check.outputs.sha }}
+    steps:
+      - id: check
+        env:
+          FREEZE: ${{ vars.DEPLOY_FREEZE }}
+          ROLLBACK_SHA: ${{ inputs.sha }}
+          SSH_HOST: ${{ secrets.SSH_HOST }}
+          SSH_USER: ${{ secrets.SSH_USER }}
+          SSH_KEY: ${{ secrets.SSH_KEY }}
+          SSH_HOST_FINGERPRINT: ${{ secrets.SSH_HOST_FINGERPRINT }}
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+          SESSION_SECRET: ${{ secrets.SESSION_SECRET }}
+          GCP_SA_KEY: ${{ secrets.GCP_SA_KEY }}
+          GCP_WORKLOAD_IDENTITY_PROVIDER: ${{ vars.GCP_WORKLOAD_IDENTITY_PROVIDER }}
+          GCP_SERVICE_ACCOUNT: ${{ vars.GCP_SERVICE_ACCOUNT }}
+          GCP_PROJECT_ID: ${{ vars.GCP_PROJECT_ID }}
+          GCP_REGION: ${{ vars.GCP_REGION }}
+          AR_REPOSITORY: ${{ vars.AR_REPOSITORY }}
+          DOMAIN: ${{ vars.DOMAIN }}
+          ACME_EMAIL: ${{ vars.ACME_EMAIL }}
+          MAX_DAILY_LLM_USD: ${{ vars.MAX_DAILY_LLM_USD }}
+          GCS_BACKUP_BUCKET: ${{ vars.GCS_BACKUP_BUCKET }}
+          SITE_AUTH_USER: ${{ vars.SITE_AUTH_USER }}
+          SITE_AUTH_HASH: ${{ secrets.SITE_AUTH_HASH }}
+        run: |
+          set -euo pipefail
+          if [ "${FREEZE:-}" = "true" ]; then
+            echo "::warning title=Deploy frozen::DEPLOY_FREEZE=true; nothing was deployed."
+            echo "configured=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          # Nothing configured yet (no VM): CI stays green and says so.
+          if [ -z "${SSH_HOST:-}" ]; then
+            echo "::notice title=Deploy skipped::The production environment has no SSH_HOST yet; see deploy/README.md."
+            echo "configured=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          # Partly configured: refuse. An unset GitHub Variable expands to an empty string, and
+          # an empty DOMAIN would serve the site without TLS, and an empty SSH_HOST_FINGERPRINT
+          # would hand every secret to whatever answers at SSH_HOST.
+          missing=()
+          for v in SSH_USER SSH_KEY SSH_HOST_FINGERPRINT OPENROUTER_API_KEY SESSION_SECRET GCP_PROJECT_ID GCP_REGION AR_REPOSITORY \
+                   DOMAIN ACME_EMAIL MAX_DAILY_LLM_USD GCS_BACKUP_BUCKET; do
+            [ -n "${!v:-}" ] || missing+=("$v")
+          done
+          if [ -z "${GCP_SA_KEY:-}" ] && { [ -z "${GCP_WORKLOAD_IDENTITY_PROVIDER:-}" ] || [ -z "${GCP_SERVICE_ACCOUNT:-}" ]; }; then
+            missing+=("GCP_SA_KEY (or GCP_WORKLOAD_IDENTITY_PROVIDER + GCP_SERVICE_ACCOUNT)")
+          fi
+          if [ -n "${GCP_SA_KEY:-}" ] && [ -n "${GCP_WORKLOAD_IDENTITY_PROVIDER:-}" ]; then
+            echo "::error title=Conflicting deploy settings::Set GCP_SA_KEY or GCP_WORKLOAD_IDENTITY_PROVIDER, not both"
+            exit 1
+          fi
+          if [ "${#missing[@]}" -gt 0 ]; then
+            for v in "${missing[@]}"; do echo "::error title=Missing deploy setting::$v is empty in the production environment"; done
+            exit 1
+          fi
+          # The shared site login (deploy/README.md, Site login). Both empty: the site is open.
+          # One of them alone would stop Caddy from starting. The hash goes single-quoted into
+          # .env, so it must be a plain bcrypt hash (no quotes), and the user cannot hold `:`.
+          if [ -z "${SITE_AUTH_USER:-}" ] && [ -z "${SITE_AUTH_HASH:-}" ]; then
+            echo "::warning title=Site is public::SITE_AUTH_USER and SITE_AUTH_HASH are empty; anyone can reach the site."
+          elif [ -z "${SITE_AUTH_USER:-}" ] || [ -z "${SITE_AUTH_HASH:-}" ]; then
+            echo "::error title=Half a site login::Set both SITE_AUTH_USER (variable) and SITE_AUTH_HASH (secret), or neither"
+            exit 1
+          elif ! [[ "$SITE_AUTH_USER" =~ ^[A-Za-z0-9._@-]+$ ]]; then
+            echo "::error title=Bad SITE_AUTH_USER::Letters, digits and . _ @ - only"
+            exit 1
+          elif ! [[ "$SITE_AUTH_HASH" =~ ^\$2[abxy]\$[0-9]{2}\$[./A-Za-z0-9]{53}$ ]]; then
+            echo "::error title=Bad SITE_AUTH_HASH::Expected a bcrypt hash from caddy hash-password (\$2a\$14\$...)"
+            exit 1
+          fi
+          if [ -n "${ROLLBACK_SHA:-}" ] && ! [[ "$ROLLBACK_SHA" =~ ^[0-9a-f]{40}$ ]]; then
+            echo "::error::sha must be a full 40-character commit SHA"
+            exit 1
+          fi
+          echo "configured=true" >> "$GITHUB_OUTPUT"
+          echo "sha=${ROLLBACK_SHA:-$GITHUB_SHA}" >> "$GITHUB_OUTPUT"
+
+  check:
+    if: ${{ !inputs.sha }}
+    uses: ./.github/workflows/ci.yml
+
+  build:
+    name: Build and push ${{ matrix.image }}
+    needs: [preflight, check]
+    if: needs.preflight.outputs.configured == 'true' && !inputs.sha
+    runs-on: ubuntu-latest
+    environment: production
+    timeout-minutes: 30
+    permissions:
+      contents: read
+      id-token: write # workload identity federation
+    strategy:
+      matrix:
+        include:
+          - image: api
+            context: backend
+          - image: web
+            context: web
+          # Tagged by its Dockerfile, not the commit: a rollback keeps today's Caddyfile (see the
+          # deploy job), so it needs today's Caddy, and an unchanged Dockerfile keeps its tag.
+          - image: caddy
+            context: deploy/caddy
+    env:
+      REGISTRY: ${{ vars.GCP_REGION }}-docker.pkg.dev
+    steps:
+      - uses: actions/checkout@v4
+
+      - id: auth
+        uses: google-github-actions/auth@v2
+        with:
+          token_format: access_token
+          credentials_json: ${{ secrets.GCP_SA_KEY }}
+          workload_identity_provider: ${{ vars.GCP_WORKLOAD_IDENTITY_PROVIDER }}
+          service_account: ${{ vars.GCP_SERVICE_ACCOUNT }}
+
+      - uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: oauth2accesstoken
+          password: ${{ steps.auth.outputs.access_token }}
+
+      - uses: docker/setup-buildx-action@v3
+
+      - uses: docker/build-push-action@v6
+        with:
+          context: ${{ matrix.context }}
+          push: true
+          tags: ${{ env.REGISTRY }}/${{ vars.GCP_PROJECT_ID }}/${{ vars.AR_REPOSITORY }}/${{ matrix.image }}:${{ matrix.image == 'caddy' && hashFiles('deploy/caddy/Dockerfile') || needs.preflight.outputs.sha }}
+          cache-from: type=gha,scope=${{ matrix.context }}
+          cache-to: type=gha,mode=max,scope=${{ matrix.context }}
+          # Only the web image reads it: the voice page is off while it is empty.
+          build-args: |
+            NEXT_PUBLIC_ELEVENLABS_AGENT_ID=${{ vars.ELEVENLABS_AGENT_ID }}
+            NEXT_PUBLIC_SITE_URL=https://${{ vars.DOMAIN }}
+
+  deploy:
+    name: Deploy to the VM
+    needs: [preflight, build]
+    # Runs after a build, or alone for a rollback (`sha` set, build skipped).
+    if: >-
+      always() && needs.preflight.outputs.configured == 'true' &&
+      (needs.build.result == 'success' || (needs.build.result == 'skipped' && inputs.sha != ''))
+    runs-on: ubuntu-latest
+    environment:
+      name: production
+      url: https://${{ vars.DOMAIN }}
+    timeout-minutes: 15
+    permissions:
+      contents: read
+      id-token: write
+    env:
+      REGISTRY: ${{ vars.GCP_REGION }}-docker.pkg.dev
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # The compose files of the deployed commit; a rollback keeps today's deploy files,
+          # which still work with an older image as long as the schema only moved forward.
+          ref: ${{ github.sha }}
+
+      - id: auth
+        uses: google-github-actions/auth@v2
+        with:
+          token_format: access_token
+          credentials_json: ${{ secrets.GCP_SA_KEY }}
+          workload_identity_provider: ${{ vars.GCP_WORKLOAD_IDENTITY_PROVIDER }}
+          service_account: ${{ vars.GCP_SERVICE_ACCOUNT }}
+
+      - name: Copy deploy files to the VM
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_KEY }}
+          fingerprint: ${{ secrets.SSH_HOST_FINGERPRINT }}
+          source: deploy/compose.yaml,deploy/caddy/Caddyfile,deploy/backup.sh,deploy/restore.sh,deploy/systemd,deploy/elevenlabs,deploy/observability.compose.yaml,deploy/observability,deploy/langfuse-retention.sh
+          target: /opt/sazon
+          strip_components: 1
+
+      - name: Write .env, pull and restart
+        uses: appleboy/ssh-action@v1.2.0
+        env:
+          API_IMAGE: ${{ env.REGISTRY }}/${{ vars.GCP_PROJECT_ID }}/${{ vars.AR_REPOSITORY }}/api:${{ needs.preflight.outputs.sha }}
+          WEB_IMAGE: ${{ env.REGISTRY }}/${{ vars.GCP_PROJECT_ID }}/${{ vars.AR_REPOSITORY }}/web:${{ needs.preflight.outputs.sha }}
+          CADDY_IMAGE: ${{ env.REGISTRY }}/${{ vars.GCP_PROJECT_ID }}/${{ vars.AR_REPOSITORY }}/caddy:${{ hashFiles('deploy/caddy/Dockerfile') }}
+          REGISTRY_TOKEN: ${{ steps.auth.outputs.access_token }}
+          DOMAIN: ${{ vars.DOMAIN }}
+          ACME_EMAIL: ${{ vars.ACME_EMAIL }}
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+          SESSION_SECRET: ${{ secrets.SESSION_SECRET }}
+          OPENROUTER_BASE_URL: ${{ vars.OPENROUTER_BASE_URL }}
+          MAX_DAILY_LLM_USD: ${{ vars.MAX_DAILY_LLM_USD }}
+          GCS_BACKUP_BUCKET: ${{ vars.GCS_BACKUP_BUCKET }}
+          RETENTION_DAYS: ${{ vars.RETENTION_DAYS }}
+          RATE_LIMIT_CONVERSATIONS_PER_HOUR: ${{ vars.RATE_LIMIT_CONVERSATIONS_PER_HOUR }}
+          RATE_LIMIT_MESSAGES_PER_MINUTE: ${{ vars.RATE_LIMIT_MESSAGES_PER_MINUTE }}
+          LLM_EXTRACTOR: ${{ vars.LLM_EXTRACTOR }}
+          LLM_RESPONDER: ${{ vars.LLM_RESPONDER }}
+          LLM_SUMMARIZER: ${{ vars.LLM_SUMMARIZER }}
+          LLM_ASSISTANT: ${{ vars.LLM_ASSISTANT }}
+          ELEVENLABS_AGENT_ID: ${{ vars.ELEVENLABS_AGENT_ID }}
+          ELEVENLABS_API_KEY: ${{ secrets.ELEVENLABS_API_KEY }}
+          VOICE_LLM_SECRET: ${{ secrets.VOICE_LLM_SECRET }}
+          ELEVENLABS_VOICE_ES: ${{ vars.ELEVENLABS_VOICE_ES }}
+          ELEVENLABS_VOICE_MX: ${{ vars.ELEVENLABS_VOICE_MX }}
+          ELEVENLABS_VOICE_EN: ${{ vars.ELEVENLABS_VOICE_EN }}
+          GOOGLE_CLIENT_ID: ${{ vars.GOOGLE_CLIENT_ID }}
+          GOOGLE_CLIENT_SECRET: ${{ secrets.GOOGLE_CLIENT_SECRET }}
+          GOOGLE_WORKSPACE_DOMAIN: ${{ vars.GOOGLE_WORKSPACE_DOMAIN }}
+          TOKEN_ENCRYPTION_KEY: ${{ secrets.TOKEN_ENCRYPTION_KEY }}
+          SCHEDULING_SOURCE: ${{ vars.SCHEDULING_SOURCE }}
+          INTERVIEW_BUFFER_MINUTES: ${{ vars.INTERVIEW_BUFFER_MINUTES }}
+          ONSITE_ORGANIZER_EMAIL: ${{ vars.ONSITE_ORGANIZER_EMAIL }}
+          SITE_AUTH_USER: ${{ vars.SITE_AUTH_USER }}
+          SITE_AUTH_HASH: ${{ secrets.SITE_AUTH_HASH }}
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_KEY }}
+          fingerprint: ${{ secrets.SSH_HOST_FINGERPRINT }}
+          script_stop: true
+          command_timeout: 10m
+          envs: API_IMAGE,WEB_IMAGE,CADDY_IMAGE,REGISTRY_TOKEN,DOMAIN,ACME_EMAIL,OPENROUTER_API_KEY,SESSION_SECRET,OPENROUTER_BASE_URL,MAX_DAILY_LLM_USD,GCS_BACKUP_BUCKET,RETENTION_DAYS,RATE_LIMIT_CONVERSATIONS_PER_HOUR,RATE_LIMIT_MESSAGES_PER_MINUTE,LLM_EXTRACTOR,LLM_RESPONDER,LLM_SUMMARIZER,LLM_ASSISTANT,ELEVENLABS_AGENT_ID,ELEVENLABS_API_KEY,VOICE_LLM_SECRET,ELEVENLABS_VOICE_ES,ELEVENLABS_VOICE_MX,ELEVENLABS_VOICE_EN,GOOGLE_CLIENT_ID,GOOGLE_CLIENT_SECRET,GOOGLE_WORKSPACE_DOMAIN,TOKEN_ENCRYPTION_KEY,SCHEDULING_SOURCE,INTERVIEW_BUFFER_MINUTES,ONSITE_ORGANIZER_EMAIL,SITE_AUTH_USER,SITE_AUTH_HASH
+          script: |
+            set -euo pipefail
+            cd /opt/sazon
+
+            # Checked again on the VM: an empty value here deploys a broken site.
+            for v in API_IMAGE WEB_IMAGE CADDY_IMAGE REGISTRY_TOKEN DOMAIN ACME_EMAIL OPENROUTER_API_KEY SESSION_SECRET MAX_DAILY_LLM_USD GCS_BACKUP_BUCKET; do
+              if [ -z "${!v:-}" ]; then
+                echo "FATAL: $v is empty - check the production environment's secrets and variables" >&2
+                exit 1
+              fi
+            done
+            # The database directory must exist and belong to uid 1000 (the containers' user);
+            # Docker would otherwise create it as root and the API would crash-loop.
+            if [ "$(stat -c %u data 2>/dev/null)" != "1000" ]; then
+              echo "FATAL: /opt/sazon/data is missing or not owned by uid 1000 (see deploy/README.md)" >&2
+              exit 1
+            fi
+            chmod +x backup.sh restore.sh langfuse-retention.sh
+
+            prev_api=$(grep -s '^API_IMAGE=' .env | cut -d= -f2- || true)
+            prev_web=$(grep -s '^WEB_IMAGE=' .env | cut -d= -f2- || true)
+
+            # Rebuilt on every deploy; never committed. SITE_AUTH_HASH is single-quoted: compose
+            # would otherwise read the `$` of the bcrypt hash as variables and cut it short.
+            umask 077
+            cat > .env <<ENV
+            API_IMAGE=${API_IMAGE}
+            WEB_IMAGE=${WEB_IMAGE}
+            CADDY_IMAGE=${CADDY_IMAGE}
+            PULL_POLICY=always
+            DOMAIN=${DOMAIN}
+            ACME_EMAIL=${ACME_EMAIL}
+            ENV=production
+            WEB_ORIGIN=https://${DOMAIN}
+            OPENROUTER_API_KEY=${OPENROUTER_API_KEY}
+            SESSION_SECRET=${SESSION_SECRET}
+            OPENROUTER_BASE_URL=${OPENROUTER_BASE_URL:-https://openrouter.ai/api/v1}
+            MAX_DAILY_LLM_USD=${MAX_DAILY_LLM_USD}
+            GCS_BACKUP_BUCKET=${GCS_BACKUP_BUCKET}
+            RETENTION_DAYS=${RETENTION_DAYS:-365}
+            RATE_LIMIT_CONVERSATIONS_PER_HOUR=${RATE_LIMIT_CONVERSATIONS_PER_HOUR:-}
+            RATE_LIMIT_MESSAGES_PER_MINUTE=${RATE_LIMIT_MESSAGES_PER_MINUTE:-}
+            LLM_EXTRACTOR=${LLM_EXTRACTOR:-}
+            LLM_RESPONDER=${LLM_RESPONDER:-}
+            LLM_SUMMARIZER=${LLM_SUMMARIZER:-}
+            LLM_ASSISTANT=${LLM_ASSISTANT:-}
+            ELEVENLABS_AGENT_ID=${ELEVENLABS_AGENT_ID:-}
+            ELEVENLABS_API_KEY=${ELEVENLABS_API_KEY:-}
+            VOICE_LLM_SECRET=${VOICE_LLM_SECRET:-}
+            VOICE_LLM_URL=https://${DOMAIN}/v1
+            ELEVENLABS_VOICE_ES=${ELEVENLABS_VOICE_ES:-}
+            ELEVENLABS_VOICE_MX=${ELEVENLABS_VOICE_MX:-}
+            ELEVENLABS_VOICE_EN=${ELEVENLABS_VOICE_EN:-}
+            GOOGLE_CLIENT_ID=${GOOGLE_CLIENT_ID:-}
+            GOOGLE_CLIENT_SECRET=${GOOGLE_CLIENT_SECRET:-}
+            GOOGLE_REDIRECT_URI=https://${DOMAIN}/api/auth/google/callback
+            GOOGLE_WORKSPACE_DOMAIN=${GOOGLE_WORKSPACE_DOMAIN:-}
+            TOKEN_ENCRYPTION_KEY=${TOKEN_ENCRYPTION_KEY:-}
+            SCHEDULING_SOURCE=${SCHEDULING_SOURCE:-fixed}
+            PUBLIC_URL=https://${DOMAIN}
+            INTERVIEW_BUFFER_MINUTES=${INTERVIEW_BUFFER_MINUTES:-}
+            ONSITE_ORGANIZER_EMAIL=${ONSITE_ORGANIZER_EMAIL:-}
+            SITE_AUTH_USER=${SITE_AUTH_USER:-}
+            SITE_AUTH_HASH='${SITE_AUTH_HASH:-}'
+            ENV
+            sed -i 's/^[[:space:]]*//' .env
+            # Observability (deploy/README.md): on when the VM has observability.env, which is
+            # written once by hand and never leaves the VM. COMPOSE_FILE makes every
+            # `docker compose` here, in backup.sh and in the timers include it.
+            if [ -f observability.env ]; then
+              { echo "COMPOSE_FILE=compose.yaml:observability.compose.yaml"; cat observability.env; } >> .env
+            fi
+
+            registry=${API_IMAGE%%/*}
+            echo "${REGISTRY_TOKEN}" | docker login "$registry" -u oauth2accesstoken --password-stdin
+            trap 'docker logout "$registry" >/dev/null' EXIT
+
+            docker compose pull api web caddy
+            if docker compose up -d --remove-orphans --wait --wait-timeout 300; then
+              # Caddy keeps the old config until told: the Caddyfile may have changed.
+              docker compose exec -T caddy caddy reload --config /etc/caddy/Caddyfile </dev/null
+              for _ in $(seq 1 20); do
+                # </dev/null: `exec -T` otherwise swallows the rest of this script.
+                if docker compose exec -T api python -c "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/readyz', timeout=10)" </dev/null; then
+                  docker image prune -af --filter "until=72h" >/dev/null || true
+                  echo "Deployed ${API_IMAGE##*:}"
+                  exit 0
+                fi
+                sleep 3
+              done
+            fi
+
+            echo "Deploy failed: /readyz never went green" >&2
+            docker compose logs --tail=60 api >&2 || true
+            if [ -n "$prev_api" ] && [ "$prev_api" != "$API_IMAGE" ]; then
+              echo "Rolling back to ${prev_api##*:}" >&2
+              sed -i "s|^API_IMAGE=.*|API_IMAGE=${prev_api}|; s|^WEB_IMAGE=.*|WEB_IMAGE=${prev_web}|" .env
+              docker compose up -d --wait --wait-timeout 180 || true
+            fi
+            exit 1
+
+      # /readyz is outside the site login. Behind it, /apply and /recruiters must answer 401,
+      # which also proves the gate is on (the web container's own health is compose's --wait).
+      - name: Smoke test over HTTPS
+        env:
+          DOMAIN: ${{ vars.DOMAIN }}
+          GATED: ${{ vars.SITE_AUTH_USER != '' }}
+        run: |
+          set -euo pipefail
+          curl -fsS --retry 10 --retry-delay 3 --retry-all-errors "https://${DOMAIN}/readyz"
+          echo
+          want=200
+          if [ "$GATED" = "true" ]; then want=401; fi
+          for path in /apply /recruiters; do
+            code=$(curl -sS -o /dev/null --retry 5 --retry-delay 2 --retry-all-errors -w "%{http_code}" "https://${DOMAIN}${path}")
+            echo "${code} ${path} (want ${want})"
+            [ "$code" = "$want" ]
+          done

@@ -1,0 +1,188 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (@media (prefers-color-scheme: dark));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-lato);
+  --font-heading: var(--font-fraunces);
+  --color-primary-hover: var(--primary-hover);
+  --color-destructive-soft: var(--destructive-soft);
+  --color-ok: var(--ok);
+  --color-ok-soft: var(--ok-soft);
+  --color-warn: var(--warn);
+  --color-warn-soft: var(--warn-soft);
+  --color-amber: var(--amber);
+  --color-qa: var(--qa);
+  --color-qa-soft: var(--qa-soft);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+}
+
+/* Grupo Sazón, "Sobremesa": warm paper, ink text, olive as the only accent. Status colours
+ * (ok, warn, destructive) and the plum of the bot's QA marks stay apart from the olive. */
+:root {
+  --background: #f7f3ea;
+  --foreground: #241f1a;
+  --card: #fffdf8;
+  --card-foreground: #241f1a;
+  --popover: #fffdf8;
+  --popover-foreground: #241f1a;
+  --primary: #4a6a1c;
+  --primary-hover: #3f5b17;
+  --primary-foreground: #ffffff;
+  --secondary: #f1ece0;
+  --secondary-foreground: #241f1a;
+  --muted: #eee8da;
+  --muted-foreground: #6b6256;
+  --accent: #e9eedb;
+  --accent-foreground: #3f5b17;
+  --destructive: #a8321f;
+  --destructive-soft: #f6e1dc;
+  --ok: #2a6b43;
+  --ok-soft: #dfeee2;
+  --warn: #8a5a0b;
+  --warn-soft: #f7e9c6;
+  --amber: #c08a12;
+  --qa: #6c4a86;
+  --qa-soft: #f5eef9;
+  --border: #e4dccd;
+  --input: #cdc2ad;
+  --ring: #4a6a1c;
+  --chart-1: #4a6a1c;
+  --chart-2: #6c4a86;
+  --chart-3: #2a6b43;
+  --chart-4: #b5651d;
+  --chart-5: #b5ab9a;
+  --radius: 0.625rem;
+  --sidebar: #f1ece0;
+  --sidebar-foreground: #241f1a;
+  --sidebar-primary: #4a6a1c;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #e9eedb;
+  --sidebar-accent-foreground: #3f5b17;
+  --sidebar-border: #e4dccd;
+  --sidebar-ring: #4a6a1c;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #1a1814;
+    --foreground: #f1ebdf;
+    --card: #23201b;
+    --card-foreground: #f1ebdf;
+    --popover: #2a2620;
+    --popover-foreground: #f1ebdf;
+    --primary: #a8c46a;
+    --primary-hover: #b8d27c;
+    --primary-foreground: #1a1814;
+    --secondary: #201d18;
+    --secondary-foreground: #f1ebdf;
+    --muted: #2c2822;
+    --muted-foreground: #b4aa98;
+    --accent: #2e3820;
+    --accent-foreground: #cadd9a;
+    --destructive: #ef8a74;
+    --destructive-soft: #3d221c;
+    --ok: #7cc795;
+    --ok-soft: #1e3326;
+    --warn: #e6b65a;
+    --warn-soft: #3a2e15;
+    --amber: #e0a93a;
+    --qa: #c9a8e2;
+    --qa-soft: #2e2537;
+    --border: #36312a;
+    --input: #4b443a;
+    --ring: #a8c46a;
+    --chart-1: #a8c46a;
+    --chart-2: #c9a8e2;
+    --chart-3: #7cc795;
+    --chart-4: #e39a5b;
+    --chart-5: #7d7465;
+    --sidebar: #201d18;
+    --sidebar-foreground: #f1ebdf;
+    --sidebar-primary: #a8c46a;
+    --sidebar-primary-foreground: #1a1814;
+    --sidebar-accent: #2e3820;
+    --sidebar-accent-foreground: #cadd9a;
+    --sidebar-border: #36312a;
+    --sidebar-ring: #a8c46a;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  button:not(:disabled), [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+  html {
+    @apply font-sans;
+    color-scheme: light dark;
+  }
+}
+/* Candidate chat thread: the paper with a faint dot grid. */
+.chat-wallpaper {
+  background-color: var(--background);
+  background-image: radial-gradient(color-mix(in oklab, var(--foreground) 7%, transparent) 1px, transparent 1px);
+  background-size: 18px 18px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* The candidate chat full screen over a job posting (below 1024 px): the page behind stays put. */
+@media (width < 64rem) {
+  html:has([data-chat-panel="open"]) {
+    overflow: hidden;
+  }
+}

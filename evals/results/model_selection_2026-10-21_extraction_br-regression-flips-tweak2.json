@@ -1,0 +1,6122 @@
+{
+ "meta": {
+  "run_id": "extraction-20261021T175552",
+  "date": "2026-10-21",
+  "stage": "extraction",
+  "repeat": 3,
+  "base_url": "https://openrouter.ai/api/v1",
+  "provider_preferences": {
+   "zdr": true,
+   "data_collection": "deny"
+  },
+  "run_cost_usd": 0.101667,
+  "ledger_total_usd": 33.027694,
+  "max_eval_usd": 33.6,
+  "aborted": null,
+  "cases": 33
+ },
+ "models": {
+  "google/gemini-3.5-flash-lite@minimal": {
+   "model": "google/gemini-3.5-flash-lite",
+   "effort": "minimal",
+   "quality": {
+    "cases": 81,
+    "schema_valid": 1.0,
+    "schema_valid_first_try": 0.9383,
+    "field_precision": 0.99,
+    "field_recall": 1.0,
+    "field_f1": 0.995,
+    "fields_exact": 0.9877,
+    "checks": {
+     "code_switched": 0.9259,
+     "explicit_language_request": 1.0,
+     "intent": 0.9877,
+     "language": 1.0,
+     "matrix_language": 0.8642,
+     "question": 1.0,
+     "sentiment": 0.9506,
+     "start_date": 1.0
+    },
+    "per_field": {
+     "has_license": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "exact": 1.0,
+      "support": 18
+     },
+     "city": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "exact": 1.0,
+      "support": 9
+     },
+     "availability": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "exact": 1.0,
+      "support": 12
+     },
+     "schedule": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "exact": 1.0,
+      "support": 9
+     },
+     "experience_years": {
+      "precision": 0.9474,
+      "recall": 1.0,
+      "exact": 1.0,
+      "support": 18
+     },
+     "platforms": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "exact": 1.0,
+      "support": 18
+     },
+     "start_date": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "exact": 1.0,
+      "support": 15
+     }
+    },
+    "case_pass": 0.8395,
+    "engine_contract": {
+     "cases": 18,
+     "schema_valid": 1.0,
+     "schema_valid_first_try": 1.0,
+     "field_precision": 1.0,
+     "field_recall": 1.0,
+     "field_f1": 1.0,
+     "fields_exact": 1.0,
+     "checks": {
+      "code_switched": 1.0,
+      "explicit_language_request": 1.0,
+      "intent": 1.0,
+      "language": 1.0,
+      "matrix_language": 1.0,
+      "question": 1.0,
+      "sentiment": 0.7778
+     },
+     "per_field": {
+      "has_license": {
+       "precision": 1.0,
+       "recall": 1.0,
+       "exact": 1.0,
+       "support": 3
+      }
+     }
+    },
+    "all_cases_schema_valid": 1.0,
+    "empty_fields_when_expected": 0.0,
+    "consistency": 0.7879,
+    "by_category": {
+     "confirm": {
+      "cases": 6,
+      "pass": 1.0,
+      "fields_exact": 1.0,
+      "intent": 1.0
+     },
+     "engine_contract": {
+      "cases": 18,
+      "pass": 1.0,
+      "fields_exact": 1.0,
+      "intent": 1.0
+     },
+     "license": {
+      "cases": 6,
+      "pass": 1.0,
+      "fields_exact": 1.0,
+      "intent": 1.0
+     },
+     "multi_field": {
+      "cases": 3,
+      "pass": 0.3333,
+      "fields_exact": 1.0,
+      "intent": 1.0
+     },
+     "off_topic_sarcasm": {
+      "cases": 3,
+      "pass": 1.0,
+      "fields_exact": 1.0,
+      "intent": 1.0
+     },
+     "platforms_experience": {
+      "cases": 6,
+      "pass": 1.0,
+      "fields_exact": 1.0,
+      "intent": 1.0
+     },
+     "relative_date": {
+      "cases": 9,
+      "pass": 1.0,
+      "fields_exact": 1.0,
+      "intent": 1.0
+     },
+     "spanglish": {
+      "cases": 48,
+      "pass": 0.7708,
+      "fields_exact": 0.9792,
+      "intent": 0.9792
+     }
+    }
+   },
+   "telemetry": {
+    "calls": 99,
+    "errors": 0,
+    "latency_p50": 1.034,
+    "latency_p95": 1.806,
+    "ttft_p50": null,
+    "ttft_p95": null,
+    "cost_usd": 0.101667,
+    "cost_per_call": 0.00102694,
+    "measurement_cost_usd": 0,
+    "input_tokens": 456128,
+    "output_tokens": 11846,
+    "providers": {
+     "Google": 99
+    },
+    "cost_sources": {
+     "usage": 99
+    },
+    "error_samples": []
+   }
+  }
+ },
+ "calls": [
+  {
+   "model": "google/gemini-3.5-flash-lite@minimal",
+   "case_id": "gen-multi_field-05",
+   "output": {
+    "intent": "answer",
+    "fields": {
+     "has_license": {
+      "value": true,
+      "confidence": 1.0
+     },
+     "availability": {
+      "value": [
+       "weekends"
+      ],
+      "confidence": 1.0
+     },
+     "city": {
+      "value": "Ruzafa",
+      "confidence": 1.0
+     }
+    },
+    "language": "es",
+    "matrix_language": "es",
+    "english_ratio": 0.2,
+    "explicit_language_request": null,
+    "code_switched": true,
+    "sentiment": "neutral",
+    "question": null,
+    "sub_questions": [],
+    "question_topic": null,
+    "slot": null,
+    "declines_field": false,
+    "mode": null
+   },
+   "record": {
+    "model": "google/gemini-3.5-flash-lite@minimal",
+    "role": "extractor",
+    "case_id": "gen-multi_field-05",
+    "ok": true,
+    "latency_s": 0.976,
+    "ttft_s": null,
+    "input_tokens": 4378,
+    "output_tokens": 199,
+    "cost_usd": 0.0018109,
+    "cost_source": "usage",
+    "provider": "Google",
+    "requests": 1,
+    "output_retries": 0,
+    "error": null,
+    "generation_ids": [
+     "gen-1792605352-cyOqsvsFY85UzaXNrHxR"
+    ]
+   },
+   "score": {
+    "pass": false,
+    "fields_exact": true,
+    "fp": {},
+    "fn": {},
+    "checks": {
+     "intent": true,
+     "language": true,
+     "matrix_language": false,
+     "explicit_language_request": true,
+     "sentiment": true,
+     "code_switched": true,
+     "question": true
+    }
+   }
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite@minimal",
+   "case_id": "seed-date-es-01",
+   "output": {
+    "intent": "answer",
+    "fields": {
+     "start_date": {
+      "value": "2026-10-26",
+      "confidence": 0.95
+     }
+    },
+    "language": "es",
+    "matrix_language": "es",
+    "english_ratio": 0.0,
+    "explicit_language_request": null,
+    "code_switched": false,
+    "sentiment": "neutral",
+    "question": null,
+    "sub_questions": [],
+    "question_topic": null,
+    "slot": null,
+    "declines_field": false,
+    "mode": null
+   },
+   "record": {
+    "model": "google/gemini-3.5-flash-lite@minimal",
+    "role": "extractor",
+    "case_id": "seed-date-es-01",
+    "ok": true,
+    "latency_s": 0.986,
+    "ttft_s": null,
+    "input_tokens": 4366,
+    "output_tokens": 98,
+    "cost_usd": 0.0015548,
+    "cost_source": "usage",
+    "provider": "Google",
+    "requests": 1,
+    "output_retries": 0,
+    "error": null,
+    "generation_ids": [
+     "gen-1792605352-BUHDvWHFTuH8yvXUXNsQ"
+    ]
+   },
+   "score": {
+    "pass": true,
+    "fields_exact": true,
+    "fp": {},
+    "fn": {},
+    "checks": {
+     "intent": true,
+     "language": true,
+     "matrix_language": true,
+     "explicit_language_request": true,
+     "sentiment": true,
+     "start_date": true,
+     "code_switched": true,
+     "question": true
+    }
+   }
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite@minimal",
+   "case_id": "seed-date-mx-01",
+   "output": {
+    "intent": "answer",
+    "fields": {
+     "start_date": {
+      "value": "2026-10-19",
+      "confidence": 1.0
+     }
+    },
+    "language": "es",
+    "matrix_language": "es",
+    "english_ratio": 0.0,
+    "explicit_language_request": null,
+    "code_switched": false,
+    "sentiment": "positive",
+    "question": null,
+    "sub_questions": [],
+    "question_topic": null,
+    "slot": null,
+    "declines_field": false,
+    "mode": null
+   },
+   "record": {
+    "model": "google/gemini-3.5-flash-lite@minimal",
+    "role": "extractor",
+    "case_id": "seed-date-mx-01",
+    "ok": true,
+    "latency_s": 1.081,
+    "ttft_s": null,
+    "input_tokens": 4370,
+    "output_tokens": 97,
+    "cost_usd": 0.0015535,
+    "cost_source": "usage",
+    "provider": "Google",
+    "requests": 1,
+    "output_retries": 0,
+    "error": null,
+    "generation_ids": [
+     "gen-1792605352-LOSF7QTf7G3ViiWl4Flr"
+    ]
+   },
+   "score": {
+    "pass": true,
+    "fields_exact": true,
+    "fp": {},
+    "fn": {},
+    "checks": {
+     "intent": true,
+     "language": true,
+     "matrix_language": true,
+     "explicit_language_request": true,
+     "sentiment": true,
+     "start_date": true,
+     "code_switched": true,
+     "question": true
+    }
+   }
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite@minimal",
+   "case_id": "gen-relative_date-02",
+   "output": {
+    "intent": "answer",
+    "fields": {
+     "start_date": {
+      "value": "2026-10-25",
+      "confidence": 1.0
+     }
+    },
+    "language": "es",
+    "matrix_language": "es",
+    "english_ratio": 0.0,
+    "explicit_language_request": null,
+    "code_switched": false,
+    "sentiment": "neutral",
+    "question": null,
+    "sub_questions": [],
+    "question_topic": null,
+    "slot": null,
+    "declines_field": false,
+    "mode": null
+   },
+   "record": {
+    "model": "google/gemini-3.5-flash-lite@minimal",
+    "role": "extractor",
+    "case_id": "gen-relative_date-02",
+    "ok": true,
+    "latency_s": 1.37,
+    "ttft_s": null,
+    "input_tokens": 4368,
+    "output_tokens": 148,
+    "cost_usd": 0.0016804,
+    "cost_source": "usage",
+    "provider": "Google",
+    "requests": 1,
+    "output_retries": 0,
+    "error": null,
+    "generation_ids": [
+     "gen-1792605352-6FodkrA79KLYCkS3GeIp"
+    ]
+   },
+   "score": {
+    "pass": true,
+    "fields_exact": true,
+    "fp": {},
+    "fn": {},
+    "checks": {
+     "intent": true,
+     "language": true,
+     "matrix_language": true,
+     "explicit_language_request": true,
+     "sentiment": true,
+     "start_date": true,
+     "code_switched": true,
+     "question": true
+    }
+   }
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite@minimal",
+   "case_id": "seed-license-mx-02",
+   "output": {
+    "intent": "answer",
+    "fields": {
+     "has_license": {
+      "value": true,
+      "confidence": 1.0
+     }
+    },
+    "language": "es",
+    "matrix_language": "es",
+    "english_ratio": 0.0,
+    "explicit_language_request": null,
+    "code_switched": false,
+    "sentiment": "neutral",
+    "question": null,
+    "sub_questions": [],
+    "question_topic": null,
+    "slot": null,
+    "declines_field": false,
+    "mode": null
+   },
+   "record": {
+    "model": "google/gemini-3.5-flash-lite@minimal",
+    "role": "extractor",
+    "case_id": "seed-license-mx-02",
+    "ok": true,
+    "latency_s": 1.089,
+    "ttft_s": null,
+    "input_tokens": 4367,
+    "output_tokens": 83,
+    "cost_usd": 0.0015176,
+    "cost_source": "usage",
+    "provider": "Google",
+    "requests": 1,
+    "output_retries": 0,
+    "error": null,
+    "generation_ids": [
+     "gen-1792605352-rciReIixOMrqa2l7xw93"
+    ]
+   },
+   "score": {
+    "pass": true,
+    "fields_exact": true,
+    "fp": {},
+    "fn": {},
+    "checks": {
+     "intent": true,
+     "language": true,
+     "matrix_language": true,
+     "explicit_language_request": true,
+     "sentiment": true,
+     "code_switched": true,
+     "question": true
+    }
+   }
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite@minimal",
+   "case_id": "var-license-en-02",
+   "output": {
+    "intent": "answer",
+    "fields": {
+     "has_license": {
+      "value": true,
+      "confidence": 1.0
+     }
+    },
+    "language": "en",
+    "matrix_language": "en",
+    "english_ratio": 1.0,
+    "explicit_language_request": null,
+    "code_switched": false,
+    "sentiment": "neutral",
+    "question": null,
+    "sub_questions": [],
+    "question_topic": null,
+    "slot": null,
+    "declines_field": false,
+    "mode": null
+   },
+   "record": {
+    "model": "google/gemini-3.5-flash-lite@minimal",
+    "role": "extractor",
+    "case_id": "var-license-en-02",
+    "ok": true,
+    "latency_s": 0.941,
+    "ttft_s": null,
+    "input_tokens": 4368,
+    "output_tokens": 100,
+    "cost_usd": 0.0015604,
+    "cost_source": "usage",
+    "provider": "Google",
+    "requests": 1,
+    "output_retries": 0,
+    "error": null,
+    "generation_ids": [
+     "gen-1792605352-y4nmcItGtnpSQQl7UXbH"
+    ]
+   },
+   "score": {
+    "pass": true,
+    "fields_exact": true,
+    "fp": {},
+    "fn": {},
+    "checks": {
+     "intent": true,
+     "language": true,
+     "matrix_language": true,
+     "explicit_language_request": true,
+     "sentiment": true,
+     "code_switched": true,
+     "question": true
+    }
+   }
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite@minimal",
+   "case_id": "var-exp-mx-03",
+   "output": {
+    "intent": "answer",
+    "fields": {
+     "experience_years": {
+      "value": 0.8333333333333334,
+      "confidence": 0.95
+     },
+     "platforms": {
+      "value": [
+       "uber_eats",
+       "rappi"
+      ],
+      "confidence": 1.0
+     }
+    },
+    "language": "es",
+    "matrix_language": "es",
+    "english_ratio": 0.14285714285714285,
+    "explicit_language_request": null,
+    "code_switched": true,
+    "sentiment": "neutral",
+    "question": null,
+    "sub_questions": [],
+    "question_topic": null,
+    "slot": null,
+    "declines_field": false,
+    "mode": null
+   },
+   "record": {
+    "model": "google/gemini-3.5-flash-lite@minimal",
+    "role": "extractor",
+    "case_id": "var-exp-mx-03",
+    "ok": true,
+    "latency_s": 1.083,
+    "ttft_s": null,
+    "input_tokens": 4375,
+    "output_tokens": 163,
+    "cost_usd": 0.00172,
+    "cost_source": "usage",
+    "provider": "Google",
+    "requests": 1,
+    "output_retries": 0,
+    "error": null,
+    "generation_ids": [
+     "gen-1792605352-NYGn0rHIl0pJzgJ8EHyz"
+    ]
+   },
+   "score": {
+    "pass": true,
+    "fields_exact": true,
+    "fp": {},
+    "fn": {},
+    "checks": {
+     "intent": true,
+     "language": true,
+     "matrix_language": true,
+     "explicit_language_request": true,
+     "sentiment": true,
+     "code_switched": false,
+     "question": true
+    }
+   }
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite@minimal",
+   "case_id": "var-exp-mx-04",
+   "output": {
+    "intent": "answer",
+    "fields": {
+     "experience_years": {
+      "value": 0.6666666666666666,
+      "confidence": 1.0
+     },
+     "platforms": {
+      "value": [
+       "didi_food",
+       "Cornershop"
+      ],
+      "confidence": 1.0
+     }
+    },
+    "language": "es",
+    "matrix_language": "es",
+    "english_ratio": 0.0,
+    "explicit_language_request": null,
+    "code_switched": false,
+    "sentiment": "neutral",
+    "question": null,
+    "sub_questions": [],
+    "question_topic": null,
+    "slot": null,
+    "declines_field": false,
+    "mode": null
+   },
+   "record": {
+    "model": "google/gemini-3.5-flash-lite@minimal",
+    "role": "extractor",
+    "case_id": "var-exp-mx-04",
+    "ok": true,
+    "latency_s": 1.29,
+    "ttft_s": null,
+    "input_tokens": 4373,
+    "output_tokens": 154,
+    "cost_usd": 0.0016969,
+    "cost_source": "usage",
+    "provider": "Google",
+    "requests": 1,
+    "output_retries": 0,
+    "error": null,
+    "generation_ids": [
+     "gen-1792605352-p3dHo96QWvF2wkse63rW"
+    ]
+   },
+   "score": {
+    "pass": true,
+    "fields_exact": true,
+    "fp": {},
+    "fn": {},
+    "checks": {
+     "intent": true,
+     "language": true,
+     "matrix_language": true,
+     "explicit_language_request": true,
+     "sentiment": true,
+     "code_switched": true,
+     "question": true
+    }
+   }
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite@minimal",
+   "case_id": "seed-spanglish-mx-04",
+   "output": {
+    "intent": "answer",
+    "fields": {
+     "schedule": {
+      "value": [
+       "evening"
+      ],
+      "confidence": 1.0
+     }
+    },
+    "language": "en",
+    "matrix_language": "mixed",
+    "english_ratio": 0.8,
+    "explicit_language_request": "en",
+    "code_switched": true,
+    "sentiment": "neutral",
+    "question": null,
+    "sub_questions": [],
+    "question_topic": null,
+    "slot": null,
+    "declines_field": false,
+    "mode": null
+   },
+   "record": {
+    "model": "google/gemini-3.5-flash-lite@minimal",
+    "role": "extractor",
+    "case_id": "seed-spanglish-mx-04",
+    "ok": true,
+    "latency_s": 1.979,
+    "ttft_s": null,
+    "input_tokens": 8905,
+    "output_tokens": 188,
+    "cost_usd": 0.00206312,
+    "cost_source": "usage",
+    "provider": "Google",
+    "requests": 2,
+    "output_retries": 1,
+    "error": null,
+    "generation_ids": [
+     "gen-1792605353-eJgBzVVYcIZafmqnTnEp",
+     "gen-1792605354-HJj89FvPZLW4L20UuYzU"
+    ]
+   },
+   "score": {
+    "pass": true,
+    "fields_exact": true,
+    "fp": {},
+    "fn": {},
+    "checks": {
+     "intent": true,
+     "language": true,
+     "matrix_language": true,
+     "explicit_language_request": true,
+     "sentiment": true,
+     "code_switched": true,
+     "question": true
+    }
+   }
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite@minimal",
+   "case_id": "seed-spanglish-mx-05",
+   "output": {
+    "intent": "answer",
+    "fields": {
+     "has_license": {
+      "value": true,
+      "confidence": 1.0
+     },
+     "availability": {
+      "value": [
+       "weekends"
+      ],
+      "confidence": 1.0
+     }
+    },
+    "language": "en",
+    "matrix_language": "mixed",
+    "english_ratio": 0.5,
+    "explicit_language_request": null,
+    "code_switched": true,
+    "sentiment": "neutral",
+    "question": null,
+    "sub_questions": [],
+    "question_topic": null,
+    "slot": null,
+    "declines_field": false,
+    "mode": null
+   },
+   "record": {
+    "model": "google/gemini-3.5-flash-lite@minimal",
+    "role": "extractor",
+    "case_id": "seed-spanglish-mx-05",
+    "ok": true,
+    "latency_s": 0.887,
+    "ttft_s": null,
+    "input_tokens": 4369,
+    "output_tokens": 128,
+    "cost_usd": 0.0016307,
+    "cost_source": "usage",
+    "provider": "Google",
+    "requests": 1,
+    "output_retries": 0,
+    "error": null,
+    "generation_ids": [
+     "gen-1792605353-sf79PGev4jQRmdX5SJqz"
+    ]
+   },
+   "score": {
+    "pass": true,
+    "fields_exact": true,
+    "fp": {},
+    "fn": {},
+    "checks": {
+     "intent": true,
+     "language": true,
+     "matrix_language": true,
+     "explicit_language_request": true,
+     "sentiment": true,
+     "code_switched": true,
+     "question": true
+    }
+   }
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite@minimal",
+   "case_id": "seed-spanglish-mx-06",
+   "output": {
+    "intent": "answer",
+    "fields": {
+     "schedule": {
+      "value": [
+       "afternoon"
+      ],
+      "confidence": 1.0
+     }
+    },
+    "language": "es",
+    "matrix_language": "es",
+    "english_ratio": 0.0,
+    "explicit_language_request": "es",
+    "code_switched": false,
+    "sentiment": "neutral",
+    "question": null,
+    "sub_questions": [],
+    "question_topic": null,
+    "slot": null,
+    "declines_field": false,
+    "mode": null
+   },
+   "record": {
+    "model": "google/gemini-3.5-flash-lite@minimal",
+    "role": "extractor",
+    "case_id": "seed-spanglish-mx-06",
+    "ok": true,
+    "latency_s": 0.844,
+    "ttft_s": null,
+    "input_tokens": 4383,
+    "output_tokens": 141,
+    "cost_usd": 0.0016674,
+    "cost_source": "usage",
+    "provider": "Google",
+    "requests": 1,
+    "output_retries": 0,
+    "error": null,
+    "generation_ids": [
+     "gen-1792605353-MutXYw8caBbGnOCllgXr"
+    ]
+   },
+   "score": {
+    "pass": true,
+    "fields_exact": true,
+    "fp": {},
+    "fn": {},
+    "checks": {
+     "intent": true,
+     "language": true,
+     "matrix_language": true,
+     "explicit_language_request": true,
+     "sentiment": false,
+     "code_switched": true
+    }
+   }
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite@minimal",
+   "case_id": "var-spanglish-mx-08",
+   "output": {
+    "intent": "answer",
+    "fields": {
+     "experience_years": {
+      "value": 0.5,
+      "confidence": 1.0
+     },
+     "platforms": {
+      "value": [
+       "didi_food"
+      ],
+      "confidence": 1.0
+     }
+    },
+    "language": "es",
+    "matrix_language": "es",
+    "english_ratio": 0.16666666666666666,
+    "explicit_language_request": null,
+    "code_switched": true,
+    "sentiment": "neutral",
+    "question": null,
+    "sub_questions": [],
+    "question_topic": null,
+    "slot": null,
+    "declines_field": false,
+    "mode": null
+   },
+   "record": {
+    "model": "google/gemini-3.5-flash-lite@minimal",
+    "role": "extractor",
+    "case_id": "var-spanglish-mx-08",
+    "ok": true,
+    "latency_s": 0.909,
+    "ttft_s": null,
+    "input_tokens": 4371,
+    "output_tokens": 141,
+    "cost_usd": 0.0016638,
+    "cost_source": "usage",
+    "provider": "Google",
+    "requests": 1,
+    "output_retries": 0,
+    "error": null,
+    "generation_ids": [
+     "gen-1792605353-LccDDLCQjgRlpNOdWEoX"
+    ]
+   },
+   "score": {
+    "pass": true,
+    "fields_exact": true,
+    "fp": {},
+    "fn": {},
+    "checks": {
+     "intent": true,
+     "language": true,
+     "matrix_language": true,
+     "explicit_language_request": true,
+     "sentiment": true,
+     "code_switched": true,
+     "question": true
+    }
+   }
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite@minimal",
+   "case_id": "var-spanglish-mx-09",
+   "output": {
+    "intent": "answer",
+    "fields": {
+     "start_date": {
+      "value": "2026-10-26",
+      "confidence": 0.95
+     }
+    },
+    "language": "es",
+    "matrix_language": "es",
+    "english_ratio": 0.25,
+    "explicit_language_request": null,
+    "code_switched": true,
+    "sentiment": "neutral",
+    "question": null,
+    "sub_questions": [],
+    "question_topic": null,
+    "slot": null,
+    "declines_field": false,
+    "mode": null
+   },
+   "record": {
+    "model": "google/gemini-3.5-flash-lite@minimal",
+    "role": "extractor",
+    "case_id": "var-spanglish-mx-09",
+    "ok": true,
+    "latency_s": 0.911,
+    "ttft_s": null,
+    "input_tokens": 4370,
+    "output_tokens": 107,
+    "cost_usd": 0.0015785,
+    "cost_source": "usage",
+    "provider": "Google",
+    "requests": 1,
+    "output_retries": 0,
+    "error": null,
+    "generation_ids": [
+     "gen-1792605353-VZJpOw2rCYfPnoQc75Ev"
+    ]
+   },
+   "score": {
+    "pass": true,
+    "fields_exact": true,
+    "fp": {},
+    "fn": {},
+    "checks": {
+     "intent": true,
+     "language": true,
+     "matrix_language": true,
+     "explicit_language_request": true,
+     "sentiment": true,
+     "start_date": true,
+     "code_switched": true,
+     "question": true
+    }
+   }
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite@minimal",
+   "case_id": "var-spanglish-mx-11",
+   "output": {
+    "intent": "answer",
+    "fields": {
+     "has_license": {
+      "value": true,
+      "confidence": 1.0
+     }
+    },
+    "language": "es",
+    "matrix_language": "es",
+    "english_ratio": 0.2,
+    "explicit_language_request": null,
+    "code_switched": true,
+    "sentiment": "neutral",
+    "question": null,
+    "sub_questions": [],
+    "question_topic": null,
+    "slot": null,
+    "declines_field": false,
+    "mode": null
+   },
+   "record": {
+    "model": "google/gemini-3.5-flash-lite@minimal",
+    "role": "extractor",
+    "case_id": "var-spanglish-mx-11",
+    "ok": true,
+    "latency_s": 1.007,
+    "ttft_s": null,
+    "input_tokens": 4370,
+    "output_tokens": 136,
+    "cost_usd": 0.001651,
+    "cost_source": "usage",
+    "provider": "Google",
+    "requests": 1,
+    "output_retries": 0,
+    "error": null,
+    "generation_ids": [
+     "gen-1792605353-i02C8O5AshV8hakCBYmN"
+    ]
+   },
+   "score": {
+    "pass": true,
+    "fields_exact": true,
+    "fp": {},
+    "fn": {},
+    "checks": {
+     "intent": true,
+     "language": true,
+     "matrix_language": true,
+     "explicit_language_request": true,
+     "sentiment": true,
+     "code_switched": true,
+     "question": true
+    }
+   }
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite@minimal",
+   "case_id": "var-spanglish-mx-12",
+   "output": {
+    "intent": "answer",
+    "fields": {
+     "city": {
+      "value": "San Pedro, Valle Oriente",
+      "confidence": 0.95
+     }
+    },
+    "language": "es",
+    "matrix_language": "es",
+    "english_ratio": 0.25,
+    "explicit_language_request": null,
+    "code_switched": true,
+    "sentiment": "neutral",
+    "question": null,
+    "sub_questions": [],
+    "question_topic": null,
+    "slot": null,
+    "declines_field": false,
+    "mode": null
+   },
+   "record": {
+    "model": "google/gemini-3.5-flash-lite@minimal",
+    "role": "extractor",
+    "case_id": "var-spanglish-mx-12",
+    "ok": true,
+    "latency_s": 1.103,
+    "ttft_s": null,
+    "input_tokens": 4368,
+    "output_tokens": 92,
+    "cost_usd": 0.0015404,
+    "cost_source": "usage",
+    "provider": "Google",
+    "requests": 1,
+    "output_retries": 0,
+    "error": null,
+    "generation_ids": [
+     "gen-1792605353-G1dsOplYYbJfA9PaTcbY"
+    ]
+   },
+   "score": {
+    "pass": true,
+    "fields_exact": true,
+    "fp": {},
+    "fn": {},
+    "checks": {
+     "intent": true,
+     "language": true,
+     "matrix_language": true,
+     "explicit_language_request": true,
+     "sentiment": true,
+     "code_switched": true,
+     "question": true
+    }
+   }
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite@minimal",
+   "case_id": "var-spanglish-mx-14",
+   "output": {
+    "intent": "answer",
+    "fields": {
+     "experience_years": {
+      "value": 2.5,
+      "confidence": 1.0
+     },
+     "platforms": {
+      "value": [
+       "rappi",
+       "uber_eats"
+      ],
+      "confidence": 1.0
+     }
+    },
+    "language": "es",
+    "matrix_language": "mixed",
+    "english_ratio": 0.4,
+    "explicit_language_request": null,
+    "code_switched": true,
+    "sentiment": "neutral",
+    "question": null,
+    "sub_questions": [],
+    "question_topic": null,
+    "slot": null,
+    "declines_field": false,
+    "mode": null
+   },
+   "record": {
+    "model": "google/gemini-3.5-flash-lite@minimal",
+    "role": "extractor",
+    "case_id": "var-spanglish-mx-14",
+    "ok": true,
+    "latency_s": 2.013,
+    "ttft_s": null,
+    "input_tokens": 8999,
+    "output_tokens": 356,
+    "cost_usd": 0.0035897,
+    "cost_source": "usage",
+    "provider": "Google",
+    "requests": 2,
+    "output_retries": 1,
+    "error": null,
+    "generation_ids": [
+     "gen-1792605353-WzvMso9AhVvxUSLaX0Nv",
+     "gen-1792605354-L8Yz44Nt3tHx6BUER4G2"
+    ]
+   },
+   "score": {
+    "pass": true,
+    "fields_exact": true,
+    "fp": {},
+    "fn": {},
+    "checks": {
+     "intent": true,
+     "language": true,
+     "matrix_language": true,
+     "explicit_language_request": true,
+     "sentiment": true,
+     "code_switched": true,
+     "question": true
+    }
+   }
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite@minimal",
+   "case_id": "var-spanglish-mx-15",
+   "output": {
+    "intent": "answer",
+    "fields": {
+     "availability": {
+      "value": [
+       "full_time"
+      ],
+      "confidence": 0.95
+     }
+    },
+    "language": "es",
+    "matrix_language": "mixed",
+    "english_ratio": 0.25,
+    "explicit_language_request": null,
+    "code_switched": true,
+    "sentiment": "neutral",
+    "question": null,
+    "sub_questions": [],
+    "question_topic": null,
+    "slot": null,
+    "declines_field": false,
+    "mode": null
+   },
+   "record": {
+    "model": "google/gemini-3.5-flash-lite@minimal",
+    "role": "extractor",
+    "case_id": "var-spanglish-mx-15",
+    "ok": true,
+    "latency_s": 1.169,
+    "ttft_s": null,
+    "input_tokens": 4373,
+    "output_tokens": 147,
+    "cost_usd": 0.0016794,
+    "cost_source": "usage",
+    "provider": "Google",
+    "requests": 1,
+    "output_retries": 0,
+    "error": null,
+    "generation_ids": [
+     "gen-1792605354-R9HNnxTPuIzkz71pzz2b"
+    ]
+   },
+   "score": {
+    "pass": true,
+    "fields_exact": true,
+    "fp": {},
+    "fn": {},
+    "checks": {
+     "intent": true,
+     "language": true,
+     "matrix_language": true,
+     "explicit_language_request": true,
+     "sentiment": true,
+     "code_switched": true,
+     "question": true
+    }
+   }
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite@minimal",
+   "case_id": "var-spanglish-mx-17",
+   "output": {
+    "intent": "answer",
+    "fields": {
+     "start_date": {
+      "value": "2026-10-26",
+      "confidence": 0.95
+     }
+    },
+    "language": "en",
+    "matrix_language": "mixed",
+    "english_ratio": 0.5,
+    "explicit_language_request": null,
+    "code_switched": true,
+    "sentiment": "neutral",
+    "question": null,
+    "sub_questions": [],
+    "question_topic": null,
+    "slot": null,
+    "declines_field": false,
+    "mode": null
+   },
+   "record": {
+    "model": "google/gemini-3.5-flash-lite@minimal",
+    "role": "extractor",
+    "case_id": "var-spanglish-mx-17",
+    "ok": true,
+    "latency_s": 0.797,
+    "ttft_s": null,
+    "input_tokens": 4375,
+    "output_tokens": 121,
+    "cost_usd": 0.001615,
+    "cost_source": "usage",
+    "provider": "Google",
+    "requests": 1,
+    "output_retries": 0,
+    "error": null,
+    "generation_ids": [
+     "gen-1792605354-2Epwj7O1uQ3DWziOpBdu"
+    ]
+   },
+   "score": {
+    "pass": true,
+    "fields_exact": true,
+    "fp": {},
+    "fn": {},
+    "checks": {
+     "intent": true,
+     "language": true,
+     "matrix_language": true,
+     "explicit_language_request": true,
+     "sentiment": true,
+     "start_date": true,
+     "code_switched": true,
+     "question": true
+    }
+   }
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite@minimal",
+   "case_id": "var-spanglish-mx-18",
+   "output": {
+    "intent": "answer",
+    "fields": {
+     "city": {
+      "value": "Narvarte",
+      "confidence": 0.95
+     }
+    },
+    "language": "en",
+    "matrix_language": "en",
+    "english_ratio": 0.75,
+    "explicit_language_request": null,
+    "code_switched": true,
+    "sentiment": "neutral",
+    "question": null,
+    "sub_questions": [],
+    "question_topic": null,
+    "slot": null,
+    "declines_field": false,
+    "mode": null
+   },
+   "record": {
+    "model": "google/gemini-3.5-flash-lite@minimal",
+    "role": "extractor",
+    "case_id": "var-spanglish-mx-18",
+    "ok": true,
+    "latency_s": 1.14,
+    "ttft_s": null,
+    "input_tokens": 4371,
+    "output_tokens": 131,
+    "cost_usd": 0.0016388,
+    "cost_source": "usage",
+    "provider": "Google",
+    "requests": 1,
+    "output_retries": 0,
+    "error": null,
+    "generation_ids": [
+     "gen-1792605354-hptIk6v7SnZgqnFLprY8"
+    ]
+   },
+   "score": {
+    "pass": true,
+    "fields_exact": true,
+    "fp": {},
+    "fn": {},
+    "checks": {
+     "intent": true,
+     "language": true,
+     "matrix_language": true,
+     "explicit_language_request": true,
+     "sentiment": true,
+     "code_switched": true,
+     "question": true
+    }
+   }
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite@minimal",
+   "case_id": "var-spanglish-mx-19",
+   "output": {
+    "intent": "answer",
+    "fields": {
+     "experience_years": {
+      "value": 2.0,
+      "confidence": 1.0
+     },
+     "platforms": {
+      "value": [
+       "didi_food"
+      ],
+      "confidence": 1.0
+     }
+    },
+    "language": "en",
+    "matrix_language": "mixed",
+    "english_ratio": 0.4,
+    "explicit_language_request": null,
+    "code_switched": true,
+    "sentiment": "neutral",
+    "question": null,
+    "sub_questions": [],
+    "question_topic": null,
+    "slot": null,
+    "declines_field": false,
+    "mode": null
+   },
+   "record": {
+    "model": "google/gemini-3.5-flash-lite@minimal",
+    "role": "extractor",
+    "case_id": "var-spanglish-mx-19",
+    "ok": true,
+    "latency_s": 1.135,
+    "ttft_s": null,
+    "input_tokens": 4371,
+    "output_tokens": 123,
+    "cost_usd": 0.00053907,
+    "cost_source": "usage",
+    "provider": "Google",
+    "requests": 1,
+    "output_retries": 0,
+    "error": null,
+    "generation_ids": [
+     "gen-1792605354-OMXZA68h7sMSRp21LFSf"
+    ]
+   },
+   "score": {
+    "pass": false,
+    "fields_exact": true,
+    "fp": {},
+    "fn": {},
+    "checks": {
+     "intent": true,
+     "language": true,
+     "matrix_language": false,
+     "explicit_language_request": true,
+     "sentiment": true,
+     "code_switched": true,
+     "question": true
+    }
+   }
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite@minimal",
+   "case_id": "var-spanglish-mx-20",
+   "output": {
+    "intent": "answer",
+    "fields": {},
+    "language": "en",
+    "matrix_language": "en",
+    "english_ratio": 0.8888888888888888,
+    "explicit_language_request": "en",
+    "code_switched": false,
+    "sentiment": "neutral",
+    "question": null,
+    "sub_questions": [],
+    "question_topic": null,
+    "slot": null,
+    "declines_field": false,
+    "mode": null
+   },
+   "record": {
+    "model": "google/gemini-3.5-flash-lite@minimal",
+    "role": "extractor",
+    "case_id": "var-spanglish-mx-20",
+    "ok": true,
+    "latency_s": 0.797,
+    "ttft_s": null,
+    "input_tokens": 4387,
+    "output_tokens": 87,
+    "cost_usd": 0.0015336,
+    "cost_source": "usage",
+    "provider": "Google",
+    "requests": 1,
+    "output_retries": 0,
+    "error": null,
+    "generation_ids": [
+     "gen-1792605354-veoO6h43iFzpoHSoUkZP"
+    ]
+   },
+   "score": {
+    "pass": false,
+    "fields_exact": true,
+    "fp": {},
+    "fn": {},
+    "checks": {
+     "intent": false,
+     "language": true,
+     "matrix_language": true,
+     "explicit_language_request": true,
+     "sentiment": true,
+     "code_switched": true
+    }
+   }
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite@minimal",
+   "case_id": "var-spanglish-mx-23",
+   "output": {
+    "intent": "answer",
+    "fields": {
+     "has_license": {
+      "value": true,
+      "confidence": 1.0
+     }
+    },
+    "language": "en",
+    "matrix_language": "en",
+    "english_ratio": 1.0,
+    "explicit_language_request": null,
+    "code_switched": false,
+    "sentiment": "neutral",
+    "question": null,
+    "sub_questions": [],
+    "question_topic": null,
+    "slot": null,
+    "declines_field": false,
+    "mode": null
+   },
+   "record": {
+    "model": "google/gemini-3.5-flash-lite@minimal",
+    "role": "extractor",
+    "case_id": "var-spanglish-mx-23",
+    "ok": true,
+    "latency_s": 1.24,
+    "ttft_s": null,
+    "input_tokens": 4366,
+    "output_tokens": 110,
+    "cost_usd": 0.0015848,
+    "cost_source": "usage",
+    "provider": "Google",
+    "requests": 1,
+    "output_retries": 0,
+    "error": null,
+    "generation_ids": [
+     "gen-1792605354-WIjwiGNCZhm0uxZpIUkV"
+    ]
+   },
+   "score": {
+    "pass": true,
+    "fields_exact": true,
+    "fp": {},
+    "fn": {},
+    "checks": {
+     "intent": true,
+     "language": true,
+     "matrix_language": true,
+     "explicit_language_request": true,
+     "sentiment": true,
+     "code_switched": true,
+     "question": true
+    }
+   }
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite@minimal",
+   "case_id": "var-spanglish-mx-24",
+   "output": {
+    "intent": "answer",
+    "fields": {
+     "availability": {
+      "value": [
+       "full_time"
+      ],
+      "confidence": 1.0
+     },
+     "schedule": {
+      "value": [
+       "morning"
+      ],
+      "confidence": 1.0
+     }
+    },
+    "language": "en",
+    "matrix_language": "mixed",
+    "english_ratio": 0.8,
+    "explicit_language_request": null,
+    "code_switched": true,
+    "sentiment": "neutral",
+    "question": null,
+    "sub_questions": [],
+    "question_topic": null,
+    "slot": null,
+    "declines_field": false,
+    "mode": null
+   },
+   "record": {
+    "model": "google/gemini-3.5-flash-lite@minimal",
+    "role": "extractor",
+    "case_id": "var-spanglish-mx-24",
+    "ok": true,
+    "latency_s": 1.093,
+    "ttft_s": null,
+    "input_tokens": 4394,
+    "output_tokens": 126,
+    "cost_usd": 0.0016332,
+    "cost_source": "usage",
+    "provider": "Google",
+    "requests": 1,
+    "output_retries": 0,
+    "error": null,
+    "generation_ids": [
+     "gen-1792605354-TqQFtBu9suzjRxG8zZ1D"
+    ]
+   },
+   "score": {
+    "pass": false,
+    "fields_exact": true,
+    "fp": {},
+    "fn": {},
+    "checks": {
+     "intent": true,
+     "language": true,
+     "matrix_language": false,
+     "explicit_language_request": true,
+     "sentiment": true,
+     "code_switched": false,
+     "question": true
+    }
+   }
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite@minimal",
+   "case_id": "var-spanglish-mx-25",
+   "output": {
+    "intent": "answer",
+    "fields": {
+     "experience_years": {
+      "value": 3.0,
+      "confidence": 0.9
+     },
+     "platforms": {
+      "value": [
+       "uber_eats"
+      ],
+      "confidence": 1.0
+     }
+    },
+    "language": "es",
+    "matrix_language": "es",
+    "english_ratio": 0.14,
+    "explicit_language_request": null,
+    "code_switched": true,
+    "sentiment": "neutral",
+    "question": null,
+    "sub_questions": [],
+    "question_topic": null,
+    "slot": null,
+    "declines_field": false,
+    "mode": null
+   },
+   "record": {
+    "model": "google/gemini-3.5-flash-lite@minimal",
+    "role": "extractor",
+    "case_id": "var-spanglish-mx-25",
+    "ok": true,
+    "latency_s": 1.082,
+    "ttft_s": null,
+    "input_tokens": 4373,
+    "output_tokens": 87,
+    "cost_usd": 0.0015294,
+    "cost_source": "usage",
+    "provider": "Google",
+    "requests": 1,
+    "output_retries": 0,
+    "error": null,
+    "generation_ids": [
+     "gen-1792605355-QqyODyUnM5xBSy6bKPtu"
+    ]
+   },
+   "score": {
+    "pass": true,
+    "fields_exact": true,
+    "fp": {},
+    "fn": {},
+    "checks": {
+     "intent": true,
+     "language": true,
+     "matrix_language": true,
+     "explicit_language_request": true,
+     "sentiment": true,
+     "code_switched": true,
+     "question": true
+    }
+   }
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite@minimal",
+   "case_id": "var-offtopic-mx-03",
+   "output": {
+    "intent": "small_talk",
+    "fields": {},
+    "language": "es",
+    "matrix_language": "es",
+    "english_ratio": 0.0,
+    "explicit_language_request": null,
+    "code_switched": false,
+    "sentiment": "positive",
+    "question": null,
+    "sub_questions": [],
+    "question_topic": null,
+    "slot": null,
+    "declines_field": false,
+    "mode": null
+   },
+   "record": {
+    "model": "google/gemini-3.5-flash-lite@minimal",
+    "role": "extractor",
+    "case_id": "var-offtopic-mx-03",
+    "ok": true,
+    "latency_s": 0.898,
+    "ttft_s": null,
+    "input_tokens": 4372,
+    "output_tokens": 63,
+    "cost_usd": 0.0014691,
+    "cost_source": "usage",
+    "provider": "Google",
+    "requests": 1,
+    "output_retries": 0,
+    "error": null,
+    "generation_ids": [
+     "gen-1792605355-IADITsTBzol0AiKuxk87"
+    ]
+   },
+   "score": {
+    "pass": true,
+    "fields_exact": true,
+    "fp": {},
+    "fn": {},
+    "checks": {
+     "intent": true,
+     "language": true,
+     "matrix_language": true,
+     "explicit_language_request": true,
+     "sentiment": true,
+     "code_switched": true,
+     "question": true
+    }
+   }
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite@minimal",
+   "case_id": "var-confirm-en-01",
+   "output": {
+    "intent": "answer",
+    "fields": {},
+    "language": "en",
+    "matrix_language": "en",
+    "english_ratio": 1.0,
+    "explicit_language_request": null,
+    "code_switched": false,
+    "sentiment": "neutral",
+    "question": null,
+    "sub_questions": [],
+    "question_topic": null,
+    "slot": "Thursday 22 at 11:00",
+    "declines_field": false,
+    "mode": null
+   },
+   "record": {
+    "model": "google/gemini-3.5-flash-lite@minimal",
+    "role": "extractor",
+    "case_id": "var-confirm-en-01",
+    "ok": true,
+    "latency_s": 0.774,
+    "ttft_s": null,
+    "input_tokens": 4404,
+    "output_tokens": 120,
+    "cost_usd": 0.0016212,
+    "cost_source": "usage",
+    "provider": "Google",
+    "requests": 1,
+    "output_retries": 0,
+    "error": null,
+    "generation_ids": [
+     "gen-1792605355-Oq6a5JXkTuIcmFvastqX"
+    ]
+   },
+   "score": {
+    "pass": true,
+    "fields_exact": true,
+    "fp": {},
+    "fn": {},
+    "checks": {
+     "intent": true,
+     "language": true,
+     "matrix_language": true,
+     "explicit_language_request": true,
+     "sentiment": true,
+     "code_switched": true,
+     "question": true
+    }
+   }
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite@minimal",
+   "case_id": "var-confirm-mx-02",
+   "output": {
+    "intent": "confirm",
+    "fields": {},
+    "language": "es",
+    "matrix_language": "es",
+    "english_ratio": 0.0,
+    "explicit_language_request": null,
+    "code_switched": false,
+    "sentiment": "neutral",
+    "question": null,
+    "sub_questions": [],
+    "question_topic": null,
+    "slot": null,
+    "declines_field": false,
+    "mode": null
+   },
+   "record": {
+    "model": "google/gemini-3.5-flash-lite@minimal",
+    "role": "extractor",
+    "case_id": "var-confirm-mx-02",
+    "ok": true,
+    "latency_s": 0.644,
+    "ttft_s": null,
+    "input_tokens": 4389,
+    "output_tokens": 48,
+    "cost_usd": 0.0014367,
+    "cost_source": "usage",
+    "provider": "Google",
+    "requests": 1,
+    "output_retries": 0,
+    "error": null,
+    "generation_ids": [
+     "gen-1792605355-DEnAW15DT40xHg9IbiZm"
+    ]
+   },
+   "score": {
+    "pass": true,
+    "fields_exact": true,
+    "fp": {},
+    "fn": {},
+    "checks": {
+     "intent": true,
+     "language": true,
+     "matrix_language": true,
+     "explicit_language_request": true,
+     "sentiment": true,
+     "code_switched": true,
+     "question": true
+    }
+   }
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite@minimal",
+   "case_id": "ec-license-en-04",
+   "output": {
+    "intent": "answer",
+    "fields": {
+     "has_license": {
+      "value": true,
+      "confidence": 1.0
+     }
+    },
+    "language": "en",
+    "matrix_language": "en",
+    "english_ratio": 1.0,
+    "explicit_language_request": null,
+    "code_switched": false,
+    "sentiment": "neutral",
+    "question": null,
+    "sub_questions": [],
+    "question_topic": null,
+    "slot": null,
+    "declines_field": false,
+    "mode": null
+   },
+   "record": {
+    "model": "google/gemini-3.5-flash-lite@minimal",
+    "role": "extractor",
+    "case_id": "ec-license-en-04",
+    "ok": true,
+    "latency_s": 0.892,
+    "ttft_s": null,
+    "input_tokens": 4363,
+    "output_tokens": 85,
+    "cost_usd": 0.0015214,
+    "cost_source": "usage",
+    "provider": "Google",
+    "requests": 1,
+    "output_retries": 0,
+    "error": null,
+    "generation_ids": [
+     "gen-1792605355-fxicV5ZHBguGFT8MyCcm"
+    ]
+   },
+   "score": {
+    "pass": true,
+    "fields_exact": true,
+    "fp": {},
+    "fn": {},
+    "checks": {
+     "intent": true,
+     "language": true,
+     "matrix_language": true,
+     "explicit_language_request": true,
+     "sentiment": true,
+     "code_switched": true,
+     "question": true
+    }
+   }
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite@minimal",
+   "case_id": "ec-consent-mx-02",
+   "output": {
+    "intent": "confirm",
+    "fields": {},
+    "language": "es",
+    "matrix_language": "es",
+    "english_ratio": 0.0,
+    "explicit_language_request": null,
+    "code_switched": false,
+    "sentiment": "neutral",
+    "question": null,
+    "sub_questions": [],
+    "question_topic": null,
+    "slot": null,
+    "declines_field": false,
+    "mode": null
+   },
+   "record": {
+    "model": "google/gemini-3.5-flash-lite@minimal",
+    "role": "extractor",
+    "case_id": "ec-consent-mx-02",
+    "ok": true,
+    "latency_s": 1.971,
+    "ttft_s": null,
+    "input_tokens": 4388,
+    "output_tokens": 58,
+    "cost_usd": 0.0014614,
+    "cost_source": "usage",
+    "provider": "Google",
+    "requests": 1,
+    "output_retries": 0,
+    "error": null,
+    "generation_ids": [
+     "gen-1792605355-lSDMsqGrMLawd3cK31zD"
+    ]
+   },
+   "score": {
+    "pass": true,
+    "fields_exact": true,
+    "fp": {},
+    "fn": {},
+    "checks": {
+     "intent": true,
+     "language": true,
+     "matrix_language": true,
+     "explicit_language_request": true,
+     "sentiment": true,
+     "code_switched": true,
+     "question": true
+    }
+   }
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite@minimal",
+   "case_id": "ec-consent-es-03",
+   "output": {
+    "intent": "confirm",
+    "fields": {},
+    "language": "es",
+    "matrix_language": "es",
+    "english_ratio": 0.0,
+    "explicit_language_request": null,
+    "code_switched": false,
+    "sentiment": "neutral",
+    "question": null,
+    "sub_questions": [],
+    "question_topic": null,
+    "slot": null,
+    "declines_field": false,
+    "mode": null
+   },
+   "record": {
+    "model": "google/gemini-3.5-flash-lite@minimal",
+    "role": "extractor",
+    "case_id": "ec-consent-es-03",
+    "ok": true,
+    "latency_s": 1.217,
+    "ttft_s": null,
+    "input_tokens": 4390,
+    "output_tokens": 52,
+    "cost_usd": 0.001447,
+    "cost_source": "usage",
+    "provider": "Google",
+    "requests": 1,
+    "output_retries": 0,
+    "error": null,
+    "generation_ids": [
+     "gen-1792605355-5qcL4O2rXogyqDzkjgHv"
+    ]
+   },
+   "score": {
+    "pass": true,
+    "fields_exact": true,
+    "fp": {},
+    "fn": {},
+    "checks": {
+     "intent": true,
+     "language": true,
+     "matrix_language": true,
+     "explicit_language_request": true,
+     "sentiment": true,
+     "code_switched": true,
+     "question": true
+    }
+   }
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite@minimal",
+   "case_id": "ec-summary-es-01",
+   "output": {
+    "intent": "confirm",
+    "fields": {},
+    "language": "es",
+    "matrix_language": "es",
+    "english_ratio": 0.0,
+    "explicit_language_request": null,
+    "code_switched": false,
+    "sentiment": "neutral",
+    "question": null,
+    "sub_questions": [],
+    "question_topic": null,
+    "slot": null,
+    "declines_field": false,
+    "mode": null
+   },
+   "record": {
+    "model": "google/gemini-3.5-flash-lite@minimal",
+    "role": "extractor",
+    "case_id": "ec-summary-es-01",
+    "ok": true,
+    "latency_s": 1.738,
+    "ttft_s": null,
+    "input_tokens": 4388,
+    "output_tokens": 109,
+    "cost_usd": 0.0015889,
+    "cost_source": "usage",
+    "provider": "Google",
+    "requests": 1,
+    "output_retries": 0,
+    "error": null,
+    "generation_ids": [
+     "gen-1792605356-ClBOEV3TK7MyZHpAgOdR"
+    ]
+   },
+   "score": {
+    "pass": true,
+    "fields_exact": true,
+    "fp": {},
+    "fn": {},
+    "checks": {
+     "intent": true,
+     "language": true,
+     "matrix_language": true,
+     "explicit_language_request": true,
+     "sentiment": true,
+     "code_switched": true,
+     "question": true
+    }
+   }
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite@minimal",
+   "case_id": "ec-pause-es-01",
+   "output": {
+    "intent": "answer",
+    "fields": {},
+    "language": "es",
+    "matrix_language": "es",
+    "english_ratio": 0.0,
+    "explicit_language_request": null,
+    "code_switched": false,
+    "sentiment": "neutral",
+    "question": null,
+    "sub_questions": [],
+    "question_topic": null,
+    "slot": null,
+    "declines_field": false,
+    "mode": null
+   },
+   "record": {
+    "model": "google/gemini-3.5-flash-lite@minimal",
+    "role": "extractor",
+    "case_id": "ec-pause-es-01",
+    "ok": true,
+    "latency_s": 1.644,
+    "ttft_s": null,
+    "input_tokens": 4401,
+    "output_tokens": 53,
+    "cost_usd": 0.0014528,
+    "cost_source": "usage",
+    "provider": "Google",
+    "requests": 1,
+    "output_retries": 0,
+    "error": null,
+    "generation_ids": [
+     "gen-1792605356-9FqMVRbRk3EWLqlEh6zW"
+    ]
+   },
+   "score": {
+    "pass": true,
+    "fields_exact": true,
+    "fp": {},
+    "fn": {},
+    "checks": {
+     "intent": true,
+     "language": true,
+     "matrix_language": true,
+     "explicit_language_request": true,
+     "sentiment": true,
+     "code_switched": true,
+     "question": true
+    }
+   }
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite@minimal",
+   "case_id": "ec-pool-es-01",
+   "output": {
+    "intent": "confirm",
+    "fields": {},
+    "language": "es",
+    "matrix_language": "es",
+    "english_ratio": 0.0,
+    "explicit_language_request": null,
+    "code_switched": false,
+    "sentiment": "neutral",
+    "question": null,
+    "sub_questions": [],
+    "question_topic": null,
+    "slot": null,
+    "declines_field": false,
+    "mode": null
+   },
+   "record": {
+    "model": "google/gemini-3.5-flash-lite@minimal",
+    "role": "extractor",
+    "case_id": "ec-pool-es-01",
+    "ok": true,
+    "latency_s": 1.352,
+    "ttft_s": null,
+    "input_tokens": 4378,
+    "output_tokens": 58,
+    "cost_usd": 0.0014584,
+    "cost_source": "usage",
+    "provider": "Google",
+    "requests": 1,
+    "output_retries": 0,
+    "error": null,
+    "generation_ids": [
+     "gen-1792605356-FZa9sw2GuELqvUNXmUJd"
+    ]
+   },
+   "score": {
+    "pass": true,
+    "fields_exact": true,
+    "fp": {},
+    "fn": {},
+    "checks": {
+     "intent": true,
+     "language": true,
+     "matrix_language": true,
+     "explicit_language_request": true,
+     "sentiment": false,
+     "code_switched": true,
+     "question": true
+    }
+   }
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite@minimal",
+   "case_id": "gen-multi_field-05",
+   "output": {
+    "intent": "answer",
+    "fields": {
+     "has_license": {
+      "value": true,
+      "confidence": 1.0
+     },
+     "availability": {
+      "value": [
+       "weekends"
+      ],
+      "confidence": 1.0
+     },
+     "city": {
+      "value": "Ruzafa",
+      "confidence": 1.0
+     }
+    },
+    "language": "es",
+    "matrix_language": "mixed",
+    "english_ratio": 0.25,
+    "explicit_language_request": null,
+    "code_switched": true,
+    "sentiment": "neutral",
+    "question": null,
+    "sub_questions": [],
+    "question_topic": null,
+    "slot": null,
+    "declines_field": false,
+    "mode": null
+   },
+   "record": {
+    "model": "google/gemini-3.5-flash-lite@minimal",
+    "role": "extractor",
+    "case_id": "gen-multi_field-05",
+    "ok": true,
+    "latency_s": 1.482,
+    "ttft_s": null,
+    "input_tokens": 4378,
+    "output_tokens": 143,
+    "cost_usd": 0.0005909,
+    "cost_source": "usage",
+    "provider": "Google",
+    "requests": 1,
+    "output_retries": 0,
+    "error": null,
+    "generation_ids": [
+     "gen-1792605356-Gur4veMqKyNG62qlHFhs"
+    ]
+   },
+   "score": {
+    "pass": true,
+    "fields_exact": true,
+    "fp": {},
+    "fn": {},
+    "checks": {
+     "intent": true,
+     "language": true,
+     "matrix_language": true,
+     "explicit_language_request": true,
+     "sentiment": true,
+     "code_switched": true,
+     "question": true
+    }
+   }
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite@minimal",
+   "case_id": "seed-date-es-01",
+   "output": {
+    "intent": "answer",
+    "fields": {
+     "start_date": {
+      "value": "2026-10-26",
+      "confidence": 0.95
+     }
+    },
+    "language": "es",
+    "matrix_language": "es",
+    "english_ratio": 0.0,
+    "explicit_language_request": null,
+    "code_switched": false,
+    "sentiment": "neutral",
+    "question": null,
+    "sub_questions": [],
+    "question_topic": null,
+    "slot": null,
+    "declines_field": false,
+    "mode": null
+   },
+   "record": {
+    "model": "google/gemini-3.5-flash-lite@minimal",
+    "role": "extractor",
+    "case_id": "seed-date-es-01",
+    "ok": true,
+    "latency_s": 1.578,
+    "ttft_s": null,
+    "input_tokens": 4366,
+    "output_tokens": 98,
+    "cost_usd": 0.00047507,
+    "cost_source": "usage",
+    "provider": "Google",
+    "requests": 1,
+    "output_retries": 0,
+    "error": null,
+    "generation_ids": [
+     "gen-1792605356-IEjc9ObhcuyjxWnCc9ag"
+    ]
+   },
+   "score": {
+    "pass": true,
+    "fields_exact": true,
+    "fp": {},
+    "fn": {},
+    "checks": {
+     "intent": true,
+     "language": true,
+     "matrix_language": true,
+     "explicit_language_request": true,
+     "sentiment": true,
+     "start_date": true,
+     "code_switched": true,
+     "question": true
+    }
+   }
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite@minimal",
+   "case_id": "seed-date-mx-01",
+   "output": {
+    "intent": "answer",
+    "fields": {
+     "start_date": {
+      "value": "2026-10-19",
+      "confidence": 1.0
+     }
+    },
+    "language": "es",
+    "matrix_language": "es",
+    "english_ratio": 0.0,
+    "explicit_language_request": null,
+    "code_switched": false,
+    "sentiment": "positive",
+    "question": null,
+    "sub_questions": [],
+    "question_topic": null,
+    "slot": null,
+    "declines_field": false,
+    "mode": null
+   },
+   "record": {
+    "model": "google/gemini-3.5-flash-lite@minimal",
+    "role": "extractor",
+    "case_id": "seed-date-mx-01",
+    "ok": true,
+    "latency_s": 1.339,
+    "ttft_s": null,
+    "input_tokens": 4370,
+    "output_tokens": 97,
+    "cost_usd": 0.00047377,
+    "cost_source": "usage",
+    "provider": "Google",
+    "requests": 1,
+    "output_retries": 0,
+    "error": null,
+    "generation_ids": [
+     "gen-1792605356-5dyuycTzICKIhBbiFsyK"
+    ]
+   },
+   "score": {
+    "pass": true,
+    "fields_exact": true,
+    "fp": {},
+    "fn": {},
+    "checks": {
+     "intent": true,
+     "language": true,
+     "matrix_language": true,
+     "explicit_language_request": true,
+     "sentiment": true,
+     "start_date": true,
+     "code_switched": true,
+     "question": true
+    }
+   }
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite@minimal",
+   "case_id": "gen-relative_date-02",
+   "output": {
+    "intent": "answer",
+    "fields": {
+     "start_date": {
+      "value": "2026-10-25",
+      "confidence": 0.95
+     }
+    },
+    "language": "es",
+    "matrix_language": "es",
+    "english_ratio": 0.0,
+    "explicit_language_request": null,
+    "code_switched": false,
+    "sentiment": "neutral",
+    "question": null,
+    "sub_questions": [],
+    "question_topic": null,
+    "slot": null,
+    "declines_field": false,
+    "mode": null
+   },
+   "record": {
+    "model": "google/gemini-3.5-flash-lite@minimal",
+    "role": "extractor",
+    "case_id": "gen-relative_date-02",
+    "ok": true,
+    "latency_s": 1.01,
+    "ttft_s": null,
+    "input_tokens": 4368,
+    "output_tokens": 98,
+    "cost_usd": 0.00047567,
+    "cost_source": "usage",
+    "provider": "Google",
+    "requests": 1,
+    "output_retries": 0,
+    "error": null,
+    "generation_ids": [
+     "gen-1792605357-laEwnN5wlUQm1V2BIKrz"
+    ]
+   },
+   "score": {
+    "pass": true,
+    "fields_exact": true,
+    "fp": {},
+    "fn": {},
+    "checks": {
+     "intent": true,
+     "language": true,
+     "matrix_language": true,
+     "explicit_language_request": true,
+     "sentiment": true,
+     "start_date": true,
+     "code_switched": true,
+     "question": true
+    }
+   }
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite@minimal",
+   "case_id": "seed-license-mx-02",
+   "output": {
+    "intent": "answer",
+    "fields": {
+     "has_license": {
+      "value": true,
+      "confidence": 1.0
+     }
+    },
+    "language": "es",
+    "matrix_language": "es",
+    "english_ratio": 0.0,
+    "explicit_language_request": null,
+    "code_switched": false,
+    "sentiment": "neutral",
+    "question": null,
+    "sub_questions": [],
+    "question_topic": null,
+    "slot": null,
+    "declines_field": false,
+    "mode": null
+   },
+   "record": {
+    "model": "google/gemini-3.5-flash-lite@minimal",
+    "role": "extractor",
+    "case_id": "seed-license-mx-02",
+    "ok": true,
+    "latency_s": 1.002,
+    "ttft_s": null,
+    "input_tokens": 4367,
+    "output_tokens": 83,
+    "cost_usd": 0.0015176,
+    "cost_source": "usage",
+    "provider": "Google",
+    "requests": 1,
+    "output_retries": 0,
+    "error": null,
+    "generation_ids": [
+     "gen-1792605357-tsCrCP1W6tUi2gXShfZd"
+    ]
+   },
+   "score": {
+    "pass": true,
+    "fields_exact": true,
+    "fp": {},
+    "fn": {},
+    "checks": {
+     "intent": true,
+     "language": true,
+     "matrix_language": true,
+     "explicit_language_request": true,
+     "sentiment": true,
+     "code_switched": true,
+     "question": true
+    }
+   }
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite@minimal",
+   "case_id": "var-license-en-02",
+   "output": {
+    "intent": "answer",
+    "fields": {
+     "has_license": {
+      "value": true,
+      "confidence": 1.0
+     }
+    },
+    "language": "en",
+    "matrix_language": "en",
+    "english_ratio": 1.0,
+    "explicit_language_request": null,
+    "code_switched": false,
+    "sentiment": "neutral",
+    "question": null,
+    "sub_questions": [],
+    "question_topic": null,
+    "slot": null,
+    "declines_field": false,
+    "mode": null
+   },
+   "record": {
+    "model": "google/gemini-3.5-flash-lite@minimal",
+    "role": "extractor",
+    "case_id": "var-license-en-02",
+    "ok": true,
+    "latency_s": 0.913,
+    "ttft_s": null,
+    "input_tokens": 4368,
+    "output_tokens": 138,
+    "cost_usd": 0.00057567,
+    "cost_source": "usage",
+    "provider": "Google",
+    "requests": 1,
+    "output_retries": 0,
+    "error": null,
+    "generation_ids": [
+     "gen-1792605357-zkJ6HgOoWydKqzT7v0Ns"
+    ]
+   },
+   "score": {
+    "pass": true,
+    "fields_exact": true,
+    "fp": {},
+    "fn": {},
+    "checks": {
+     "intent": true,
+     "language": true,
+     "matrix_language": true,
+     "explicit_language_request": true,
+     "sentiment": true,
+     "code_switched": true,
+     "question": true
+    }
+   }
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite@minimal",
+   "case_id": "var-exp-mx-03",
+   "output": {
+    "intent": "answer",
+    "fields": {
+     "experience_years": {
+      "value": 0.8333333333333334,
+      "confidence": 0.95
+     },
+     "platforms": {
+      "value": [
+       "uber_eats",
+       "rappi"
+      ],
+      "confidence": 0.95
+     }
+    },
+    "language": "es",
+    "matrix_language": "es",
+    "english_ratio": 0.125,
+    "explicit_language_request": null,
+    "code_switched": false,
+    "sentiment": "neutral",
+    "question": null,
+    "sub_questions": [],
+    "question_topic": null,
+    "slot": null,
+    "declines_field": false,
+    "mode": null
+   },
+   "record": {
+    "model": "google/gemini-3.5-flash-lite@minimal",
+    "role": "extractor",
+    "case_id": "var-exp-mx-03",
+    "ok": true,
+    "latency_s": 0.955,
+    "ttft_s": null,
+    "input_tokens": 4375,
+    "output_tokens": 150,
+    "cost_usd": 0.0006075,
+    "cost_source": "usage",
+    "provider": "Google",
+    "requests": 1,
+    "output_retries": 0,
+    "error": null,
+    "generation_ids": [
+     "gen-1792605357-c4aTXUpHMMYtopboh1P0"
+    ]
+   },
+   "score": {
+    "pass": true,
+    "fields_exact": true,
+    "fp": {},
+    "fn": {},
+    "checks": {
+     "intent": true,
+     "language": true,
+     "matrix_language": true,
+     "explicit_language_request": true,
+     "sentiment": true,
+     "code_switched": true,
+     "question": true
+    }
+   }
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite@minimal",
+   "case_id": "var-exp-mx-04",
+   "output": {
+    "intent": "answer",
+    "fields": {
+     "experience_years": {
+      "value": 0.6666666666666666,
+      "confidence": 1.0
+     },
+     "platforms": {
+      "value": [
+       "didi_food",
+       "cornershop"
+      ],
+      "confidence": 1.0
+     }
+    },
+    "language": "es",
+    "matrix_language": "es",
+    "english_ratio": 0.2,
+    "explicit_language_request": null,
+    "code_switched": true,
+    "sentiment": "neutral",
+    "question": null,
+    "sub_questions": [],
+    "question_topic": null,
+    "slot": null,
+    "declines_field": false,
+    "mode": null
+   },
+   "record": {
+    "model": "google/gemini-3.5-flash-lite@minimal",
+    "role": "extractor",
+    "case_id": "var-exp-mx-04",
+    "ok": true,
+    "latency_s": 0.958,
+    "ttft_s": null,
+    "input_tokens": 4373,
+    "output_tokens": 103,
+    "cost_usd": 0.0015694,
+    "cost_source": "usage",
+    "provider": "Google",
+    "requests": 1,
+    "output_retries": 0,
+    "error": null,
+    "generation_ids": [
+     "gen-1792605357-J4efrTgSOHd8KoQYT3Tv"
+    ]
+   },
+   "score": {
+    "pass": true,
+    "fields_exact": true,
+    "fp": {},
+    "fn": {},
+    "checks": {
+     "intent": true,
+     "language": true,
+     "matrix_language": true,
+     "explicit_language_request": true,
+     "sentiment": true,
+     "code_switched": false,
+     "question": true
+    }
+   }
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite@minimal",
+   "case_id": "seed-spanglish-mx-04",
+   "output": {
+    "intent": "answer",
+    "fields": {
+     "schedule": {
+      "value": [
+       "evening"
+      ],
+      "confidence": 1.0
+     }
+    },
+    "language": "en",
+    "matrix_language": "mixed",
+    "english_ratio": 0.8,
+    "explicit_language_request": "en",
+    "code_switched": true,
+    "sentiment": "neutral",
+    "question": null,
+    "sub_questions": [],
+    "question_topic": null,
+    "slot": null,
+    "declines_field": false,
+    "mode": null
+   },
+   "record": {
+    "model": "google/gemini-3.5-flash-lite@minimal",
+    "role": "extractor",
+    "case_id": "seed-spanglish-mx-04",
+    "ok": true,
+    "latency_s": 1.949,
+    "ttft_s": null,
+    "input_tokens": 8905,
+    "output_tokens": 188,
+    "cost_usd": 0.00098339,
+    "cost_source": "usage",
+    "provider": "Google",
+    "requests": 2,
+    "output_retries": 1,
+    "error": null,
+    "generation_ids": [
+     "gen-1792605357-xESbKm3zzcLh6vF7g6kw",
+     "gen-1792605358-yM9DEy6lnlU6Uavkw5MS"
+    ]
+   },
+   "score": {
+    "pass": true,
+    "fields_exact": true,
+    "fp": {},
+    "fn": {},
+    "checks": {
+     "intent": true,
+     "language": true,
+     "matrix_language": true,
+     "explicit_language_request": true,
+     "sentiment": true,
+     "code_switched": true,
+     "question": true
+    }
+   }
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite@minimal",
+   "case_id": "seed-spanglish-mx-05",
+   "output": {
+    "intent": "answer",
+    "fields": {
+     "has_license": {
+      "value": true,
+      "confidence": 1.0
+     },
+     "availability": {
+      "value": [
+       "weekends"
+      ],
+      "confidence": 1.0
+     }
+    },
+    "language": "en",
+    "matrix_language": "mixed",
+    "english_ratio": 0.5,
+    "explicit_language_request": null,
+    "code_switched": true,
+    "sentiment": "neutral",
+    "question": null,
+    "sub_questions": [],
+    "question_topic": null,
+    "slot": null,
+    "declines_field": false,
+    "mode": null
+   },
+   "record": {
+    "model": "google/gemini-3.5-flash-lite@minimal",
+    "role": "extractor",
+    "case_id": "seed-spanglish-mx-05",
+    "ok": true,
+    "latency_s": 0.926,
+    "ttft_s": null,
+    "input_tokens": 4369,
+    "output_tokens": 171,
+    "cost_usd": 0.00065847,
+    "cost_source": "usage",
+    "provider": "Google",
+    "requests": 1,
+    "output_retries": 0,
+    "error": null,
+    "generation_ids": [
+     "gen-1792605357-QEAXVnHaex85SwQofBEW"
+    ]
+   },
+   "score": {
+    "pass": true,
+    "fields_exact": true,
+    "fp": {},
+    "fn": {},
+    "checks": {
+     "intent": true,
+     "language": true,
+     "matrix_language": true,
+     "explicit_language_request": true,
+     "sentiment": true,
+     "code_switched": true,
+     "question": true
+    }
+   }
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite@minimal",
+   "case_id": "seed-spanglish-mx-06",
+   "output": {
+    "intent": "answer",
+    "fields": {
+     "schedule": {
+      "value": [
+       "afternoon"
+      ],
+      "confidence": 1.0
+     }
+    },
+    "language": "es",
+    "matrix_language": "es",
+    "english_ratio": 0.0,
+    "explicit_language_request": "es",
+    "code_switched": false,
+    "sentiment": "neutral",
+    "question": null,
+    "sub_questions": [],
+    "question_topic": null,
+    "slot": null,
+    "declines_field": false,
+    "mode": null
+   },
+   "record": {
+    "model": "google/gemini-3.5-flash-lite@minimal",
+    "role": "extractor",
+    "case_id": "seed-spanglish-mx-06",
+    "ok": true,
+    "latency_s": 0.899,
+    "ttft_s": null,
+    "input_tokens": 4383,
+    "output_tokens": 108,
+    "cost_usd": 0.0005049,
+    "cost_source": "usage",
+    "provider": "Google",
+    "requests": 1,
+    "output_retries": 0,
+    "error": null,
+    "generation_ids": [
+     "gen-1792605357-zRxj5zwSFZWdALdaVlMi"
+    ]
+   },
+   "score": {
+    "pass": true,
+    "fields_exact": true,
+    "fp": {},
+    "fn": {},
+    "checks": {
+     "intent": true,
+     "language": true,
+     "matrix_language": true,
+     "explicit_language_request": true,
+     "sentiment": false,
+     "code_switched": true
+    }
+   }
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite@minimal",
+   "case_id": "var-spanglish-mx-08",
+   "output": {
+    "intent": "answer",
+    "fields": {
+     "experience_years": {
+      "value": 0.5,
+      "confidence": 1.0
+     },
+     "platforms": {
+      "value": [
+       "didi_food"
+      ],
+      "confidence": 1.0
+     }
+    },
+    "language": "es",
+    "matrix_language": "es",
+    "english_ratio": 0.25,
+    "explicit_language_request": null,
+    "code_switched": true,
+    "sentiment": "neutral",
+    "question": null,
+    "sub_questions": [],
+    "question_topic": null,
+    "slot": null,
+    "declines_field": false,
+    "mode": null
+   },
+   "record": {
+    "model": "google/gemini-3.5-flash-lite@minimal",
+    "role": "extractor",
+    "case_id": "var-spanglish-mx-08",
+    "ok": true,
+    "latency_s": 1.152,
+    "ttft_s": null,
+    "input_tokens": 4371,
+    "output_tokens": 177,
+    "cost_usd": 0.00067407,
+    "cost_source": "usage",
+    "provider": "Google",
+    "requests": 1,
+    "output_retries": 0,
+    "error": null,
+    "generation_ids": [
+     "gen-1792605358-Tv7DgZn0wU7QEGkN6CSx"
+    ]
+   },
+   "score": {
+    "pass": true,
+    "fields_exact": true,
+    "fp": {},
+    "fn": {},
+    "checks": {
+     "intent": true,
+     "language": true,
+     "matrix_language": true,
+     "explicit_language_request": true,
+     "sentiment": true,
+     "code_switched": true,
+     "question": true
+    }
+   }
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite@minimal",
+   "case_id": "var-spanglish-mx-09",
+   "output": {
+    "intent": "answer",
+    "fields": {
+     "start_date": {
+      "value": "2026-10-26",
+      "confidence": 0.95
+     }
+    },
+    "language": "es",
+    "matrix_language": "es",
+    "english_ratio": 0.25,
+    "explicit_language_request": null,
+    "code_switched": true,
+    "sentiment": "neutral",
+    "question": null,
+    "sub_questions": [],
+    "question_topic": null,
+    "slot": null,
+    "declines_field": false,
+    "mode": null
+   },
+   "record": {
+    "model": "google/gemini-3.5-flash-lite@minimal",
+    "role": "extractor",
+    "case_id": "var-spanglish-mx-09",
+    "ok": true,
+    "latency_s": 1.043,
+    "ttft_s": null,
+    "input_tokens": 4370,
+    "output_tokens": 140,
+    "cost_usd": 0.001661,
+    "cost_source": "usage",
+    "provider": "Google",
+    "requests": 1,
+    "output_retries": 0,
+    "error": null,
+    "generation_ids": [
+     "gen-1792605358-dCKEAhRGZ3l5RHXpbJ7j"
+    ]
+   },
+   "score": {
+    "pass": true,
+    "fields_exact": true,
+    "fp": {},
+    "fn": {},
+    "checks": {
+     "intent": true,
+     "language": true,
+     "matrix_language": true,
+     "explicit_language_request": true,
+     "sentiment": true,
+     "start_date": true,
+     "code_switched": true,
+     "question": true
+    }
+   }
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite@minimal",
+   "case_id": "var-spanglish-mx-11",
+   "output": {
+    "intent": "answer",
+    "fields": {
+     "has_license": {
+      "value": true,
+      "confidence": 1.0
+     }
+    },
+    "language": "es",
+    "matrix_language": "es",
+    "english_ratio": 0.2,
+    "explicit_language_request": null,
+    "code_switched": true,
+    "sentiment": "neutral",
+    "question": null,
+    "sub_questions": [],
+    "question_topic": null,
+    "slot": null,
+    "declines_field": false,
+    "mode": null
+   },
+   "record": {
+    "model": "google/gemini-3.5-flash-lite@minimal",
+    "role": "extractor",
+    "case_id": "var-spanglish-mx-11",
+    "ok": true,
+    "latency_s": 0.912,
+    "ttft_s": null,
+    "input_tokens": 4370,
+    "output_tokens": 85,
+    "cost_usd": 0.00044377,
+    "cost_source": "usage",
+    "provider": "Google",
+    "requests": 1,
+    "output_retries": 0,
+    "error": null,
+    "generation_ids": [
+     "gen-1792605358-BSPh1KhviDsoKICoGjMG"
+    ]
+   },
+   "score": {
+    "pass": true,
+    "fields_exact": true,
+    "fp": {},
+    "fn": {},
+    "checks": {
+     "intent": true,
+     "language": true,
+     "matrix_language": true,
+     "explicit_language_request": true,
+     "sentiment": true,
+     "code_switched": true,
+     "question": true
+    }
+   }
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite@minimal",
+   "case_id": "var-spanglish-mx-12",
+   "output": {
+    "intent": "answer",
+    "fields": {
+     "city": {
+      "value": "San Pedro, Valle Oriente",
+      "confidence": 0.95
+     }
+    },
+    "language": "es",
+    "matrix_language": "es",
+    "english_ratio": 0.14,
+    "explicit_language_request": null,
+    "code_switched": true,
+    "sentiment": "neutral",
+    "question": null,
+    "sub_questions": [],
+    "question_topic": null,
+    "slot": null,
+    "declines_field": false,
+    "mode": null
+   },
+   "record": {
+    "model": "google/gemini-3.5-flash-lite@minimal",
+    "role": "extractor",
+    "case_id": "var-spanglish-mx-12",
+    "ok": true,
+    "latency_s": 1.084,
+    "ttft_s": null,
+    "input_tokens": 4368,
+    "output_tokens": 158,
+    "cost_usd": 0.0017054,
+    "cost_source": "usage",
+    "provider": "Google",
+    "requests": 1,
+    "output_retries": 0,
+    "error": null,
+    "generation_ids": [
+     "gen-1792605358-PPIagmgQUHtJFvnEnsEZ"
+    ]
+   },
+   "score": {
+    "pass": true,
+    "fields_exact": true,
+    "fp": {},
+    "fn": {},
+    "checks": {
+     "intent": true,
+     "language": true,
+     "matrix_language": true,
+     "explicit_language_request": true,
+     "sentiment": true,
+     "code_switched": true,
+     "question": true
+    }
+   }
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite@minimal",
+   "case_id": "var-spanglish-mx-14",
+   "output": {
+    "intent": "answer",
+    "fields": {
+     "experience_years": {
+      "value": 2.5,
+      "confidence": 1.0
+     },
+     "platforms": {
+      "value": [
+       "rappi",
+       "uber_eats"
+      ],
+      "confidence": 1.0
+     }
+    },
+    "language": "es",
+    "matrix_language": "mixed",
+    "english_ratio": 0.36,
+    "explicit_language_request": null,
+    "code_switched": true,
+    "sentiment": "neutral",
+    "question": null,
+    "sub_questions": [],
+    "question_topic": null,
+    "slot": null,
+    "declines_field": false,
+    "mode": null
+   },
+   "record": {
+    "model": "google/gemini-3.5-flash-lite@minimal",
+    "role": "extractor",
+    "case_id": "var-spanglish-mx-14",
+    "ok": true,
+    "latency_s": 0.941,
+    "ttft_s": null,
+    "input_tokens": 4378,
+    "output_tokens": 128,
+    "cost_usd": 0.0005534,
+    "cost_source": "usage",
+    "provider": "Google",
+    "requests": 1,
+    "output_retries": 0,
+    "error": null,
+    "generation_ids": [
+     "gen-1792605358-67jB8LY6NhKpMhJC19hk"
+    ]
+   },
+   "score": {
+    "pass": true,
+    "fields_exact": true,
+    "fp": {},
+    "fn": {},
+    "checks": {
+     "intent": true,
+     "language": true,
+     "matrix_language": true,
+     "explicit_language_request": true,
+     "sentiment": true,
+     "code_switched": true,
+     "question": true
+    }
+   }
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite@minimal",
+   "case_id": "var-spanglish-mx-15",
+   "output": {
+    "intent": "answer",
+    "fields": {
+     "availability": {
+      "value": [
+       "full_time"
+      ],
+      "confidence": 0.9
+     }
+    },
+    "language": "es",
+    "matrix_language": "es",
+    "english_ratio": 0.25,
+    "explicit_language_request": null,
+    "code_switched": true,
+    "sentiment": "neutral",
+    "question": null,
+    "sub_questions": [],
+    "question_topic": null,
+    "slot": null,
+    "declines_field": false,
+    "mode": null
+   },
+   "record": {
+    "model": "google/gemini-3.5-flash-lite@minimal",
+    "role": "extractor",
+    "case_id": "var-spanglish-mx-15",
+    "ok": true,
+    "latency_s": 1.465,
+    "ttft_s": null,
+    "input_tokens": 4373,
+    "output_tokens": 146,
+    "cost_usd": 0.00059717,
+    "cost_source": "usage",
+    "provider": "Google",
+    "requests": 1,
+    "output_retries": 0,
+    "error": null,
+    "generation_ids": [
+     "gen-1792605358-SUjRVJBwRrIixBhL2ff7"
+    ]
+   },
+   "score": {
+    "pass": false,
+    "fields_exact": true,
+    "fp": {},
+    "fn": {},
+    "checks": {
+     "intent": true,
+     "language": true,
+     "matrix_language": false,
+     "explicit_language_request": true,
+     "sentiment": true,
+     "code_switched": true,
+     "question": true
+    }
+   }
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite@minimal",
+   "case_id": "var-spanglish-mx-17",
+   "output": {
+    "intent": "answer",
+    "fields": {
+     "start_date": {
+      "value": "2026-10-26",
+      "confidence": 0.95
+     }
+    },
+    "language": "en",
+    "matrix_language": "mixed",
+    "english_ratio": 0.5,
+    "explicit_language_request": null,
+    "code_switched": true,
+    "sentiment": "positive",
+    "question": null,
+    "sub_questions": [],
+    "question_topic": null,
+    "slot": null,
+    "declines_field": false,
+    "mode": null
+   },
+   "record": {
+    "model": "google/gemini-3.5-flash-lite@minimal",
+    "role": "extractor",
+    "case_id": "var-spanglish-mx-17",
+    "ok": true,
+    "latency_s": 1.013,
+    "ttft_s": null,
+    "input_tokens": 4375,
+    "output_tokens": 149,
+    "cost_usd": 0.000605,
+    "cost_source": "usage",
+    "provider": "Google",
+    "requests": 1,
+    "output_retries": 0,
+    "error": null,
+    "generation_ids": [
+     "gen-1792605358-35xgdrdaM2b8LJRILT6X"
+    ]
+   },
+   "score": {
+    "pass": true,
+    "fields_exact": true,
+    "fp": {},
+    "fn": {},
+    "checks": {
+     "intent": true,
+     "language": true,
+     "matrix_language": true,
+     "explicit_language_request": true,
+     "sentiment": false,
+     "start_date": true,
+     "code_switched": true,
+     "question": true
+    }
+   }
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite@minimal",
+   "case_id": "var-spanglish-mx-18",
+   "output": {
+    "intent": "answer",
+    "fields": {
+     "city": {
+      "value": "Narvarte",
+      "confidence": 0.95
+     }
+    },
+    "language": "en",
+    "matrix_language": "en",
+    "english_ratio": 0.8,
+    "explicit_language_request": null,
+    "code_switched": true,
+    "sentiment": "neutral",
+    "question": null,
+    "sub_questions": [],
+    "question_topic": null,
+    "slot": null,
+    "declines_field": false,
+    "mode": null
+   },
+   "record": {
+    "model": "google/gemini-3.5-flash-lite@minimal",
+    "role": "extractor",
+    "case_id": "var-spanglish-mx-18",
+    "ok": true,
+    "latency_s": 1.096,
+    "ttft_s": null,
+    "input_tokens": 4371,
+    "output_tokens": 140,
+    "cost_usd": 0.00058157,
+    "cost_source": "usage",
+    "provider": "Google",
+    "requests": 1,
+    "output_retries": 0,
+    "error": null,
+    "generation_ids": [
+     "gen-1792605359-HtapN9PQLCN7mBcB4Mw4"
+    ]
+   },
+   "score": {
+    "pass": true,
+    "fields_exact": true,
+    "fp": {},
+    "fn": {},
+    "checks": {
+     "intent": true,
+     "language": true,
+     "matrix_language": true,
+     "explicit_language_request": true,
+     "sentiment": true,
+     "code_switched": true,
+     "question": true
+    }
+   }
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite@minimal",
+   "case_id": "var-spanglish-mx-19",
+   "output": {
+    "intent": "answer",
+    "fields": {
+     "experience_years": {
+      "value": 2.0,
+      "confidence": 0.95
+     },
+     "platforms": {
+      "value": [
+       "didi_food"
+      ],
+      "confidence": 0.95
+     }
+    },
+    "language": "en",
+    "matrix_language": "mixed",
+    "english_ratio": 0.5,
+    "explicit_language_request": null,
+    "code_switched": true,
+    "sentiment": "neutral",
+    "question": null,
+    "sub_questions": [],
+    "question_topic": null,
+    "slot": null,
+    "declines_field": false,
+    "mode": null
+   },
+   "record": {
+    "model": "google/gemini-3.5-flash-lite@minimal",
+    "role": "extractor",
+    "case_id": "var-spanglish-mx-19",
+    "ok": true,
+    "latency_s": 1.043,
+    "ttft_s": null,
+    "input_tokens": 4371,
+    "output_tokens": 125,
+    "cost_usd": 0.00054407,
+    "cost_source": "usage",
+    "provider": "Google",
+    "requests": 1,
+    "output_retries": 0,
+    "error": null,
+    "generation_ids": [
+     "gen-1792605359-2DLLDozeGCXa6WGKnqzU"
+    ]
+   },
+   "score": {
+    "pass": false,
+    "fields_exact": true,
+    "fp": {},
+    "fn": {},
+    "checks": {
+     "intent": true,
+     "language": true,
+     "matrix_language": false,
+     "explicit_language_request": true,
+     "sentiment": true,
+     "code_switched": true,
+     "question": true
+    }
+   }
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite@minimal",
+   "case_id": "var-spanglish-mx-20",
+   "output": {
+    "intent": "question",
+    "fields": {},
+    "language": "en",
+    "matrix_language": "en",
+    "english_ratio": 1.0,
+    "explicit_language_request": "en",
+    "code_switched": false,
+    "sentiment": "neutral",
+    "question": "Can we switch to English?",
+    "sub_questions": [],
+    "question_topic": null,
+    "slot": null,
+    "declines_field": false,
+    "mode": null
+   },
+   "record": {
+    "model": "google/gemini-3.5-flash-lite@minimal",
+    "role": "extractor",
+    "case_id": "var-spanglish-mx-20",
+    "ok": true,
+    "latency_s": 0.929,
+    "ttft_s": null,
+    "input_tokens": 4387,
+    "output_tokens": 129,
+    "cost_usd": 0.0005586,
+    "cost_source": "usage",
+    "provider": "Google",
+    "requests": 1,
+    "output_retries": 0,
+    "error": null,
+    "generation_ids": [
+     "gen-1792605359-MqFRKK1saSyz6lLBiI8P"
+    ]
+   },
+   "score": {
+    "pass": true,
+    "fields_exact": true,
+    "fp": {},
+    "fn": {},
+    "checks": {
+     "intent": true,
+     "language": true,
+     "matrix_language": true,
+     "explicit_language_request": true,
+     "sentiment": true,
+     "code_switched": true
+    }
+   }
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite@minimal",
+   "case_id": "var-spanglish-mx-23",
+   "output": {
+    "intent": "answer",
+    "fields": {
+     "has_license": {
+      "value": true,
+      "confidence": 1.0
+     },
+     "experience_years": {
+      "value": "last year",
+      "confidence": 0.8
+     }
+    },
+    "language": "en",
+    "matrix_language": "en",
+    "english_ratio": 1.0,
+    "explicit_language_request": null,
+    "code_switched": false,
+    "sentiment": "neutral",
+    "question": null,
+    "sub_questions": [],
+    "question_topic": null,
+    "slot": null,
+    "declines_field": false,
+    "mode": null
+   },
+   "record": {
+    "model": "google/gemini-3.5-flash-lite@minimal",
+    "role": "extractor",
+    "case_id": "var-spanglish-mx-23",
+    "ok": true,
+    "latency_s": 1.262,
+    "ttft_s": null,
+    "input_tokens": 4366,
+    "output_tokens": 165,
+    "cost_usd": 0.0017223,
+    "cost_source": "usage",
+    "provider": "Google",
+    "requests": 1,
+    "output_retries": 0,
+    "error": null,
+    "generation_ids": [
+     "gen-1792605359-7bAHgMeS8el6OBWO55TF"
+    ]
+   },
+   "score": {
+    "pass": false,
+    "fields_exact": false,
+    "fp": {
+     "experience_years": 1
+    },
+    "fn": {},
+    "checks": {
+     "intent": true,
+     "language": true,
+     "matrix_language": true,
+     "explicit_language_request": true,
+     "sentiment": true,
+     "code_switched": true,
+     "question": true
+    }
+   }
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite@minimal",
+   "case_id": "var-spanglish-mx-24",
+   "output": {
+    "intent": "answer",
+    "fields": {
+     "availability": {
+      "value": [
+       "full_time"
+      ],
+      "confidence": 1.0
+     },
+     "schedule": {
+      "value": [
+       "morning"
+      ],
+      "confidence": 1.0
+     }
+    },
+    "language": "en",
+    "matrix_language": "en",
+    "english_ratio": 0.8,
+    "explicit_language_request": null,
+    "code_switched": false,
+    "sentiment": "neutral",
+    "question": null,
+    "sub_questions": [],
+    "question_topic": null,
+    "slot": null,
+    "declines_field": false,
+    "mode": null
+   },
+   "record": {
+    "model": "google/gemini-3.5-flash-lite@minimal",
+    "role": "extractor",
+    "case_id": "var-spanglish-mx-24",
+    "ok": true,
+    "latency_s": 1.026,
+    "ttft_s": null,
+    "input_tokens": 4394,
+    "output_tokens": 134,
+    "cost_usd": 0.0005732,
+    "cost_source": "usage",
+    "provider": "Google",
+    "requests": 1,
+    "output_retries": 0,
+    "error": null,
+    "generation_ids": [
+     "gen-1792605359-Qqeq0mAinIKBPAJuf1hs"
+    ]
+   },
+   "score": {
+    "pass": true,
+    "fields_exact": true,
+    "fp": {},
+    "fn": {},
+    "checks": {
+     "intent": true,
+     "language": true,
+     "matrix_language": true,
+     "explicit_language_request": true,
+     "sentiment": true,
+     "code_switched": true,
+     "question": true
+    }
+   }
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite@minimal",
+   "case_id": "var-spanglish-mx-25",
+   "output": {
+    "intent": "answer",
+    "fields": {
+     "experience_years": {
+      "value": 3.0,
+      "confidence": 0.95
+     },
+     "platforms": {
+      "value": [
+       "uber_eats"
+      ],
+      "confidence": 1.0
+     }
+    },
+    "language": "es",
+    "matrix_language": "es",
+    "english_ratio": 0.14,
+    "explicit_language_request": null,
+    "code_switched": true,
+    "sentiment": "neutral",
+    "question": null,
+    "sub_questions": [],
+    "question_topic": null,
+    "slot": null,
+    "declines_field": false,
+    "mode": null
+   },
+   "record": {
+    "model": "google/gemini-3.5-flash-lite@minimal",
+    "role": "extractor",
+    "case_id": "var-spanglish-mx-25",
+    "ok": true,
+    "latency_s": 1.086,
+    "ttft_s": null,
+    "input_tokens": 4373,
+    "output_tokens": 125,
+    "cost_usd": 0.00054467,
+    "cost_source": "usage",
+    "provider": "Google",
+    "requests": 1,
+    "output_retries": 0,
+    "error": null,
+    "generation_ids": [
+     "gen-1792605359-yUwYoKWMA4RiPohYcGIp"
+    ]
+   },
+   "score": {
+    "pass": true,
+    "fields_exact": true,
+    "fp": {},
+    "fn": {},
+    "checks": {
+     "intent": true,
+     "language": true,
+     "matrix_language": true,
+     "explicit_language_request": true,
+     "sentiment": true,
+     "code_switched": true,
+     "question": true
+    }
+   }
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite@minimal",
+   "case_id": "var-offtopic-mx-03",
+   "output": {
+    "intent": "small_talk",
+    "fields": {},
+    "language": "es",
+    "matrix_language": "es",
+    "english_ratio": 0.0,
+    "explicit_language_request": null,
+    "code_switched": false,
+    "sentiment": "positive",
+    "question": null,
+    "sub_questions": [],
+    "question_topic": null,
+    "slot": null,
+    "declines_field": false,
+    "mode": null
+   },
+   "record": {
+    "model": "google/gemini-3.5-flash-lite@minimal",
+    "role": "extractor",
+    "case_id": "var-offtopic-mx-03",
+    "ok": true,
+    "latency_s": 0.908,
+    "ttft_s": null,
+    "input_tokens": 4372,
+    "output_tokens": 50,
+    "cost_usd": 0.0014366,
+    "cost_source": "usage",
+    "provider": "Google",
+    "requests": 1,
+    "output_retries": 0,
+    "error": null,
+    "generation_ids": [
+     "gen-1792605359-TjD98lXKgHdIffNURydR"
+    ]
+   },
+   "score": {
+    "pass": true,
+    "fields_exact": true,
+    "fp": {},
+    "fn": {},
+    "checks": {
+     "intent": true,
+     "language": true,
+     "matrix_language": true,
+     "explicit_language_request": true,
+     "sentiment": true,
+     "code_switched": true,
+     "question": true
+    }
+   }
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite@minimal",
+   "case_id": "var-confirm-en-01",
+   "output": {
+    "intent": "answer",
+    "fields": {},
+    "language": "en",
+    "matrix_language": "en",
+    "english_ratio": 1.0,
+    "explicit_language_request": null,
+    "code_switched": false,
+    "sentiment": "neutral",
+    "question": null,
+    "sub_questions": [],
+    "question_topic": null,
+    "slot": "Thursday 22 at 11:00",
+    "declines_field": false,
+    "mode": null
+   },
+   "record": {
+    "model": "google/gemini-3.5-flash-lite@minimal",
+    "role": "extractor",
+    "case_id": "var-confirm-en-01",
+    "ok": true,
+    "latency_s": 0.72,
+    "ttft_s": null,
+    "input_tokens": 4404,
+    "output_tokens": 70,
+    "cost_usd": 0.0004162,
+    "cost_source": "usage",
+    "provider": "Google",
+    "requests": 1,
+    "output_retries": 0,
+    "error": null,
+    "generation_ids": [
+     "gen-1792605360-oYEak7ei8VsskI2KHEqg"
+    ]
+   },
+   "score": {
+    "pass": true,
+    "fields_exact": true,
+    "fp": {},
+    "fn": {},
+    "checks": {
+     "intent": true,
+     "language": true,
+     "matrix_language": true,
+     "explicit_language_request": true,
+     "sentiment": true,
+     "code_switched": true,
+     "question": true
+    }
+   }
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite@minimal",
+   "case_id": "var-confirm-mx-02",
+   "output": {
+    "intent": "confirm",
+    "fields": {},
+    "language": "es",
+    "matrix_language": "es",
+    "english_ratio": 0.0,
+    "explicit_language_request": null,
+    "code_switched": false,
+    "sentiment": "neutral",
+    "question": null,
+    "sub_questions": [],
+    "question_topic": null,
+    "slot": null,
+    "declines_field": false,
+    "mode": null
+   },
+   "record": {
+    "model": "google/gemini-3.5-flash-lite@minimal",
+    "role": "extractor",
+    "case_id": "var-confirm-mx-02",
+    "ok": true,
+    "latency_s": 0.921,
+    "ttft_s": null,
+    "input_tokens": 4389,
+    "output_tokens": 66,
+    "cost_usd": 0.0014817,
+    "cost_source": "usage",
+    "provider": "Google",
+    "requests": 1,
+    "output_retries": 0,
+    "error": null,
+    "generation_ids": [
+     "gen-1792605360-bA57pMIX0mxTFWNGyxWu"
+    ]
+   },
+   "score": {
+    "pass": true,
+    "fields_exact": true,
+    "fp": {},
+    "fn": {},
+    "checks": {
+     "intent": true,
+     "language": true,
+     "matrix_language": true,
+     "explicit_language_request": true,
+     "sentiment": true,
+     "code_switched": true,
+     "question": true
+    }
+   }
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite@minimal",
+   "case_id": "ec-license-en-04",
+   "output": {
+    "intent": "answer",
+    "fields": {
+     "has_license": {
+      "value": true,
+      "confidence": 1.0
+     }
+    },
+    "language": "en",
+    "matrix_language": "en",
+    "english_ratio": 1.0,
+    "explicit_language_request": null,
+    "code_switched": false,
+    "sentiment": "neutral",
+    "question": null,
+    "sub_questions": [],
+    "question_topic": null,
+    "slot": null,
+    "declines_field": false,
+    "mode": null
+   },
+   "record": {
+    "model": "google/gemini-3.5-flash-lite@minimal",
+    "role": "extractor",
+    "case_id": "ec-license-en-04",
+    "ok": true,
+    "latency_s": 0.852,
+    "ttft_s": null,
+    "input_tokens": 4363,
+    "output_tokens": 138,
+    "cost_usd": 0.0016539,
+    "cost_source": "usage",
+    "provider": "Google",
+    "requests": 1,
+    "output_retries": 0,
+    "error": null,
+    "generation_ids": [
+     "gen-1792605360-vX7w1ib8VVMnONo5TlEI"
+    ]
+   },
+   "score": {
+    "pass": true,
+    "fields_exact": true,
+    "fp": {},
+    "fn": {},
+    "checks": {
+     "intent": true,
+     "language": true,
+     "matrix_language": true,
+     "explicit_language_request": true,
+     "sentiment": true,
+     "code_switched": true,
+     "question": true
+    }
+   }
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite@minimal",
+   "case_id": "ec-consent-mx-02",
+   "output": {
+    "intent": "confirm",
+    "fields": {},
+    "language": "es",
+    "matrix_language": "es",
+    "english_ratio": 0.0,
+    "explicit_language_request": null,
+    "code_switched": false,
+    "sentiment": "neutral",
+    "question": null,
+    "sub_questions": [],
+    "question_topic": null,
+    "slot": null,
+    "declines_field": false,
+    "mode": null
+   },
+   "record": {
+    "model": "google/gemini-3.5-flash-lite@minimal",
+    "role": "extractor",
+    "case_id": "ec-consent-mx-02",
+    "ok": true,
+    "latency_s": 1.019,
+    "ttft_s": null,
+    "input_tokens": 4388,
+    "output_tokens": 44,
+    "cost_usd": 0.0003464,
+    "cost_source": "usage",
+    "provider": "Google",
+    "requests": 1,
+    "output_retries": 0,
+    "error": null,
+    "generation_ids": [
+     "gen-1792605360-GyFWg417mrn3cFxOygyc"
+    ]
+   },
+   "score": {
+    "pass": true,
+    "fields_exact": true,
+    "fp": {},
+    "fn": {},
+    "checks": {
+     "intent": true,
+     "language": true,
+     "matrix_language": true,
+     "explicit_language_request": true,
+     "sentiment": true,
+     "code_switched": true,
+     "question": true
+    }
+   }
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite@minimal",
+   "case_id": "ec-consent-es-03",
+   "output": {
+    "intent": "confirm",
+    "fields": {},
+    "language": "es",
+    "matrix_language": "es",
+    "english_ratio": 0.0,
+    "explicit_language_request": null,
+    "code_switched": false,
+    "sentiment": "neutral",
+    "question": null,
+    "sub_questions": [],
+    "question_topic": null,
+    "slot": null,
+    "declines_field": false,
+    "mode": null
+   },
+   "record": {
+    "model": "google/gemini-3.5-flash-lite@minimal",
+    "role": "extractor",
+    "case_id": "ec-consent-es-03",
+    "ok": true,
+    "latency_s": 1.63,
+    "ttft_s": null,
+    "input_tokens": 4390,
+    "output_tokens": 48,
+    "cost_usd": 0.000357,
+    "cost_source": "usage",
+    "provider": "Google",
+    "requests": 1,
+    "output_retries": 0,
+    "error": null,
+    "generation_ids": [
+     "gen-1792605360-09JcueTkyoqzKpBO4stn"
+    ]
+   },
+   "score": {
+    "pass": true,
+    "fields_exact": true,
+    "fp": {},
+    "fn": {},
+    "checks": {
+     "intent": true,
+     "language": true,
+     "matrix_language": true,
+     "explicit_language_request": true,
+     "sentiment": true,
+     "code_switched": true,
+     "question": true
+    }
+   }
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite@minimal",
+   "case_id": "ec-summary-es-01",
+   "output": {
+    "intent": "confirm",
+    "fields": {},
+    "language": "es",
+    "matrix_language": "es",
+    "english_ratio": 0.0,
+    "explicit_language_request": null,
+    "code_switched": false,
+    "sentiment": "neutral",
+    "question": null,
+    "sub_questions": [],
+    "question_topic": null,
+    "slot": null,
+    "declines_field": false,
+    "mode": null
+   },
+   "record": {
+    "model": "google/gemini-3.5-flash-lite@minimal",
+    "role": "extractor",
+    "case_id": "ec-summary-es-01",
+    "ok": true,
+    "latency_s": 1.688,
+    "ttft_s": null,
+    "input_tokens": 4388,
+    "output_tokens": 44,
+    "cost_usd": 0.0003464,
+    "cost_source": "usage",
+    "provider": "Google",
+    "requests": 1,
+    "output_retries": 0,
+    "error": null,
+    "generation_ids": [
+     "gen-1792605360-GcYzbq32rPdIOhzfxJXb"
+    ]
+   },
+   "score": {
+    "pass": true,
+    "fields_exact": true,
+    "fp": {},
+    "fn": {},
+    "checks": {
+     "intent": true,
+     "language": true,
+     "matrix_language": true,
+     "explicit_language_request": true,
+     "sentiment": true,
+     "code_switched": true,
+     "question": true
+    }
+   }
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite@minimal",
+   "case_id": "ec-pause-es-01",
+   "output": {
+    "intent": "answer",
+    "fields": {},
+    "language": "es",
+    "matrix_language": "es",
+    "english_ratio": 0.0,
+    "explicit_language_request": null,
+    "code_switched": false,
+    "sentiment": "neutral",
+    "question": null,
+    "sub_questions": [],
+    "question_topic": null,
+    "slot": null,
+    "declines_field": false,
+    "mode": null
+   },
+   "record": {
+    "model": "google/gemini-3.5-flash-lite@minimal",
+    "role": "extractor",
+    "case_id": "ec-pause-es-01",
+    "ok": true,
+    "latency_s": 1.408,
+    "ttft_s": null,
+    "input_tokens": 4401,
+    "output_tokens": 53,
+    "cost_usd": 0.0003728,
+    "cost_source": "usage",
+    "provider": "Google",
+    "requests": 1,
+    "output_retries": 0,
+    "error": null,
+    "generation_ids": [
+     "gen-1792605360-dUZsbsQA93ZxqEYAAtDm"
+    ]
+   },
+   "score": {
+    "pass": true,
+    "fields_exact": true,
+    "fp": {},
+    "fn": {},
+    "checks": {
+     "intent": true,
+     "language": true,
+     "matrix_language": true,
+     "explicit_language_request": true,
+     "sentiment": true,
+     "code_switched": true,
+     "question": true
+    }
+   }
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite@minimal",
+   "case_id": "ec-pool-es-01",
+   "output": {
+    "intent": "confirm",
+    "fields": {},
+    "language": "es",
+    "matrix_language": "es",
+    "english_ratio": 0.0,
+    "explicit_language_request": null,
+    "code_switched": false,
+    "sentiment": "neutral",
+    "question": null,
+    "sub_questions": [],
+    "question_topic": null,
+    "slot": null,
+    "declines_field": false,
+    "mode": null
+   },
+   "record": {
+    "model": "google/gemini-3.5-flash-lite@minimal",
+    "role": "extractor",
+    "case_id": "ec-pool-es-01",
+    "ok": true,
+    "latency_s": 1.07,
+    "ttft_s": null,
+    "input_tokens": 4378,
+    "output_tokens": 58,
+    "cost_usd": 0.0003784,
+    "cost_source": "usage",
+    "provider": "Google",
+    "requests": 1,
+    "output_retries": 0,
+    "error": null,
+    "generation_ids": [
+     "gen-1792605360-6RaqmEHWxas2rkjCkzEX"
+    ]
+   },
+   "score": {
+    "pass": true,
+    "fields_exact": true,
+    "fp": {},
+    "fn": {},
+    "checks": {
+     "intent": true,
+     "language": true,
+     "matrix_language": true,
+     "explicit_language_request": true,
+     "sentiment": false,
+     "code_switched": true,
+     "question": true
+    }
+   }
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite@minimal",
+   "case_id": "gen-multi_field-05",
+   "output": {
+    "intent": "answer",
+    "fields": {
+     "has_license": {
+      "value": true,
+      "confidence": 1.0
+     },
+     "availability": {
+      "value": [
+       "weekends"
+      ],
+      "confidence": 1.0
+     },
+     "city": {
+      "value": "Ruzafa",
+      "confidence": 1.0
+     }
+    },
+    "language": "es",
+    "matrix_language": "es",
+    "english_ratio": 0.14,
+    "explicit_language_request": null,
+    "code_switched": true,
+    "sentiment": "neutral",
+    "question": null,
+    "sub_questions": [],
+    "question_topic": null,
+    "slot": null,
+    "declines_field": false,
+    "mode": null
+   },
+   "record": {
+    "model": "google/gemini-3.5-flash-lite@minimal",
+    "role": "extractor",
+    "case_id": "gen-multi_field-05",
+    "ok": true,
+    "latency_s": 1.383,
+    "ttft_s": null,
+    "input_tokens": 4378,
+    "output_tokens": 200,
+    "cost_usd": 0.0007334,
+    "cost_source": "usage",
+    "provider": "Google",
+    "requests": 1,
+    "output_retries": 0,
+    "error": null,
+    "generation_ids": [
+     "gen-1792605360-OznhXzRnacCDBQA5lfxr"
+    ]
+   },
+   "score": {
+    "pass": false,
+    "fields_exact": true,
+    "fp": {},
+    "fn": {},
+    "checks": {
+     "intent": true,
+     "language": true,
+     "matrix_language": false,
+     "explicit_language_request": true,
+     "sentiment": true,
+     "code_switched": true,
+     "question": true
+    }
+   }
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite@minimal",
+   "case_id": "seed-date-es-01",
+   "output": {
+    "intent": "answer",
+    "fields": {
+     "start_date": {
+      "value": "2026-10-26",
+      "confidence": 0.95
+     }
+    },
+    "language": "es",
+    "matrix_language": "es",
+    "english_ratio": 0.0,
+    "explicit_language_request": null,
+    "code_switched": false,
+    "sentiment": "neutral",
+    "question": null,
+    "sub_questions": [],
+    "question_topic": null,
+    "slot": null,
+    "declines_field": false,
+    "mode": null
+   },
+   "record": {
+    "model": "google/gemini-3.5-flash-lite@minimal",
+    "role": "extractor",
+    "case_id": "seed-date-es-01",
+    "ok": true,
+    "latency_s": 1.088,
+    "ttft_s": null,
+    "input_tokens": 4366,
+    "output_tokens": 98,
+    "cost_usd": 0.00047507,
+    "cost_source": "usage",
+    "provider": "Google",
+    "requests": 1,
+    "output_retries": 0,
+    "error": null,
+    "generation_ids": [
+     "gen-1792605361-ifs6P99UswALTnKUxt5I"
+    ]
+   },
+   "score": {
+    "pass": true,
+    "fields_exact": true,
+    "fp": {},
+    "fn": {},
+    "checks": {
+     "intent": true,
+     "language": true,
+     "matrix_language": true,
+     "explicit_language_request": true,
+     "sentiment": true,
+     "start_date": true,
+     "code_switched": true,
+     "question": true
+    }
+   }
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite@minimal",
+   "case_id": "seed-date-mx-01",
+   "output": {
+    "intent": "answer",
+    "fields": {
+     "start_date": {
+      "value": "2026-10-19",
+      "confidence": 1.0
+     }
+    },
+    "language": "es",
+    "matrix_language": "es",
+    "english_ratio": 0.0,
+    "explicit_language_request": null,
+    "code_switched": false,
+    "sentiment": "positive",
+    "question": null,
+    "sub_questions": [],
+    "question_topic": null,
+    "slot": null,
+    "declines_field": false,
+    "mode": null
+   },
+   "record": {
+    "model": "google/gemini-3.5-flash-lite@minimal",
+    "role": "extractor",
+    "case_id": "seed-date-mx-01",
+    "ok": true,
+    "latency_s": 1.152,
+    "ttft_s": null,
+    "input_tokens": 4370,
+    "output_tokens": 148,
+    "cost_usd": 0.00060127,
+    "cost_source": "usage",
+    "provider": "Google",
+    "requests": 1,
+    "output_retries": 0,
+    "error": null,
+    "generation_ids": [
+     "gen-1792605361-kkwDiNPMAIBZ5fq3ZrEn"
+    ]
+   },
+   "score": {
+    "pass": true,
+    "fields_exact": true,
+    "fp": {},
+    "fn": {},
+    "checks": {
+     "intent": true,
+     "language": true,
+     "matrix_language": true,
+     "explicit_language_request": true,
+     "sentiment": true,
+     "start_date": true,
+     "code_switched": true,
+     "question": true
+    }
+   }
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite@minimal",
+   "case_id": "gen-relative_date-02",
+   "output": {
+    "intent": "answer",
+    "fields": {
+     "start_date": {
+      "value": "2026-10-25",
+      "confidence": 0.95
+     }
+    },
+    "language": "es",
+    "matrix_language": "es",
+    "english_ratio": 0.0,
+    "explicit_language_request": null,
+    "code_switched": false,
+    "sentiment": "neutral",
+    "question": null,
+    "sub_questions": [],
+    "question_topic": null,
+    "slot": null,
+    "declines_field": false,
+    "mode": null
+   },
+   "record": {
+    "model": "google/gemini-3.5-flash-lite@minimal",
+    "role": "extractor",
+    "case_id": "gen-relative_date-02",
+    "ok": true,
+    "latency_s": 1.032,
+    "ttft_s": null,
+    "input_tokens": 4368,
+    "output_tokens": 98,
+    "cost_usd": 0.00047567,
+    "cost_source": "usage",
+    "provider": "Google",
+    "requests": 1,
+    "output_retries": 0,
+    "error": null,
+    "generation_ids": [
+     "gen-1792605361-swRHp3zMatK5zFO2QGAH"
+    ]
+   },
+   "score": {
+    "pass": true,
+    "fields_exact": true,
+    "fp": {},
+    "fn": {},
+    "checks": {
+     "intent": true,
+     "language": true,
+     "matrix_language": true,
+     "explicit_language_request": true,
+     "sentiment": true,
+     "start_date": true,
+     "code_switched": true,
+     "question": true
+    }
+   }
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite@minimal",
+   "case_id": "seed-license-mx-02",
+   "output": {
+    "intent": "answer",
+    "fields": {
+     "has_license": {
+      "value": true,
+      "confidence": 1.0
+     }
+    },
+    "language": "es",
+    "matrix_language": "es",
+    "english_ratio": 0.0,
+    "explicit_language_request": null,
+    "code_switched": false,
+    "sentiment": "neutral",
+    "question": null,
+    "sub_questions": [],
+    "question_topic": null,
+    "slot": null,
+    "declines_field": false,
+    "mode": null
+   },
+   "record": {
+    "model": "google/gemini-3.5-flash-lite@minimal",
+    "role": "extractor",
+    "case_id": "seed-license-mx-02",
+    "ok": true,
+    "latency_s": 1.216,
+    "ttft_s": null,
+    "input_tokens": 4367,
+    "output_tokens": 110,
+    "cost_usd": 0.00050537,
+    "cost_source": "usage",
+    "provider": "Google",
+    "requests": 1,
+    "output_retries": 0,
+    "error": null,
+    "generation_ids": [
+     "gen-1792605361-UZrCxJNfysDBxm08tYPi"
+    ]
+   },
+   "score": {
+    "pass": true,
+    "fields_exact": true,
+    "fp": {},
+    "fn": {},
+    "checks": {
+     "intent": true,
+     "language": true,
+     "matrix_language": true,
+     "explicit_language_request": true,
+     "sentiment": true,
+     "code_switched": true,
+     "question": true
+    }
+   }
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite@minimal",
+   "case_id": "var-license-en-02",
+   "output": {
+    "intent": "answer",
+    "fields": {
+     "has_license": {
+      "value": true,
+      "confidence": 1.0
+     }
+    },
+    "language": "en",
+    "matrix_language": "en",
+    "english_ratio": 1.0,
+    "explicit_language_request": null,
+    "code_switched": false,
+    "sentiment": "neutral",
+    "question": null,
+    "sub_questions": [],
+    "question_topic": null,
+    "slot": null,
+    "declines_field": false,
+    "mode": null
+   },
+   "record": {
+    "model": "google/gemini-3.5-flash-lite@minimal",
+    "role": "extractor",
+    "case_id": "var-license-en-02",
+    "ok": true,
+    "latency_s": 0.872,
+    "ttft_s": null,
+    "input_tokens": 4368,
+    "output_tokens": 110,
+    "cost_usd": 0.00050567,
+    "cost_source": "usage",
+    "provider": "Google",
+    "requests": 1,
+    "output_retries": 0,
+    "error": null,
+    "generation_ids": [
+     "gen-1792605362-Q01IXjLmy7ydBfGCd2mF"
+    ]
+   },
+   "score": {
+    "pass": true,
+    "fields_exact": true,
+    "fp": {},
+    "fn": {},
+    "checks": {
+     "intent": true,
+     "language": true,
+     "matrix_language": true,
+     "explicit_language_request": true,
+     "sentiment": true,
+     "code_switched": true,
+     "question": true
+    }
+   }
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite@minimal",
+   "case_id": "var-exp-mx-03",
+   "output": {
+    "intent": "answer",
+    "fields": {
+     "experience_years": {
+      "value": 0.8333333333333334,
+      "confidence": 0.95
+     },
+     "platforms": {
+      "value": [
+       "uber_eats",
+       "rappi"
+      ],
+      "confidence": 0.95
+     }
+    },
+    "language": "es",
+    "matrix_language": "es",
+    "english_ratio": 0.1,
+    "explicit_language_request": null,
+    "code_switched": true,
+    "sentiment": "neutral",
+    "question": null,
+    "sub_questions": [],
+    "question_topic": null,
+    "slot": null,
+    "declines_field": false,
+    "mode": null
+   },
+   "record": {
+    "model": "google/gemini-3.5-flash-lite@minimal",
+    "role": "extractor",
+    "case_id": "var-exp-mx-03",
+    "ok": true,
+    "latency_s": 1.361,
+    "ttft_s": null,
+    "input_tokens": 4375,
+    "output_tokens": 199,
+    "cost_usd": 0.00073,
+    "cost_source": "usage",
+    "provider": "Google",
+    "requests": 1,
+    "output_retries": 0,
+    "error": null,
+    "generation_ids": [
+     "gen-1792605362-NJTsa6BlDUJBZVcHMYZE"
+    ]
+   },
+   "score": {
+    "pass": true,
+    "fields_exact": true,
+    "fp": {},
+    "fn": {},
+    "checks": {
+     "intent": true,
+     "language": true,
+     "matrix_language": true,
+     "explicit_language_request": true,
+     "sentiment": true,
+     "code_switched": false,
+     "question": true
+    }
+   }
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite@minimal",
+   "case_id": "var-exp-mx-04",
+   "output": {
+    "intent": "answer",
+    "fields": {
+     "experience_years": {
+      "value": 0.6666666666666666,
+      "confidence": 1.0
+     },
+     "platforms": {
+      "value": [
+       "didi_food",
+       "cornershop"
+      ],
+      "confidence": 1.0
+     }
+    },
+    "language": "es",
+    "matrix_language": "es",
+    "english_ratio": 0.14,
+    "explicit_language_request": null,
+    "code_switched": true,
+    "sentiment": "neutral",
+    "question": null,
+    "sub_questions": [],
+    "question_topic": null,
+    "slot": null,
+    "declines_field": false,
+    "mode": null
+   },
+   "record": {
+    "model": "google/gemini-3.5-flash-lite@minimal",
+    "role": "extractor",
+    "case_id": "var-exp-mx-04",
+    "ok": true,
+    "latency_s": 0.943,
+    "ttft_s": null,
+    "input_tokens": 4373,
+    "output_tokens": 143,
+    "cost_usd": 0.00058967,
+    "cost_source": "usage",
+    "provider": "Google",
+    "requests": 1,
+    "output_retries": 0,
+    "error": null,
+    "generation_ids": [
+     "gen-1792605362-hcTYkWuZIthuAgWjmyWd"
+    ]
+   },
+   "score": {
+    "pass": true,
+    "fields_exact": true,
+    "fp": {},
+    "fn": {},
+    "checks": {
+     "intent": true,
+     "language": true,
+     "matrix_language": true,
+     "explicit_language_request": true,
+     "sentiment": true,
+     "code_switched": false,
+     "question": true
+    }
+   }
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite@minimal",
+   "case_id": "seed-spanglish-mx-04",
+   "output": {
+    "intent": "answer",
+    "fields": {
+     "schedule": {
+      "value": [
+       "evening"
+      ],
+      "confidence": 1.0
+     }
+    },
+    "language": "en",
+    "matrix_language": "en",
+    "english_ratio": 0.8,
+    "explicit_language_request": "en",
+    "code_switched": true,
+    "sentiment": "neutral",
+    "question": null,
+    "sub_questions": [],
+    "question_topic": null,
+    "slot": null,
+    "declines_field": false,
+    "mode": null
+   },
+   "record": {
+    "model": "google/gemini-3.5-flash-lite@minimal",
+    "role": "extractor",
+    "case_id": "seed-spanglish-mx-04",
+    "ok": true,
+    "latency_s": 2.212,
+    "ttft_s": null,
+    "input_tokens": 8905,
+    "output_tokens": 188,
+    "cost_usd": 0.00098339,
+    "cost_source": "usage",
+    "provider": "Google",
+    "requests": 2,
+    "output_retries": 1,
+    "error": null,
+    "generation_ids": [
+     "gen-1792605362-R6bOxwCa3JtLRrX2UgDc",
+     "gen-1792605363-5vrbNJwMDtNFK435ggYT"
+    ]
+   },
+   "score": {
+    "pass": false,
+    "fields_exact": true,
+    "fp": {},
+    "fn": {},
+    "checks": {
+     "intent": true,
+     "language": true,
+     "matrix_language": false,
+     "explicit_language_request": true,
+     "sentiment": true,
+     "code_switched": true,
+     "question": true
+    }
+   }
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite@minimal",
+   "case_id": "seed-spanglish-mx-05",
+   "output": {
+    "intent": "answer",
+    "fields": {
+     "has_license": {
+      "value": true,
+      "confidence": 1.0
+     },
+     "availability": {
+      "value": [
+       "weekends"
+      ],
+      "confidence": 1.0
+     }
+    },
+    "language": "en",
+    "matrix_language": "mixed",
+    "english_ratio": 0.43,
+    "explicit_language_request": null,
+    "code_switched": true,
+    "sentiment": "neutral",
+    "question": null,
+    "sub_questions": [],
+    "question_topic": null,
+    "slot": null,
+    "declines_field": false,
+    "mode": null
+   },
+   "record": {
+    "model": "google/gemini-3.5-flash-lite@minimal",
+    "role": "extractor",
+    "case_id": "seed-spanglish-mx-05",
+    "ok": true,
+    "latency_s": 0.82,
+    "ttft_s": null,
+    "input_tokens": 4369,
+    "output_tokens": 117,
+    "cost_usd": 0.00052347,
+    "cost_source": "usage",
+    "provider": "Google",
+    "requests": 1,
+    "output_retries": 0,
+    "error": null,
+    "generation_ids": [
+     "gen-1792605362-fCFDcFVFkvbzoZNWlXjr"
+    ]
+   },
+   "score": {
+    "pass": true,
+    "fields_exact": true,
+    "fp": {},
+    "fn": {},
+    "checks": {
+     "intent": true,
+     "language": true,
+     "matrix_language": true,
+     "explicit_language_request": true,
+     "sentiment": true,
+     "code_switched": true,
+     "question": true
+    }
+   }
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite@minimal",
+   "case_id": "seed-spanglish-mx-06",
+   "output": {
+    "intent": "answer",
+    "fields": {
+     "schedule": {
+      "value": [
+       "afternoon"
+      ],
+      "confidence": 1.0
+     }
+    },
+    "language": "es",
+    "matrix_language": "es",
+    "english_ratio": 0.0,
+    "explicit_language_request": "es",
+    "code_switched": false,
+    "sentiment": "neutral",
+    "question": null,
+    "sub_questions": [],
+    "question_topic": null,
+    "slot": null,
+    "declines_field": false,
+    "mode": null
+   },
+   "record": {
+    "model": "google/gemini-3.5-flash-lite@minimal",
+    "role": "extractor",
+    "case_id": "seed-spanglish-mx-06",
+    "ok": true,
+    "latency_s": 0.999,
+    "ttft_s": null,
+    "input_tokens": 4383,
+    "output_tokens": 156,
+    "cost_usd": 0.0006249,
+    "cost_source": "usage",
+    "provider": "Google",
+    "requests": 1,
+    "output_retries": 0,
+    "error": null,
+    "generation_ids": [
+     "gen-1792605362-FMhcMZ1yADE8FcXermNv"
+    ]
+   },
+   "score": {
+    "pass": true,
+    "fields_exact": true,
+    "fp": {},
+    "fn": {},
+    "checks": {
+     "intent": true,
+     "language": true,
+     "matrix_language": true,
+     "explicit_language_request": true,
+     "sentiment": false,
+     "code_switched": true
+    }
+   }
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite@minimal",
+   "case_id": "var-spanglish-mx-08",
+   "output": {
+    "intent": "answer",
+    "fields": {
+     "experience_years": {
+      "value": 0.5,
+      "confidence": 1.0
+     },
+     "platforms": {
+      "value": [
+       "didi_food"
+      ],
+      "confidence": 1.0
+     }
+    },
+    "language": "es",
+    "matrix_language": "es",
+    "english_ratio": 0.25,
+    "explicit_language_request": null,
+    "code_switched": true,
+    "sentiment": "neutral",
+    "question": null,
+    "sub_questions": [],
+    "question_topic": null,
+    "slot": null,
+    "declines_field": false,
+    "mode": null
+   },
+   "record": {
+    "model": "google/gemini-3.5-flash-lite@minimal",
+    "role": "extractor",
+    "case_id": "var-spanglish-mx-08",
+    "ok": true,
+    "latency_s": 0.847,
+    "ttft_s": null,
+    "input_tokens": 4371,
+    "output_tokens": 177,
+    "cost_usd": 0.00067407,
+    "cost_source": "usage",
+    "provider": "Google",
+    "requests": 1,
+    "output_retries": 0,
+    "error": null,
+    "generation_ids": [
+     "gen-1792605362-IsRNeuzGaCMXE7sQo79L"
+    ]
+   },
+   "score": {
+    "pass": true,
+    "fields_exact": true,
+    "fp": {},
+    "fn": {},
+    "checks": {
+     "intent": true,
+     "language": true,
+     "matrix_language": true,
+     "explicit_language_request": true,
+     "sentiment": true,
+     "code_switched": true,
+     "question": true
+    }
+   }
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite@minimal",
+   "case_id": "var-spanglish-mx-09",
+   "output": {
+    "intent": "answer",
+    "fields": {
+     "start_date": {
+      "value": "2026-10-26",
+      "confidence": 0.95
+     }
+    },
+    "language": "es",
+    "matrix_language": "es",
+    "english_ratio": 0.25,
+    "explicit_language_request": null,
+    "code_switched": true,
+    "sentiment": "neutral",
+    "question": null,
+    "sub_questions": [],
+    "question_topic": null,
+    "slot": null,
+    "declines_field": false,
+    "mode": null
+   },
+   "record": {
+    "model": "google/gemini-3.5-flash-lite@minimal",
+    "role": "extractor",
+    "case_id": "var-spanglish-mx-09",
+    "ok": true,
+    "latency_s": 1.114,
+    "ttft_s": null,
+    "input_tokens": 4370,
+    "output_tokens": 140,
+    "cost_usd": 0.001661,
+    "cost_source": "usage",
+    "provider": "Google",
+    "requests": 1,
+    "output_retries": 0,
+    "error": null,
+    "generation_ids": [
+     "gen-1792605363-Dzqlh4xLERYSQ0Kv6aJq"
+    ]
+   },
+   "score": {
+    "pass": true,
+    "fields_exact": true,
+    "fp": {},
+    "fn": {},
+    "checks": {
+     "intent": true,
+     "language": true,
+     "matrix_language": true,
+     "explicit_language_request": true,
+     "sentiment": true,
+     "start_date": true,
+     "code_switched": true,
+     "question": true
+    }
+   }
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite@minimal",
+   "case_id": "var-spanglish-mx-11",
+   "output": {
+    "intent": "answer",
+    "fields": {
+     "has_license": {
+      "value": true,
+      "confidence": 1.0
+     }
+    },
+    "language": "es",
+    "matrix_language": "mixed",
+    "english_ratio": 0.25,
+    "explicit_language_request": null,
+    "code_switched": true,
+    "sentiment": "neutral",
+    "question": null,
+    "sub_questions": [],
+    "question_topic": null,
+    "slot": null,
+    "declines_field": false,
+    "mode": null
+   },
+   "record": {
+    "model": "google/gemini-3.5-flash-lite@minimal",
+    "role": "extractor",
+    "case_id": "var-spanglish-mx-11",
+    "ok": true,
+    "latency_s": 0.921,
+    "ttft_s": null,
+    "input_tokens": 4370,
+    "output_tokens": 88,
+    "cost_usd": 0.00045127,
+    "cost_source": "usage",
+    "provider": "Google",
+    "requests": 1,
+    "output_retries": 0,
+    "error": null,
+    "generation_ids": [
+     "gen-1792605363-2QaOGkE4ZEt0ZfxzruK4"
+    ]
+   },
+   "score": {
+    "pass": false,
+    "fields_exact": true,
+    "fp": {},
+    "fn": {},
+    "checks": {
+     "intent": true,
+     "language": true,
+     "matrix_language": false,
+     "explicit_language_request": true,
+     "sentiment": true,
+     "code_switched": true,
+     "question": true
+    }
+   }
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite@minimal",
+   "case_id": "var-spanglish-mx-12",
+   "output": {
+    "intent": "answer",
+    "fields": {
+     "city": {
+      "value": "San Pedro Garza García, Valle Oriente",
+      "confidence": 0.95
+     }
+    },
+    "language": "es",
+    "matrix_language": "es",
+    "english_ratio": 0.2,
+    "explicit_language_request": null,
+    "code_switched": true,
+    "sentiment": "neutral",
+    "question": null,
+    "sub_questions": [],
+    "question_topic": null,
+    "slot": null,
+    "declines_field": false,
+    "mode": null
+   },
+   "record": {
+    "model": "google/gemini-3.5-flash-lite@minimal",
+    "role": "extractor",
+    "case_id": "var-spanglish-mx-12",
+    "ok": true,
+    "latency_s": 1.035,
+    "ttft_s": null,
+    "input_tokens": 4368,
+    "output_tokens": 144,
+    "cost_usd": 0.00059067,
+    "cost_source": "usage",
+    "provider": "Google",
+    "requests": 1,
+    "output_retries": 0,
+    "error": null,
+    "generation_ids": [
+     "gen-1792605363-gaJBYXxjy0Kh7A3sw5BU"
+    ]
+   },
+   "score": {
+    "pass": true,
+    "fields_exact": true,
+    "fp": {},
+    "fn": {},
+    "checks": {
+     "intent": true,
+     "language": true,
+     "matrix_language": true,
+     "explicit_language_request": true,
+     "sentiment": true,
+     "code_switched": true,
+     "question": true
+    }
+   }
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite@minimal",
+   "case_id": "var-spanglish-mx-14",
+   "output": {
+    "intent": "answer",
+    "fields": {
+     "experience_years": {
+      "value": 2.5,
+      "confidence": 1.0
+     },
+     "platforms": {
+      "value": [
+       "rappi",
+       "uber_eats"
+      ],
+      "confidence": 1.0
+     }
+    },
+    "language": "es",
+    "matrix_language": "mixed",
+    "english_ratio": 0.4,
+    "explicit_language_request": null,
+    "code_switched": true,
+    "sentiment": "neutral",
+    "question": null,
+    "sub_questions": [],
+    "question_topic": null,
+    "slot": null,
+    "declines_field": false,
+    "mode": null
+   },
+   "record": {
+    "model": "google/gemini-3.5-flash-lite@minimal",
+    "role": "extractor",
+    "case_id": "var-spanglish-mx-14",
+    "ok": true,
+    "latency_s": 1.79,
+    "ttft_s": null,
+    "input_tokens": 8999,
+    "output_tokens": 356,
+    "cost_usd": 0.00143078,
+    "cost_source": "usage",
+    "provider": "Google",
+    "requests": 2,
+    "output_retries": 1,
+    "error": null,
+    "generation_ids": [
+     "gen-1792605363-iIOg2zfyvuetRi4gYNpi",
+     "gen-1792605364-h4vMKnHr3UxZZGFAPSTO"
+    ]
+   },
+   "score": {
+    "pass": true,
+    "fields_exact": true,
+    "fp": {},
+    "fn": {},
+    "checks": {
+     "intent": true,
+     "language": true,
+     "matrix_language": true,
+     "explicit_language_request": true,
+     "sentiment": true,
+     "code_switched": true,
+     "question": true
+    }
+   }
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite@minimal",
+   "case_id": "var-spanglish-mx-15",
+   "output": {
+    "intent": "answer",
+    "fields": {
+     "availability": {
+      "value": [
+       "full_time"
+      ],
+      "confidence": 0.95
+     }
+    },
+    "language": "es",
+    "matrix_language": "es",
+    "english_ratio": 0.25,
+    "explicit_language_request": null,
+    "code_switched": true,
+    "sentiment": "neutral",
+    "question": null,
+    "sub_questions": [],
+    "question_topic": null,
+    "slot": null,
+    "declines_field": false,
+    "mode": null
+   },
+   "record": {
+    "model": "google/gemini-3.5-flash-lite@minimal",
+    "role": "extractor",
+    "case_id": "var-spanglish-mx-15",
+    "ok": true,
+    "latency_s": 1.038,
+    "ttft_s": null,
+    "input_tokens": 4373,
+    "output_tokens": 147,
+    "cost_usd": 0.00059967,
+    "cost_source": "usage",
+    "provider": "Google",
+    "requests": 1,
+    "output_retries": 0,
+    "error": null,
+    "generation_ids": [
+     "gen-1792605363-ePCGcICIRW4cLr3TZQ3k"
+    ]
+   },
+   "score": {
+    "pass": false,
+    "fields_exact": true,
+    "fp": {},
+    "fn": {},
+    "checks": {
+     "intent": true,
+     "language": true,
+     "matrix_language": false,
+     "explicit_language_request": true,
+     "sentiment": true,
+     "code_switched": true,
+     "question": true
+    }
+   }
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite@minimal",
+   "case_id": "var-spanglish-mx-17",
+   "output": {
+    "intent": "answer",
+    "fields": {
+     "start_date": {
+      "value": "2026-10-26",
+      "confidence": 0.95
+     }
+    },
+    "language": "en",
+    "matrix_language": "mixed",
+    "english_ratio": 0.5,
+    "explicit_language_request": null,
+    "code_switched": true,
+    "sentiment": "neutral",
+    "question": null,
+    "sub_questions": [],
+    "question_topic": null,
+    "slot": null,
+    "declines_field": false,
+    "mode": null
+   },
+   "record": {
+    "model": "google/gemini-3.5-flash-lite@minimal",
+    "role": "extractor",
+    "case_id": "var-spanglish-mx-17",
+    "ok": true,
+    "latency_s": 0.96,
+    "ttft_s": null,
+    "input_tokens": 4375,
+    "output_tokens": 149,
+    "cost_usd": 0.000605,
+    "cost_source": "usage",
+    "provider": "Google",
+    "requests": 1,
+    "output_retries": 0,
+    "error": null,
+    "generation_ids": [
+     "gen-1792605363-O4LSg1YHZaA8f7hq4MPx"
+    ]
+   },
+   "score": {
+    "pass": true,
+    "fields_exact": true,
+    "fp": {},
+    "fn": {},
+    "checks": {
+     "intent": true,
+     "language": true,
+     "matrix_language": true,
+     "explicit_language_request": true,
+     "sentiment": true,
+     "start_date": true,
+     "code_switched": true,
+     "question": true
+    }
+   }
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite@minimal",
+   "case_id": "var-spanglish-mx-18",
+   "output": {
+    "intent": "answer",
+    "fields": {
+     "city": {
+      "value": "Narvarte",
+      "confidence": 1.0
+     }
+    },
+    "language": "en",
+    "matrix_language": "en",
+    "english_ratio": 0.8,
+    "explicit_language_request": null,
+    "code_switched": true,
+    "sentiment": "neutral",
+    "question": null,
+    "sub_questions": [],
+    "question_topic": null,
+    "slot": null,
+    "declines_field": false,
+    "mode": null
+   },
+   "record": {
+    "model": "google/gemini-3.5-flash-lite@minimal",
+    "role": "extractor",
+    "case_id": "var-spanglish-mx-18",
+    "ok": true,
+    "latency_s": 1.136,
+    "ttft_s": null,
+    "input_tokens": 4371,
+    "output_tokens": 96,
+    "cost_usd": 0.00047157,
+    "cost_source": "usage",
+    "provider": "Google",
+    "requests": 1,
+    "output_retries": 0,
+    "error": null,
+    "generation_ids": [
+     "gen-1792605363-KXEyzOiMPy2IrfH99x0T"
+    ]
+   },
+   "score": {
+    "pass": true,
+    "fields_exact": true,
+    "fp": {},
+    "fn": {},
+    "checks": {
+     "intent": true,
+     "language": true,
+     "matrix_language": true,
+     "explicit_language_request": true,
+     "sentiment": true,
+     "code_switched": true,
+     "question": true
+    }
+   }
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite@minimal",
+   "case_id": "var-spanglish-mx-19",
+   "output": {
+    "intent": "answer",
+    "fields": {
+     "experience_years": {
+      "value": 2.0,
+      "confidence": 0.9
+     },
+     "platforms": {
+      "value": [
+       "didi_food"
+      ],
+      "confidence": 0.9
+     }
+    },
+    "language": "en",
+    "matrix_language": "mixed",
+    "english_ratio": 0.6,
+    "explicit_language_request": null,
+    "code_switched": true,
+    "sentiment": "neutral",
+    "question": null,
+    "sub_questions": [],
+    "question_topic": null,
+    "slot": null,
+    "declines_field": false,
+    "mode": null
+   },
+   "record": {
+    "model": "google/gemini-3.5-flash-lite@minimal",
+    "role": "extractor",
+    "case_id": "var-spanglish-mx-19",
+    "ok": true,
+    "latency_s": 0.982,
+    "ttft_s": null,
+    "input_tokens": 4371,
+    "output_tokens": 86,
+    "cost_usd": 0.0015263,
+    "cost_source": "usage",
+    "provider": "Google",
+    "requests": 1,
+    "output_retries": 0,
+    "error": null,
+    "generation_ids": [
+     "gen-1792605364-FS4VVh2Zb92RFVu48Sti"
+    ]
+   },
+   "score": {
+    "pass": false,
+    "fields_exact": true,
+    "fp": {},
+    "fn": {},
+    "checks": {
+     "intent": true,
+     "language": true,
+     "matrix_language": false,
+     "explicit_language_request": true,
+     "sentiment": true,
+     "code_switched": true,
+     "question": true
+    }
+   }
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite@minimal",
+   "case_id": "var-spanglish-mx-20",
+   "output": {
+    "intent": "question",
+    "fields": {},
+    "language": "en",
+    "matrix_language": "en",
+    "english_ratio": 1.0,
+    "explicit_language_request": "en",
+    "code_switched": false,
+    "sentiment": "neutral",
+    "question": null,
+    "sub_questions": [],
+    "question_topic": null,
+    "slot": null,
+    "declines_field": false,
+    "mode": null
+   },
+   "record": {
+    "model": "google/gemini-3.5-flash-lite@minimal",
+    "role": "extractor",
+    "case_id": "var-spanglish-mx-20",
+    "ok": true,
+    "latency_s": 0.789,
+    "ttft_s": null,
+    "input_tokens": 4387,
+    "output_tokens": 110,
+    "cost_usd": 0.0005111,
+    "cost_source": "usage",
+    "provider": "Google",
+    "requests": 1,
+    "output_retries": 0,
+    "error": null,
+    "generation_ids": [
+     "gen-1792605364-3s3m7jCYc7xoJZQP7NFs"
+    ]
+   },
+   "score": {
+    "pass": true,
+    "fields_exact": true,
+    "fp": {},
+    "fn": {},
+    "checks": {
+     "intent": true,
+     "language": true,
+     "matrix_language": true,
+     "explicit_language_request": true,
+     "sentiment": true,
+     "code_switched": true
+    }
+   }
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite@minimal",
+   "case_id": "var-spanglish-mx-23",
+   "output": {
+    "intent": "answer",
+    "fields": {
+     "has_license": {
+      "value": true,
+      "confidence": 1.0
+     }
+    },
+    "language": "en",
+    "matrix_language": "en",
+    "english_ratio": 1.0,
+    "explicit_language_request": null,
+    "code_switched": false,
+    "sentiment": "neutral",
+    "question": null,
+    "sub_questions": [],
+    "question_topic": null,
+    "slot": null,
+    "declines_field": false,
+    "mode": null
+   },
+   "record": {
+    "model": "google/gemini-3.5-flash-lite@minimal",
+    "role": "extractor",
+    "case_id": "var-spanglish-mx-23",
+    "ok": true,
+    "latency_s": 1.034,
+    "ttft_s": null,
+    "input_tokens": 4366,
+    "output_tokens": 138,
+    "cost_usd": 0.00057507,
+    "cost_source": "usage",
+    "provider": "Google",
+    "requests": 1,
+    "output_retries": 0,
+    "error": null,
+    "generation_ids": [
+     "gen-1792605364-iZTCnvMAxR7D2Hi4ZeRx"
+    ]
+   },
+   "score": {
+    "pass": true,
+    "fields_exact": true,
+    "fp": {},
+    "fn": {},
+    "checks": {
+     "intent": true,
+     "language": true,
+     "matrix_language": true,
+     "explicit_language_request": true,
+     "sentiment": true,
+     "code_switched": true,
+     "question": true
+    }
+   }
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite@minimal",
+   "case_id": "var-spanglish-mx-24",
+   "output": {
+    "intent": "answer",
+    "fields": {
+     "availability": {
+      "value": [
+       "full_time"
+      ],
+      "confidence": 1.0
+     },
+     "schedule": {
+      "value": [
+       "morning"
+      ],
+      "confidence": 1.0
+     }
+    },
+    "language": "en",
+    "matrix_language": "mixed",
+    "english_ratio": 0.8,
+    "explicit_language_request": null,
+    "code_switched": true,
+    "sentiment": "neutral",
+    "question": null,
+    "sub_questions": [],
+    "question_topic": null,
+    "slot": null,
+    "declines_field": false,
+    "mode": null
+   },
+   "record": {
+    "model": "google/gemini-3.5-flash-lite@minimal",
+    "role": "extractor",
+    "case_id": "var-spanglish-mx-24",
+    "ok": true,
+    "latency_s": 1.128,
+    "ttft_s": null,
+    "input_tokens": 4394,
+    "output_tokens": 126,
+    "cost_usd": 0.0005532,
+    "cost_source": "usage",
+    "provider": "Google",
+    "requests": 1,
+    "output_retries": 0,
+    "error": null,
+    "generation_ids": [
+     "gen-1792605364-D7nUj5OaYLzdXJQyGzCA"
+    ]
+   },
+   "score": {
+    "pass": false,
+    "fields_exact": true,
+    "fp": {},
+    "fn": {},
+    "checks": {
+     "intent": true,
+     "language": true,
+     "matrix_language": false,
+     "explicit_language_request": true,
+     "sentiment": true,
+     "code_switched": false,
+     "question": true
+    }
+   }
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite@minimal",
+   "case_id": "var-spanglish-mx-25",
+   "output": {
+    "intent": "answer",
+    "fields": {
+     "experience_years": {
+      "value": 3.0,
+      "confidence": 0.95
+     },
+     "platforms": {
+      "value": [
+       "uber_eats"
+      ],
+      "confidence": 1.0
+     }
+    },
+    "language": "es",
+    "matrix_language": "es",
+    "english_ratio": 0.25,
+    "explicit_language_request": null,
+    "code_switched": true,
+    "sentiment": "neutral",
+    "question": null,
+    "sub_questions": [],
+    "question_topic": null,
+    "slot": null,
+    "declines_field": false,
+    "mode": null
+   },
+   "record": {
+    "model": "google/gemini-3.5-flash-lite@minimal",
+    "role": "extractor",
+    "case_id": "var-spanglish-mx-25",
+    "ok": true,
+    "latency_s": 1.313,
+    "ttft_s": null,
+    "input_tokens": 4373,
+    "output_tokens": 125,
+    "cost_usd": 0.00054467,
+    "cost_source": "usage",
+    "provider": "Google",
+    "requests": 1,
+    "output_retries": 0,
+    "error": null,
+    "generation_ids": [
+     "gen-1792605364-cagTWIQDtJ0n9EuFjlje"
+    ]
+   },
+   "score": {
+    "pass": true,
+    "fields_exact": true,
+    "fp": {},
+    "fn": {},
+    "checks": {
+     "intent": true,
+     "language": true,
+     "matrix_language": true,
+     "explicit_language_request": true,
+     "sentiment": true,
+     "code_switched": true,
+     "question": true
+    }
+   }
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite@minimal",
+   "case_id": "var-offtopic-mx-03",
+   "output": {
+    "intent": "small_talk",
+    "fields": {},
+    "language": "es",
+    "matrix_language": "es",
+    "english_ratio": 0.0,
+    "explicit_language_request": null,
+    "code_switched": false,
+    "sentiment": "positive",
+    "question": null,
+    "sub_questions": [],
+    "question_topic": null,
+    "slot": null,
+    "declines_field": false,
+    "mode": null
+   },
+   "record": {
+    "model": "google/gemini-3.5-flash-lite@minimal",
+    "role": "extractor",
+    "case_id": "var-offtopic-mx-03",
+    "ok": true,
+    "latency_s": 0.942,
+    "ttft_s": null,
+    "input_tokens": 4372,
+    "output_tokens": 60,
+    "cost_usd": 0.00038187,
+    "cost_source": "usage",
+    "provider": "Google",
+    "requests": 1,
+    "output_retries": 0,
+    "error": null,
+    "generation_ids": [
+     "gen-1792605364-UZdrx7xttMq9wWXMjFla"
+    ]
+   },
+   "score": {
+    "pass": true,
+    "fields_exact": true,
+    "fp": {},
+    "fn": {},
+    "checks": {
+     "intent": true,
+     "language": true,
+     "matrix_language": true,
+     "explicit_language_request": true,
+     "sentiment": true,
+     "code_switched": true,
+     "question": true
+    }
+   }
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite@minimal",
+   "case_id": "var-confirm-en-01",
+   "output": {
+    "intent": "answer",
+    "fields": {},
+    "language": "en",
+    "matrix_language": "en",
+    "english_ratio": 1.0,
+    "explicit_language_request": null,
+    "code_switched": false,
+    "sentiment": "neutral",
+    "question": null,
+    "sub_questions": [],
+    "question_topic": null,
+    "slot": "Thursday 22 at 11:00",
+    "declines_field": false,
+    "mode": null
+   },
+   "record": {
+    "model": "google/gemini-3.5-flash-lite@minimal",
+    "role": "extractor",
+    "case_id": "var-confirm-en-01",
+    "ok": true,
+    "latency_s": 0.99,
+    "ttft_s": null,
+    "input_tokens": 4404,
+    "output_tokens": 120,
+    "cost_usd": 0.0016212,
+    "cost_source": "usage",
+    "provider": "Google",
+    "requests": 1,
+    "output_retries": 0,
+    "error": null,
+    "generation_ids": [
+     "gen-1792605364-hPNp4dJGTW0wkmv1hmIc"
+    ]
+   },
+   "score": {
+    "pass": true,
+    "fields_exact": true,
+    "fp": {},
+    "fn": {},
+    "checks": {
+     "intent": true,
+     "language": true,
+     "matrix_language": true,
+     "explicit_language_request": true,
+     "sentiment": true,
+     "code_switched": true,
+     "question": true
+    }
+   }
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite@minimal",
+   "case_id": "var-confirm-mx-02",
+   "output": {
+    "intent": "confirm",
+    "fields": {},
+    "language": "es",
+    "matrix_language": "es",
+    "english_ratio": 0.0,
+    "explicit_language_request": null,
+    "code_switched": false,
+    "sentiment": "neutral",
+    "question": null,
+    "sub_questions": [],
+    "question_topic": null,
+    "slot": null,
+    "declines_field": false,
+    "mode": null
+   },
+   "record": {
+    "model": "google/gemini-3.5-flash-lite@minimal",
+    "role": "extractor",
+    "case_id": "var-confirm-mx-02",
+    "ok": true,
+    "latency_s": 0.755,
+    "ttft_s": null,
+    "input_tokens": 4389,
+    "output_tokens": 109,
+    "cost_usd": 0.0005092,
+    "cost_source": "usage",
+    "provider": "Google",
+    "requests": 1,
+    "output_retries": 0,
+    "error": null,
+    "generation_ids": [
+     "gen-1792605364-S1XTsBU0jgRbyFpd9n57"
+    ]
+   },
+   "score": {
+    "pass": true,
+    "fields_exact": true,
+    "fp": {},
+    "fn": {},
+    "checks": {
+     "intent": true,
+     "language": true,
+     "matrix_language": true,
+     "explicit_language_request": true,
+     "sentiment": true,
+     "code_switched": true,
+     "question": true
+    }
+   }
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite@minimal",
+   "case_id": "ec-license-en-04",
+   "output": {
+    "intent": "answer",
+    "fields": {
+     "has_license": {
+      "value": true,
+      "confidence": 1.0
+     }
+    },
+    "language": "en",
+    "matrix_language": "en",
+    "english_ratio": 1.0,
+    "explicit_language_request": null,
+    "code_switched": false,
+    "sentiment": "neutral",
+    "question": null,
+    "sub_questions": [],
+    "question_topic": null,
+    "slot": null,
+    "declines_field": false,
+    "mode": null
+   },
+   "record": {
+    "model": "google/gemini-3.5-flash-lite@minimal",
+    "role": "extractor",
+    "case_id": "ec-license-en-04",
+    "ok": true,
+    "latency_s": 0.754,
+    "ttft_s": null,
+    "input_tokens": 4363,
+    "output_tokens": 91,
+    "cost_usd": 0.00045667,
+    "cost_source": "usage",
+    "provider": "Google",
+    "requests": 1,
+    "output_retries": 0,
+    "error": null,
+    "generation_ids": [
+     "gen-1792605365-EWgabJoG1oFDZQwckuXO"
+    ]
+   },
+   "score": {
+    "pass": true,
+    "fields_exact": true,
+    "fp": {},
+    "fn": {},
+    "checks": {
+     "intent": true,
+     "language": true,
+     "matrix_language": true,
+     "explicit_language_request": true,
+     "sentiment": true,
+     "code_switched": true,
+     "question": true
+    }
+   }
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite@minimal",
+   "case_id": "ec-consent-mx-02",
+   "output": {
+    "intent": "confirm",
+    "fields": {},
+    "language": "es",
+    "matrix_language": "es",
+    "english_ratio": 0.0,
+    "explicit_language_request": null,
+    "code_switched": false,
+    "sentiment": "neutral",
+    "question": null,
+    "sub_questions": [],
+    "question_topic": null,
+    "slot": null,
+    "declines_field": false,
+    "mode": null
+   },
+   "record": {
+    "model": "google/gemini-3.5-flash-lite@minimal",
+    "role": "extractor",
+    "case_id": "ec-consent-mx-02",
+    "ok": true,
+    "latency_s": 0.955,
+    "ttft_s": null,
+    "input_tokens": 4388,
+    "output_tokens": 44,
+    "cost_usd": 0.0003464,
+    "cost_source": "usage",
+    "provider": "Google",
+    "requests": 1,
+    "output_retries": 0,
+    "error": null,
+    "generation_ids": [
+     "gen-1792605365-QAS8oop1QbLOsBPR3V66"
+    ]
+   },
+   "score": {
+    "pass": true,
+    "fields_exact": true,
+    "fp": {},
+    "fn": {},
+    "checks": {
+     "intent": true,
+     "language": true,
+     "matrix_language": true,
+     "explicit_language_request": true,
+     "sentiment": true,
+     "code_switched": true,
+     "question": true
+    }
+   }
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite@minimal",
+   "case_id": "ec-consent-es-03",
+   "output": {
+    "intent": "confirm",
+    "fields": {},
+    "language": "es",
+    "matrix_language": "es",
+    "english_ratio": 0.0,
+    "explicit_language_request": null,
+    "code_switched": false,
+    "sentiment": "neutral",
+    "question": null,
+    "sub_questions": [],
+    "question_topic": null,
+    "slot": null,
+    "declines_field": false,
+    "mode": null
+   },
+   "record": {
+    "model": "google/gemini-3.5-flash-lite@minimal",
+    "role": "extractor",
+    "case_id": "ec-consent-es-03",
+    "ok": true,
+    "latency_s": 1.017,
+    "ttft_s": null,
+    "input_tokens": 4390,
+    "output_tokens": 44,
+    "cost_usd": 0.000347,
+    "cost_source": "usage",
+    "provider": "Google",
+    "requests": 1,
+    "output_retries": 0,
+    "error": null,
+    "generation_ids": [
+     "gen-1792605365-ErGBPAXkejYmTx2yjjN6"
+    ]
+   },
+   "score": {
+    "pass": true,
+    "fields_exact": true,
+    "fp": {},
+    "fn": {},
+    "checks": {
+     "intent": true,
+     "language": true,
+     "matrix_language": true,
+     "explicit_language_request": true,
+     "sentiment": true,
+     "code_switched": true,
+     "question": true
+    }
+   }
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite@minimal",
+   "case_id": "ec-summary-es-01",
+   "output": {
+    "intent": "confirm",
+    "fields": {},
+    "language": "es",
+    "matrix_language": "es",
+    "english_ratio": 0.0,
+    "explicit_language_request": null,
+    "code_switched": false,
+    "sentiment": "positive",
+    "question": null,
+    "sub_questions": [],
+    "question_topic": null,
+    "slot": null,
+    "declines_field": false,
+    "mode": null
+   },
+   "record": {
+    "model": "google/gemini-3.5-flash-lite@minimal",
+    "role": "extractor",
+    "case_id": "ec-summary-es-01",
+    "ok": true,
+    "latency_s": 0.84,
+    "ttft_s": null,
+    "input_tokens": 4388,
+    "output_tokens": 109,
+    "cost_usd": 0.0005089,
+    "cost_source": "usage",
+    "provider": "Google",
+    "requests": 1,
+    "output_retries": 0,
+    "error": null,
+    "generation_ids": [
+     "gen-1792605365-6UGwcBLCw6ag9z3tLvVj"
+    ]
+   },
+   "score": {
+    "pass": true,
+    "fields_exact": true,
+    "fp": {},
+    "fn": {},
+    "checks": {
+     "intent": true,
+     "language": true,
+     "matrix_language": true,
+     "explicit_language_request": true,
+     "sentiment": false,
+     "code_switched": true,
+     "question": true
+    }
+   }
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite@minimal",
+   "case_id": "ec-pause-es-01",
+   "output": {
+    "intent": "answer",
+    "fields": {},
+    "language": "es",
+    "matrix_language": "es",
+    "english_ratio": 0.0,
+    "explicit_language_request": null,
+    "code_switched": false,
+    "sentiment": "neutral",
+    "question": null,
+    "sub_questions": [],
+    "question_topic": null,
+    "slot": null,
+    "declines_field": false,
+    "mode": null
+   },
+   "record": {
+    "model": "google/gemini-3.5-flash-lite@minimal",
+    "role": "extractor",
+    "case_id": "ec-pause-es-01",
+    "ok": true,
+    "latency_s": 0.976,
+    "ttft_s": null,
+    "input_tokens": 4401,
+    "output_tokens": 53,
+    "cost_usd": 0.0003728,
+    "cost_source": "usage",
+    "provider": "Google",
+    "requests": 1,
+    "output_retries": 0,
+    "error": null,
+    "generation_ids": [
+     "gen-1792605365-cNwrqupFECzbCvyOjeET"
+    ]
+   },
+   "score": {
+    "pass": true,
+    "fields_exact": true,
+    "fp": {},
+    "fn": {},
+    "checks": {
+     "intent": true,
+     "language": true,
+     "matrix_language": true,
+     "explicit_language_request": true,
+     "sentiment": true,
+     "code_switched": true,
+     "question": true
+    }
+   }
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite@minimal",
+   "case_id": "ec-pool-es-01",
+   "output": {
+    "intent": "confirm",
+    "fields": {},
+    "language": "es",
+    "matrix_language": "es",
+    "english_ratio": 0.0,
+    "explicit_language_request": null,
+    "code_switched": false,
+    "sentiment": "neutral",
+    "question": null,
+    "sub_questions": [],
+    "question_topic": null,
+    "slot": null,
+    "declines_field": false,
+    "mode": null
+   },
+   "record": {
+    "model": "google/gemini-3.5-flash-lite@minimal",
+    "role": "extractor",
+    "case_id": "ec-pool-es-01",
+    "ok": true,
+    "latency_s": 1.47,
+    "ttft_s": null,
+    "input_tokens": 4378,
+    "output_tokens": 109,
+    "cost_usd": 0.0005059,
+    "cost_source": "usage",
+    "provider": "Google",
+    "requests": 1,
+    "output_retries": 0,
+    "error": null,
+    "generation_ids": [
+     "gen-1792605365-YKxxOMVShYPChaY9zka8"
+    ]
+   },
+   "score": {
+    "pass": true,
+    "fields_exact": true,
+    "fp": {},
+    "fn": {},
+    "checks": {
+     "intent": true,
+     "language": true,
+     "matrix_language": true,
+     "explicit_language_request": true,
+     "sentiment": false,
+     "code_switched": true,
+     "question": true
+    }
+   }
+  }
+ ]
+}

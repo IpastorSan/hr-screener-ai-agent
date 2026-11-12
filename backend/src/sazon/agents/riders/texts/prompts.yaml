@@ -1,0 +1,95 @@
+# The rider agent in the model prompts (`llm/prompts/*.md`): every `{slot}` there is filled
+# from here, `{persona}` and `{company}` from `persona`, `{fields}` from `fields`.
+persona:
+  name: Ana
+  company: Grupo Sazón
+slots:
+  # In several prompts
+  hires: delivery drivers
+  countries: Spain and Mexico
+  # respond.md
+  words_es: '"carnet", "móvil", "vale"'
+  usted_examples: '"¿tiene licencia?", "dígame", "su nombre"'
+  words_mx: '"licencia de manejo", "celular", "sucursal"'
+  tone: like a good shift manager talking to a new hire
+  location_examples: '"la sucursal de Benito Juárez", "el local de Madrid Centro", "our Madrid Centro
+    location"'
+  brand: Sazón
+  concrete: a platform, how long, a vehicle
+  more_detail: neighbourhood, colonia, alcaldía
+  confirm_value: '`start_date`: read back `value` and ask if it is right. `city` with `location_id`:
+    the place matched that location only loosely; ask whether they mean it, named as in the reference
+    ("¿Te refieres al local de Gràcia?" / "¿Se refiere a la sucursal de Zapopan?"). `city` without it:
+    `value` is a place outside our service areas, as the candidate named it; ask whether they currently
+    live there ("¿Vives ahora en …?" / "¿Vive actualmente en …?"). Do not say they are out of the area
+    yet. `experience_years`: `value` is years of experience; read them back and ask if that is right
+    ("Para confirmar, ¿son 20 años de experiencia en reparto?"). With `platform`, ask instead how many
+    years they have delivered with that platform ("¿Me confirmas cuántos años has repartido con Glovo?"
+    / "¿Me confirma cuántos años ha repartido con Rappi?"), without the number. Never suggest you doubt
+    them.'
+  gate_close: licence
+  # summarize.md
+  country_words: Mexico (`MX`) "licencia de conducir", "celular", "sucursal"; Spain (`ES`) "carnet de
+    conducir", "móvil", "local".
+  # extract.md
+  job: a delivery-driver job
+  short_answer: '"sí" while the awaited field is `has_license` is `has_license: true`'
+  code_switch: '"puedo full time" is availability [full_time]'
+  question_examples: pay, hours, vehicle, location
+  correction_example: '"perdón, en realidad solo fines de semana"'
+  read_back: '`has_license`: she asked whether they have no valid licence right now ("¿Entonces ahora
+    no tienes carnet en vigor?"); agreeing that they have none ("sí", "no, no tengo") is `confirm` with
+    no fields, and saying they do have one ("sí tengo", "no, sí lo tengo") is `correction` with `has_license:
+    true`.'
+  follow_up_examples: '"¿y en México también?" after she said what the pay is in Spain → "¿Cuánto se
+    paga a los repartidores en México?"; "¿y eso cuánto es al mes?" after an hourly rate → "¿Cuánto
+    se gana al mes?"; "¿y si es en moto propia?" after she answered about insurance → "¿Estoy asegurado
+    si reparto con mi moto propia?"; "and on weekends?" after an answer about shifts → "Do I have to
+    work weekends?".'
+  standalone: ¿Dan casco?
+  matrix_es: '"puedo full time pero solo weekends en la mañana", "hice delivery para Rappi", "estoy
+    ready para empezar el lunes", "me late el part time"'
+  matrix_en: '"I live in Zapopan", "I live in la colonia Roma"'
+  mixed_example: '"Tengo licencia, but I only work weekends"'
+  apology_example: '"Perdona, llevo un día de perros. Tiempo completo y fines de semana" is `answer`
+    with availability [full_time, weekends]'
+# How the extractor reads each field: its line in `extract.md`, the wording that steers what
+# it reports.
+fields:
+  full_name: the name as written, trimmed, abbreviations included ("Juan Hdz"). Do not add surnames.
+  phone: the number as written, digits and a leading + only (remove spaces, dots, dashes, parentheses).
+    Keep the country code only if the candidate wrote it.
+  email: lowercased, trimmed. Undo spoken forms ("arroba" → @, "punto" → .).
+  has_license: '`true` if they have a driving licence valid for a car or motorbike (any class: "carnet
+    B", A2, "licencia tipo A", "licencia de motociclista"); `false` if they do not, including indirect
+    answers ("no conduzco", "solo bici") and a licence that is not valid today: expired, being renewed,
+    suspended or taken away ("la tengo vencida", "la estoy renovando", "me la quitaron"); `"in_progress"`
+    if they are still getting it ("lo estoy sacando", "en trámite"), waiting for it, or have only
+    a learner''s permit ("permiso de aprendiz").'
+  city: where they live or want to work now, as written, with obvious typos fixed ("Zapopan" for "zapopam")
+    and aliases kept ("DF", "GDL", "MTY"). If they name a city and a zone, neighbourhood or colonia,
+    give both, city first ("Sevilla, Triana"); if they name only a zone, give only the zone ("Gràcia",
+    "Narvarte", without "la colonia"). Do not add a city they did not say. Always use the key `city`,
+    never `location` or `zone`. A place they grew up in, come from, used to live in or are visiting
+    is not their city ("I grew up in LA", "soy de Oaxaca pero vivo en Zapopan" → only "Zapopan");
+    with no current place, leave `city` out. If you can't tell whether a place is where they live
+    now, give it with confidence below 0.7.
+  availability: list from `full_time`, `part_time`, `weekends`.
+  schedule: list of the periods they can work, from `morning`, `afternoon`, `evening` ("mañanas y
+    tardes, noches no" → [`morning`, `afternoon`]); leave out a period they refuse. `flexible` alone
+    when any period works ("cualquiera", "me da igual", "any" → [`flexible`]).
+  experience_years: 'years of delivery or driving work as a number. Months divide by 12 ("medio año"
+    0.5, "6 meses" 0.5, "3 meses" 0.25, "un año y medio" 1.5). No experience ("ninguna") → 0. Add
+    up periods on several platforms. If they are vague ("unos meses", "a while"), give a year or a
+    range instead of an amount ("desde 2019", "entre 2 y 3 años"), or don''t know or won''t say ("no
+    sé", "no me acuerdo"), give their words as a string: never work out a number from them, and never
+    0.'
+  platforms: list from `glovo`, `uber_eats`, `just_eat`, `rappi`, `didi_food`, `deliveroo`, `amazon_flex`;
+    anything else as the name they used (e.g. "Stuart"). "Didi" means `didi_food`, "Uber" means `uber_eats`.
+    "Hice Glovo un año" gives both `platforms` and `experience_years`.
+  start_date: an ISO date (YYYY-MM-DD) resolved against today. "Ya", "hoy", "inmediato", "right away",
+    "cuando sea" → today. "Mañana" → tomorrow. "El lunes", "next Monday" → the next Monday after today.
+    "La semana que viene" / "next week" → the Monday of next week. "En dos semanas" → today + 14 days.
+    "A principios de diciembre" → the 1st of that month. "El 15" → the next 15th of a month that is
+    not in the past. A month alone ("en enero") → the 1st of its next occurrence. No resolvable date
+    ("cuando acabe el curso") → leave it out.

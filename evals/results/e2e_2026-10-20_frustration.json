@@ -1,0 +1,844 @@
+{
+ "meta": {
+  "date": "2026-10-20",
+  "combos": {
+   "A": {
+    "extractor": "google/gemini-3.5-flash-lite@minimal",
+    "responder": "anthropic/claude-haiku-5.5",
+    "summarizer": "anthropic/claude-haiku-5.5"
+   }
+  },
+  "simulator": "anthropic/claude-haiku-5.5",
+  "judge": "anthropic/claude-opus-5.5",
+  "judge_combos": null,
+  "repeat": 1,
+  "personas": [
+   "frustrated_pause"
+  ],
+  "aborted": null,
+  "run_cost_usd": 0.029052,
+  "ledger_total_usd": 21.260467
+ },
+ "aggregates": {
+  "A": {
+   "conversations": 1,
+   "all_checks": 1.0,
+   "checks": {
+    "completed": 1.0,
+    "outcome": 1.0,
+    "fields": 1.0,
+    "message_length": 1.0,
+    "one_question": 1.0,
+    "language": 1.0,
+    "register": 1.0,
+    "no_emoji": 1.0,
+    "no_promises": 1.0,
+    "ai_disclosure": 1.0,
+    "real_slots": null,
+    "no_fallback": 1.0,
+    "flags": 1.0
+   },
+   "outcome_accuracy": 1.0,
+   "field_accuracy": 1.0,
+   "language_accuracy": 1.0,
+   "fallbacks": 0,
+   "judge": {
+    "tone": 4,
+    "naturalness": 3,
+    "empathy": 3,
+    "staying_in_role": 5,
+    "brevity": 5,
+    "mean": 4.0
+   },
+   "avg_turns": 9.0,
+   "avg_cost_usd": 0.01187,
+   "simulator_cost_usd": 0.00251,
+   "judge_cost_usd": 0.01468,
+   "latency_p50_s": 1.718,
+   "latency_p95_s": 2.098
+  }
+ },
+ "conversations": [
+  {
+   "persona": "frustrated_pause",
+   "conversation_id": "501e560268584cb2bc7250b89d549af7",
+   "resumed": false,
+   "outcome": "paused",
+   "disqualify_reason": null,
+   "booked": false,
+   "booking": null,
+   "talent_pool_opt_in": null,
+   "quality_flags": [
+    "frustration"
+   ],
+   "abuse_strikes": 0,
+   "final_language": "es",
+   "country": "MX",
+   "profile": {
+    "full_name": "Rosa Jiménez Cruz",
+    "phone": "+522221234514",
+    "email": "rosa.jimenez@example.com",
+    "has_license": true,
+    "location_id": "mx-pue-centro",
+    "availability": null,
+    "schedule": null,
+    "experience_years": null,
+    "platforms": null,
+    "platform_other": null,
+    "start_date": null,
+    "late_start_days": null,
+    "city": "Puebla",
+    "location_name": "Sazón Puebla"
+   },
+   "summary": null,
+   "faq_misses": [],
+   "turns": [
+    {
+     "speaker": "ana",
+     "text": "¡Hola! Soy Ana, asistente de IA de reclutamiento de Grupo Sazón. Sus datos se tratan según el aviso de privacidad que aparece abajo. ¿Le parece si empezamos?",
+     "ui": {
+      "kind": "quick_replies",
+      "options": [
+       {
+        "value": "yes",
+        "label": "Sí"
+       },
+       {
+        "value": "no",
+        "label": "No"
+       }
+      ],
+      "link": {
+       "href": "/privacidad",
+       "label": "Leer el aviso de privacidad"
+      }
+     },
+     "action": {
+      "language": "es",
+      "country": "MX",
+      "simplify": false,
+      "ui": {
+       "kind": "quick_replies",
+       "options": [
+        {
+         "value": "yes",
+         "label": "Sí"
+        },
+        {
+         "value": "no",
+         "label": "No"
+        }
+       ],
+       "link": {
+        "href": "/privacidad",
+        "label": "Leer el aviso de privacidad"
+       }
+      },
+      "kind": "greet",
+      "ai_disclosure": true,
+      "privacy_notice": true,
+      "retry": 0
+     },
+     "fallback_used": false,
+     "sources": null,
+     "latency_s": 0.85
+    },
+    {
+     "speaker": "candidate",
+     "text": "Sí",
+     "sent": null,
+     "widget": true,
+     "scripted": false,
+     "move": {
+      "kind": "tap",
+      "value": "yes",
+      "matrix_language": "es"
+     },
+     "extraction": {
+      "intent": "confirm",
+      "fields": {},
+      "language": "es",
+      "matrix_language": "es",
+      "english_ratio": 0.0,
+      "explicit_language_request": null,
+      "code_switched": false,
+      "sentiment": "neutral",
+      "question": null,
+      "question_topic": null,
+      "slot": null
+     },
+     "latency_s": 0.502
+    },
+    {
+     "speaker": "ana",
+     "text": "¿Me comparte su nombre completo, por favor?",
+     "ui": null,
+     "action": {
+      "language": "es",
+      "country": "MX",
+      "simplify": false,
+      "ui": null,
+      "kind": "ask_field",
+      "field": "full_name",
+      "retry": 0,
+      "hint": null,
+      "options": []
+     },
+     "fallback_used": false,
+     "sources": null
+    },
+    {
+     "speaker": "candidate",
+     "text": "Rosa Jiménez Cruz",
+     "sent": "Rosa Jiménez Cruz",
+     "widget": false,
+     "scripted": false,
+     "move": {
+      "kind": "text",
+      "text": "Rosa Jiménez Cruz",
+      "matrix_language": "es"
+     },
+     "extraction": {
+      "intent": "answer",
+      "fields": {
+       "full_name": {
+        "value": "Rosa Jiménez Cruz",
+        "confidence": 1.0
+       }
+      },
+      "language": "es",
+      "matrix_language": "es",
+      "english_ratio": 0.0,
+      "explicit_language_request": null,
+      "code_switched": false,
+      "sentiment": "neutral",
+      "question": null,
+      "question_topic": null,
+      "slot": null
+     },
+     "latency_s": 2.088
+    },
+    {
+     "speaker": "ana",
+     "text": "¿Cuál es su número de celular, Rosa?",
+     "ui": {
+      "kind": "phone",
+      "countries": [
+       {
+        "code": "ES",
+        "dial": "+34",
+        "label": "ES +34"
+       },
+       {
+        "code": "MX",
+        "dial": "+52",
+        "label": "MX +52"
+       }
+      ],
+      "selected": "MX"
+     },
+     "action": {
+      "language": "es",
+      "country": "MX",
+      "simplify": false,
+      "ui": {
+       "kind": "phone",
+       "countries": [
+        {
+         "code": "ES",
+         "dial": "+34",
+         "label": "ES +34"
+        },
+        {
+         "code": "MX",
+         "dial": "+52",
+         "label": "MX +52"
+        }
+       ],
+       "selected": "MX"
+      },
+      "kind": "ask_field",
+      "field": "phone",
+      "retry": 0,
+      "hint": null,
+      "options": []
+     },
+     "fallback_used": false,
+     "sources": null
+    },
+    {
+     "speaker": "candidate",
+     "text": "2221234514",
+     "sent": "2221234514",
+     "widget": false,
+     "scripted": false,
+     "move": {
+      "kind": "text",
+      "text": "2221234514",
+      "matrix_language": "es"
+     },
+     "extraction": {
+      "intent": "answer",
+      "fields": {
+       "phone": {
+        "value": "+522221234514",
+        "confidence": 1.0
+       }
+      },
+      "language": "es",
+      "matrix_language": "es",
+      "english_ratio": 0.0,
+      "explicit_language_request": null,
+      "code_switched": false,
+      "sentiment": "neutral",
+      "question": null,
+      "question_topic": null,
+      "slot": null
+     },
+     "latency_s": 1.288
+    },
+    {
+     "speaker": "ana",
+     "text": "¿Cuál es su correo electrónico?",
+     "ui": null,
+     "action": {
+      "language": "es",
+      "country": "MX",
+      "simplify": false,
+      "ui": null,
+      "kind": "ask_field",
+      "field": "email",
+      "retry": 0,
+      "hint": null,
+      "options": []
+     },
+     "fallback_used": false,
+     "sources": null
+    },
+    {
+     "speaker": "candidate",
+     "text": "rosa.jimenez@example.com",
+     "sent": "rosa.jimenez@example.com",
+     "widget": false,
+     "scripted": false,
+     "move": {
+      "kind": "text",
+      "text": "rosa.jimenez@example.com",
+      "matrix_language": "es"
+     },
+     "extraction": {
+      "intent": "answer",
+      "fields": {
+       "email": {
+        "value": "rosa.jimenez@example.com",
+        "confidence": 1.0
+       }
+      },
+      "language": "es",
+      "matrix_language": "es",
+      "english_ratio": 0.0,
+      "explicit_language_request": null,
+      "code_switched": false,
+      "sentiment": "neutral",
+      "question": null,
+      "question_topic": null,
+      "slot": null
+     },
+     "latency_s": 1.349
+    },
+    {
+     "speaker": "ana",
+     "text": "¿Tiene licencia de manejo vigente?",
+     "ui": null,
+     "action": {
+      "language": "es",
+      "country": "MX",
+      "simplify": false,
+      "ui": null,
+      "kind": "ask_field",
+      "field": "has_license",
+      "retry": 0,
+      "hint": null,
+      "options": []
+     },
+     "fallback_used": false,
+     "sources": null
+    },
+    {
+     "speaker": "candidate",
+     "text": "Sí, tengo licencia vigente.",
+     "sent": "Sí, tengo licencia vigente.",
+     "widget": false,
+     "scripted": false,
+     "move": {
+      "kind": "text",
+      "text": "Sí, tengo licencia vigente.",
+      "matrix_language": "es"
+     },
+     "extraction": {
+      "intent": "answer",
+      "fields": {
+       "has_license": {
+        "value": true,
+        "confidence": 1.0
+       }
+      },
+      "language": "es",
+      "matrix_language": "es",
+      "english_ratio": 0.0,
+      "explicit_language_request": null,
+      "code_switched": false,
+      "sentiment": "neutral",
+      "question": null,
+      "question_topic": null,
+      "slot": null
+     },
+     "latency_s": 2.105
+    },
+    {
+     "speaker": "ana",
+     "text": "¿En qué ciudad o colonia vive?",
+     "ui": null,
+     "action": {
+      "language": "es",
+      "country": "MX",
+      "simplify": false,
+      "ui": null,
+      "kind": "ask_field",
+      "field": "city",
+      "retry": 0,
+      "hint": null,
+      "options": []
+     },
+     "fallback_used": false,
+     "sources": null
+    },
+    {
+     "speaker": "candidate",
+     "text": "En el Centro Histórico de Puebla.",
+     "sent": "En el Centro Histórico de Puebla.",
+     "widget": false,
+     "scripted": false,
+     "move": {
+      "kind": "text",
+      "text": "En el Centro Histórico de Puebla.",
+      "matrix_language": "es"
+     },
+     "extraction": {
+      "intent": "answer",
+      "fields": {
+       "city": {
+        "value": "Puebla, Centro Histórico",
+        "confidence": 0.95
+       }
+      },
+      "language": "es",
+      "matrix_language": "es",
+      "english_ratio": 0.0,
+      "explicit_language_request": null,
+      "code_switched": false,
+      "sentiment": "neutral",
+      "question": null,
+      "question_topic": null,
+      "slot": null
+     },
+     "latency_s": 1.718
+    },
+    {
+     "speaker": "ana",
+     "text": "Entendido, Rosa, gracias por el dato del Centro Histórico. ¿Qué disponibilidad tiene: tiempo completo, medio tiempo o fines de semana?",
+     "ui": null,
+     "action": {
+      "language": "es",
+      "country": "MX",
+      "simplify": false,
+      "ui": null,
+      "kind": "ask_field",
+      "field": "availability",
+      "retry": 0,
+      "hint": null,
+      "options": []
+     },
+     "fallback_used": false,
+     "sources": null
+    },
+    {
+     "speaker": "candidate",
+     "text": "¿otra pregunta? esto es eterno",
+     "sent": "¿otra pregunta? esto es eterno",
+     "widget": false,
+     "scripted": false,
+     "move": {
+      "kind": "text",
+      "text": "¿otra pregunta? esto es eterno",
+      "matrix_language": "es"
+     },
+     "extraction": {
+      "intent": "answer",
+      "fields": {},
+      "language": "es",
+      "matrix_language": "es",
+      "english_ratio": 0.0,
+      "explicit_language_request": null,
+      "code_switched": false,
+      "sentiment": "frustrated",
+      "question": null,
+      "question_topic": null,
+      "slot": null
+     },
+     "latency_s": 1.936
+    },
+    {
+     "speaker": "ana",
+     "text": "Entiendo, Rosa. Solo necesito saber su disponibilidad: ¿tiempo completo, medio tiempo o fines de semana?",
+     "ui": {
+      "kind": "multi_select",
+      "options": [
+       {
+        "value": "full_time",
+        "label": "Tiempo completo"
+       },
+       {
+        "value": "part_time",
+        "label": "Tiempo parcial"
+       },
+       {
+        "value": "weekends",
+        "label": "Fines de semana"
+       }
+      ],
+      "min": 1,
+      "max": null
+     },
+     "action": {
+      "language": "es",
+      "country": "MX",
+      "simplify": true,
+      "ui": {
+       "kind": "multi_select",
+       "options": [
+        {
+         "value": "full_time",
+         "label": "Tiempo completo"
+        },
+        {
+         "value": "part_time",
+         "label": "Tiempo parcial"
+        },
+        {
+         "value": "weekends",
+         "label": "Fines de semana"
+        }
+       ],
+       "min": 1,
+       "max": null
+      },
+      "kind": "ask_field",
+      "field": "availability",
+      "retry": 1,
+      "hint": null,
+      "options": [
+       "full_time",
+       "part_time",
+       "weekends"
+      ]
+     },
+     "fallback_used": false,
+     "sources": null
+    },
+    {
+     "speaker": "candidate",
+     "text": "Ya me cansé, son demasiadas preguntas.",
+     "sent": "Ya me cansé, son demasiadas preguntas.",
+     "widget": false,
+     "scripted": false,
+     "move": {
+      "kind": "text",
+      "text": "Ya me cansé, son demasiadas preguntas.",
+      "matrix_language": "es"
+     },
+     "extraction": {
+      "intent": "answer",
+      "fields": {},
+      "language": "es",
+      "matrix_language": "es",
+      "english_ratio": 0.0,
+      "explicit_language_request": null,
+      "code_switched": false,
+      "sentiment": "frustrated",
+      "question": null,
+      "question_topic": null,
+      "slot": null
+     },
+     "latency_s": 1.852
+    },
+    {
+     "speaker": "ana",
+     "text": "Entiendo, Rosa. Podemos parar aquí y seguir más tarde donde nos quedamos, ¿hacemos pausa?",
+     "ui": {
+      "kind": "quick_replies",
+      "options": [
+       {
+        "value": "yes",
+        "label": "Sí"
+       },
+       {
+        "value": "no",
+        "label": "No"
+       }
+      ],
+      "link": null
+     },
+     "action": {
+      "language": "es",
+      "country": "MX",
+      "simplify": true,
+      "ui": {
+       "kind": "quick_replies",
+       "options": [
+        {
+         "value": "yes",
+         "label": "Sí"
+        },
+        {
+         "value": "no",
+         "label": "No"
+        }
+       ],
+       "link": null
+      },
+      "kind": "offer_pause"
+     },
+     "fallback_used": false,
+     "sources": null
+    },
+    {
+     "speaker": "candidate",
+     "text": "Sí",
+     "sent": null,
+     "widget": true,
+     "scripted": false,
+     "move": {
+      "kind": "tap",
+      "value": "yes",
+      "matrix_language": "es"
+     },
+     "extraction": {
+      "intent": "confirm",
+      "fields": {},
+      "language": "es",
+      "matrix_language": "es",
+      "english_ratio": 0.0,
+      "explicit_language_request": null,
+      "code_switched": false,
+      "sentiment": "neutral",
+      "question": null,
+      "question_topic": null,
+      "slot": null
+     },
+     "latency_s": 0.749
+    },
+    {
+     "speaker": "ana",
+     "text": "Perfecto, Rosa, lo dejamos aquí. Puede volver a este chat cuando guste y seguimos desde donde se quedó.",
+     "ui": null,
+     "action": {
+      "language": "es",
+      "country": "MX",
+      "simplify": false,
+      "ui": null,
+      "kind": "end",
+      "reason": "paused"
+     },
+     "fallback_used": false,
+     "sources": null
+    }
+   ],
+   "candidate_turns": 9,
+   "hit_turn_cap": false,
+   "error": null,
+   "offered_slots": [],
+   "invented_slots": [],
+   "fallback_count": 0,
+   "cost_usd": 0.011866,
+   "simulator_cost_usd": 0.00251,
+   "calls": [
+    {
+     "role": "responder",
+     "model": "anthropic/claude-haiku-5.5",
+     "latency_ms": 840,
+     "cost_usd": 0.0003231,
+     "fallback_used": false,
+     "error": null
+    },
+    {
+     "role": "responder",
+     "model": "anthropic/claude-haiku-5.5",
+     "latency_ms": 495,
+     "cost_usd": 0.0002889,
+     "fallback_used": false,
+     "error": null
+    },
+    {
+     "role": "extractor",
+     "model": "google/gemini-3.5-flash-lite",
+     "latency_ms": 1554,
+     "cost_usd": 0.001254,
+     "fallback_used": false,
+     "error": null
+    },
+    {
+     "role": "responder",
+     "model": "anthropic/claude-haiku-5.5",
+     "latency_ms": 528,
+     "cost_usd": 0.0002902,
+     "fallback_used": false,
+     "error": null
+    },
+    {
+     "role": "extractor",
+     "model": "google/gemini-3.5-flash-lite",
+     "latency_ms": 840,
+     "cost_usd": 0.0012843,
+     "fallback_used": false,
+     "error": null
+    },
+    {
+     "role": "responder",
+     "model": "anthropic/claude-haiku-5.5",
+     "latency_ms": 443,
+     "cost_usd": 0.0002876,
+     "fallback_used": false,
+     "error": null
+    },
+    {
+     "role": "extractor",
+     "model": "google/gemini-3.5-flash-lite",
+     "latency_ms": 977,
+     "cost_usd": 0.0012689,
+     "fallback_used": false,
+     "error": null
+    },
+    {
+     "role": "responder",
+     "model": "anthropic/claude-haiku-5.5",
+     "latency_ms": 365,
+     "cost_usd": 0.0002901,
+     "fallback_used": false,
+     "error": null
+    },
+    {
+     "role": "extractor",
+     "model": "google/gemini-3.5-flash-lite",
+     "latency_ms": 1060,
+     "cost_usd": 0.0012551,
+     "fallback_used": false,
+     "error": null
+    },
+    {
+     "role": "responder",
+     "model": "anthropic/claude-haiku-5.5",
+     "latency_ms": 1040,
+     "cost_usd": 0.0002894,
+     "fallback_used": false,
+     "error": null
+    },
+    {
+     "role": "extractor",
+     "model": "google/gemini-3.5-flash-lite",
+     "latency_ms": 903,
+     "cost_usd": 0.0012701,
+     "fallback_used": false,
+     "error": null
+    },
+    {
+     "role": "responder",
+     "model": "anthropic/claude-haiku-5.5",
+     "latency_ms": 809,
+     "cost_usd": 0.0003145,
+     "fallback_used": false,
+     "error": null
+    },
+    {
+     "role": "extractor",
+     "model": "google/gemini-3.5-flash-lite",
+     "latency_ms": 770,
+     "cost_usd": 0.0011058,
+     "fallback_used": false,
+     "error": null
+    },
+    {
+     "role": "responder",
+     "model": "anthropic/claude-haiku-5.5",
+     "latency_ms": 1161,
+     "cost_usd": 0.0003098,
+     "fallback_used": false,
+     "error": null
+    },
+    {
+     "role": "extractor",
+     "model": "google/gemini-3.5-flash-lite",
+     "latency_ms": 835,
+     "cost_usd": 0.0011109,
+     "fallback_used": false,
+     "error": null
+    },
+    {
+     "role": "responder",
+     "model": "anthropic/claude-haiku-5.5",
+     "latency_ms": 1011,
+     "cost_usd": 0.0006181,
+     "fallback_used": false,
+     "error": null
+    },
+    {
+     "role": "responder",
+     "model": "anthropic/claude-haiku-5.5",
+     "latency_ms": 744,
+     "cost_usd": 0.0003052,
+     "fallback_used": false,
+     "error": null
+    }
+   ],
+   "judge": {
+    "tone": 4,
+    "naturalness": 3,
+    "empathy": 3,
+    "staying_in_role": 5,
+    "brevity": 5,
+    "rationale": "Ana answers Rosa's frustration with the same \"Entiendo, Rosa\" every time and never tells her the form is nearly done, so the empathy reads formulaic, though she offers the pause politely and briefly.",
+    "mean": 4.0,
+    "cost_usd": 0.014676
+   },
+   "combo": "A",
+   "repeat": 1,
+   "title": "Frustrated, accepts a pause",
+   "result": {
+    "checks": {
+     "completed": true,
+     "outcome": true,
+     "fields": true,
+     "message_length": true,
+     "one_question": true,
+     "no_emoji": true,
+     "no_promises": true,
+     "register": true,
+     "language": true,
+     "ai_disclosure": true,
+     "real_slots": null,
+     "no_fallback": true,
+     "flags": true
+    },
+    "passed": true,
+    "failures": [],
+    "metrics": {
+     "fields_matched": 5,
+     "fields_scored": 5,
+     "language_ok": 10,
+     "language_total": 10,
+     "fallback_count": 0
+    }
+   }
+  }
+ ]
+}

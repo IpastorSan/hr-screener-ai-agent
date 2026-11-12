@@ -1,0 +1,1017 @@
+# Profile journeys: availability, schedule, experience, platforms, start date and the read-back,
+# after both gates have passed. None of these fields disqualifies. Format: evals/journeys/README.md.
+# The clock starts on Monday 19 October 2026, 10:00 in Madrid. Fictional people and data only.
+#
+# Offline the keyword extractor reads one field per message and nothing at the read-back except
+# yes or no, so corrections typed at the summary are checked only with real models (`live:`).
+
+# --- availability and schedule ---
+
+- id: profile_es_availability_buttons_after_failures
+  description: >-
+    Spain. Two unusable answers to availability bring the buttons; a multi-select tap of part
+    time and weekends is taken, and "flexible" alone settles the schedule.
+  country: ES
+  steps:
+    - tap: "yes"
+      expect: {asks: full_name}
+    - say: Irene Castro Molina
+      expect: {asks: phone}
+    - tap: {country: ES, number: "612345611"}
+      expect: {asks: email}
+    - say: irene.castro@example.com
+      expect: {asks: has_license}
+    - say: Sí, tengo el B
+      offline_say: sí
+      expect: {asks: city}
+    - say: Vivo en Lavapiés
+      offline_say: Lavapiés
+      expect: {asks: availability, ui: none}
+    - say: Pues depende, ya veremos
+      expect: {action: ask_field, asks: availability, ui: none, outcome: in_progress}
+    - say: No sé qué decirte
+      expect: {action: ask_field, asks: availability, ui: multi_select, outcome: in_progress}
+    - tap: [part_time, weekends]
+      expect: {asks: schedule, register: tu}
+    - say: Flexible
+      expect: {asks: experience_years}
+    - say: Ninguna, nunca he repartido
+      offline_say: ninguna
+      expect: {asks: start_date}
+    - say: Hoy mismo
+      offline_say: hoy
+      expect: {asks: confirm, ui: confirm, outcome: in_progress}
+
+- id: profile_es_spanglish_inserts_stay_spanish
+  description: >-
+    Spain. Every answer is a Spanish frame with English inserts ("full time", "weekends",
+    "mornings", "delivery"); Ana stays in Spanish and the values are read.
+  country: ES
+  steps:
+    - tap: "yes"
+      expect: {asks: full_name}
+    - say: Daniel Ortiz Vega
+      expect: {asks: phone}
+    - tap: {country: ES, number: "612345612"}
+      expect: {asks: email}
+    - say: daniel.ortiz@example.com
+      expect: {asks: has_license}
+    - say: Sí, tengo carnet
+      offline_say: sí
+      expect: {asks: city}
+    - say: Vivo en Gràcia
+      offline_say: Gràcia
+      expect: {asks: availability}
+    - say: Puedo full time y también los weekends
+      offline_say: full time y weekends
+      expect: {asks: schedule, language: es, register: tu}
+    - say: Mornings mejor, por la tarde estudio
+      offline_say: mornings
+      expect: {asks: experience_years, language: es}
+    - say: Llevo como 2 years haciendo delivery
+      offline_say: "2"
+      expect: {asks: platforms, language: es}
+    - say: Con Uber Eats y Glovo
+      offline_say: Uber Eats y Glovo
+      expect: {asks: start_date, language: es}
+    - say: Estoy ready para empezar el lunes que viene
+      offline_say: "2026-10-26"
+      expect: {asks: confirm, language: es, register: tu}
+
+- id: profile_mx_schedule_any_but_nights
+  description: >-
+    Mexico. Medio tiempo; "cualquiera menos noches" is morning and afternoon with no re-ask;
+    no experience skips the platforms; "ya" is today. Usted throughout.
+  country: MX
+  steps:
+    - tap: "yes"
+      expect: {asks: full_name, register: usted}
+    - say: Alejandra Morales Cruz
+      expect: {asks: phone}
+    - tap: {country: MX, number: "5512345611"}
+      expect: {asks: email}
+    - say: alejandra.morales@example.com
+      expect: {asks: has_license}
+    - say: Sí, tengo licencia
+      offline_say: sí
+      expect: {asks: city}
+    - say: Vivo en Zapopan
+      offline_say: Zapopan
+      expect: {asks: availability, register: usted}
+    - say: Medio tiempo
+      expect: {asks: schedule, register: usted}
+    - say: Cualquiera menos noches
+      expect: {asks: experience_years, register: usted}
+    - say: Ninguna, sería mi primer trabajo de reparto
+      offline_say: ninguna
+      expect: {asks: start_date, register: usted}
+    - say: Ya, cuando ustedes digan
+      offline_say: ya
+      expect: {asks: confirm, ui: confirm, register: usted}
+    - tap: "yes"
+      expect: {outcome: qualified, register: usted}
+
+- id: profile_mx_schedule_unresolved_moves_on
+  description: >-
+    Mexico. The schedule is never answered: buttons from the third ask, and after the third
+    failure the field is left empty and the screening carries on; nothing disqualifies.
+  country: MX
+  steps:
+    - tap: "yes"
+      expect: {asks: full_name}
+    - say: Ricardo Salinas Duarte
+      expect: {asks: phone}
+    - tap: {country: MX, number: "5512345612"}
+      expect: {asks: email}
+    - say: ricardo.salinas@example.com
+      expect: {asks: has_license}
+    - say: Sí, la tengo vigente
+      offline_say: sí
+      expect: {asks: city}
+    - say: Zapopan
+      expect: {asks: availability}
+    - say: Tiempo completo
+      expect: {asks: schedule, ui: none}
+    - say: Eso se lo digo más adelante
+      expect: {action: ask_field, asks: schedule, ui: none}
+    - say: Todavía lo estoy pensando
+      expect: {action: ask_field, asks: schedule, ui: multi_select, register: usted}
+    - say: Ahorita no se lo sabría decir
+      expect: {asks: experience_years, outcome: in_progress, register: usted}
+    - say: "3 años"
+      offline_say: "3"
+      expect: {asks: platforms}
+    - say: Rappi
+      expect: {asks: start_date, outcome: in_progress}
+
+# --- experience ---
+
+- id: profile_es_experience_year_and_a_half
+  description: Spain. "Año y medio" is 1.5 years, taken with no re-ask; Deliveroo is a known platform.
+  country: ES
+  steps:
+    - tap: "yes"
+      expect: {asks: full_name}
+    - say: Sergio Navarro Pons
+      expect: {asks: phone}
+    - tap: {country: ES, number: "612345613"}
+      expect: {asks: email}
+    - say: sergio.navarro@example.com
+      expect: {asks: has_license}
+    - say: Sí
+      expect: {asks: city}
+    - say: Lavapiés
+      expect: {asks: availability}
+    - say: Jornada completa
+      expect: {asks: schedule}
+    - say: Tardes
+      expect: {asks: experience_years}
+    - say: Año y medio
+      expect: {asks: platforms, action: ask_field}
+    - say: Deliveroo, hasta que se fue
+      offline_say: Deliveroo
+      expect: {asks: start_date}
+
+- id: profile_es_experience_vague_then_months
+  description: >-
+    Spain. "Unos meses" is vague: one number is asked for, then "8 meses" is taken.
+  country: ES
+  steps:
+    - tap: "yes"
+      expect: {asks: full_name}
+    - say: Nerea Iglesias Prat
+      expect: {asks: phone}
+    - tap: {country: ES, number: "612345614"}
+      expect: {asks: email}
+    - say: nerea.iglesias@example.com
+      expect: {asks: has_license}
+    - say: Sí
+      expect: {asks: city}
+    - say: Gràcia
+      expect: {asks: availability}
+    - say: Fines de semana
+      expect: {asks: schedule}
+    - say: Noches
+      expect: {asks: experience_years}
+    - say: Unos meses
+      expect:
+        action: ask_field
+        asks: experience_years
+        outcome: in_progress
+        live: {reply_matches: "cu[aá]nt|n[uú]mero|meses|a[nñ]os"}
+    - say: 8 meses
+      offline_say: 8 meses
+      expect: {asks: platforms}
+    - say: Glovo
+      expect: {asks: start_date}
+
+- id: profile_es_experience_range_and_calendar_year
+  description: >-
+    Spain. A range ("entre 2 y 3 años") and a year ("desde 2019") are not amounts: one number is
+    asked for each time, then 3 is taken.
+  country: ES
+  steps:
+    - tap: "yes"
+      expect: {asks: full_name}
+    - say: Pablo Herrero Saiz
+      expect: {asks: phone}
+    - tap: {country: ES, number: "612345615"}
+      expect: {asks: email}
+    - say: pablo.herrero@example.com
+      expect: {asks: has_license}
+    - say: Sí
+      expect: {asks: city}
+    - say: Lavapiés
+      expect: {asks: availability}
+    - say: Tiempo parcial
+      expect: {asks: schedule}
+    - say: Mañanas
+      expect: {asks: experience_years}
+    - say: Entre 2 y 3 años
+      expect: {action: ask_field, asks: experience_years}
+    - say: Desde 2019 más o menos
+      offline_say: desde 2019
+      expect: {action: ask_field, asks: experience_years, outcome: in_progress}
+    - say: "3"
+      expect: {asks: platforms}
+    - say: Just Eat
+      expect: {asks: start_date}
+
+- id: profile_es_experience_over_ten_read_back
+  description: >-
+    Spain. 15 years is read back once with yes/no buttons; a yes keeps it. Glovo (in Spain since
+    2015) can't cover 15 years, but the kept years are only flagged, not read back again.
+  country: ES
+  steps:
+    - tap: "yes"
+      expect: {asks: full_name}
+    - say: Manuel Ferrer Soto
+      expect: {asks: phone}
+    - tap: {country: ES, number: "612345616"}
+      expect: {asks: email}
+    - say: manuel.ferrer@example.com
+      expect: {asks: has_license}
+    - say: Sí, desde hace mucho
+      offline_say: sí
+      expect: {asks: city}
+    - say: Lavapiés
+      expect: {asks: availability}
+    - say: Tiempo completo
+      expect: {asks: schedule}
+    - say: Mañanas
+      expect: {asks: experience_years}
+    - say: 15 años
+      offline_say: "15"
+      expect:
+        action: confirm_value
+        asks: experience_years
+        ui: quick_replies
+        live: {reply_matches: "15"}
+    - tap: "yes"
+      expect: {action: ask_field, asks: platforms}
+    - say: Glovo
+      expect: {action: ask_field, asks: start_date}
+
+- id: profile_es_experience_out_of_range_then_corrected
+  description: >-
+    Spain. 25 years is out of range and asked again; 12 is read back, the candidate says no,
+    and 4 is taken.
+  country: ES
+  steps:
+    - tap: "yes"
+      expect: {asks: full_name}
+    - say: Rosa Benítez Lara
+      expect: {asks: phone}
+    - tap: {country: ES, number: "612345617"}
+      expect: {asks: email}
+    - say: rosa.benitez@example.com
+      expect: {asks: has_license}
+    - say: Sí
+      expect: {asks: city}
+    - say: Gràcia
+      expect: {asks: availability}
+    - say: Media jornada
+      expect: {asks: schedule}
+    - say: Tardes
+      expect: {asks: experience_years}
+    - say: 25 años
+      offline_say: "25"
+      expect: {action: ask_field, asks: experience_years, outcome: in_progress}
+    - say: Vale, pues 12
+      offline_say: "12"
+      expect: {action: confirm_value, asks: experience_years, ui: quick_replies}
+    - tap: "no"
+      expect: {action: ask_field, asks: experience_years}
+    - say: 4 años
+      offline_say: "4"
+      expect: {asks: platforms}
+
+- id: profile_es_amazon_flex_years_read_back
+  description: >-
+    Spain. 6 years with Amazon Flex (in Spain 2017-2021, 5 years at most) is read back neutrally,
+    asking for the years with no buttons; a yes keeps them and the flow goes on.
+  country: ES
+  steps:
+    - tap: "yes"
+      expect: {asks: full_name}
+    - say: Óscar Delgado Ruiz
+      expect: {asks: phone}
+    - tap: {country: ES, number: "612345618"}
+      expect: {asks: email}
+    - say: oscar.delgado@example.com
+      expect: {asks: has_license}
+    - say: Sí
+      expect: {asks: city}
+    - say: Lavapiés
+      expect: {asks: availability}
+    - say: Tiempo completo
+      expect: {asks: schedule}
+    - say: Cualquiera
+      expect: {asks: experience_years}
+    - say: 6 años
+      offline_say: "6"
+      expect: {asks: platforms}
+    - say: Amazon Flex
+      expect:
+        action: confirm_value
+        asks: experience_years
+        ui: none
+        register: tu
+        live:
+          reply_matches: "Amazon Flex"
+          reply_not_matches: "mient|imposible|no puede ser|no existe|no es posible|solo (oper|estuv)"
+    - say: Sí, 6
+      offline_say: sí
+      expect: {action: ask_field, asks: start_date}
+    - say: El lunes que viene
+      offline_say: "2026-10-26"
+      expect: {asks: confirm}
+
+- id: profile_mx_didi_years_new_number
+  description: >-
+    Mexico. 9 years with DiDi (DiDi Food in Mexico since 2019) is read back neutrally; the
+    candidate gives a new number, 3, which is applied with no further read-back.
+  country: MX
+  steps:
+    - tap: "yes"
+      expect: {asks: full_name}
+    - say: Gerardo Luna Ibarra
+      expect: {asks: phone}
+    - tap: {country: MX, number: "5512345613"}
+      expect: {asks: email}
+    - say: gerardo.luna@example.com
+      expect: {asks: has_license}
+    - say: Sí
+      expect: {asks: city}
+    - say: Zapopan
+      expect: {asks: availability}
+    - say: Tiempo completo
+      expect: {asks: schedule}
+    - say: Noches
+      expect: {asks: experience_years}
+    - say: 9 años
+      offline_say: "9"
+      expect: {asks: platforms}
+    - say: DiDi
+      expect:
+        action: confirm_value
+        asks: experience_years
+        ui: none
+        register: usted
+        live:
+          reply_matches: "DiDi"
+          reply_not_matches: "mient|imposible|no puede ser|no existe|no es posible|desde 2019"
+    - say: Bueno, con DiDi en realidad 3
+      offline_say: "3"
+      expect: {action: ask_field, asks: start_date, register: usted}
+
+- id: profile_mx_unknown_platform
+  description: >-
+    Mexico. An unknown platform next to Rappi is kept as other; 4 years fit Rappi, so there is no
+    read-back.
+  country: MX
+  steps:
+    - tap: "yes"
+      expect: {asks: full_name}
+    - say: Fernanda Ríos Treviño
+      expect: {asks: phone}
+    - tap: {country: MX, number: "5512345614"}
+      expect: {asks: email}
+    - say: fernanda.rios@example.com
+      expect: {asks: has_license}
+    - say: Sí
+      expect: {asks: city}
+    - say: Zapopan
+      expect: {asks: availability}
+    - say: Fines de semana
+      expect: {asks: schedule}
+    - say: Mañanas y tardes, noches no
+      expect: {asks: experience_years}
+    - say: "4"
+      expect: {asks: platforms}
+    - say: Rappi y Cornershop
+      expect: {action: ask_field, asks: start_date, register: usted}
+
+- id: profile_es_refuses_experience
+  description: >-
+    Spain. The candidate calmly refuses to say their experience. It is optional: Ana keeps asking,
+    never says she didn't understand or that she needs it to continue, and after the third refusal
+    carries on without it (flagged for the recruiter).
+  country: ES
+  steps:
+    - tap: "yes"
+      expect: {asks: full_name}
+    - say: Clara Vidal Roca
+      expect: {asks: phone}
+    - tap: {country: ES, number: "612345619"}
+      expect: {asks: email}
+    - say: clara.vidal@example.com
+      expect: {asks: has_license}
+    - say: Sí
+      expect: {asks: city}
+    - say: Gràcia
+      expect: {asks: availability}
+    - say: Tiempo completo
+      expect: {asks: schedule}
+    - say: Mañanas
+      expect: {asks: experience_years}
+    - say: Prefiero no decirlo, si no te importa
+      offline_say: paso
+      expect:
+        asks: experience_years
+        outcome: in_progress
+        live: {reply_not_matches: "no (lo )?he entendido|necesito saberlo|para continuar"}
+    - say: De verdad, prefiero no decirlo
+      offline_say: paso
+      expect:
+        asks: experience_years
+        outcome: in_progress
+        live: {reply_not_matches: "no (lo )?he entendido|necesito saberlo|para continuar"}
+    - say: No lo voy a decir
+      offline_say: paso
+      expect: {asks: start_date, outcome: in_progress}
+
+# --- start date ---
+
+- id: profile_es_start_past_then_today
+  description: Spain. A past start date is asked again; "hoy mismo" is taken.
+  country: ES
+  steps:
+    - tap: "yes"
+      expect: {asks: full_name}
+    - say: Alba Moreno Gil
+      expect: {asks: phone}
+    - tap: {country: ES, number: "612345620"}
+      expect: {asks: email}
+    - say: alba.moreno@example.com
+      expect: {asks: has_license}
+    - say: Sí
+      expect: {asks: city}
+    - say: Lavapiés
+      expect: {asks: availability}
+    - say: Tiempo completo
+      expect: {asks: schedule}
+    - say: Tardes
+      expect: {asks: experience_years}
+    - say: Ninguna
+      expect: {asks: start_date}
+    - say: El 12 de octubre de 2026
+      offline_say: "2026-10-12"
+      expect: {action: ask_field, asks: start_date, outcome: in_progress}
+    - say: Vale, pues hoy mismo
+      offline_say: hoy
+      expect: {asks: confirm}
+
+- id: profile_es_start_beyond_90_confirmed
+  description: >-
+    Spain. 1 February 2027 is 105 days out: read back once with yes/no, then accepted (late
+    start); the summary follows.
+  country: ES
+  steps:
+    - tap: "yes"
+      expect: {asks: full_name}
+    - say: Hugo Serrano Prieto
+      expect: {asks: phone}
+    - tap: {country: ES, number: "612345621"}
+      expect: {asks: email}
+    - say: hugo.serrano@example.com
+      expect: {asks: has_license}
+    - say: Sí
+      expect: {asks: city}
+    - say: Lavapiés
+      expect: {asks: availability}
+    - say: Tiempo parcial
+      expect: {asks: schedule}
+    - say: Mañanas
+      expect: {asks: experience_years}
+    - say: "1"
+      expect: {asks: platforms}
+    - say: Glovo
+      expect: {asks: start_date}
+    - say: A partir del 1 de febrero, que antes estoy de exámenes
+      offline_say: "2027-02-01"
+      expect:
+        action: confirm_value
+        asks: start_date
+        ui: quick_replies
+        live: {reply_matches: "febrero"}
+    - tap: "yes"
+      expect: {asks: confirm, ui: confirm, outcome: in_progress}
+    - tap: "yes"
+      expect: {outcome: qualified}
+
+- id: profile_mx_start_late_61_to_90
+  description: >-
+    Mexico. 8 January 2027 is 81 days out: no read-back (only beyond 90), kept with the late
+    start flag (check `late_start_days` in the snapshot), then qualified.
+  country: MX
+  steps:
+    - tap: "yes"
+      expect: {asks: full_name}
+    - say: Karla Mendoza Rosas
+      expect: {asks: phone}
+    - tap: {country: MX, number: "5512345615"}
+      expect: {asks: email}
+    - say: karla.mendoza@example.com
+      expect: {asks: has_license}
+    - say: Sí
+      expect: {asks: city}
+    - say: Zapopan
+      expect: {asks: availability}
+    - say: Medio tiempo
+      expect: {asks: schedule}
+    - say: Tardes
+      expect: {asks: experience_years}
+    - say: "2"
+      expect: {asks: platforms}
+    - say: Uber Eats
+      expect: {asks: start_date}
+    - say: Hasta el 8 de enero, después de las fiestas
+      offline_say: "2027-01-08"
+      expect: {asks: confirm, ui: confirm, register: usted}
+    - tap: "yes"
+      expect: {outcome: qualified, register: usted}
+
+# --- several answers in one message ---
+
+- id: profile_es_several_fields_one_message
+  description: >-
+    Spain. The city answer also brings the availability; then one message brings the schedule,
+    the years and the platform, and Ana skips to the start date.
+  country: ES
+  candidate:
+    language: Spanish from Spain, casual and brief.
+    truth:
+      full_name: Lucas Romero Díaz
+      phone: "+34612345622"
+      email: lucas.romero@example.com
+      has_license: true
+      location_id: es-bcn-gracia
+      availability: [weekends]
+      schedule: [morning]
+      experience_years: 3
+      platforms: [glovo]
+      start_date: "2026-10-26"
+  steps:
+    - tap: "yes"
+      expect: {asks: full_name}
+    - say: Lucas Romero Díaz
+      expect: {asks: phone}
+    - tap: {country: ES, number: "612345622"}
+      expect: {asks: email}
+    - say: lucas.romero@example.com
+      expect: {asks: has_license}
+    - say: Sí
+      expect: {asks: city}
+    - say: Vivo en Gràcia y solo puedo los findes
+      offline_say: Gràcia
+      expect: {live: {asks: schedule}}
+    - persona: >-
+        Repartidor de Barcelona con prisa. Cuando le preguntan el horario contesta de una vez
+        todo lo que le queda: "por las mañanas, llevo 3 años con Glovo". Luego contesta corto.
+      until: {asks: confirm}
+      max_turns: 6
+      expect: {asks: confirm, outcome: in_progress, register: tu}
+
+# --- the read-back ---
+
+- id: profile_es_readback_button_then_correction
+  description: >-
+    Spain. At the summary the candidate taps "Corregir algo", is asked which detail, types the
+    new start date, gets the summary again and confirms it.
+  country: ES
+  steps:
+    - tap: "yes"
+      expect: {asks: full_name}
+    - say: Paula Gómez Sanz
+      expect: {asks: phone}
+    - tap: {country: ES, number: "612345623"}
+      expect: {asks: email}
+    - say: paula.gomez@example.com
+      expect: {asks: has_license}
+    - say: Sí
+      expect: {asks: city}
+    - say: Lavapiés
+      expect: {asks: availability}
+    - say: Tiempo completo
+      expect: {asks: schedule}
+    - say: Mañanas
+      expect: {asks: experience_years}
+    - say: "2"
+      expect: {asks: platforms}
+    - say: Glovo
+      expect: {asks: start_date}
+    - say: El lunes que viene
+      offline_say: "2026-10-26"
+      expect: {asks: confirm, ui: confirm}
+    - tap: "no"
+      expect:
+        action: confirm_summary
+        asks: confirm
+        outcome: in_progress
+        live: {reply_matches: "qu[eé] dato|cambiar|corregir"}
+    - say: La fecha, empiezo el martes, no el lunes
+      expect: {asks: confirm, ui: confirm, outcome: in_progress}
+    - tap: "yes"
+      expect: {outcome: qualified}
+
+- id: profile_es_readback_free_text_correction
+  description: >-
+    Spain. At the summary the candidate types "no, empiezo el martes" without tapping: the date is
+    changed and the summary shown again, never qualified on that message.
+  country: ES
+  steps:
+    - tap: "yes"
+      expect: {asks: full_name}
+    - say: Jorge Pascual León
+      expect: {asks: phone}
+    - tap: {country: ES, number: "612345624"}
+      expect: {asks: email}
+    - say: jorge.pascual@example.com
+      expect: {asks: has_license}
+    - say: Sí
+      expect: {asks: city}
+    - say: Gràcia
+      expect: {asks: availability}
+    - say: Fines de semana
+      expect: {asks: schedule}
+    - say: Tardes
+      expect: {asks: experience_years}
+    - say: Ninguna
+      expect: {asks: start_date}
+    - say: El lunes que viene
+      offline_say: "2026-10-26"
+      expect: {asks: confirm}
+    - say: No, empiezo el martes
+      expect: {asks: confirm, ui: confirm, outcome: in_progress}
+    - tap: "yes"
+      expect: {outcome: qualified}
+
+- id: profile_es_readback_correction_late_start
+  description: >-
+    Spain. At the summary the candidate moves the start to 1 February 2027: the new date is beyond
+    90 days, so it is read back before the summary comes again.
+  country: ES
+  steps:
+    - tap: "yes"
+      expect: {asks: full_name}
+    - say: Elena Cano Rivas
+      expect: {asks: phone}
+    - tap: {country: ES, number: "612345625"}
+      expect: {asks: email}
+    - say: elena.cano@example.com
+      expect: {asks: has_license}
+    - say: Sí
+      expect: {asks: city}
+    - say: Lavapiés
+      expect: {asks: availability}
+    - say: Tiempo completo
+      expect: {asks: schedule}
+    - say: Mañanas
+      expect: {asks: experience_years}
+    - say: Ninguna
+      expect: {asks: start_date}
+    - say: Hoy
+      offline_say: hoy
+      expect: {asks: confirm}
+    - say: Perdona, al final no puedo empezar hasta el 1 de febrero
+      expect:
+        live: {action: confirm_value, asks: start_date, outcome: in_progress}
+    - tap: "yes"
+      expect:
+        live: {asks: confirm, outcome: in_progress}
+
+- id: profile_es_readback_license_gate_rerun
+  description: >-
+    Spain. At the summary the candidate taps "Corregir algo" and says the licence has expired: the
+    license gate runs again and closes the application.
+  country: ES
+  steps:
+    - tap: "yes"
+      expect: {asks: full_name}
+    - say: Marcos Fuentes Ibáñez
+      expect: {asks: phone}
+    - tap: {country: ES, number: "612345626"}
+      expect: {asks: email}
+    - say: marcos.fuentes@example.com
+      expect: {asks: has_license}
+    - say: Sí
+      expect: {asks: city}
+    - say: Lavapiés
+      expect: {asks: availability}
+    - say: Tiempo completo
+      expect: {asks: schedule}
+    - say: Noches
+      expect: {asks: experience_years}
+    - say: "1"
+      expect: {asks: platforms}
+    - say: Uber Eats
+      expect: {asks: start_date}
+    - say: Hoy
+      offline_say: hoy
+      expect: {asks: confirm}
+    - tap: "no"
+      expect: {asks: confirm}
+    - say: El carnet, que lo tengo caducado desde el verano
+      expect:
+        live:
+          action: disqualify
+          outcome: disqualified
+          reason: license_not_valid
+          closed: true
+
+- id: profile_es_readback_city_gate_rerun
+  description: >-
+    Spain. At the summary the candidate says they have moved to Ourense: the place is read back,
+    and a yes closes out of area with the talent-pool question.
+  country: ES
+  steps:
+    - tap: "yes"
+      expect: {asks: full_name}
+    - say: Iván Prieto Campos
+      expect: {asks: phone}
+    - tap: {country: ES, number: "612345627"}
+      expect: {asks: email}
+    - say: ivan.prieto@example.com
+      expect: {asks: has_license}
+    - say: Sí
+      expect: {asks: city}
+    - say: Lavapiés
+      expect: {asks: availability}
+    - say: Tiempo parcial
+      expect: {asks: schedule}
+    - say: Tardes
+      expect: {asks: experience_years}
+    - say: Ninguna
+      expect: {asks: start_date}
+    - say: El lunes que viene
+      offline_say: "2026-10-26"
+      expect: {asks: confirm}
+    - say: Una cosa, me mudo, desde esta semana vivo en Ourense
+      expect:
+        live: {action: confirm_value, asks: city, outcome: in_progress}
+    - say: Sí, vivo allí
+      offline_say: sí
+      expect:
+        live: {action: disqualify, reason: out_of_area, asks: talent_pool}
+
+- id: profile_mx_readback_license_gate_rerun
+  description: >-
+    Mexico. At the summary the candidate types that the license is expired: the gate runs again
+    and closes the application with the fixed license line, usted.
+  country: MX
+  steps:
+    - tap: "yes"
+      expect: {asks: full_name}
+    - say: Diana Herrera Paz
+      expect: {asks: phone}
+    - tap: {country: MX, number: "5512345616"}
+      expect: {asks: email}
+    - say: diana.herrera@example.com
+      expect: {asks: has_license}
+    - say: Sí
+      expect: {asks: city}
+    - say: Zapopan
+      expect: {asks: availability}
+    - say: Tiempo completo
+      expect: {asks: schedule}
+    - say: Mañanas
+      expect: {asks: experience_years}
+    - say: Ninguna
+      expect: {asks: start_date}
+    - say: Ya
+      offline_say: ya
+      expect: {asks: confirm, register: usted}
+    - say: Ah, perdón, mi licencia está vencida, se me olvidó
+      expect:
+        register: usted
+        live:
+          action: disqualify
+          outcome: disqualified
+          reason: license_not_valid
+          closed: true
+
+- id: profile_mx_readback_city_change_served
+  description: >-
+    Mexico. At the summary the candidate says they now live in Monterrey, Cumbres: another
+    location we serve, so the summary comes again and a yes qualifies.
+  country: MX
+  steps:
+    - tap: "yes"
+      expect: {asks: full_name}
+    - say: Tomás Aguilar Vera
+      expect: {asks: phone}
+    - tap: {country: MX, number: "5512345617"}
+      expect: {asks: email}
+    - say: tomas.aguilar@example.com
+      expect: {asks: has_license}
+    - say: Sí
+      expect: {asks: city}
+    - say: Zapopan
+      expect: {asks: availability}
+    - say: Fines de semana
+      expect: {asks: schedule}
+    - say: Flexible
+      expect: {asks: experience_years}
+    - say: "2"
+      expect: {asks: platforms}
+    - say: DiDi Food
+      offline_say: DiDi Food
+      expect: {asks: start_date}
+    - say: Ya
+      offline_say: ya
+      expect: {asks: confirm}
+    - say: Corrijo algo, me cambié y ahora vivo en Monterrey, por Cumbres
+      expect: {asks: confirm, ui: confirm, outcome: in_progress, register: usted}
+    - tap: "yes"
+      expect: {outcome: qualified, register: usted}
+
+- id: profile_es_readback_experience_from_zero
+  description: >-
+    Spain. No experience at first, so the platforms are not asked; at the summary the candidate
+    corrects it to 2 years, and the platforms question should come before the summary again.
+  country: ES
+  steps:
+    - tap: "yes"
+      expect: {asks: full_name}
+    - say: Andrea Lozano Marín
+      expect: {asks: phone}
+    - tap: {country: ES, number: "612345629"}
+      expect: {asks: email}
+    - say: andrea.lozano@example.com
+      expect: {asks: has_license}
+    - say: Sí, tengo el B
+      offline_say: sí
+      expect: {asks: city}
+    - say: Lavapiés
+      expect: {asks: availability}
+    - say: Tiempo completo
+      expect: {asks: schedule}
+    - say: Mañanas
+      expect: {asks: experience_years}
+    - say: Ninguna
+      expect: {asks: start_date}
+    - say: El lunes que viene
+      offline_say: "2026-10-26"
+      expect: {asks: confirm}
+    - say: Perdona, la experiencia está mal, llevo 2 años repartiendo
+      expect:
+        live: {asks: platforms, outcome: in_progress}
+
+# --- edge cases the rules leave open, or where the product reads an answer wrongly ---
+
+- id: profile_mx_experience_no_se_is_not_zero
+  description: >-
+    Mexico. "No sé, la verdad" to the experience question is no number: it should be asked
+    again. The extractor passes the words through and the validator reads the "no" as zero years.
+  country: MX
+  steps:
+    - tap: "yes"
+      expect: {asks: full_name}
+    - say: Adrián Robles Fuentes
+      expect: {asks: phone}
+    - tap: {country: MX, number: "5512345618"}
+      expect: {asks: email}
+    - say: adrian.robles@example.com
+      expect: {asks: has_license}
+    - say: Sí, tengo licencia
+      offline_say: sí
+      expect: {asks: city}
+    - say: Zapopan
+      expect: {asks: availability}
+    - say: Tiempo completo
+      expect: {asks: schedule}
+    - say: Tardes
+      expect: {asks: experience_years}
+    - say: No sé, la verdad
+      expect: {action: ask_field, asks: experience_years, outcome: in_progress, register: usted}
+
+- id: profile_es_start_day_month_already_past
+  description: >-
+    Spain. "El 1 de octubre" with no year, on 19 October: the extractor rolls it to 1 October
+    2027. Ana reads it back with today's date for context ("Hoy es 19 de octubre, ¿te refieres
+    al 1 de octubre de 2027?"); a yes keeps it.
+  country: ES
+  steps:
+    - tap: "yes"
+      expect: {asks: full_name}
+    - say: Raquel Soler Mena
+      expect: {asks: phone}
+    - tap: {country: ES, number: "612345628"}
+      expect: {asks: email}
+    - say: raquel.soler@example.com
+      expect: {asks: has_license}
+    - say: Sí, tengo el B
+      offline_say: sí
+      expect: {asks: city}
+    - say: Lavapiés
+      expect: {asks: availability}
+    - say: Tiempo completo
+      expect: {asks: schedule}
+    - say: Tardes
+      expect: {asks: experience_years}
+    - say: Ninguna
+      expect: {asks: start_date}
+    - say: El 1 de octubre
+      offline_say: "2027-10-01"  # what the extractor makes of it
+      expect:
+        action: confirm_value
+        outcome: in_progress
+        reply_matches: "hoy es .{0,12}19 de octubre"
+    - say: Sí, eso
+      offline_say: sí
+      expect: {asks: confirm, outcome: in_progress}
+
+- id: profile_bare_si_to_license
+  description: >-
+    Spain then Mexico. A typed bare "Sí" to the license question is a yes (the prompt says so,
+    and the button does it), never a failed answer that counts towards `unresolved_license`.
+  country: ES
+  steps:
+    - tap: "yes"
+      expect: {asks: full_name}
+    - say: Beatriz Campos Rey
+      expect: {asks: phone}
+    - tap: {country: ES, number: "612345630"}
+      expect: {asks: email}
+    - say: beatriz.campos@example.com
+      expect: {asks: has_license}
+    - say: Sí
+      expect: {asks: city, action: ask_field}
+    - say: Lavapiés
+      expect: {asks: availability}
+
+- id: profile_es_experience_taken_back
+  description: 'Spain. "Dos años no, tres" is three years, not five: the amount taken back is left out.'
+  country: ES
+  steps:
+    - tap: "yes"
+    - say: Iker Ruiz Soto
+      expect: {asks: phone}
+    - tap: {country: ES, number: "612345631"}
+      expect: {asks: email}
+    - say: iker.ruiz@example.com
+      expect: {asks: has_license}
+    - say: Sí
+      expect: {asks: city}
+    - say: Lavapiés
+      expect: {asks: availability}
+    - say: Tiempo completo
+      expect: {asks: schedule}
+    - say: Mañanas
+      expect: {asks: experience_years}
+    - say: Dos años no, tres
+      expect: {asks: platforms, outcome: in_progress}
+
+- id: profile_mx_refuses_schedule
+  description: >-
+    Mexico. Refuses the schedule three times: an optional field, so the reason is a fixed usted
+    line that never says it is needed, and the third refusal carries on without it (D5).
+  country: MX
+  steps:
+    - tap: "yes"
+    - say: Sofía Treviño Garza
+      expect: {asks: phone}
+    - tap: {country: MX, number: "5512345632"}
+      expect: {asks: email}
+    - say: sofia.trevino@example.com
+      expect: {asks: has_license}
+    - say: Sí
+      expect: {asks: city}
+    - say: Zapopan
+      expect: {asks: availability}
+    - say: Medio tiempo
+      expect: {asks: schedule}
+    - say: Prefiero no decirlo
+      expect:
+        asks: schedule
+        register: usted
+        reply_matches: "No es obligatorio"
+        reply_not_matches: "necesito|no (le )?entend|para continuar"
+    - say: Eso es algo privado
+      expect:
+        asks: schedule
+        register: usted
+        reply_not_matches: "necesito|no (le )?entend|para continuar"
+    - say: No lo voy a decir
+      expect: {asks: experience_years, outcome: in_progress}

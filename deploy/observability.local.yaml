@@ -1,0 +1,49 @@
+# Observability on localhost, on top of compose.local.yaml (`make obs-up`):
+# Langfuse on http://localhost:3100, Grafana on http://localhost:3200.
+services:
+  caddy:
+    ports:
+      - "${LOCAL_LANGFUSE_PORT:-3100}:3100"
+      - "${LOCAL_GRAFANA_PORT:-3200}:3200"
+
+  # Prometheus and Loki on loopback only, for alloy-dev to push the dev API's metrics and logs.
+  prometheus:
+    command:
+      - --config.file=/etc/prometheus/prometheus.yml
+      - --storage.tsdb.path=/prometheus
+      - --storage.tsdb.retention.time=15d
+      - --web.enable-lifecycle
+      - --web.enable-remote-write-receiver
+    ports:
+      - "127.0.0.1:${LOCAL_PROMETHEUS_PORT:-9090}:9090"
+
+  loki:
+    ports:
+      - "127.0.0.1:${LOCAL_LOKI_PORT:-3110}:3100"
+
+  # The dev API on the host (`make dev-api`) as job and service `api-dev` (observability-dev.alloy).
+  alloy-dev:
+    image: grafana/alloy:v1.20.1
+    restart: unless-stopped
+    network_mode: host
+    command:
+      - run
+      - --server.http.listen-addr=127.0.0.1:${LOCAL_ALLOY_DEV_PORT:-12346}
+      - --storage.path=/var/lib/alloy/data
+      - --disable-reporting
+      - /etc/alloy/config.alloy
+    volumes:
+      - ./observability-dev.alloy:/etc/alloy/config.alloy:ro
+      - ${DEV_API_LOG_DIR:-../backend/logs}:/dev-api-logs:ro
+      - alloy_dev:/var/lib/alloy/data
+    environment:
+      COMPOSE_PROJECT: ${COMPOSE_PROJECT_NAME}
+      DEV_API_ADDR: 127.0.0.1:${DEV_API_PORT:-8000}
+      PROMETHEUS_WRITE_URL: http://127.0.0.1:${LOCAL_PROMETHEUS_PORT:-9090}/api/v1/write
+      LOKI_PUSH_URL: http://127.0.0.1:${LOCAL_LOKI_PORT:-3110}/loki/api/v1/push
+    depends_on:
+      - prometheus
+      - loki
+
+volumes:
+  alloy_dev:

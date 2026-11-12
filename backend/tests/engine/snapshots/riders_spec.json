@@ -1,0 +1,1077 @@
+{
+ "agent": "riders",
+ "countries": [
+  "ES",
+  "MX"
+ ],
+ "locations": "riders/data/service_areas.json",
+ "recruiters": "riders/data/recruiters.json",
+ "fields": [
+  {
+   "id": "full_name",
+   "type": "person_name",
+   "funnel_step": "name",
+   "stored_as": [],
+   "required": "unresolved_name",
+   "max_tries": 3,
+   "gate": null,
+   "ask_if": {},
+   "read_back": {
+    "over": null,
+    "after_days": null,
+    "loose_match": false,
+    "domain_typo": false
+   },
+   "checks": [],
+   "channel": null,
+   "options": [],
+   "other": false,
+   "exclusive": [],
+   "buttons": {},
+   "reader": null,
+   "aliases": {},
+   "min_confidence": 0.0,
+   "voice_read_back": false,
+   "readings": {},
+   "zone_question_from": null,
+   "most": null,
+   "late_after_days": null,
+   "extract": "the name as written, trimmed, abbreviations included (\"Juan Hdz\"). Do not add surnames.",
+   "label": {
+    "es": "Nombre",
+    "en": "Name"
+   },
+   "country_labels": {},
+   "option_labels": {},
+   "none_label": {}
+  },
+  {
+   "id": "phone",
+   "type": "contact",
+   "funnel_step": "contact",
+   "stored_as": [],
+   "required": null,
+   "max_tries": 3,
+   "gate": null,
+   "ask_if": {},
+   "read_back": {
+    "over": null,
+    "after_days": null,
+    "loose_match": false,
+    "domain_typo": false
+   },
+   "checks": [],
+   "channel": "phone",
+   "options": [],
+   "other": false,
+   "exclusive": [],
+   "buttons": {},
+   "reader": null,
+   "aliases": {},
+   "min_confidence": 0.0,
+   "voice_read_back": false,
+   "readings": {},
+   "zone_question_from": null,
+   "most": null,
+   "late_after_days": null,
+   "extract": "the number as written, digits and a leading + only (remove spaces, dots, dashes, parentheses). Keep the country code only if the candidate wrote it.",
+   "label": {
+    "es": "Teléfono",
+    "en": "Phone"
+   },
+   "country_labels": {},
+   "option_labels": {},
+   "none_label": {}
+  },
+  {
+   "id": "email",
+   "type": "contact",
+   "funnel_step": "contact",
+   "stored_as": [],
+   "required": null,
+   "max_tries": 2,
+   "gate": null,
+   "ask_if": {},
+   "read_back": {
+    "over": null,
+    "after_days": null,
+    "loose_match": false,
+    "domain_typo": true
+   },
+   "checks": [],
+   "channel": "email",
+   "options": [],
+   "other": false,
+   "exclusive": [],
+   "buttons": {},
+   "reader": null,
+   "aliases": {},
+   "min_confidence": 0.0,
+   "voice_read_back": false,
+   "readings": {},
+   "zone_question_from": null,
+   "most": null,
+   "late_after_days": null,
+   "extract": "lowercased, trimmed. Undo spoken forms (\"arroba\" → @, \"punto\" → .).",
+   "label": {
+    "es": "Email",
+    "en": "Email"
+   },
+   "country_labels": {},
+   "option_labels": {},
+   "none_label": {}
+  },
+  {
+   "id": "has_license",
+   "type": "credential",
+   "funnel_step": "license",
+   "stored_as": [],
+   "required": "unresolved_license",
+   "max_tries": 3,
+   "gate": {
+    "readings": {
+     "no": "close",
+     "in_progress": "close",
+     "not_valid": "close"
+    },
+    "reasons": {
+     "no": "no_license",
+     "in_progress": "license_in_progress",
+     "not_valid": "license_not_valid"
+    },
+    "reopenable": true,
+    "reapply": true
+   },
+   "ask_if": {},
+   "read_back": {
+    "over": null,
+    "after_days": null,
+    "loose_match": false,
+    "domain_typo": false
+   },
+   "checks": [],
+   "channel": null,
+   "options": [],
+   "other": false,
+   "exclusive": [],
+   "buttons": {},
+   "reader": null,
+   "aliases": {},
+   "min_confidence": 0.7,
+   "voice_read_back": true,
+   "readings": {},
+   "zone_question_from": null,
+   "most": null,
+   "late_after_days": null,
+   "extract": "`true` if they have a driving licence valid for a car or motorbike (any class: \"carnet B\", A2, \"licencia tipo A\", \"licencia de motociclista\"); `false` if they do not, including indirect answers (\"no conduzco\", \"solo bici\") and a licence that is not valid today: expired, being renewed, suspended or taken away (\"la tengo vencida\", \"la estoy renovando\", \"me la quitaron\"); `\"in_progress\"` if they are still getting it (\"lo estoy sacando\", \"en trámite\"), waiting for it, or have only a learner's permit (\"permiso de aprendiz\").",
+   "label": {
+    "es": "Carnet de conducir",
+    "en": "Driving licence"
+   },
+   "country_labels": {
+    "ES": {
+     "es": "Carnet de conducir",
+     "en": "Driving licence"
+    },
+    "MX": {
+     "es": "Licencia de conducir",
+     "en": "Driver's license"
+    }
+   },
+   "option_labels": {},
+   "none_label": {}
+  },
+  {
+   "id": "city",
+   "type": "location",
+   "funnel_step": "city",
+   "stored_as": [
+    "location_id",
+    "place_said"
+   ],
+   "required": "unresolved_city",
+   "max_tries": 3,
+   "gate": {
+    "readings": {
+     "out_of_area": "close_talent_pool"
+    },
+    "reasons": {
+     "out_of_area": "out_of_area"
+    },
+    "reopenable": true,
+    "reapply": false
+   },
+   "ask_if": {},
+   "read_back": {
+    "over": null,
+    "after_days": null,
+    "loose_match": true,
+    "domain_typo": false
+   },
+   "checks": [],
+   "channel": null,
+   "options": [],
+   "other": false,
+   "exclusive": [],
+   "buttons": {},
+   "reader": null,
+   "aliases": {},
+   "min_confidence": 0.0,
+   "voice_read_back": false,
+   "readings": {},
+   "zone_question_from": 3,
+   "most": null,
+   "late_after_days": null,
+   "extract": "where they live or want to work now, as written, with obvious typos fixed (\"Zapopan\" for \"zapopam\") and aliases kept (\"DF\", \"GDL\", \"MTY\"). If they name a city and a zone, neighbourhood or colonia, give both, city first (\"Sevilla, Triana\"); if they name only a zone, give only the zone (\"Gràcia\", \"Narvarte\", without \"la colonia\"). Do not add a city they did not say. Always use the key `city`, never `location` or `zone`. A place they grew up in, come from, used to live in or are visiting is not their city (\"I grew up in LA\", \"soy de Oaxaca pero vivo en Zapopan\" → only \"Zapopan\"); with no current place, leave `city` out. If you can't tell whether a place is where they live now, give it with confidence below 0.7.",
+   "label": {
+    "es": "Zona",
+    "en": "Area"
+   },
+   "country_labels": {},
+   "option_labels": {},
+   "none_label": {}
+  },
+  {
+   "id": "availability",
+   "type": "multi_enum",
+   "funnel_step": "availability",
+   "stored_as": [],
+   "required": null,
+   "max_tries": 3,
+   "gate": null,
+   "ask_if": {},
+   "read_back": {
+    "over": null,
+    "after_days": null,
+    "loose_match": false,
+    "domain_typo": false
+   },
+   "checks": [],
+   "channel": null,
+   "options": [
+    "full_time",
+    "part_time",
+    "weekends"
+   ],
+   "other": false,
+   "exclusive": [],
+   "buttons": {},
+   "reader": "availability",
+   "aliases": {},
+   "min_confidence": 0.0,
+   "voice_read_back": false,
+   "readings": {},
+   "zone_question_from": null,
+   "most": null,
+   "late_after_days": null,
+   "extract": "list from `full_time`, `part_time`, `weekends`.",
+   "label": {
+    "es": "Disponibilidad",
+    "en": "Availability"
+   },
+   "country_labels": {},
+   "option_labels": {
+    "es": {
+     "full_time": "Tiempo completo",
+     "part_time": "Tiempo parcial",
+     "weekends": "Fines de semana"
+    },
+    "en": {
+     "full_time": "Full time",
+     "part_time": "Part time",
+     "weekends": "Weekends"
+    }
+   },
+   "none_label": {}
+  },
+  {
+   "id": "schedule",
+   "type": "multi_enum",
+   "funnel_step": "schedule",
+   "stored_as": [],
+   "required": null,
+   "max_tries": 3,
+   "gate": null,
+   "ask_if": {},
+   "read_back": {
+    "over": null,
+    "after_days": null,
+    "loose_match": false,
+    "domain_typo": false
+   },
+   "checks": [],
+   "channel": null,
+   "options": [
+    "morning",
+    "afternoon",
+    "evening",
+    "flexible"
+   ],
+   "other": false,
+   "exclusive": [
+    "flexible"
+   ],
+   "buttons": {},
+   "reader": "schedule",
+   "aliases": {},
+   "min_confidence": 0.0,
+   "voice_read_back": false,
+   "readings": {},
+   "zone_question_from": null,
+   "most": null,
+   "late_after_days": null,
+   "extract": "list of the periods they can work, from `morning`, `afternoon`, `evening` (\"mañanas y tardes, noches no\" → [`morning`, `afternoon`]); leave out a period they refuse. `flexible` alone when any period works (\"cualquiera\", \"me da igual\", \"any\" → [`flexible`]).",
+   "label": {
+    "es": "Horario",
+    "en": "Schedule"
+   },
+   "country_labels": {},
+   "option_labels": {
+    "es": {
+     "morning": "Mañana",
+     "afternoon": "Tarde",
+     "evening": "Noche",
+     "flexible": "Flexible"
+    },
+    "en": {
+     "morning": "Morning",
+     "afternoon": "Afternoon",
+     "evening": "Evening",
+     "flexible": "Flexible"
+    }
+   },
+   "none_label": {}
+  },
+  {
+   "id": "experience_years",
+   "type": "years",
+   "funnel_step": "experience",
+   "stored_as": [
+    "experience_years",
+    "experience_unverified"
+   ],
+   "required": null,
+   "max_tries": 3,
+   "gate": null,
+   "ask_if": {},
+   "read_back": {
+    "over": 10.0,
+    "after_days": null,
+    "loose_match": false,
+    "domain_typo": false
+   },
+   "checks": [
+    "platform_years"
+   ],
+   "channel": null,
+   "options": [],
+   "other": false,
+   "exclusive": [],
+   "buttons": {},
+   "reader": null,
+   "aliases": {},
+   "min_confidence": 0.0,
+   "voice_read_back": false,
+   "readings": {},
+   "zone_question_from": null,
+   "most": 20.0,
+   "late_after_days": null,
+   "extract": "years of delivery or driving work as a number. Months divide by 12 (\"medio año\" 0.5, \"6 meses\" 0.5, \"3 meses\" 0.25, \"un año y medio\" 1.5). No experience (\"ninguna\") → 0. Add up periods on several platforms. If they are vague (\"unos meses\", \"a while\"), give a year or a range instead of an amount (\"desde 2019\", \"entre 2 y 3 años\"), or don't know or won't say (\"no sé\", \"no me acuerdo\"), give their words as a string: never work out a number from them, and never 0.",
+   "label": {
+    "es": "Experiencia",
+    "en": "Experience"
+   },
+   "country_labels": {},
+   "option_labels": {},
+   "none_label": {}
+  },
+  {
+   "id": "platforms",
+   "type": "multi_enum",
+   "funnel_step": "experience",
+   "stored_as": [
+    "platforms",
+    "platform_other"
+   ],
+   "required": null,
+   "max_tries": 3,
+   "gate": null,
+   "ask_if": {
+    "experience_years": {
+     "gt": 0.0,
+     "eq": null,
+     "any_of": null,
+     "none_of": null
+    }
+   },
+   "read_back": {
+    "over": null,
+    "after_days": null,
+    "loose_match": false,
+    "domain_typo": false
+   },
+   "checks": [],
+   "channel": null,
+   "options": [
+    "glovo",
+    "uber_eats",
+    "just_eat",
+    "rappi",
+    "didi_food",
+    "deliveroo",
+    "amazon_flex"
+   ],
+   "other": true,
+   "exclusive": [],
+   "buttons": {
+    "ES": [
+     "glovo",
+     "uber_eats",
+     "just_eat",
+     "other"
+    ],
+    "MX": [
+     "rappi",
+     "didi_food",
+     "uber_eats",
+     "other"
+    ]
+   },
+   "reader": "platforms",
+   "aliases": {},
+   "min_confidence": 0.0,
+   "voice_read_back": false,
+   "readings": {},
+   "zone_question_from": null,
+   "most": null,
+   "late_after_days": null,
+   "extract": "list from `glovo`, `uber_eats`, `just_eat`, `rappi`, `didi_food`, `deliveroo`, `amazon_flex`; anything else as the name they used (e.g. \"Stuart\"). \"Didi\" means `didi_food`, \"Uber\" means `uber_eats`. \"Hice Glovo un año\" gives both `platforms` and `experience_years`.",
+   "label": {
+    "es": "Plataformas",
+    "en": "Platforms"
+   },
+   "country_labels": {},
+   "option_labels": {
+    "es": {
+     "glovo": "Glovo",
+     "uber_eats": "Uber Eats",
+     "just_eat": "Just Eat",
+     "rappi": "Rappi",
+     "didi_food": "DiDi Food",
+     "deliveroo": "Deliveroo",
+     "amazon_flex": "Amazon Flex",
+     "other": "Otra"
+    },
+    "en": {
+     "glovo": "Glovo",
+     "uber_eats": "Uber Eats",
+     "just_eat": "Just Eat",
+     "rappi": "Rappi",
+     "didi_food": "DiDi Food",
+     "deliveroo": "Deliveroo",
+     "amazon_flex": "Amazon Flex",
+     "other": "Other"
+    }
+   },
+   "none_label": {
+    "es": "Ninguna",
+    "en": "None"
+   }
+  },
+  {
+   "id": "start_date",
+   "type": "date",
+   "funnel_step": "start_date",
+   "stored_as": [
+    "start_date",
+    "late_start_days"
+   ],
+   "required": null,
+   "max_tries": 3,
+   "gate": null,
+   "ask_if": {},
+   "read_back": {
+    "over": null,
+    "after_days": 90,
+    "loose_match": false,
+    "domain_typo": false
+   },
+   "checks": [],
+   "channel": null,
+   "options": [],
+   "other": false,
+   "exclusive": [],
+   "buttons": {},
+   "reader": null,
+   "aliases": {},
+   "min_confidence": 0.0,
+   "voice_read_back": false,
+   "readings": {},
+   "zone_question_from": null,
+   "most": null,
+   "late_after_days": 60,
+   "extract": "an ISO date (YYYY-MM-DD) resolved against today. \"Ya\", \"hoy\", \"inmediato\", \"right away\", \"cuando sea\" → today. \"Mañana\" → tomorrow. \"El lunes\", \"next Monday\" → the next Monday after today. \"La semana que viene\" / \"next week\" → the Monday of next week. \"En dos semanas\" → today + 14 days. \"A principios de diciembre\" → the 1st of that month. \"El 15\" → the next 15th of a month that is not in the past. A month alone (\"en enero\") → the 1st of its next occurrence. No resolvable date (\"cuando acabe el curso\") → leave it out.",
+   "label": {
+    "es": "Fecha de inicio",
+    "en": "Start date"
+   },
+   "country_labels": {},
+   "option_labels": {},
+   "none_label": {}
+  }
+ ],
+ "apply_order": [
+  "has_license",
+  "city"
+ ],
+ "summary": [],
+ "interview": {
+  "blocks": "schedule",
+  "before": "start_date",
+  "scope": []
+ },
+ "fix_words": {
+  "experience_years": "experiencia|(?:numero de )?anos(?: de experiencia)?|experience|years(?: of experience)?",
+  "start_date": "fecha(?: de (?:inicio|incorporacion|comienzo|entrada))?|dia de inicio|cuando (?:empiezo|empezaria|puedo empezar|empiezo a trabajar)|start(?:ing)? date|when i (?:can )?start",
+  "availability": "disponibilidad|jornada|dias(?: que puedo)?|fines de semana|availability|days",
+  "schedule": "horarios?|turnos?|franja(?: horaria)?|schedule|shifts?|working hours",
+  "platforms": "plataformas?|apps?|aplicaciones|platforms?",
+  "has_license": "carnet(?: de conducir)?|licencia(?: de (?:conducir|manejo|manejar))?|permiso de conducir|(?:driving |driver s |drivers )?licen[cs]e",
+  "email": "correo(?: electronico)?|(?:e ?)?mail(?: address)?",
+  "phone": "telefono|movil|celular|numero(?: de (?:telefono|movil|celular))?|phone(?: number)?|mobile(?: number)?|number",
+  "full_name": "nombre(?: completo)?|apellidos?|(?:full |last |sur)?name",
+  "city": "zona|colonia|alcaldia|delegacion|ciudad|barrio|municipio|direccion|domicilio|ubicacion|local|sucursal|donde vivo|area|city|zone|neighbou?rhood|location|address|branch|where i live"
+ },
+ "dashboard": {
+  "language": "es",
+  "columns": [
+   {
+    "field": "availability",
+    "label": null,
+    "sortable": false,
+    "wrap": true
+   },
+   {
+    "field": "schedule",
+    "label": null,
+    "sortable": false,
+    "wrap": false
+   },
+   {
+    "field": "experience_years",
+    "label": null,
+    "sortable": true,
+    "wrap": false
+   },
+   {
+    "field": "start_date",
+    "label": "Inicio",
+    "sortable": true,
+    "wrap": false
+   }
+  ],
+  "filters": [
+   "availability",
+   "schedule"
+  ],
+  "labels": {
+   "has_license": "Carnet",
+   "city": "Ubicación"
+  },
+  "country_labels": {
+   "has_license": {
+    "MX": "Licencia"
+   }
+  },
+  "step_labels": {
+   "contact": "Contacto",
+   "city": "Ciudad"
+  }
+ },
+ "texts": {
+  "es-ES": {
+   "greet": "¡Hola! Soy Ana, la asistente de IA de selección de Grupo Sazón. Son unas preguntas rápidas y tus datos se tratan según el aviso de privacidad que tienes aquí abajo, ¿empezamos?",
+   "greet_voice": "¡Hola! Soy Ana, la asistente de IA de Grupo Sazón. ¿Aceptas el aviso de privacidad?",
+   "overview": "Te haré unas preguntas sobre ti y tu experiencia, son unos 3 minutos. Si encajas, te reservo una entrevista con alguien del equipo.",
+   "overview_voice": "Son unas preguntas, unos 3 minutos. Si encajas, te reservo una entrevista.",
+   "busy": "¡Hola! Soy Ana, la asistente de IA de selección de Grupo Sazón. Ahora mismo no puedo abrir solicitudes nuevas. Vuelve más tarde, por favor; mañana seguro que sí.",
+   "clarify_open": "¿Me das un poco más de detalle, por ejemplo el barrio?",
+   "fields": {
+    "full_name": {
+     "ask": "¿Cuál es tu nombre completo?",
+     "ask_voice": null,
+     "refusal": "Lo necesito para abrir tu solicitud y para la entrevista.",
+     "refusal_again": "Sin tu nombre no puedo seguir con la solicitud.",
+     "unresolved": "No he podido apuntar tu nombre y apellidos",
+     "read_back": null,
+     "read_back_voice": null,
+     "check": null,
+     "zone": null
+    },
+    "phone": {
+     "ask": "¿Cuál es tu número de móvil?",
+     "ask_voice": null,
+     "refusal": "Lo usamos solo para concertar, confirmar o cambiar la entrevista.",
+     "refusal_again": "Sin móvil ni correo no puedo reservarte la entrevista.",
+     "unresolved": null,
+     "read_back": null,
+     "read_back_voice": null,
+     "check": null,
+     "zone": null
+    },
+    "email": {
+     "ask": "¿Y tu correo electrónico?",
+     "ask_voice": null,
+     "refusal": "Sin el móvil, necesito al menos tu correo para la entrevista.",
+     "refusal_again": "Sin móvil ni correo no puedo reservarte la entrevista.",
+     "unresolved": null,
+     "read_back": null,
+     "read_back_voice": null,
+     "check": null,
+     "zone": null
+    },
+    "has_license": {
+     "ask": "¿Tienes carnet de conducir en vigor?",
+     "ask_voice": null,
+     "refusal": "Es un requisito del puesto, así que necesito saberlo.",
+     "refusal_again": "Sin esa respuesta no puedo seguir con la solicitud.",
+     "unresolved": "No he podido confirmar si tienes carnet de conducir vigente",
+     "read_back": "¿Entonces ahora no tienes carnet en vigor?",
+     "read_back_voice": null,
+     "check": null,
+     "zone": null
+    },
+    "city": {
+     "ask": "¿En qué ciudad o barrio vives?",
+     "ask_voice": null,
+     "refusal": "Lo necesito para buscarte el local más cercano y la entrevista.",
+     "refusal_again": "Sin saber dónde vives no puedo seguir con la solicitud.",
+     "unresolved": "No he podido confirmar dónde vives",
+     "read_back": "Para asegurarme: ¿vives ahora en {value}?",
+     "read_back_voice": null,
+     "check": null,
+     "zone": "¿En qué barrio de {city} vives?"
+    },
+    "availability": {
+     "ask": "¿Qué disponibilidad tienes: tiempo completo, tiempo parcial o fines de semana?",
+     "ask_voice": "¿Buscas jornada completa, parcial o solo fines de semana?",
+     "refusal": null,
+     "refusal_again": null,
+     "unresolved": null,
+     "read_back": null,
+     "read_back_voice": null,
+     "check": null,
+     "zone": null
+    },
+    "schedule": {
+     "ask": "¿Qué horarios te van bien: mañana, tarde, noche o flexible?",
+     "ask_voice": "¿Qué horarios te van bien?",
+     "refusal": null,
+     "refusal_again": null,
+     "unresolved": null,
+     "read_back": null,
+     "read_back_voice": null,
+     "check": null,
+     "zone": null
+    },
+    "experience_years": {
+     "ask": "¿Cuánta experiencia tienes haciendo reparto?",
+     "ask_voice": null,
+     "refusal": null,
+     "refusal_again": null,
+     "unresolved": null,
+     "read_back": "Para confirmar, ¿son {years} de experiencia en reparto?",
+     "read_back_voice": "¿Son {years} de experiencia en reparto?",
+     "check": "¿Me confirmas cuántos años has repartido con {option}?",
+     "zone": null
+    },
+    "platforms": {
+     "ask": "¿Con qué plataformas de reparto has trabajado?",
+     "ask_voice": null,
+     "refusal": null,
+     "refusal_again": null,
+     "unresolved": null,
+     "read_back": null,
+     "read_back_voice": null,
+     "check": null,
+     "zone": null
+    },
+    "start_date": {
+     "ask": "¿Cuándo podrías empezar?",
+     "ask_voice": null,
+     "refusal": null,
+     "refusal_again": null,
+     "unresolved": null,
+     "read_back": "Tengo el {value} como fecha de inicio. ¿Es correcto?",
+     "read_back_voice": null,
+     "check": null,
+     "zone": null
+    }
+   },
+   "hints": {
+    "name_too_short": "Necesito tu nombre y apellido.",
+    "name_needs_surname": "Necesito también tus apellidos.",
+    "name_too_long": "Ese nombre es demasiado largo.",
+    "name_has_digits": "El nombre no puede llevar números.",
+    "name_invalid_chars": "El nombre solo puede llevar letras.",
+    "phone_invalid": "Ese número no me cuadra, por ejemplo 612 345 678.",
+    "phone_not_mobile": "Necesito un móvil, no un fijo.",
+    "email_invalid": "Ese correo no parece válido.",
+    "license_invalid": "No me ha quedado claro.",
+    "city_ambiguous": "Hay varias zonas con ese nombre.",
+    "availability_invalid": "No me ha quedado claro.",
+    "schedule_invalid": "No me ha quedado claro.",
+    "experience_invalid": "Dímelo en años o meses, por ejemplo 2 años.",
+    "experience_out_of_range": "Esa cifra no me cuadra.",
+    "experience_needs_number": "Dime cuántos meses o años, más o menos.",
+    "platforms_invalid": "No me ha quedado claro.",
+    "date_invalid": "No he entendido la fecha, por ejemplo el lunes o el 3 de mayo.",
+    "past_date": "Esa fecha ya ha pasado."
+   },
+   "closes": {
+    "no_license": "Para este puesto necesitas un carnet de conducir vigente en el momento de aplicar, así que ahora no podemos seguir. Puedes volver a aplicar cuando lo tengas.",
+    "license_in_progress": "Para este puesto necesitas un carnet de conducir vigente en el momento de aplicar, así que ahora no podemos seguir. Puedes volver a aplicar cuando lo tengas.",
+    "license_not_valid": "Para este puesto necesitas un carnet de conducir vigente en el momento de aplicar, así que ahora no podemos seguir. Puedes volver a aplicar cuando lo tengas.",
+    "out_of_area": "No tenemos local en tu zona ahora mismo, lo siento. ¿Quieres que guardemos tus datos en nuestra bolsa de candidatos para futuras vacantes?"
+   },
+   "skeleton": {}
+  },
+  "es-MX": {
+   "greet": "¡Hola! Soy Ana, asistente de IA de reclutamiento de Grupo Sazón. Son unas preguntas rápidas y sus datos se tratan según el aviso de privacidad que tiene aquí abajo, ¿empezamos?",
+   "greet_voice": "¡Hola! Soy Ana, asistente de IA de Grupo Sazón. ¿Acepta el aviso de privacidad?",
+   "overview": "Le haré unas preguntas sobre usted y su experiencia, son unos 3 minutos. Si encaja, le reservo una entrevista con alguien del equipo.",
+   "overview_voice": "Son unas preguntas, unos 3 minutos. Si encaja, le reservo una entrevista.",
+   "busy": "¡Hola! Soy Ana, asistente de IA de reclutamiento de Grupo Sazón. En este momento no puedo abrir solicitudes nuevas. Por favor, vuelva más tarde; mañana con gusto le atiendo.",
+   "clarify_open": "¿Me da un poco más de detalle, por ejemplo su colonia o alcaldía?",
+   "fields": {
+    "full_name": {
+     "ask": "¿Me comparte su nombre completo?",
+     "ask_voice": null,
+     "refusal": "Lo necesito para abrir su solicitud y para la entrevista.",
+     "refusal_again": "Sin su nombre no puedo seguir con la solicitud.",
+     "unresolved": "No pude registrar su nombre y apellidos",
+     "read_back": null,
+     "read_back_voice": null,
+     "check": null,
+     "zone": null
+    },
+    "phone": {
+     "ask": "¿Cuál es su número de celular?",
+     "ask_voice": null,
+     "refusal": "Lo usamos solo para agendar, confirmar o cambiar su entrevista.",
+     "refusal_again": "Sin celular ni correo no puedo agendarle la entrevista.",
+     "unresolved": null,
+     "read_back": null,
+     "read_back_voice": null,
+     "check": null,
+     "zone": null
+    },
+    "email": {
+     "ask": "¿Y su correo electrónico?",
+     "ask_voice": null,
+     "refusal": "Sin su celular, necesito al menos su correo para la entrevista.",
+     "refusal_again": "Sin celular ni correo no puedo agendarle la entrevista.",
+     "unresolved": null,
+     "read_back": null,
+     "read_back_voice": null,
+     "check": null,
+     "zone": null
+    },
+    "has_license": {
+     "ask": "¿Tiene licencia de conducir vigente?",
+     "ask_voice": null,
+     "refusal": "Es un requisito del puesto, así que necesito saberlo.",
+     "refusal_again": "Sin esa respuesta no puedo seguir con la solicitud.",
+     "unresolved": "No pude confirmar si tiene licencia de conducir vigente",
+     "read_back": "¿Entonces por ahora no tiene licencia vigente?",
+     "read_back_voice": null,
+     "check": null,
+     "zone": null
+    },
+    "city": {
+     "ask": "¿En qué ciudad o colonia vive?",
+     "ask_voice": null,
+     "refusal": "Lo necesito para ubicar la sucursal más cercana y su entrevista.",
+     "refusal_again": "Sin saber dónde vive no puedo seguir con la solicitud.",
+     "unresolved": "No pude confirmar dónde vive",
+     "read_back": "Para asegurarme: ¿vive actualmente en {value}?",
+     "read_back_voice": null,
+     "check": null,
+     "zone": "¿En qué alcaldía o colonia de {city} vive?"
+    },
+    "availability": {
+     "ask": "¿Qué disponibilidad tiene: tiempo completo, medio tiempo o fines de semana?",
+     "ask_voice": "¿Busca tiempo completo, medio tiempo o fines de semana?",
+     "refusal": null,
+     "refusal_again": null,
+     "unresolved": null,
+     "read_back": null,
+     "read_back_voice": null,
+     "check": null,
+     "zone": null
+    },
+    "schedule": {
+     "ask": "¿Qué horarios le acomodan: mañana, tarde, noche o flexible?",
+     "ask_voice": "¿Qué horarios le acomodan?",
+     "refusal": null,
+     "refusal_again": null,
+     "unresolved": null,
+     "read_back": null,
+     "read_back_voice": null,
+     "check": null,
+     "zone": null
+    },
+    "experience_years": {
+     "ask": "¿Cuánta experiencia tiene haciendo entregas?",
+     "ask_voice": null,
+     "refusal": null,
+     "refusal_again": null,
+     "unresolved": null,
+     "read_back": "Para confirmar, ¿son {years} de experiencia en reparto?",
+     "read_back_voice": "¿Son {years} de experiencia en reparto?",
+     "check": "¿Me confirma cuántos años ha repartido con {option}?",
+     "zone": null
+    },
+    "platforms": {
+     "ask": "¿Con qué plataformas de reparto ha trabajado?",
+     "ask_voice": null,
+     "refusal": null,
+     "refusal_again": null,
+     "unresolved": null,
+     "read_back": null,
+     "read_back_voice": null,
+     "check": null,
+     "zone": null
+    },
+    "start_date": {
+     "ask": "¿Cuándo podría empezar?",
+     "ask_voice": null,
+     "refusal": null,
+     "refusal_again": null,
+     "unresolved": null,
+     "read_back": "Tengo el {value} como fecha de inicio. ¿Es correcto?",
+     "read_back_voice": null,
+     "check": null,
+     "zone": null
+    }
+   },
+   "hints": {
+    "name_too_short": "Necesito su nombre y apellido.",
+    "name_needs_surname": "Necesito también sus apellidos.",
+    "name_too_long": "Ese nombre es demasiado largo.",
+    "name_has_digits": "El nombre no puede llevar números.",
+    "name_invalid_chars": "El nombre solo puede llevar letras.",
+    "phone_invalid": "Ese número no me cuadra, por ejemplo 33 1234 5678.",
+    "phone_not_mobile": "Necesito un celular, no un fijo.",
+    "email_invalid": "Ese correo no parece válido.",
+    "license_invalid": "No me quedó claro.",
+    "city_ambiguous": "Hay varias zonas con ese nombre.",
+    "availability_invalid": "No me quedó claro.",
+    "schedule_invalid": "No me quedó claro.",
+    "experience_invalid": "Dígamelo en años o meses, por ejemplo 2 años.",
+    "experience_out_of_range": "Esa cifra no me cuadra.",
+    "experience_needs_number": "Dígame cuántos meses o años, más o menos.",
+    "platforms_invalid": "No me quedó claro.",
+    "date_invalid": "No entendí la fecha, por ejemplo el lunes o el 3 de mayo.",
+    "past_date": "Esa fecha ya pasó."
+   },
+   "closes": {
+    "no_license": "Para este puesto necesita una licencia de conducir vigente en el momento de aplicar, así que por ahora no podemos seguir. Puede volver a aplicar cuando la tenga.",
+    "license_in_progress": "Para este puesto necesita una licencia de conducir vigente en el momento de aplicar, así que por ahora no podemos seguir. Puede volver a aplicar cuando la tenga.",
+    "license_not_valid": "Para este puesto necesita una licencia de conducir vigente en el momento de aplicar, así que por ahora no podemos seguir. Puede volver a aplicar cuando la tenga.",
+    "out_of_area": "No tenemos sucursal en su zona por ahora, lo siento. ¿Quiere que guardemos sus datos en nuestra bolsa de candidatos para futuras vacantes?"
+   },
+   "skeleton": {}
+  },
+  "en": {
+   "greet": "Hi! I'm Ana, Grupo Sazón's AI recruiting assistant. It's a few quick questions and your data is handled under the privacy notice linked below. Shall we start?",
+   "greet_voice": "Hi! I'm Ana, Grupo Sazón's AI assistant. Do you accept our privacy notice?",
+   "overview": "I'll ask you a few questions about you and your experience, about 3 minutes. If it's a match, I'll book you an interview with someone from the team.",
+   "overview_voice": "It's a few questions, about 3 minutes. If it's a match, I'll book your interview.",
+   "busy": "Hi! I'm Ana, Grupo Sazón's AI hiring assistant. I can't open new applications right now. Please come back later; tomorrow will work.",
+   "clarify_open": "Could you give me a bit more detail, like the neighbourhood?",
+   "fields": {
+    "full_name": {
+     "ask": "What's your full name?",
+     "ask_voice": null,
+     "refusal": "I need it to open your application and for the interview.",
+     "refusal_again": "Without your name I can't continue with the application.",
+     "unresolved": "I couldn't get your full name",
+     "read_back": null,
+     "read_back_voice": null,
+     "check": null,
+     "zone": null
+    },
+    "phone": {
+     "ask": "What's your mobile number?",
+     "ask_voice": null,
+     "refusal": "We only use it to arrange, confirm or move your interview.",
+     "refusal_again": "Without a phone or an email I can't book your interview.",
+     "unresolved": null,
+     "read_back": null,
+     "read_back_voice": null,
+     "check": null,
+     "zone": null
+    },
+    "email": {
+     "ask": "And your email address?",
+     "ask_voice": null,
+     "refusal": "Without your phone, I need at least your email for the interview.",
+     "refusal_again": "Without a phone or an email I can't book your interview.",
+     "unresolved": null,
+     "read_back": null,
+     "read_back_voice": null,
+     "check": null,
+     "zone": null
+    },
+    "has_license": {
+     "ask": "Do you have a valid driving licence?",
+     "ask_voice": null,
+     "refusal": "It's a requirement for the role, so I need to know.",
+     "refusal_again": "Without that answer I can't continue with the application.",
+     "unresolved": "I couldn't confirm whether you have a valid driving licence",
+     "read_back": "So you don't have a valid driving licence right now?",
+     "read_back_voice": null,
+     "check": null,
+     "zone": null
+    },
+    "city": {
+     "ask": "Which city or area do you live in?",
+     "ask_voice": null,
+     "refusal": "I need it to find your nearest location and set up the interview.",
+     "refusal_again": "Without knowing where you live I can't continue with the application.",
+     "unresolved": "I couldn't confirm where you live",
+     "read_back": "Just to check: do you currently live in {value}?",
+     "read_back_voice": null,
+     "check": null,
+     "zone": "Which part of {city} do you live in?"
+    },
+    "availability": {
+     "ask": "What's your availability: full time, part time or weekends?",
+     "ask_voice": "Are you after full time, part time or weekends?",
+     "refusal": null,
+     "refusal_again": null,
+     "unresolved": null,
+     "read_back": null,
+     "read_back_voice": null,
+     "check": null,
+     "zone": null
+    },
+    "schedule": {
+     "ask": "Which shifts suit you: morning, afternoon, evening or flexible?",
+     "ask_voice": "Which shifts suit you?",
+     "refusal": null,
+     "refusal_again": null,
+     "unresolved": null,
+     "read_back": null,
+     "read_back_voice": null,
+     "check": null,
+     "zone": null
+    },
+    "experience_years": {
+     "ask": "How much delivery experience do you have?",
+     "ask_voice": null,
+     "refusal": null,
+     "refusal_again": null,
+     "unresolved": null,
+     "read_back": "{years} of delivery experience, is that right?",
+     "read_back_voice": "Is that {years} of delivery experience?",
+     "check": "Could you confirm how many years you've delivered with {option}?",
+     "zone": null
+    },
+    "platforms": {
+     "ask": "Which delivery platforms have you worked with?",
+     "ask_voice": null,
+     "refusal": null,
+     "refusal_again": null,
+     "unresolved": null,
+     "read_back": null,
+     "read_back_voice": null,
+     "check": null,
+     "zone": null
+    },
+    "start_date": {
+     "ask": "When could you start?",
+     "ask_voice": null,
+     "refusal": null,
+     "refusal_again": null,
+     "unresolved": null,
+     "read_back": "I have {value} as your start date. Is that right?",
+     "read_back_voice": null,
+     "check": null,
+     "zone": null
+    }
+   },
+   "hints": {
+    "name_too_short": "I need your first and last name.",
+    "name_needs_surname": "I need your surname too.",
+    "name_too_long": "That name is too long.",
+    "name_has_digits": "A name can't contain numbers.",
+    "name_invalid_chars": "A name can only contain letters.",
+    "phone_invalid": "That number doesn't look right.",
+    "phone_not_mobile": "I need a mobile number, not a landline.",
+    "email_invalid": "That email doesn't look valid.",
+    "license_invalid": "I didn't quite get that.",
+    "city_ambiguous": "Several areas have that name.",
+    "availability_invalid": "I didn't quite get that.",
+    "schedule_invalid": "I didn't quite get that.",
+    "experience_invalid": "Tell me in years or months, for example 2 years.",
+    "experience_out_of_range": "That number doesn't look right.",
+    "experience_needs_number": "Tell me roughly how many months or years.",
+    "platforms_invalid": "I didn't quite get that.",
+    "date_invalid": "I didn't get the date, for example Monday or 3 May.",
+    "past_date": "That date has already passed."
+   },
+   "closes": {
+    "no_license": "This role needs a valid driving licence at the time you apply, so we can't go further for now. You can apply again once you have one.",
+    "license_in_progress": "This role needs a valid driving licence at the time you apply, so we can't go further for now. You can apply again once you have one.",
+    "license_not_valid": "This role needs a valid driving licence at the time you apply, so we can't go further for now. You can apply again once you have one.",
+    "out_of_area": "We don't have a location in your area right now, sorry. Would you like us to keep your details in our talent pool for future vacancies?"
+   },
+   "skeleton": {}
+  }
+ },
+ "persona": {
+  "name": "Ana",
+  "company": "Grupo Sazón"
+ },
+ "place_label": {},
+ "interviewers": {},
+ "prompt_slots": {
+  "hires": "delivery drivers",
+  "countries": "Spain and Mexico",
+  "words_es": "\"carnet\", \"móvil\", \"vale\"",
+  "usted_examples": "\"¿tiene licencia?\", \"dígame\", \"su nombre\"",
+  "words_mx": "\"licencia de manejo\", \"celular\", \"sucursal\"",
+  "tone": "like a good shift manager talking to a new hire",
+  "location_examples": "\"la sucursal de Benito Juárez\", \"el local de Madrid Centro\", \"our Madrid Centro location\"",
+  "brand": "Sazón",
+  "concrete": "a platform, how long, a vehicle",
+  "more_detail": "neighbourhood, colonia, alcaldía",
+  "confirm_value": "`start_date`: read back `value` and ask if it is right. `city` with `location_id`: the place matched that location only loosely; ask whether they mean it, named as in the reference (\"¿Te refieres al local de Gràcia?\" / \"¿Se refiere a la sucursal de Zapopan?\"). `city` without it: `value` is a place outside our service areas, as the candidate named it; ask whether they currently live there (\"¿Vives ahora en …?\" / \"¿Vive actualmente en …?\"). Do not say they are out of the area yet. `experience_years`: `value` is years of experience; read them back and ask if that is right (\"Para confirmar, ¿son 20 años de experiencia en reparto?\"). With `platform`, ask instead how many years they have delivered with that platform (\"¿Me confirmas cuántos años has repartido con Glovo?\" / \"¿Me confirma cuántos años ha repartido con Rappi?\"), without the number. Never suggest you doubt them.",
+  "gate_close": "licence",
+  "country_words": "Mexico (`MX`) \"licencia de conducir\", \"celular\", \"sucursal\"; Spain (`ES`) \"carnet de conducir\", \"móvil\", \"local\".",
+  "job": "a delivery-driver job",
+  "short_answer": "\"sí\" while the awaited field is `has_license` is `has_license: true`",
+  "code_switch": "\"puedo full time\" is availability [full_time]",
+  "question_examples": "pay, hours, vehicle, location",
+  "correction_example": "\"perdón, en realidad solo fines de semana\"",
+  "read_back": "`has_license`: she asked whether they have no valid licence right now (\"¿Entonces ahora no tienes carnet en vigor?\"); agreeing that they have none (\"sí\", \"no, no tengo\") is `confirm` with no fields, and saying they do have one (\"sí tengo\", \"no, sí lo tengo\") is `correction` with `has_license: true`.",
+  "follow_up_examples": "\"¿y en México también?\" after she said what the pay is in Spain → \"¿Cuánto se paga a los repartidores en México?\"; \"¿y eso cuánto es al mes?\" after an hourly rate → \"¿Cuánto se gana al mes?\"; \"¿y si es en moto propia?\" after she answered about insurance → \"¿Estoy asegurado si reparto con mi moto propia?\"; \"and on weekends?\" after an answer about shifts → \"Do I have to work weekends?\".",
+  "standalone": "¿Dan casco?",
+  "matrix_es": "\"puedo full time pero solo weekends en la mañana\", \"hice delivery para Rappi\", \"estoy ready para empezar el lunes\", \"me late el part time\"",
+  "matrix_en": "\"I live in Zapopan\", \"I live in la colonia Roma\"",
+  "mixed_example": "\"Tengo licencia, but I only work weekends\"",
+  "apology_example": "\"Perdona, llevo un día de perros. Tiempo completo y fines de semana\" is `answer` with availability [full_time, weekends]"
+ },
+ "hooks": {
+  "checks": {
+   "platform_years": "sazon.agents.riders.hooks.platform_years"
+  },
+  "readers": {
+   "platforms": "sazon.agents.riders.readers.validate_platforms",
+   "schedule": "sazon.agents.riders.readers.validate_schedule",
+   "availability": "sazon.agents.riders.readers.validate_availability"
+  }
+ }
+}

@@ -1,0 +1,75 @@
+# Mounted as a directory (./caddy), not a single file: a single-file bind mount keeps serving
+# the old inode after the file is replaced. Reload after a change:
+#   docker compose exec -T caddy caddy reload --config /etc/caddy/Caddyfile </dev/null
+#
+# DOMAIN is a host name in production (automatic HTTPS) and ":80" locally (plain HTTP).
+# compose.yaml refuses to start when it is empty, which would collapse this into a bare
+# :80 site without TLS.
+{
+	email {$ACME_EMAIL}
+}
+
+{$DOMAIN} {
+	encode zstd gzip
+
+	# Shared site login (SAZ-61): one user and a bcrypt hash (`caddy hash-password`) gate the
+	# whole site until the screener opens to the public. Machine endpoints stay open: /v1/* is
+	# ElevenLabs' custom LLM (VOICE_LLM_SECRET), /api/webhooks/* is Google Calendar push
+	# (channel tokens), /healthz and /readyz are the probes. With both values empty (make
+	# stack-up, make obs-up) the account line below is empty and the expression false, so
+	# nothing is gated. With only one of them set Caddy refuses to start; the deploy refuses
+	# that earlier.
+	@gated {
+		not path /v1/* /api/webhooks/* /healthz /readyz
+		expression `"{$SITE_AUTH_USER}" != "" && "{$SITE_AUTH_HASH}" != ""`
+	}
+	basic_auth @gated {
+		{$SITE_AUTH_USER} {$SITE_AUTH_HASH}
+	}
+
+	# Prometheus scrapes the API on the internal network; never serve it publicly. A `handle`
+	# block, not a bare `respond`: Caddy runs `respond` after `handle`, so the catch-all below
+	# would win. `handle` blocks are sorted by path specificity, so this one comes first.
+	@internal path /metrics /metrics/*
+	handle @internal {
+		respond 404
+	}
+
+	# /v1/* is the voice custom LLM ElevenLabs calls (POST /v1/chat/completions).
+	@api path /api/* /v1/* /healthz /readyz /docs /openapi.json
+	handle @api {
+		reverse_proxy api:8000 {
+			# Chat turns stream as Server-Sent Events: pass every byte on at once.
+			flush_interval -1
+			transport http {
+				# A turn can take a model timeout or two before its first byte.
+				response_header_timeout 2m
+				keepalive 60s
+			}
+		}
+	}
+
+	handle {
+		reverse_proxy web:3000
+	}
+
+	header {
+		Strict-Transport-Security "max-age=31536000"
+		X-Content-Type-Options "nosniff"
+		Referrer-Policy "strict-origin-when-cross-origin"
+		-Server
+	}
+
+	# Request headers are logged, except Google Calendar's channel token (SAZ-40), which
+	# authenticates its push notifications.
+	log {
+		output stdout
+		format filter {
+			wrap json
+			request>headers>X-Goog-Channel-Token delete
+		}
+	}
+}
+
+# Langfuse and Grafana sites, mounted by observability.compose.yaml. Nothing without it.
+import /etc/caddy-sites/*.caddy

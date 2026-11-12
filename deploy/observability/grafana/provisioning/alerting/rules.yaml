@@ -1,0 +1,370 @@
+# Alert rules from docs/deployment.md (Observability). Provisioned rules are read-only in
+# Grafana's UI: change them here. `$$` is a literal `$`, because Grafana substitutes
+# environment variables in provisioning files.
+apiVersion: 1
+groups:
+- orgId: 1
+  name: sazon
+  folder: Sazón
+  interval: 1m
+  rules:
+  - uid: sazon-fallback-rate
+    title: Fallback rate over 5%
+    condition: C
+    data:
+    - refId: A
+      relativeTimeRange:
+        from: 900
+        to: 0
+      datasourceUid: prometheus
+      model:
+        refId: A
+        expr: (sum(increase(sazon_llm_fallback_total[15m])) / clamp_min(sum(increase(sazon_llm_calls_total[15m])), 1)) and on() (sum(increase(sazon_llm_calls_total[15m])) >= 10)
+        instant: true
+        range: false
+        intervalMs: 15000
+        maxDataPoints: 43200
+    - refId: C
+      relativeTimeRange:
+        from: 0
+        to: 0
+      datasourceUid: __expr__
+      model:
+        refId: C
+        type: threshold
+        expression: A
+        conditions:
+        - evaluator:
+            type: gt
+            params:
+            - 0.05
+    noDataState: OK
+    execErrState: Error
+    for: 1m
+    labels:
+      severity: page
+      service: sazon
+    annotations:
+      summary: More than 5% of model calls fell back to templates in the last 15 minutes
+      description: Fallback rate {{ humanizePercentage $$values.A.Value }}. Check OpenRouter errors on the dashboard and the API logs (model id, key limit, provider outage).
+    isPaused: false
+  - uid: sazon-respond-p95
+    title: Respond latency p95 over 4 s
+    condition: C
+    data:
+    - refId: A
+      relativeTimeRange:
+        from: 600
+        to: 0
+      datasourceUid: prometheus
+      model:
+        refId: A
+        expr: histogram_quantile(0.95, sum by (le) (rate(sazon_llm_latency_seconds_bucket{role="responder"}[10m])))
+        instant: true
+        range: false
+        intervalMs: 15000
+        maxDataPoints: 43200
+    - refId: C
+      relativeTimeRange:
+        from: 0
+        to: 0
+      datasourceUid: __expr__
+      model:
+        refId: C
+        type: threshold
+        expression: A
+        conditions:
+        - evaluator:
+            type: gt
+            params:
+            - 4
+    noDataState: OK
+    execErrState: Error
+    for: 10m
+    labels:
+      severity: page
+      service: sazon
+    annotations:
+      summary: 'Ana''s replies are slow: responder p95 above 4 s for 10 minutes'
+      description: p95 {{ humanize $$values.A.Value }} s.
+    isPaused: false
+  - uid: sazon-daily-spend
+    title: Daily model spend over 80% of the cap
+    condition: C
+    data:
+    - refId: A
+      relativeTimeRange:
+        from: 300
+        to: 0
+      datasourceUid: prometheus
+      model:
+        refId: A
+        expr: (max(sazon_spend_today_usd) / max(sazon_spend_cap_usd)) and on() (max(sazon_spend_cap_usd) > 0)
+        instant: true
+        range: false
+        intervalMs: 15000
+        maxDataPoints: 43200
+    - refId: C
+      relativeTimeRange:
+        from: 0
+        to: 0
+      datasourceUid: __expr__
+      model:
+        refId: C
+        type: threshold
+        expression: A
+        conditions:
+        - evaluator:
+            type: gt
+            params:
+            - 0.8
+    noDataState: OK
+    execErrState: Error
+    for: 0s
+    labels:
+      severity: warn
+      service: sazon
+    annotations:
+      summary: Model spend today is past 80% of MAX_DAILY_LLM_USD
+      description: '{{ humanizePercentage $$values.A.Value }} of the cap. At 100% new chats are turned away and open ones continue on templates until midnight UTC.'
+    isPaused: false
+  - uid: sazon-openrouter-402
+    title: OpenRouter 402/403 (credits or key limit)
+    condition: C
+    data:
+    - refId: A
+      relativeTimeRange:
+        from: 600
+        to: 0
+      datasourceUid: prometheus
+      model:
+        refId: A
+        expr: sum(increase(sazon_openrouter_errors_total{status=~"402|403"}[10m]))
+        instant: true
+        range: false
+        intervalMs: 15000
+        maxDataPoints: 43200
+    - refId: C
+      relativeTimeRange:
+        from: 0
+        to: 0
+      datasourceUid: __expr__
+      model:
+        refId: C
+        type: threshold
+        expression: A
+        conditions:
+        - evaluator:
+            type: gt
+            params:
+            - 0
+    noDataState: OK
+    execErrState: Error
+    for: 0s
+    labels:
+      severity: page
+      service: sazon
+    annotations:
+      summary: 'OpenRouter refused calls for money: 402 (no credits) or 403 (key limit reached)'
+      description: Model calls are falling back to templates. Top up the account or raise the key's limit on OpenRouter.
+    isPaused: false
+  - uid: sazon-openrouter-429
+    title: OpenRouter 429 over 2% of calls
+    condition: C
+    data:
+    - refId: A
+      relativeTimeRange:
+        from: 600
+        to: 0
+      datasourceUid: prometheus
+      model:
+        refId: A
+        expr: sum(increase(sazon_openrouter_errors_total{status="429"}[10m])) / clamp_min(sum(increase(sazon_llm_calls_total[10m])), 1)
+        instant: true
+        range: false
+        intervalMs: 15000
+        maxDataPoints: 43200
+    - refId: C
+      relativeTimeRange:
+        from: 0
+        to: 0
+      datasourceUid: __expr__
+      model:
+        refId: C
+        type: threshold
+        expression: A
+        conditions:
+        - evaluator:
+            type: gt
+            params:
+            - 0.02
+    noDataState: OK
+    execErrState: Error
+    for: 10m
+    labels:
+      severity: warn
+      service: sazon
+    annotations:
+      summary: OpenRouter is rate limiting more than 2% of model calls
+      description: '{{ humanizePercentage $$values.A.Value }} of calls got 429.'
+    isPaused: false
+  - uid: sazon-injection-spike
+    title: Injection flags spike
+    condition: C
+    data:
+    - refId: A
+      relativeTimeRange:
+        from: 3600
+        to: 0
+      datasourceUid: prometheus
+      model:
+        refId: A
+        expr: (sum(increase(sazon_quality_flags_total{flag="injection_suspected"}[1h])) > 3 * (sum(increase(sazon_quality_flags_total{flag="injection_suspected"}[7d])) / 168)) and on() (sum(increase(sazon_quality_flags_total{flag="injection_suspected"}[1h])) >= 3)
+        instant: true
+        range: false
+        intervalMs: 15000
+        maxDataPoints: 43200
+    - refId: C
+      relativeTimeRange:
+        from: 0
+        to: 0
+      datasourceUid: __expr__
+      model:
+        refId: C
+        type: threshold
+        expression: A
+        conditions:
+        - evaluator:
+            type: gt
+            params:
+            - 0
+    noDataState: OK
+    execErrState: Error
+    for: 0s
+    labels:
+      severity: warn
+      service: sazon
+    annotations:
+      summary: injection_suspected flags this hour are over 3 times the 7-day hourly average
+      description: '{{ humanize $$values.A.Value }} flags in the last hour. Look at the flagged conversations in the dashboard.'
+    isPaused: false
+  - uid: sazon-readyz
+    title: /readyz failing
+    condition: C
+    data:
+    - refId: A
+      relativeTimeRange:
+        from: 300
+        to: 0
+      datasourceUid: prometheus
+      model:
+        refId: A
+        expr: max(probe_success{job="readyz"})
+        instant: true
+        range: false
+        intervalMs: 15000
+        maxDataPoints: 43200
+    - refId: C
+      relativeTimeRange:
+        from: 0
+        to: 0
+      datasourceUid: __expr__
+      model:
+        refId: C
+        type: threshold
+        expression: A
+        conditions:
+        - evaluator:
+            type: lt
+            params:
+            - 1
+    noDataState: Alerting
+    execErrState: Error
+    for: 2m
+    labels:
+      severity: page
+      service: sazon
+    annotations:
+      summary: /readyz has failed for 2 minutes
+      description: Database, migrations, retrieval index or OpenRouter is not ready. The failing check is in the api container logs (`docker compose logs api | grep readyz`).
+    isPaused: false
+  - uid: sazon-backup-age
+    title: Newest backup older than 26 hours
+    condition: C
+    data:
+    - refId: A
+      relativeTimeRange:
+        from: 300
+        to: 0
+      datasourceUid: prometheus
+      model:
+        refId: A
+        expr: (time() - max(sazon_backup_newest_timestamp_seconds)) and on() (max(sazon_backup_newest_timestamp_seconds) > 0)
+        instant: true
+        range: false
+        intervalMs: 15000
+        maxDataPoints: 43200
+    - refId: C
+      relativeTimeRange:
+        from: 0
+        to: 0
+      datasourceUid: __expr__
+      model:
+        refId: C
+        type: threshold
+        expression: A
+        conditions:
+        - evaluator:
+            type: gt
+            params:
+            - 93600
+    noDataState: OK
+    execErrState: Error
+    for: 10m
+    labels:
+      severity: page
+      service: sazon
+    annotations:
+      summary: No local SQLite backup in the last 26 hours
+      description: Check `systemctl status sazon-backup` on the VM.
+    isPaused: false
+  - uid: sazon-calendar-channels
+    title: Calendar push channels not renewed
+    condition: C
+    data:
+    - refId: A
+      relativeTimeRange:
+        from: 300
+        to: 0
+      datasourceUid: prometheus
+      model:
+        refId: A
+        expr: sum(sazon_calendar_channels{state=~"expiring|missing"})
+        instant: true
+        range: false
+        intervalMs: 15000
+        maxDataPoints: 43200
+    - refId: C
+      relativeTimeRange:
+        from: 0
+        to: 0
+      datasourceUid: __expr__
+      model:
+        refId: C
+        type: threshold
+        expression: A
+        conditions:
+        - evaluator:
+            type: gt
+            params:
+            - 0
+    noDataState: OK
+    execErrState: Error
+    for: 30m
+    labels:
+      severity: warn
+      service: sazon
+    annotations:
+      summary: A connected Google Calendar has no push channel, or one with under 24 hours left
+      description: "{{ $$values.A.Value }} calendars. Calendar changes stop reaching bookings when a channel expires. Run `docker compose exec -T api sazon calendar-watch renew` on the VM and read its output (a refused webhook address, a revoked grant), and check `systemctl status sazon-daily`."
+    isPaused: false

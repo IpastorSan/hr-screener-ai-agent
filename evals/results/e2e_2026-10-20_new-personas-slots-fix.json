@@ -1,0 +1,2715 @@
+{
+ "meta": {
+  "date": "2026-10-20",
+  "combos": {
+   "A": {
+    "extractor": "google/gemini-3.5-flash-lite@minimal",
+    "responder": "anthropic/claude-haiku-5.5",
+    "summarizer": "anthropic/claude-haiku-5.5"
+   }
+  },
+  "simulator": "anthropic/claude-haiku-5.5",
+  "judge": "anthropic/claude-opus-5.5",
+  "judge_combos": null,
+  "repeat": 2,
+  "personas": [
+   "slots_none_work"
+  ],
+  "aborted": null,
+  "run_cost_usd": 0.080619,
+  "ledger_total_usd": 23.511192
+ },
+ "aggregates": {
+  "A": {
+   "conversations": 2,
+   "all_checks": 0.5,
+   "checks": {
+    "completed": 1.0,
+    "outcome": 1.0,
+    "fields": 1.0,
+    "message_length": 1.0,
+    "one_question": 1.0,
+    "language": 1.0,
+    "register": 1.0,
+    "no_emoji": 1.0,
+    "no_promises": 1.0,
+    "ai_disclosure": 1.0,
+    "real_slots": 1.0,
+    "no_fallback": 0.5,
+    "flags": 1.0,
+    "talent_pool_ask": null,
+    "no_slots_close": null,
+    "policy_close": null,
+    "read_back": null
+   },
+   "outcome_accuracy": 1.0,
+   "field_accuracy": 1.0,
+   "language_accuracy": 1.0,
+   "fallbacks": 1,
+   "judge": {
+    "tone": 3.5,
+    "naturalness": 2.5,
+    "empathy": 2.5,
+    "staying_in_role": 4.5,
+    "brevity": 4,
+    "mean": 3.4
+   },
+   "avg_turns": 13.0,
+   "avg_cost_usd": 0.01915,
+   "simulator_cost_usd": 0.00779,
+   "judge_cost_usd": 0.03453,
+   "latency_p50_s": 1.584,
+   "latency_p95_s": 2.575
+  }
+ },
+ "conversations": [
+  {
+   "persona": "slots_none_work",
+   "conversation_id": "c3fc4620685746b1a516aa087c0a9fac",
+   "resumed": false,
+   "outcome": "qualified",
+   "disqualify_reason": null,
+   "booked": false,
+   "booking": null,
+   "interview_mode": null,
+   "meet_url": null,
+   "talent_pool_opt_in": null,
+   "slots_declined": true,
+   "slot_search_days": null,
+   "quality_flags": [],
+   "abuse_strikes": 0,
+   "final_language": "es",
+   "country": "ES",
+   "profile": {
+    "full_name": "Iván Torres Llorca",
+    "phone": "+34612345619",
+    "email": "ivan.torres@example.com",
+    "has_license": true,
+    "location_id": "es-ali-centro",
+    "availability": [
+     "part_time"
+    ],
+    "schedule": [
+     "evening"
+    ],
+    "experience_years": 1.0,
+    "platforms": [
+     "just_eat"
+    ],
+    "platform_other": null,
+    "start_date": "2026-10-26",
+    "late_start_days": null,
+    "interview_mode": "onsite",
+    "experience_unverified": null,
+    "city": "Alicante",
+    "location_name": "Sazón Alicante"
+   },
+   "summary": {
+    "lines": [
+     "Iván Torres Llorca, vive en el centro de Alicante, tiene carnet de conducir en vigor.",
+     "Disponibilidad a tiempo parcial solo por las noches; un año de experiencia en reparto con Just Eat.",
+     "Puede empezar el lunes 26 de octubre, que coincide con la fecha de inicio indicada."
+    ],
+    "key_fields": {
+     "Nombre": "Iván Torres Llorca",
+     "Teléfono": "+34612345619",
+     "Email": "ivan.torres@example.com",
+     "Carnet de conducir": "Sí",
+     "Zona": "Alicante",
+     "Disponibilidad": "Tiempo parcial",
+     "Horario": "Noche",
+     "Experiencia": "1 año",
+     "Plataformas": "Just Eat",
+     "Fecha de inicio": "lunes 26 de octubre"
+    },
+    "flags": []
+   },
+   "faq_misses": [],
+   "turns": [
+    {
+     "speaker": "ana",
+     "text": "¡Hola! Soy Ana, la asistente de IA de selección de Grupo Sazón. Son unas preguntas rápidas y tus datos se tratan según el aviso de privacidad que tienes aquí abajo. ¿Empezamos?",
+     "ui": {
+      "kind": "quick_replies",
+      "options": [
+       {
+        "value": "yes",
+        "label": "Sí"
+       },
+       {
+        "value": "no",
+        "label": "No"
+       }
+      ],
+      "link": {
+       "href": "/privacidad",
+       "label": "Leer el aviso de privacidad"
+      }
+     },
+     "action": {
+      "language": "es",
+      "country": "ES",
+      "simplify": false,
+      "ui": {
+       "kind": "quick_replies",
+       "options": [
+        {
+         "value": "yes",
+         "label": "Sí"
+        },
+        {
+         "value": "no",
+         "label": "No"
+        }
+       ],
+       "link": {
+        "href": "/privacidad",
+        "label": "Leer el aviso de privacidad"
+       }
+      },
+      "kind": "greet",
+      "ai_disclosure": true,
+      "privacy_notice": true,
+      "retry": 0
+     },
+     "fallback_used": false,
+     "sources": null,
+     "latency_s": 1.071
+    },
+    {
+     "speaker": "candidate",
+     "text": "Sí",
+     "sent": null,
+     "widget": true,
+     "scripted": false,
+     "move": {
+      "kind": "tap",
+      "value": "yes",
+      "matrix_language": "es"
+     },
+     "extraction": {
+      "intent": "confirm",
+      "fields": {},
+      "language": "es",
+      "matrix_language": "es",
+      "english_ratio": 0.0,
+      "explicit_language_request": null,
+      "code_switched": false,
+      "sentiment": "neutral",
+      "question": null,
+      "question_topic": null,
+      "slot": null,
+      "mode": null
+     },
+     "latency_s": 0.782
+    },
+    {
+     "speaker": "ana",
+     "text": "¿Cuál es tu nombre completo?",
+     "ui": null,
+     "action": {
+      "language": "es",
+      "country": "ES",
+      "simplify": false,
+      "ui": null,
+      "kind": "ask_field",
+      "field": "full_name",
+      "retry": 0,
+      "hint": null,
+      "options": []
+     },
+     "fallback_used": false,
+     "sources": null
+    },
+    {
+     "speaker": "candidate",
+     "text": "Iván Torres Llorca",
+     "sent": "Iván Torres Llorca",
+     "widget": false,
+     "scripted": false,
+     "move": {
+      "kind": "text",
+      "text": "Iván Torres Llorca",
+      "matrix_language": "es"
+     },
+     "extraction": {
+      "intent": "answer",
+      "fields": {
+       "full_name": {
+        "value": "Iván Torres Llorca",
+        "confidence": 1.0
+       }
+      },
+      "language": "es",
+      "matrix_language": "es",
+      "english_ratio": 0.0,
+      "explicit_language_request": null,
+      "code_switched": false,
+      "sentiment": "neutral",
+      "question": null,
+      "question_topic": null,
+      "slot": null,
+      "mode": null
+     },
+     "latency_s": 1.898
+    },
+    {
+     "speaker": "ana",
+     "text": "Gracias, Iván. ¿Cuál es tu número de móvil?",
+     "ui": {
+      "kind": "phone",
+      "countries": [
+       {
+        "code": "ES",
+        "dial": "+34",
+        "label": "ES +34"
+       },
+       {
+        "code": "MX",
+        "dial": "+52",
+        "label": "MX +52"
+       }
+      ],
+      "selected": "ES"
+     },
+     "action": {
+      "language": "es",
+      "country": "ES",
+      "simplify": false,
+      "ui": {
+       "kind": "phone",
+       "countries": [
+        {
+         "code": "ES",
+         "dial": "+34",
+         "label": "ES +34"
+        },
+        {
+         "code": "MX",
+         "dial": "+52",
+         "label": "MX +52"
+        }
+       ],
+       "selected": "ES"
+      },
+      "kind": "ask_field",
+      "field": "phone",
+      "retry": 0,
+      "hint": null,
+      "options": []
+     },
+     "fallback_used": false,
+     "sources": null
+    },
+    {
+     "speaker": "candidate",
+     "text": "612345619",
+     "sent": "612345619",
+     "widget": false,
+     "scripted": false,
+     "move": {
+      "kind": "text",
+      "text": "612345619",
+      "matrix_language": "es"
+     },
+     "extraction": {
+      "intent": "answer",
+      "fields": {
+       "phone": {
+        "value": "612345619",
+        "confidence": 1.0
+       }
+      },
+      "language": "es",
+      "matrix_language": "es",
+      "english_ratio": 0.0,
+      "explicit_language_request": null,
+      "code_switched": false,
+      "sentiment": "neutral",
+      "question": null,
+      "question_topic": null,
+      "slot": null,
+      "mode": null
+     },
+     "latency_s": 1.696
+    },
+    {
+     "speaker": "ana",
+     "text": "¿Y tu correo electrónico?",
+     "ui": null,
+     "action": {
+      "language": "es",
+      "country": "ES",
+      "simplify": false,
+      "ui": null,
+      "kind": "ask_field",
+      "field": "email",
+      "retry": 0,
+      "hint": null,
+      "options": []
+     },
+     "fallback_used": false,
+     "sources": null
+    },
+    {
+     "speaker": "candidate",
+     "text": "ivan.torres@example.com",
+     "sent": "ivan.torres@example.com",
+     "widget": false,
+     "scripted": false,
+     "move": {
+      "kind": "text",
+      "text": "ivan.torres@example.com",
+      "matrix_language": "es"
+     },
+     "extraction": {
+      "intent": "answer",
+      "fields": {
+       "email": {
+        "value": "ivan.torres@example.com",
+        "confidence": 1.0
+       }
+      },
+      "language": "es",
+      "matrix_language": "es",
+      "english_ratio": 0.0,
+      "explicit_language_request": null,
+      "code_switched": false,
+      "sentiment": "neutral",
+      "question": null,
+      "question_topic": null,
+      "slot": null,
+      "mode": null
+     },
+     "latency_s": 2.093
+    },
+    {
+     "speaker": "ana",
+     "text": "¿Tienes carnet de conducir en vigor?",
+     "ui": null,
+     "action": {
+      "language": "es",
+      "country": "ES",
+      "simplify": false,
+      "ui": null,
+      "kind": "ask_field",
+      "field": "has_license",
+      "retry": 0,
+      "hint": null,
+      "options": []
+     },
+     "fallback_used": false,
+     "sources": null
+    },
+    {
+     "speaker": "candidate",
+     "text": "Sí, tengo carnet en vigor.",
+     "sent": "Sí, tengo carnet en vigor.",
+     "widget": false,
+     "scripted": false,
+     "move": {
+      "kind": "text",
+      "text": "Sí, tengo carnet en vigor.",
+      "matrix_language": "es"
+     },
+     "extraction": {
+      "intent": "answer",
+      "fields": {
+       "has_license": {
+        "value": true,
+        "confidence": 1.0
+       }
+      },
+      "language": "es",
+      "matrix_language": "es",
+      "english_ratio": 0.0,
+      "explicit_language_request": null,
+      "code_switched": false,
+      "sentiment": "neutral",
+      "question": null,
+      "question_topic": null,
+      "slot": null,
+      "mode": null
+     },
+     "latency_s": 1.556
+    },
+    {
+     "speaker": "ana",
+     "text": "Gracias por confirmarlo, Iván. ¿En qué ciudad o barrio vives?",
+     "ui": null,
+     "action": {
+      "language": "es",
+      "country": "ES",
+      "simplify": false,
+      "ui": null,
+      "kind": "ask_field",
+      "field": "city",
+      "retry": 0,
+      "hint": null,
+      "options": []
+     },
+     "fallback_used": false,
+     "sources": null
+    },
+    {
+     "speaker": "candidate",
+     "text": "Vivo en el centro de Alicante.",
+     "sent": "Vivo en el centro de Alicante.",
+     "widget": false,
+     "scripted": false,
+     "move": {
+      "kind": "text",
+      "text": "Vivo en el centro de Alicante.",
+      "matrix_language": "es"
+     },
+     "extraction": {
+      "intent": "answer",
+      "fields": {
+       "city": {
+        "value": "Alicante, centro",
+        "confidence": 1.0
+       }
+      },
+      "language": "es",
+      "matrix_language": "es",
+      "english_ratio": 0.0,
+      "explicit_language_request": null,
+      "code_switched": false,
+      "sentiment": "neutral",
+      "question": null,
+      "question_topic": null,
+      "slot": null,
+      "mode": null
+     },
+     "latency_s": 1.579
+    },
+    {
+     "speaker": "ana",
+     "text": "Iván, gracias por indicarme dónde vives: el centro de Alicante. ¿Qué disponibilidad tienes: tiempo completo, tiempo parcial o fines de semana?",
+     "ui": null,
+     "action": {
+      "language": "es",
+      "country": "ES",
+      "simplify": false,
+      "ui": null,
+      "kind": "ask_field",
+      "field": "availability",
+      "retry": 0,
+      "hint": null,
+      "options": []
+     },
+     "fallback_used": false,
+     "sources": null
+    },
+    {
+     "speaker": "candidate",
+     "text": "Tiempo parcial, solo por las noches.",
+     "sent": "Tiempo parcial, solo por las noches.",
+     "widget": false,
+     "scripted": false,
+     "move": {
+      "kind": "text",
+      "text": "Tiempo parcial, solo por las noches.",
+      "matrix_language": "es"
+     },
+     "extraction": {
+      "intent": "answer",
+      "fields": {
+       "availability": {
+        "value": [
+         "part_time"
+        ],
+        "confidence": 1.0
+       },
+       "schedule": {
+        "value": [
+         "evening"
+        ],
+        "confidence": 1.0
+       }
+      },
+      "language": "es",
+      "matrix_language": "es",
+      "english_ratio": 0.0,
+      "explicit_language_request": null,
+      "code_switched": false,
+      "sentiment": "neutral",
+      "question": null,
+      "question_topic": null,
+      "slot": null,
+      "mode": null
+     },
+     "latency_s": 1.536
+    },
+    {
+     "speaker": "ana",
+     "text": "Entendido, Iván. ¿Cuánta experiencia tienes haciendo reparto?",
+     "ui": null,
+     "action": {
+      "language": "es",
+      "country": "ES",
+      "simplify": false,
+      "ui": null,
+      "kind": "ask_field",
+      "field": "experience_years",
+      "retry": 0,
+      "hint": null,
+      "options": []
+     },
+     "fallback_used": false,
+     "sources": null
+    },
+    {
+     "speaker": "candidate",
+     "text": "Un año en Just Eat, más o menos.",
+     "sent": "Un año en Just Eat, más o menos.",
+     "widget": false,
+     "scripted": false,
+     "move": {
+      "kind": "text",
+      "text": "Un año en Just Eat, más o menos.",
+      "matrix_language": "es"
+     },
+     "extraction": {
+      "intent": "answer",
+      "fields": {
+       "experience_years": {
+        "value": 1.0,
+        "confidence": 0.9
+       },
+       "platforms": {
+        "value": [
+         "just_eat"
+        ],
+        "confidence": 1.0
+       }
+      },
+      "language": "es",
+      "matrix_language": "es",
+      "english_ratio": 0.25,
+      "explicit_language_request": null,
+      "code_switched": true,
+      "sentiment": "neutral",
+      "question": null,
+      "question_topic": null,
+      "slot": null,
+      "mode": null
+     },
+     "latency_s": 2.715
+    },
+    {
+     "speaker": "ana",
+     "text": "Entiendo, Iván, un año con Just Eat es buena base. ¿Cuándo podrías empezar?",
+     "ui": null,
+     "action": {
+      "language": "es",
+      "country": "ES",
+      "simplify": false,
+      "ui": null,
+      "kind": "ask_field",
+      "field": "start_date",
+      "retry": 0,
+      "hint": null,
+      "options": []
+     },
+     "fallback_used": false,
+     "sources": null
+    },
+    {
+     "speaker": "candidate",
+     "text": "Pues empezaría el lunes que viene, el 26.",
+     "sent": "Pues empezaría el lunes que viene, el 26.",
+     "widget": false,
+     "scripted": false,
+     "move": {
+      "kind": "text",
+      "text": "Pues empezaría el lunes que viene, el 26.",
+      "matrix_language": "es"
+     },
+     "extraction": {
+      "intent": "answer",
+      "fields": {
+       "start_date": {
+        "value": "2026-10-26",
+        "confidence": 1.0
+       }
+      },
+      "language": "es",
+      "matrix_language": "es",
+      "english_ratio": 0.0,
+      "explicit_language_request": null,
+      "code_switched": false,
+      "sentiment": "neutral",
+      "question": null,
+      "question_topic": null,
+      "slot": null,
+      "mode": null
+     },
+     "latency_s": 1.442
+    },
+    {
+     "speaker": "ana",
+     "text": "¿Está todo bien con los datos que tengo?",
+     "ui": {
+      "kind": "confirm",
+      "fields": [
+       {
+        "label": "Nombre",
+        "value": "Iván Torres Llorca"
+       },
+       {
+        "label": "Teléfono",
+        "value": "+34612345619"
+       },
+       {
+        "label": "Email",
+        "value": "ivan.torres@example.com"
+       },
+       {
+        "label": "Carnet de conducir",
+        "value": "Sí"
+       },
+       {
+        "label": "Zona",
+        "value": "Alicante"
+       },
+       {
+        "label": "Disponibilidad",
+        "value": "Tiempo parcial"
+       },
+       {
+        "label": "Horario",
+        "value": "Noche"
+       },
+       {
+        "label": "Experiencia",
+        "value": "1 año"
+       },
+       {
+        "label": "Plataformas",
+        "value": "Just Eat"
+       },
+       {
+        "label": "Fecha de inicio",
+        "value": "lunes 26 de octubre"
+       }
+      ]
+     },
+     "action": {
+      "language": "es",
+      "country": "ES",
+      "simplify": false,
+      "ui": {
+       "kind": "confirm",
+       "fields": [
+        {
+         "label": "Nombre",
+         "value": "Iván Torres Llorca"
+        },
+        {
+         "label": "Teléfono",
+         "value": "+34612345619"
+        },
+        {
+         "label": "Email",
+         "value": "ivan.torres@example.com"
+        },
+        {
+         "label": "Carnet de conducir",
+         "value": "Sí"
+        },
+        {
+         "label": "Zona",
+         "value": "Alicante"
+        },
+        {
+         "label": "Disponibilidad",
+         "value": "Tiempo parcial"
+        },
+        {
+         "label": "Horario",
+         "value": "Noche"
+        },
+        {
+         "label": "Experiencia",
+         "value": "1 año"
+        },
+        {
+         "label": "Plataformas",
+         "value": "Just Eat"
+        },
+        {
+         "label": "Fecha de inicio",
+         "value": "lunes 26 de octubre"
+        }
+       ]
+      },
+      "kind": "confirm_summary",
+      "profile": {
+       "full_name": "Iván Torres Llorca",
+       "phone": "+34612345619",
+       "email": "ivan.torres@example.com",
+       "has_license": true,
+       "location_id": "es-ali-centro",
+       "availability": [
+        "part_time"
+       ],
+       "schedule": [
+        "evening"
+       ],
+       "experience_years": 1.0,
+       "platforms": [
+        "just_eat"
+       ],
+       "platform_other": null,
+       "start_date": "2026-10-26",
+       "late_start_days": null,
+       "interview_mode": null,
+       "experience_unverified": null
+      }
+     },
+     "fallback_used": false,
+     "sources": null
+    },
+    {
+     "speaker": "candidate",
+     "text": "Sí, es correcto",
+     "sent": null,
+     "widget": true,
+     "scripted": false,
+     "move": {
+      "kind": "tap",
+      "value": "yes",
+      "matrix_language": "es"
+     },
+     "extraction": {
+      "intent": "confirm",
+      "fields": {},
+      "language": "es",
+      "matrix_language": "es",
+      "english_ratio": 0.0,
+      "explicit_language_request": null,
+      "code_switched": false,
+      "sentiment": "neutral",
+      "question": null,
+      "question_topic": null,
+      "slot": null,
+      "mode": null
+     },
+     "latency_s": 0.62
+    },
+    {
+     "speaker": "ana",
+     "text": "Gracias, Iván, ya tengo todo lo que necesito. ¿Prefieres la entrevista en persona o por videollamada?",
+     "ui": {
+      "kind": "quick_replies",
+      "options": [
+       {
+        "value": "onsite",
+        "label": "En persona"
+       },
+       {
+        "value": "video",
+        "label": "Videollamada"
+       }
+      ],
+      "link": null
+     },
+     "action": {
+      "language": "es",
+      "country": "ES",
+      "simplify": false,
+      "ui": {
+       "kind": "quick_replies",
+       "options": [
+        {
+         "value": "onsite",
+         "label": "En persona"
+        },
+        {
+         "value": "video",
+         "label": "Videollamada"
+        }
+       ],
+       "link": null
+      },
+      "kind": "ask_mode",
+      "options": [
+       "onsite",
+       "video"
+      ],
+      "qualified": true,
+      "retry": 0
+     },
+     "fallback_used": false,
+     "sources": null
+    },
+    {
+     "speaker": "candidate",
+     "text": "En persona",
+     "sent": null,
+     "widget": true,
+     "scripted": false,
+     "move": {
+      "kind": "tap",
+      "value": "onsite",
+      "matrix_language": "es"
+     },
+     "extraction": {
+      "intent": "answer",
+      "fields": {},
+      "language": "es",
+      "matrix_language": "es",
+      "english_ratio": 0.0,
+      "explicit_language_request": null,
+      "code_switched": false,
+      "sentiment": "neutral",
+      "question": null,
+      "question_topic": null,
+      "slot": null,
+      "mode": "onsite"
+     },
+     "latency_s": 1.351
+    },
+    {
+     "speaker": "ana",
+     "text": "Perfecto, en persona. Tengo estos huecos para la entrevista en el local de Alicante: martes 20 a las 16:00, miércoles 21 a las 16:00 o jueves 22 a las 16:00. ¿Cuál te viene mejor?",
+     "ui": {
+      "kind": "slots",
+      "slots": [
+       {
+        "id": "ea3be92107f44ceb86bd7984126b5134",
+        "startsAt": "2026-10-20T16:00:00+02:00",
+        "label": "martes 20 a las 16:00",
+        "location": "Alicante",
+        "time": "16:00"
+       },
+       {
+        "id": "5a3e85fdf2e847c9a651b3b35ac90a1d",
+        "startsAt": "2026-10-21T16:00:00+02:00",
+        "label": "miércoles 21 a las 16:00",
+        "location": "Alicante",
+        "time": "16:00"
+       },
+       {
+        "id": "5540f1f8f7464ec4b655ba3795d46cfd",
+        "startsAt": "2026-10-22T16:00:00+02:00",
+        "label": "jueves 22 a las 16:00",
+        "location": "Alicante",
+        "time": "16:00"
+       }
+      ]
+     },
+     "action": {
+      "language": "es",
+      "country": "ES",
+      "simplify": false,
+      "ui": {
+       "kind": "slots",
+       "slots": [
+        {
+         "id": "ea3be92107f44ceb86bd7984126b5134",
+         "startsAt": "2026-10-20T16:00:00+02:00",
+         "label": "martes 20 a las 16:00",
+         "location": "Alicante",
+         "time": "16:00"
+        },
+        {
+         "id": "5a3e85fdf2e847c9a651b3b35ac90a1d",
+         "startsAt": "2026-10-21T16:00:00+02:00",
+         "label": "miércoles 21 a las 16:00",
+         "location": "Alicante",
+         "time": "16:00"
+        },
+        {
+         "id": "5540f1f8f7464ec4b655ba3795d46cfd",
+         "startsAt": "2026-10-22T16:00:00+02:00",
+         "label": "jueves 22 a las 16:00",
+         "location": "Alicante",
+         "time": "16:00"
+        }
+       ]
+      },
+      "kind": "offer_slots",
+      "location_id": "es-ali-centro",
+      "slots": [
+       {
+        "id": "ea3be92107f44ceb86bd7984126b5134",
+        "startsAt": "2026-10-20T16:00:00+02:00",
+        "label": "martes 20 a las 16:00",
+        "location": "Alicante",
+        "time": "16:00"
+       },
+       {
+        "id": "5a3e85fdf2e847c9a651b3b35ac90a1d",
+        "startsAt": "2026-10-21T16:00:00+02:00",
+        "label": "miércoles 21 a las 16:00",
+        "location": "Alicante",
+        "time": "16:00"
+       },
+       {
+        "id": "5540f1f8f7464ec4b655ba3795d46cfd",
+        "startsAt": "2026-10-22T16:00:00+02:00",
+        "label": "jueves 22 a las 16:00",
+        "location": "Alicante",
+        "time": "16:00"
+       }
+      ],
+      "reason": "mode",
+      "retry": 0,
+      "mode": "onsite"
+     },
+     "fallback_used": false,
+     "sources": null
+    },
+    {
+     "speaker": "candidate",
+     "text": "Uf, ninguna me va bien, trabajo a esas horas en la tienda.",
+     "sent": "Uf, ninguna me va bien, trabajo a esas horas en la tienda.",
+     "widget": false,
+     "scripted": false,
+     "move": {
+      "kind": "text",
+      "text": "Uf, ninguna me va bien, trabajo a esas horas en la tienda.",
+      "matrix_language": "es"
+     },
+     "extraction": {
+      "intent": "answer",
+      "fields": {},
+      "language": "es",
+      "matrix_language": "es",
+      "english_ratio": 0.0,
+      "explicit_language_request": null,
+      "code_switched": false,
+      "sentiment": "neutral",
+      "question": null,
+      "question_topic": null,
+      "slot": "none",
+      "mode": null
+     },
+     "latency_s": 1.965
+    },
+    {
+     "speaker": "ana",
+     "text": "Entiendo, Iván. Estos son los huecos para la entrevista en el local de Alicante: martes 20 a las 16:30, miércoles 21 a las 16:30 o jueves 22 a las 16:30. ¿Cuál te viene mejor?",
+     "ui": {
+      "kind": "slots",
+      "slots": [
+       {
+        "id": "dcc7ac00843b4e51941ff9c4782d5240",
+        "startsAt": "2026-10-20T16:30:00+02:00",
+        "label": "martes 20 a las 16:30",
+        "location": "Alicante",
+        "time": "16:30"
+       },
+       {
+        "id": "fc39e57da7764221858f82bbbbf2ea5a",
+        "startsAt": "2026-10-21T16:30:00+02:00",
+        "label": "miércoles 21 a las 16:30",
+        "location": "Alicante",
+        "time": "16:30"
+       },
+       {
+        "id": "338f2510d59f468fab47d6aea71319f3",
+        "startsAt": "2026-10-22T16:30:00+02:00",
+        "label": "jueves 22 a las 16:30",
+        "location": "Alicante",
+        "time": "16:30"
+       }
+      ]
+     },
+     "action": {
+      "language": "es",
+      "country": "ES",
+      "simplify": false,
+      "ui": {
+       "kind": "slots",
+       "slots": [
+        {
+         "id": "dcc7ac00843b4e51941ff9c4782d5240",
+         "startsAt": "2026-10-20T16:30:00+02:00",
+         "label": "martes 20 a las 16:30",
+         "location": "Alicante",
+         "time": "16:30"
+        },
+        {
+         "id": "fc39e57da7764221858f82bbbbf2ea5a",
+         "startsAt": "2026-10-21T16:30:00+02:00",
+         "label": "miércoles 21 a las 16:30",
+         "location": "Alicante",
+         "time": "16:30"
+        },
+        {
+         "id": "338f2510d59f468fab47d6aea71319f3",
+         "startsAt": "2026-10-22T16:30:00+02:00",
+         "label": "jueves 22 a las 16:30",
+         "location": "Alicante",
+         "time": "16:30"
+        }
+       ]
+      },
+      "kind": "offer_slots",
+      "location_id": "es-ali-centro",
+      "slots": [
+       {
+        "id": "dcc7ac00843b4e51941ff9c4782d5240",
+        "startsAt": "2026-10-20T16:30:00+02:00",
+        "label": "martes 20 a las 16:30",
+        "location": "Alicante",
+        "time": "16:30"
+       },
+       {
+        "id": "fc39e57da7764221858f82bbbbf2ea5a",
+        "startsAt": "2026-10-21T16:30:00+02:00",
+        "label": "miércoles 21 a las 16:30",
+        "location": "Alicante",
+        "time": "16:30"
+       },
+       {
+        "id": "338f2510d59f468fab47d6aea71319f3",
+        "startsAt": "2026-10-22T16:30:00+02:00",
+        "label": "jueves 22 a las 16:30",
+        "location": "Alicante",
+        "time": "16:30"
+       }
+      ],
+      "reason": "more",
+      "retry": 0,
+      "mode": "onsite"
+     },
+     "fallback_used": false,
+     "sources": null
+    },
+    {
+     "speaker": "candidate",
+     "text": "Tampoco me va bien, trabajo a esas horas. ¿Hay algo por la noche o más tarde?",
+     "sent": "Tampoco me va bien, trabajo a esas horas. ¿Hay algo por la noche o más tarde?",
+     "widget": false,
+     "scripted": false,
+     "move": {
+      "kind": "text",
+      "text": "Tampoco me va bien, trabajo a esas horas. ¿Hay algo por la noche o más tarde?",
+      "matrix_language": "es"
+     },
+     "extraction": {
+      "intent": "answer",
+      "fields": {},
+      "language": "es",
+      "matrix_language": "es",
+      "english_ratio": 0.0,
+      "explicit_language_request": null,
+      "code_switched": false,
+      "sentiment": "frustrated",
+      "question": "¿Hay algo por la noche o más tarde?",
+      "question_topic": null,
+      "slot": "none",
+      "mode": null
+     },
+     "latency_s": 1.742
+    },
+    {
+     "speaker": "ana",
+     "text": "Entendido, Iván. Ahora mismo no hay más horarios disponibles, pero tu solicitud queda guardada.",
+     "ui": null,
+     "action": {
+      "language": "es",
+      "country": "ES",
+      "simplify": true,
+      "ui": null,
+      "kind": "application_saved",
+      "none_free": false
+     },
+     "fallback_used": false,
+     "sources": null
+    }
+   ],
+   "candidate_turns": 13,
+   "hit_turn_cap": false,
+   "error": null,
+   "offered_slots": [
+    "ea3be92107f44ceb86bd7984126b5134",
+    "5a3e85fdf2e847c9a651b3b35ac90a1d",
+    "5540f1f8f7464ec4b655ba3795d46cfd",
+    "dcc7ac00843b4e51941ff9c4782d5240",
+    "fc39e57da7764221858f82bbbbf2ea5a",
+    "338f2510d59f468fab47d6aea71319f3"
+   ],
+   "invented_slots": [],
+   "fallback_count": 0,
+   "cost_usd": 0.018922,
+   "simulator_cost_usd": 0.003922,
+   "calls": [
+    {
+     "role": "responder",
+     "model": "anthropic/claude-haiku-5.5",
+     "latency_ms": 1068,
+     "cost_usd": 0.0003974,
+     "fallback_used": false,
+     "error": null
+    },
+    {
+     "role": "responder",
+     "model": "anthropic/claude-haiku-5.5",
+     "latency_ms": 776,
+     "cost_usd": 0.0003581,
+     "fallback_used": false,
+     "error": null
+    },
+    {
+     "role": "extractor",
+     "model": "google/gemini-3.5-flash-lite",
+     "latency_ms": 1104,
+     "cost_usd": 0.0013066,
+     "fallback_used": false,
+     "error": null
+    },
+    {
+     "role": "responder",
+     "model": "anthropic/claude-haiku-5.5",
+     "latency_ms": 789,
+     "cost_usd": 0.0003641,
+     "fallback_used": false,
+     "error": null
+    },
+    {
+     "role": "extractor",
+     "model": "google/gemini-3.5-flash-lite",
+     "latency_ms": 1376,
+     "cost_usd": 0.00134,
+     "fallback_used": false,
+     "error": null
+    },
+    {
+     "role": "responder",
+     "model": "anthropic/claude-haiku-5.5",
+     "latency_ms": 316,
+     "cost_usd": 0.0003571,
+     "fallback_used": false,
+     "error": null
+    },
+    {
+     "role": "extractor",
+     "model": "google/gemini-3.5-flash-lite",
+     "latency_ms": 1292,
+     "cost_usd": 0.0012728,
+     "fallback_used": false,
+     "error": null
+    },
+    {
+     "role": "responder",
+     "model": "anthropic/claude-haiku-5.5",
+     "latency_ms": 795,
+     "cost_usd": 0.000361,
+     "fallback_used": false,
+     "error": null
+    },
+    {
+     "role": "extractor",
+     "model": "google/gemini-3.5-flash-lite",
+     "latency_ms": 1045,
+     "cost_usd": 0.0012961,
+     "fallback_used": false,
+     "error": null
+    },
+    {
+     "role": "responder",
+     "model": "anthropic/claude-haiku-5.5",
+     "latency_ms": 507,
+     "cost_usd": 0.0003685,
+     "fallback_used": false,
+     "error": null
+    },
+    {
+     "role": "extractor",
+     "model": "google/gemini-3.5-flash-lite",
+     "latency_ms": 960,
+     "cost_usd": 0.0012964,
+     "fallback_used": false,
+     "error": null
+    },
+    {
+     "role": "responder",
+     "model": "anthropic/claude-haiku-5.5",
+     "latency_ms": 614,
+     "cost_usd": 0.000386,
+     "fallback_used": false,
+     "error": null
+    },
+    {
+     "role": "extractor",
+     "model": "google/gemini-3.5-flash-lite",
+     "latency_ms": 1065,
+     "cost_usd": 0.0013608,
+     "fallback_used": false,
+     "error": null
+    },
+    {
+     "role": "responder",
+     "model": "anthropic/claude-haiku-5.5",
+     "latency_ms": 467,
+     "cost_usd": 0.000369,
+     "fallback_used": false,
+     "error": null
+    },
+    {
+     "role": "extractor",
+     "model": "google/gemini-3.5-flash-lite",
+     "latency_ms": 816,
+     "cost_usd": 0.0013757,
+     "fallback_used": false,
+     "error": null
+    },
+    {
+     "role": "responder",
+     "model": "anthropic/claude-haiku-5.5",
+     "latency_ms": 1894,
+     "cost_usd": 0.000371,
+     "fallback_used": false,
+     "error": null
+    },
+    {
+     "role": "extractor",
+     "model": "google/gemini-3.5-flash-lite",
+     "latency_ms": 1087,
+     "cost_usd": 0.0013346,
+     "fallback_used": false,
+     "error": null
+    },
+    {
+     "role": "responder",
+     "model": "anthropic/claude-haiku-5.5",
+     "latency_ms": 351,
+     "cost_usd": 0.0003747,
+     "fallback_used": false,
+     "error": null
+    },
+    {
+     "role": "responder",
+     "model": "anthropic/claude-haiku-5.5",
+     "latency_ms": 613,
+     "cost_usd": 0.0003769,
+     "fallback_used": false,
+     "error": null
+    },
+    {
+     "role": "summarizer",
+     "model": "anthropic/claude-haiku-5.5",
+     "latency_ms": 1051,
+     "cost_usd": 0.0002941,
+     "fallback_used": false,
+     "error": null
+    },
+    {
+     "role": "responder",
+     "model": "anthropic/claude-haiku-5.5",
+     "latency_ms": 1341,
+     "cost_usd": 0.0004292,
+     "fallback_used": false,
+     "error": null
+    },
+    {
+     "role": "extractor",
+     "model": "google/gemini-3.5-flash-lite",
+     "latency_ms": 1215,
+     "cost_usd": 0.0013061,
+     "fallback_used": false,
+     "error": null
+    },
+    {
+     "role": "responder",
+     "model": "anthropic/claude-haiku-5.5",
+     "latency_ms": 738,
+     "cost_usd": 0.0004308,
+     "fallback_used": false,
+     "error": null
+    },
+    {
+     "role": "extractor",
+     "model": "google/gemini-3.5-flash-lite",
+     "latency_ms": 1040,
+     "cost_usd": 0.0014191,
+     "fallback_used": false,
+     "error": null
+    },
+    {
+     "role": "responder",
+     "model": "anthropic/claude-haiku-5.5",
+     "latency_ms": 696,
+     "cost_usd": 0.0003755,
+     "fallback_used": false,
+     "error": null
+    }
+   ],
+   "judge": {
+    "tone": 4,
+    "naturalness": 3,
+    "empathy": 3,
+    "staying_in_role": 5,
+    "brevity": 4,
+    "rationale": "Ana leans on formulaic openers like \"Entendido/Gracias, Iván\", clumsily repeats the address back, and offers the 16:30 slots without acknowledging they barely differ from the ones that clashed with his shop job.",
+    "mean": 3.8,
+    "cost_usd": 0.017492
+   },
+   "combo": "A",
+   "repeat": 1,
+   "title": "No offered slot works, twice, then the talent pool",
+   "result": {
+    "checks": {
+     "completed": true,
+     "outcome": true,
+     "fields": true,
+     "message_length": true,
+     "one_question": true,
+     "no_emoji": true,
+     "no_promises": true,
+     "register": true,
+     "language": true,
+     "ai_disclosure": true,
+     "real_slots": true,
+     "no_fallback": true,
+     "flags": true,
+     "talent_pool_ask": null,
+     "no_slots_close": null,
+     "policy_close": null,
+     "read_back": null
+    },
+    "passed": true,
+    "failures": [],
+    "metrics": {
+     "fields_matched": 10,
+     "fields_scored": 10,
+     "language_ok": 14,
+     "language_total": 14,
+     "fallback_count": 0
+    }
+   }
+  },
+  {
+   "persona": "slots_none_work",
+   "conversation_id": "87bc63ed1b744e59963b7717adb21062",
+   "resumed": false,
+   "outcome": "qualified",
+   "disqualify_reason": null,
+   "booked": false,
+   "booking": null,
+   "interview_mode": null,
+   "meet_url": null,
+   "talent_pool_opt_in": null,
+   "slots_declined": true,
+   "slot_search_days": null,
+   "quality_flags": [],
+   "abuse_strikes": 0,
+   "final_language": "es",
+   "country": "ES",
+   "profile": {
+    "full_name": "Iván Torres Llorca",
+    "phone": "+34612345619",
+    "email": "ivan.torres@example.com",
+    "has_license": true,
+    "location_id": "es-ali-centro",
+    "availability": [
+     "part_time"
+    ],
+    "schedule": [
+     "evening"
+    ],
+    "experience_years": 1.0,
+    "platforms": [
+     "just_eat"
+    ],
+    "platform_other": null,
+    "start_date": "2026-10-26",
+    "late_start_days": null,
+    "interview_mode": "onsite",
+    "experience_unverified": null,
+    "city": "Alicante",
+    "location_name": "Sazón Alicante"
+   },
+   "summary": {
+    "lines": [
+     "Iván Torres Llorca, de Alicante centro, con carnet de conducir en vigor.",
+     "Disponible a tiempo parcial solo por las noches y puede empezar el lunes 26 de octubre; tiene un año de experiencia en Just Eat.",
+     "Confirmó que sus datos de contacto son correctos."
+    ],
+    "key_fields": {
+     "Nombre": "Iván Torres Llorca",
+     "Teléfono": "+34612345619",
+     "Email": "ivan.torres@example.com",
+     "Carnet de conducir": "Sí",
+     "Zona": "Alicante",
+     "Disponibilidad": "Tiempo parcial",
+     "Horario": "Noche",
+     "Experiencia": "1 año",
+     "Plataformas": "Just Eat",
+     "Fecha de inicio": "lunes 26 de octubre"
+    },
+    "flags": []
+   },
+   "faq_misses": [],
+   "turns": [
+    {
+     "speaker": "ana",
+     "text": "¡Hola! Soy Ana, la asistente de IA de selección de Grupo Sazón. Son unas preguntas rápidas y tus datos se tratan según el aviso de privacidad que tienes aquí abajo. ¿Empezamos?",
+     "ui": {
+      "kind": "quick_replies",
+      "options": [
+       {
+        "value": "yes",
+        "label": "Sí"
+       },
+       {
+        "value": "no",
+        "label": "No"
+       }
+      ],
+      "link": {
+       "href": "/privacidad",
+       "label": "Leer el aviso de privacidad"
+      }
+     },
+     "action": {
+      "language": "es",
+      "country": "ES",
+      "simplify": false,
+      "ui": {
+       "kind": "quick_replies",
+       "options": [
+        {
+         "value": "yes",
+         "label": "Sí"
+        },
+        {
+         "value": "no",
+         "label": "No"
+        }
+       ],
+       "link": {
+        "href": "/privacidad",
+        "label": "Leer el aviso de privacidad"
+       }
+      },
+      "kind": "greet",
+      "ai_disclosure": true,
+      "privacy_notice": true,
+      "retry": 0
+     },
+     "fallback_used": false,
+     "sources": null,
+     "latency_s": 1.004
+    },
+    {
+     "speaker": "candidate",
+     "text": "Sí",
+     "sent": null,
+     "widget": true,
+     "scripted": false,
+     "move": {
+      "kind": "tap",
+      "value": "yes",
+      "matrix_language": "es"
+     },
+     "extraction": {
+      "intent": "confirm",
+      "fields": {},
+      "language": "es",
+      "matrix_language": "es",
+      "english_ratio": 0.0,
+      "explicit_language_request": null,
+      "code_switched": false,
+      "sentiment": "neutral",
+      "question": null,
+      "question_topic": null,
+      "slot": null,
+      "mode": null
+     },
+     "latency_s": 0.496
+    },
+    {
+     "speaker": "ana",
+     "text": "¿Cuál es tu nombre completo?",
+     "ui": null,
+     "action": {
+      "language": "es",
+      "country": "ES",
+      "simplify": false,
+      "ui": null,
+      "kind": "ask_field",
+      "field": "full_name",
+      "retry": 0,
+      "hint": null,
+      "options": []
+     },
+     "fallback_used": false,
+     "sources": null
+    },
+    {
+     "speaker": "candidate",
+     "text": "Iván Torres Llorca",
+     "sent": "Iván Torres Llorca",
+     "widget": false,
+     "scripted": false,
+     "move": {
+      "kind": "text",
+      "text": "Iván Torres Llorca",
+      "matrix_language": "es"
+     },
+     "extraction": {
+      "intent": "answer",
+      "fields": {
+       "full_name": {
+        "value": "Iván Torres Llorca",
+        "confidence": 1.0
+       }
+      },
+      "language": "es",
+      "matrix_language": "es",
+      "english_ratio": 0.0,
+      "explicit_language_request": null,
+      "code_switched": false,
+      "sentiment": "neutral",
+      "question": null,
+      "question_topic": null,
+      "slot": null,
+      "mode": null
+     },
+     "latency_s": 1.429
+    },
+    {
+     "speaker": "ana",
+     "text": "Gracias, Iván. ¿Cuál es tu número de móvil?",
+     "ui": {
+      "kind": "phone",
+      "countries": [
+       {
+        "code": "ES",
+        "dial": "+34",
+        "label": "ES +34"
+       },
+       {
+        "code": "MX",
+        "dial": "+52",
+        "label": "MX +52"
+       }
+      ],
+      "selected": "ES"
+     },
+     "action": {
+      "language": "es",
+      "country": "ES",
+      "simplify": false,
+      "ui": {
+       "kind": "phone",
+       "countries": [
+        {
+         "code": "ES",
+         "dial": "+34",
+         "label": "ES +34"
+        },
+        {
+         "code": "MX",
+         "dial": "+52",
+         "label": "MX +52"
+        }
+       ],
+       "selected": "ES"
+      },
+      "kind": "ask_field",
+      "field": "phone",
+      "retry": 0,
+      "hint": null,
+      "options": []
+     },
+     "fallback_used": false,
+     "sources": null
+    },
+    {
+     "speaker": "candidate",
+     "text": "Mi móvil es el 612345619",
+     "sent": "Mi móvil es el 612345619",
+     "widget": false,
+     "scripted": false,
+     "move": {
+      "kind": "text",
+      "text": "Mi móvil es el 612345619",
+      "matrix_language": "es"
+     },
+     "extraction": {
+      "intent": "answer",
+      "fields": {
+       "phone": {
+        "value": "+34612345619",
+        "confidence": 1.0
+       }
+      },
+      "language": "es",
+      "matrix_language": "es",
+      "english_ratio": 0.0,
+      "explicit_language_request": null,
+      "code_switched": false,
+      "sentiment": "neutral",
+      "question": null,
+      "question_topic": null,
+      "slot": null,
+      "mode": null
+     },
+     "latency_s": 1.703
+    },
+    {
+     "speaker": "ana",
+     "text": "¿Y cuál es tu correo electrónico?",
+     "ui": null,
+     "action": {
+      "language": "es",
+      "country": "ES",
+      "simplify": false,
+      "ui": null,
+      "kind": "ask_field",
+      "field": "email",
+      "retry": 0,
+      "hint": null,
+      "options": []
+     },
+     "fallback_used": false,
+     "sources": null
+    },
+    {
+     "speaker": "candidate",
+     "text": "ivan.torres@example.com",
+     "sent": "ivan.torres@example.com",
+     "widget": false,
+     "scripted": false,
+     "move": {
+      "kind": "text",
+      "text": "ivan.torres@example.com",
+      "matrix_language": "mixed"
+     },
+     "extraction": {
+      "intent": "answer",
+      "fields": {
+       "email": {
+        "value": "ivan.torres@example.com",
+        "confidence": 1.0
+       }
+      },
+      "language": "es",
+      "matrix_language": "es",
+      "english_ratio": 0.0,
+      "explicit_language_request": null,
+      "code_switched": false,
+      "sentiment": "neutral",
+      "question": null,
+      "question_topic": null,
+      "slot": null,
+      "mode": null
+     },
+     "latency_s": 1.924
+    },
+    {
+     "speaker": "ana",
+     "text": "¿Tienes carnet de conducir en vigor?",
+     "ui": null,
+     "action": {
+      "language": "es",
+      "country": "ES",
+      "simplify": false,
+      "ui": null,
+      "kind": "ask_field",
+      "field": "has_license",
+      "retry": 0,
+      "hint": null,
+      "options": []
+     },
+     "fallback_used": false,
+     "sources": null
+    },
+    {
+     "speaker": "candidate",
+     "text": "Sí, tengo carnet en vigor.",
+     "sent": "Sí, tengo carnet en vigor.",
+     "widget": false,
+     "scripted": false,
+     "move": {
+      "kind": "text",
+      "text": "Sí, tengo carnet en vigor.",
+      "matrix_language": "es"
+     },
+     "extraction": {
+      "intent": "answer",
+      "fields": {
+       "has_license": {
+        "value": true,
+        "confidence": 1.0
+       }
+      },
+      "language": "es",
+      "matrix_language": "es",
+      "english_ratio": 0.0,
+      "explicit_language_request": null,
+      "code_switched": false,
+      "sentiment": "neutral",
+      "question": null,
+      "question_topic": null,
+      "slot": null,
+      "mode": null
+     },
+     "latency_s": 2.153
+    },
+    {
+     "speaker": "ana",
+     "text": "Perfecto, Iván. ¿En qué ciudad o barrio vives?",
+     "ui": null,
+     "action": {
+      "language": "es",
+      "country": "ES",
+      "simplify": false,
+      "ui": null,
+      "kind": "ask_field",
+      "field": "city",
+      "retry": 0,
+      "hint": null,
+      "options": []
+     },
+     "fallback_used": false,
+     "sources": null
+    },
+    {
+     "speaker": "candidate",
+     "text": "Vivo en el centro de Alicante.",
+     "sent": "Vivo en el centro de Alicante.",
+     "widget": false,
+     "scripted": false,
+     "move": {
+      "kind": "text",
+      "text": "Vivo en el centro de Alicante.",
+      "matrix_language": "es"
+     },
+     "extraction": {
+      "intent": "answer",
+      "fields": {
+       "city": {
+        "value": "Alicante, Centro",
+        "confidence": 1.0
+       }
+      },
+      "language": "es",
+      "matrix_language": "es",
+      "english_ratio": 0.0,
+      "explicit_language_request": null,
+      "code_switched": false,
+      "sentiment": "neutral",
+      "question": null,
+      "question_topic": null,
+      "slot": null,
+      "mode": null
+     },
+     "latency_s": 1.589
+    },
+    {
+     "speaker": "ana",
+     "text": "Gracias por indicarlo, Iván. ¿Qué disponibilidad tienes: tiempo completo, tiempo parcial o fines de semana?",
+     "ui": null,
+     "action": {
+      "language": "es",
+      "country": "ES",
+      "simplify": false,
+      "ui": null,
+      "kind": "ask_field",
+      "field": "availability",
+      "retry": 0,
+      "hint": null,
+      "options": []
+     },
+     "fallback_used": false,
+     "sources": null
+    },
+    {
+     "speaker": "candidate",
+     "text": "Parcial, solo por las noches.",
+     "sent": "Parcial, solo por las noches.",
+     "widget": false,
+     "scripted": false,
+     "move": {
+      "kind": "text",
+      "text": "Parcial, solo por las noches.",
+      "matrix_language": "es"
+     },
+     "extraction": {
+      "intent": "answer",
+      "fields": {
+       "availability": {
+        "value": [
+         "part_time"
+        ],
+        "confidence": 0.95
+       },
+       "schedule": {
+        "value": [
+         "evening"
+        ],
+        "confidence": 0.95
+       }
+      },
+      "language": "es",
+      "matrix_language": "es",
+      "english_ratio": 0.0,
+      "explicit_language_request": null,
+      "code_switched": false,
+      "sentiment": "neutral",
+      "question": null,
+      "question_topic": null,
+      "slot": null,
+      "mode": null
+     },
+     "latency_s": 1.807
+    },
+    {
+     "speaker": "ana",
+     "text": "Entendido, Iván, trabajo nocturno de medio tiempo. ¿Cuánta experiencia tienes haciendo reparto?",
+     "ui": null,
+     "action": {
+      "language": "es",
+      "country": "ES",
+      "simplify": false,
+      "ui": null,
+      "kind": "ask_field",
+      "field": "experience_years",
+      "retry": 0,
+      "hint": null,
+      "options": []
+     },
+     "fallback_used": false,
+     "sources": null
+    },
+    {
+     "speaker": "candidate",
+     "text": "Un año en Just Eat, más o menos.",
+     "sent": "Un año en Just Eat, más o menos.",
+     "widget": false,
+     "scripted": false,
+     "move": {
+      "kind": "text",
+      "text": "Un año en Just Eat, más o menos.",
+      "matrix_language": "es"
+     },
+     "extraction": {
+      "intent": "answer",
+      "fields": {
+       "experience_years": {
+        "value": 1.0,
+        "confidence": 0.9
+       },
+       "platforms": {
+        "value": [
+         "just_eat"
+        ],
+        "confidence": 0.95
+       }
+      },
+      "language": "es",
+      "matrix_language": "es",
+      "english_ratio": 0.2,
+      "explicit_language_request": null,
+      "code_switched": true,
+      "sentiment": "neutral",
+      "question": null,
+      "question_topic": null,
+      "slot": null,
+      "mode": null
+     },
+     "latency_s": 1.387
+    },
+    {
+     "speaker": "ana",
+     "text": "Iván, un año en Just Eat es buena base. ¿Cuándo podrías empezar?",
+     "ui": null,
+     "action": {
+      "language": "es",
+      "country": "ES",
+      "simplify": false,
+      "ui": null,
+      "kind": "ask_field",
+      "field": "start_date",
+      "retry": 0,
+      "hint": null,
+      "options": []
+     },
+     "fallback_used": false,
+     "sources": null
+    },
+    {
+     "speaker": "candidate",
+     "text": "Podría empezar el próximo lunes, el 26.",
+     "sent": "Podría empezar el próximo lunes, el 26.",
+     "widget": false,
+     "scripted": false,
+     "move": {
+      "kind": "text",
+      "text": "Podría empezar el próximo lunes, el 26.",
+      "matrix_language": "es"
+     },
+     "extraction": {
+      "intent": "answer",
+      "fields": {
+       "start_date": {
+        "value": "2026-10-26",
+        "confidence": 1.0
+       }
+      },
+      "language": "es",
+      "matrix_language": "es",
+      "english_ratio": 0.0,
+      "explicit_language_request": null,
+      "code_switched": false,
+      "sentiment": "neutral",
+      "question": null,
+      "question_topic": null,
+      "slot": null,
+      "mode": null
+     },
+     "latency_s": 1.259
+    },
+    {
+     "speaker": "ana",
+     "text": "Estos son tus datos. ¿Está todo bien?",
+     "ui": {
+      "kind": "confirm",
+      "fields": [
+       {
+        "label": "Nombre",
+        "value": "Iván Torres Llorca"
+       },
+       {
+        "label": "Teléfono",
+        "value": "+34612345619"
+       },
+       {
+        "label": "Email",
+        "value": "ivan.torres@example.com"
+       },
+       {
+        "label": "Carnet de conducir",
+        "value": "Sí"
+       },
+       {
+        "label": "Zona",
+        "value": "Alicante"
+       },
+       {
+        "label": "Disponibilidad",
+        "value": "Tiempo parcial"
+       },
+       {
+        "label": "Horario",
+        "value": "Noche"
+       },
+       {
+        "label": "Experiencia",
+        "value": "1 año"
+       },
+       {
+        "label": "Plataformas",
+        "value": "Just Eat"
+       },
+       {
+        "label": "Fecha de inicio",
+        "value": "lunes 26 de octubre"
+       }
+      ]
+     },
+     "action": {
+      "language": "es",
+      "country": "ES",
+      "simplify": false,
+      "ui": {
+       "kind": "confirm",
+       "fields": [
+        {
+         "label": "Nombre",
+         "value": "Iván Torres Llorca"
+        },
+        {
+         "label": "Teléfono",
+         "value": "+34612345619"
+        },
+        {
+         "label": "Email",
+         "value": "ivan.torres@example.com"
+        },
+        {
+         "label": "Carnet de conducir",
+         "value": "Sí"
+        },
+        {
+         "label": "Zona",
+         "value": "Alicante"
+        },
+        {
+         "label": "Disponibilidad",
+         "value": "Tiempo parcial"
+        },
+        {
+         "label": "Horario",
+         "value": "Noche"
+        },
+        {
+         "label": "Experiencia",
+         "value": "1 año"
+        },
+        {
+         "label": "Plataformas",
+         "value": "Just Eat"
+        },
+        {
+         "label": "Fecha de inicio",
+         "value": "lunes 26 de octubre"
+        }
+       ]
+      },
+      "kind": "confirm_summary",
+      "profile": {
+       "full_name": "Iván Torres Llorca",
+       "phone": "+34612345619",
+       "email": "ivan.torres@example.com",
+       "has_license": true,
+       "location_id": "es-ali-centro",
+       "availability": [
+        "part_time"
+       ],
+       "schedule": [
+        "evening"
+       ],
+       "experience_years": 1.0,
+       "platforms": [
+        "just_eat"
+       ],
+       "platform_other": null,
+       "start_date": "2026-10-26",
+       "late_start_days": null,
+       "interview_mode": null,
+       "experience_unverified": null
+      }
+     },
+     "fallback_used": false,
+     "sources": null
+    },
+    {
+     "speaker": "candidate",
+     "text": "Sí, es correcto",
+     "sent": null,
+     "widget": true,
+     "scripted": false,
+     "move": {
+      "kind": "tap",
+      "value": "yes",
+      "matrix_language": "es"
+     },
+     "extraction": {
+      "intent": "confirm",
+      "fields": {},
+      "language": "es",
+      "matrix_language": "es",
+      "english_ratio": 0.0,
+      "explicit_language_request": null,
+      "code_switched": false,
+      "sentiment": "neutral",
+      "question": null,
+      "question_topic": null,
+      "slot": null,
+      "mode": null
+     },
+     "latency_s": 0.545
+    },
+    {
+     "speaker": "ana",
+     "text": "¡Genial, Iván! Ya tengo todo lo que necesitaba. ¿Prefieres la entrevista en persona o por videollamada?",
+     "ui": {
+      "kind": "quick_replies",
+      "options": [
+       {
+        "value": "onsite",
+        "label": "En persona"
+       },
+       {
+        "value": "video",
+        "label": "Videollamada"
+       }
+      ],
+      "link": null
+     },
+     "action": {
+      "language": "es",
+      "country": "ES",
+      "simplify": false,
+      "ui": {
+       "kind": "quick_replies",
+       "options": [
+        {
+         "value": "onsite",
+         "label": "En persona"
+        },
+        {
+         "value": "video",
+         "label": "Videollamada"
+        }
+       ],
+       "link": null
+      },
+      "kind": "ask_mode",
+      "options": [
+       "onsite",
+       "video"
+      ],
+      "qualified": true,
+      "retry": 0
+     },
+     "fallback_used": false,
+     "sources": null
+    },
+    {
+     "speaker": "candidate",
+     "text": "En persona",
+     "sent": null,
+     "widget": true,
+     "scripted": false,
+     "move": {
+      "kind": "tap",
+      "value": "onsite",
+      "matrix_language": "es"
+     },
+     "extraction": {
+      "intent": "answer",
+      "fields": {},
+      "language": "es",
+      "matrix_language": "es",
+      "english_ratio": 0.0,
+      "explicit_language_request": null,
+      "code_switched": false,
+      "sentiment": "neutral",
+      "question": null,
+      "question_topic": null,
+      "slot": null,
+      "mode": "onsite"
+     },
+     "latency_s": 1.109
+    },
+    {
+     "speaker": "ana",
+     "text": "Perfecto, en persona. Tengo estos huecos para la entrevista en el local de Alicante: martes 20 a las 16:00, miércoles 21 a las 16:00 o jueves 22 a las 16:00. ¿Cuál te viene mejor?",
+     "ui": {
+      "kind": "slots",
+      "slots": [
+       {
+        "id": "1f2c2f51403b441fb485fb3af335b833",
+        "startsAt": "2026-10-20T16:00:00+02:00",
+        "label": "martes 20 a las 16:00",
+        "location": "Alicante",
+        "time": "16:00"
+       },
+       {
+        "id": "934787de646345539b6d2dcc711fa701",
+        "startsAt": "2026-10-21T16:00:00+02:00",
+        "label": "miércoles 21 a las 16:00",
+        "location": "Alicante",
+        "time": "16:00"
+       },
+       {
+        "id": "e601e92a5c4b45c0a7ca6228a831be46",
+        "startsAt": "2026-10-22T16:00:00+02:00",
+        "label": "jueves 22 a las 16:00",
+        "location": "Alicante",
+        "time": "16:00"
+       }
+      ]
+     },
+     "action": {
+      "language": "es",
+      "country": "ES",
+      "simplify": false,
+      "ui": {
+       "kind": "slots",
+       "slots": [
+        {
+         "id": "1f2c2f51403b441fb485fb3af335b833",
+         "startsAt": "2026-10-20T16:00:00+02:00",
+         "label": "martes 20 a las 16:00",
+         "location": "Alicante",
+         "time": "16:00"
+        },
+        {
+         "id": "934787de646345539b6d2dcc711fa701",
+         "startsAt": "2026-10-21T16:00:00+02:00",
+         "label": "miércoles 21 a las 16:00",
+         "location": "Alicante",
+         "time": "16:00"
+        },
+        {
+         "id": "e601e92a5c4b45c0a7ca6228a831be46",
+         "startsAt": "2026-10-22T16:00:00+02:00",
+         "label": "jueves 22 a las 16:00",
+         "location": "Alicante",
+         "time": "16:00"
+        }
+       ]
+      },
+      "kind": "offer_slots",
+      "location_id": "es-ali-centro",
+      "slots": [
+       {
+        "id": "1f2c2f51403b441fb485fb3af335b833",
+        "startsAt": "2026-10-20T16:00:00+02:00",
+        "label": "martes 20 a las 16:00",
+        "location": "Alicante",
+        "time": "16:00"
+       },
+       {
+        "id": "934787de646345539b6d2dcc711fa701",
+        "startsAt": "2026-10-21T16:00:00+02:00",
+        "label": "miércoles 21 a las 16:00",
+        "location": "Alicante",
+        "time": "16:00"
+       },
+       {
+        "id": "e601e92a5c4b45c0a7ca6228a831be46",
+        "startsAt": "2026-10-22T16:00:00+02:00",
+        "label": "jueves 22 a las 16:00",
+        "location": "Alicante",
+        "time": "16:00"
+       }
+      ],
+      "reason": "mode",
+      "retry": 0,
+      "mode": "onsite"
+     },
+     "fallback_used": false,
+     "sources": null
+    },
+    {
+     "speaker": "candidate",
+     "text": "Uf, ninguna me va bien, trabajo a esas horas. ¿Hay algo por las noches?",
+     "sent": "Uf, ninguna me va bien, trabajo a esas horas. ¿Hay algo por las noches?",
+     "widget": false,
+     "scripted": false,
+     "move": {
+      "kind": "text",
+      "text": "Uf, ninguna me va bien, trabajo a esas horas. ¿Hay algo por las noches?",
+      "matrix_language": "es"
+     },
+     "extraction": {
+      "intent": "answer",
+      "fields": {},
+      "language": "es",
+      "matrix_language": "es",
+      "english_ratio": 0.0,
+      "explicit_language_request": null,
+      "code_switched": false,
+      "sentiment": "frustrated",
+      "question": "¿Hay algo por las noches?",
+      "question_topic": null,
+      "slot": "none",
+      "mode": null
+     },
+     "latency_s": 3.008
+    },
+    {
+     "speaker": "ana",
+     "text": "Sin problema, te propongo otros. Tengo estos huecos para la entrevista en el local de Alicante: martes 20 a las 16:30, miércoles 21 a las 16:30 o jueves 22 a las 16:30. ¿Cuál te viene mejor?",
+     "ui": {
+      "kind": "slots",
+      "slots": [
+       {
+        "id": "90762ed41fe64a108e55d9e2b272ae42",
+        "startsAt": "2026-10-20T16:30:00+02:00",
+        "label": "martes 20 a las 16:30",
+        "location": "Alicante",
+        "time": "16:30"
+       },
+       {
+        "id": "20261645142c4919bde52904823a4fbf",
+        "startsAt": "2026-10-21T16:30:00+02:00",
+        "label": "miércoles 21 a las 16:30",
+        "location": "Alicante",
+        "time": "16:30"
+       },
+       {
+        "id": "34947195bcc042e3a1215e85b4e9916d",
+        "startsAt": "2026-10-22T16:30:00+02:00",
+        "label": "jueves 22 a las 16:30",
+        "location": "Alicante",
+        "time": "16:30"
+       }
+      ]
+     },
+     "action": {
+      "language": "es",
+      "country": "ES",
+      "simplify": true,
+      "ui": {
+       "kind": "slots",
+       "slots": [
+        {
+         "id": "90762ed41fe64a108e55d9e2b272ae42",
+         "startsAt": "2026-10-20T16:30:00+02:00",
+         "label": "martes 20 a las 16:30",
+         "location": "Alicante",
+         "time": "16:30"
+        },
+        {
+         "id": "20261645142c4919bde52904823a4fbf",
+         "startsAt": "2026-10-21T16:30:00+02:00",
+         "label": "miércoles 21 a las 16:30",
+         "location": "Alicante",
+         "time": "16:30"
+        },
+        {
+         "id": "34947195bcc042e3a1215e85b4e9916d",
+         "startsAt": "2026-10-22T16:30:00+02:00",
+         "label": "jueves 22 a las 16:30",
+         "location": "Alicante",
+         "time": "16:30"
+        }
+       ]
+      },
+      "kind": "offer_slots",
+      "location_id": "es-ali-centro",
+      "slots": [
+       {
+        "id": "90762ed41fe64a108e55d9e2b272ae42",
+        "startsAt": "2026-10-20T16:30:00+02:00",
+        "label": "martes 20 a las 16:30",
+        "location": "Alicante",
+        "time": "16:30"
+       },
+       {
+        "id": "20261645142c4919bde52904823a4fbf",
+        "startsAt": "2026-10-21T16:30:00+02:00",
+        "label": "miércoles 21 a las 16:30",
+        "location": "Alicante",
+        "time": "16:30"
+       },
+       {
+        "id": "34947195bcc042e3a1215e85b4e9916d",
+        "startsAt": "2026-10-22T16:30:00+02:00",
+        "label": "jueves 22 a las 16:30",
+        "location": "Alicante",
+        "time": "16:30"
+       }
+      ],
+      "reason": "more",
+      "retry": 0,
+      "mode": "onsite"
+     },
+     "fallback_used": true,
+     "sources": null
+    },
+    {
+     "speaker": "candidate",
+     "text": "Pues tampoco, trabajo a esas horas. ¿No tienes nada por las noches?",
+     "sent": "Pues tampoco, trabajo a esas horas. ¿No tienes nada por las noches?",
+     "widget": false,
+     "scripted": false,
+     "move": {
+      "kind": "text",
+      "text": "Pues tampoco, trabajo a esas horas. ¿No tienes nada por las noches?",
+      "matrix_language": "es"
+     },
+     "extraction": {
+      "intent": "answer",
+      "fields": {},
+      "language": "es",
+      "matrix_language": "es",
+      "english_ratio": 0.0,
+      "explicit_language_request": null,
+      "code_switched": false,
+      "sentiment": "frustrated",
+      "question": "¿No tienes nada por las noches?",
+      "question_topic": null,
+      "slot": "none",
+      "mode": null
+     },
+     "latency_s": 1.588
+    },
+    {
+     "speaker": "ana",
+     "text": "Entiendo, Iván. Tu solicitud queda guardada.",
+     "ui": null,
+     "action": {
+      "language": "es",
+      "country": "ES",
+      "simplify": true,
+      "ui": null,
+      "kind": "application_saved",
+      "none_free": false
+     },
+     "fallback_used": false,
+     "sources": null
+    }
+   ],
+   "candidate_turns": 13,
+   "hit_turn_cap": false,
+   "error": null,
+   "offered_slots": [
+    "1f2c2f51403b441fb485fb3af335b833",
+    "934787de646345539b6d2dcc711fa701",
+    "e601e92a5c4b45c0a7ca6228a831be46",
+    "90762ed41fe64a108e55d9e2b272ae42",
+    "20261645142c4919bde52904823a4fbf",
+    "34947195bcc042e3a1215e85b4e9916d"
+   ],
+   "invented_slots": [],
+   "fallback_count": 1,
+   "cost_usd": 0.01938,
+   "simulator_cost_usd": 0.003864,
+   "calls": [
+    {
+     "role": "responder",
+     "model": "anthropic/claude-haiku-5.5",
+     "latency_ms": 995,
+     "cost_usd": 0.0003974,
+     "fallback_used": false,
+     "error": null
+    },
+    {
+     "role": "responder",
+     "model": "anthropic/claude-haiku-5.5",
+     "latency_ms": 488,
+     "cost_usd": 0.0003581,
+     "fallback_used": false,
+     "error": null
+    },
+    {
+     "role": "extractor",
+     "model": "google/gemini-3.5-flash-lite",
+     "latency_ms": 1014,
+     "cost_usd": 0.0012716,
+     "fallback_used": false,
+     "error": null
+    },
+    {
+     "role": "responder",
+     "model": "anthropic/claude-haiku-5.5",
+     "latency_ms": 410,
+     "cost_usd": 0.0003641,
+     "fallback_used": false,
+     "error": null
+    },
+    {
+     "role": "extractor",
+     "model": "google/gemini-3.5-flash-lite",
+     "latency_ms": 1335,
+     "cost_usd": 0.0013865,
+     "fallback_used": false,
+     "error": null
+    },
+    {
+     "role": "responder",
+     "model": "anthropic/claude-haiku-5.5",
+     "latency_ms": 362,
+     "cost_usd": 0.00036,
+     "fallback_used": false,
+     "error": null
+    },
+    {
+     "role": "extractor",
+     "model": "google/gemini-3.5-flash-lite",
+     "latency_ms": 1320,
+     "cost_usd": 0.0012799,
+     "fallback_used": false,
+     "error": null
+    },
+    {
+     "role": "responder",
+     "model": "anthropic/claude-haiku-5.5",
+     "latency_ms": 597,
+     "cost_usd": 0.000361,
+     "fallback_used": false,
+     "error": null
+    },
+    {
+     "role": "extractor",
+     "model": "google/gemini-3.5-flash-lite",
+     "latency_ms": 1227,
+     "cost_usd": 0.0012932,
+     "fallback_used": false,
+     "error": null
+    },
+    {
+     "role": "responder",
+     "model": "anthropic/claude-haiku-5.5",
+     "latency_ms": 922,
+     "cost_usd": 0.0003655,
+     "fallback_used": false,
+     "error": null
+    },
+    {
+     "role": "extractor",
+     "model": "google/gemini-3.5-flash-lite",
+     "latency_ms": 1016,
+     "cost_usd": 0.0012879,
+     "fallback_used": false,
+     "error": null
+    },
+    {
+     "role": "responder",
+     "model": "anthropic/claude-haiku-5.5",
+     "latency_ms": 568,
+     "cost_usd": 0.00038,
+     "fallback_used": false,
+     "error": null
+    },
+    {
+     "role": "extractor",
+     "model": "google/gemini-3.5-flash-lite",
+     "latency_ms": 1214,
+     "cost_usd": 0.0014653,
+     "fallback_used": false,
+     "error": null
+    },
+    {
+     "role": "responder",
+     "model": "anthropic/claude-haiku-5.5",
+     "latency_ms": 588,
+     "cost_usd": 0.0003766,
+     "fallback_used": false,
+     "error": null
+    },
+    {
+     "role": "extractor",
+     "model": "google/gemini-3.5-flash-lite",
+     "latency_ms": 831,
+     "cost_usd": 0.0013748,
+     "fallback_used": false,
+     "error": null
+    },
+    {
+     "role": "responder",
+     "model": "anthropic/claude-haiku-5.5",
+     "latency_ms": 551,
+     "cost_usd": 0.000368,
+     "fallback_used": false,
+     "error": null
+    },
+    {
+     "role": "extractor",
+     "model": "google/gemini-3.5-flash-lite",
+     "latency_ms": 902,
+     "cost_usd": 0.0013084,
+     "fallback_used": false,
+     "error": null
+    },
+    {
+     "role": "responder",
+     "model": "anthropic/claude-haiku-5.5",
+     "latency_ms": 352,
+     "cost_usd": 0.0003756,
+     "fallback_used": false,
+     "error": null
+    },
+    {
+     "role": "responder",
+     "model": "anthropic/claude-haiku-5.5",
+     "latency_ms": 535,
+     "cost_usd": 0.0003789,
+     "fallback_used": false,
+     "error": null
+    },
+    {
+     "role": "summarizer",
+     "model": "anthropic/claude-haiku-5.5",
+     "latency_ms": 1061,
+     "cost_usd": 0.0002898,
+     "fallback_used": false,
+     "error": null
+    },
+    {
+     "role": "responder",
+     "model": "anthropic/claude-haiku-5.5",
+     "latency_ms": 1098,
+     "cost_usd": 0.0004283,
+     "fallback_used": false,
+     "error": null
+    },
+    {
+     "role": "extractor",
+     "model": "google/gemini-3.5-flash-lite",
+     "latency_ms": 1132,
+     "cost_usd": 0.0013507,
+     "fallback_used": false,
+     "error": null
+    },
+    {
+     "role": "responder",
+     "model": "anthropic/claude-haiku-5.5",
+     "latency_ms": 1865,
+     "cost_usd": 0.0008462,
+     "fallback_used": true,
+     "error": "reply discarded: 2 sentences (at most 1)"
+    },
+    {
+     "role": "extractor",
+     "model": "google/gemini-3.5-flash-lite",
+     "latency_ms": 1038,
+     "cost_usd": 0.0013465,
+     "fallback_used": false,
+     "error": null
+    },
+    {
+     "role": "responder",
+     "model": "anthropic/claude-haiku-5.5",
+     "latency_ms": 545,
+     "cost_usd": 0.0003654,
+     "fallback_used": false,
+     "error": null
+    }
+   ],
+   "judge": {
+    "tone": 3,
+    "naturalness": 2,
+    "empathy": 2,
+    "staying_in_role": 4,
+    "brevity": 4,
+    "rationale": "Ana never answered Iván's question about evening slots, even though he asked twice, and she repeated the slot offer word for word with times only 30 minutes later; then she closed abruptly without saying what happens next.",
+    "mean": 3.0,
+    "cost_usd": 0.01704
+   },
+   "combo": "A",
+   "repeat": 2,
+   "title": "No offered slot works, twice, then the talent pool",
+   "result": {
+    "checks": {
+     "completed": true,
+     "outcome": true,
+     "fields": true,
+     "message_length": true,
+     "one_question": true,
+     "no_emoji": true,
+     "no_promises": true,
+     "register": true,
+     "language": true,
+     "ai_disclosure": true,
+     "real_slots": true,
+     "no_fallback": false,
+     "flags": true,
+     "talent_pool_ask": null,
+     "no_slots_close": null,
+     "policy_close": null,
+     "read_back": null
+    },
+    "passed": false,
+    "failures": [
+     {
+      "check": "no_fallback",
+      "turn": null,
+      "detail": "1 fallback(s)"
+     }
+    ],
+    "metrics": {
+     "fields_matched": 10,
+     "fields_scored": 10,
+     "language_ok": 14,
+     "language_total": 14,
+     "fallback_count": 1
+    }
+   }
+  }
+ ]
+}

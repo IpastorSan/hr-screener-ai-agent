@@ -1,0 +1,811 @@
+# The two gates in Spain and Mexico: the driver's license and the city (the written chat, and a few
+# calls typed as the speech to text writes them, `channel: voice`).
+# Format: evals/journeys/README.md. Expected behaviour: docs/screening-rules.md (§1, §3).
+# The clock starts on Monday 19 October 2026, 10:00 in Madrid. Fictional people and data only.
+# Every journey stops shortly after its gate: what comes after is covered by other groups.
+
+# --- license ---
+
+- id: lic_es_yes_b_a2
+  description: 'Spain. "Sí, B y A2" is a yes; the city comes next, then availability.'
+  country: ES
+  steps:
+    - tap: "yes"
+      expect: {asks: full_name}
+    - say: Lucía Fernández Gil
+      expect: {asks: phone}
+    - tap: {country: ES, number: "612345701"}
+      expect: {asks: email}
+    - say: lucia.fernandez@example.com
+      expect: {asks: has_license, register: tu, live: {reply_matches: "carnet", reply_not_matches: "licencia"}}
+    - say: Sí, B y A2
+      expect: {asks: city, action: ask_field, outcome: in_progress, register: tu}
+    - say: Vivo en Lavapiés
+      offline_say: Lavapiés
+      expect: {asks: availability, outcome: in_progress}
+
+- id: lic_mx_tipo_a
+  description: 'Mexico. "Sí, licencia tipo A" is a yes; usted and "licencia", never "carnet".'
+  country: MX
+  steps:
+    - tap: "yes"
+      expect: {asks: full_name, register: usted}
+    - say: Jorge Ramírez Ortega
+      expect: {asks: phone}
+    - tap: {country: MX, number: "5512345701"}
+      expect: {asks: email}
+    - say: jorge.ramirez@example.com
+      expect: {asks: has_license, register: usted, live: {reply_matches: "licencia", reply_not_matches: "carnet"}}
+    - say: Sí, licencia tipo A
+      expect: {asks: city, outcome: in_progress, register: usted}
+
+- id: lic_mx_spanglish_driver_license
+  description: 'Mexico. Spanglish "tengo driver license vigente" is a yes, never a no (E2E 2026-10-22:
+    read as no license in 1 of 4 runs); the engine reads the claim over the extractor.'
+  country: MX
+  steps:
+    - tap: "yes"
+      expect: {asks: full_name}
+    - say: Brandon Garza Treviño
+      expect: {asks: phone}
+    - tap: {country: MX, number: "8112345701"}
+      expect: {asks: email}
+    - say: brandon.garza@example.com
+      expect: {asks: has_license}
+    - say: tengo driver license vigente
+      expect: {asks: city, outcome: in_progress, register: usted}
+
+- id: lic_mx_no
+  description: 'Mexico. A plain no closes with no_license, the fixed usted line and an invitation to reapply.'
+  country: MX
+  steps:
+    - tap: "yes"
+      expect: {asks: full_name}
+    - say: Ana Sofía Torres Medina
+      expect: {asks: phone}
+    - tap: {country: MX, number: "5512345702"}
+      expect: {asks: email}
+    - say: anasofia.torres@example.com
+      expect: {asks: has_license}
+    - say: No, no tengo licencia
+      expect:
+        action: disqualify
+        outcome: disqualified
+        reason: no_license
+        register: usted
+        closed: true
+        reply_matches: "licencia de conducir vigente en el momento de aplicar.*volver a aplicar"
+
+- id: lic_es_in_progress
+  description: 'Spain. Still getting it (autoescuela) is a no with license_in_progress.'
+  country: ES
+  steps:
+    - tap: "yes"
+      expect: {asks: full_name}
+    - say: Pablo Moreno Castillo
+      expect: {asks: phone}
+    - tap: {country: ES, number: "612345702"}
+      expect: {asks: email}
+    - say: pablo.moreno@example.com
+      expect: {asks: has_license}
+    - say: Lo estoy sacando, me examino el mes que viene
+      expect:
+        action: disqualify
+        outcome: disqualified
+        reason: license_in_progress
+        register: tu
+        closed: true
+        reply_matches: "en vigor|vigente"
+
+- id: lic_mx_learner_permit
+  description: 'Mexico. A learner''s permit is a no with license_in_progress.'
+  country: MX
+  steps:
+    - tap: "yes"
+      expect: {asks: full_name}
+    - say: Daniela Cruz Herrera
+      expect: {asks: phone}
+    - tap: {country: MX, number: "5512345703"}
+      expect: {asks: email}
+    - say: daniela.cruz@example.com
+      expect: {asks: has_license}
+    - say: Tengo permiso de aprendiz
+      expect: {action: disqualify, outcome: disqualified, reason: license_in_progress, register: usted, closed: true}
+
+- id: lic_es_expired_refusal_clause
+  description: 'Spain. "No, está caducada desde marzo" is a refusal followed by the reason, license_not_valid.'
+  country: ES
+  steps:
+    - tap: "yes"
+      expect: {asks: full_name}
+    - say: Javier Ortiz Navarro
+      expect: {asks: phone}
+    - tap: {country: ES, number: "612345703"}
+      expect: {asks: email}
+    - say: javier.ortiz@example.com
+      expect: {asks: has_license}
+    - say: No, está caducada desde marzo
+      expect: {action: disqualify, outcome: disqualified, reason: license_not_valid, closed: true}
+
+- id: lic_mx_yes_but_expired
+  description: 'Mexico. "Sí, pero la tengo vencida": the extractor may hear a yes; the engine''s own reading makes it license_not_valid.'
+  country: MX
+  steps:
+    - tap: "yes"
+      expect: {asks: full_name}
+    - say: Ricardo Flores Vega
+      expect: {asks: phone}
+    - tap: {country: MX, number: "5512345704"}
+      expect: {asks: email}
+    - say: ricardo.flores@example.com
+      expect: {asks: has_license}
+    - say: Sí, pero la tengo vencida
+      expect: {action: disqualify, outcome: disqualified, reason: license_not_valid, register: usted, closed: true}
+
+- id: lic_es_renewing
+  description: 'Spain. Being renewed is a no with license_not_valid.'
+  country: ES
+  steps:
+    - tap: "yes"
+      expect: {asks: full_name}
+    - say: Elena Prieto Serrano
+      expect: {asks: phone}
+    - tap: {country: ES, number: "612345704"}
+      expect: {asks: email}
+    - say: elena.prieto@example.com
+      expect: {asks: has_license}
+    - say: La estoy renovando ahora mismo
+      expect: {action: disqualify, outcome: disqualified, reason: license_not_valid, closed: true}
+
+- id: lic_mx_suspended
+  description: 'Mexico. Suspended ("me la suspendieron") is a no with license_not_valid.'
+  country: MX
+  steps:
+    - tap: "yes"
+      expect: {asks: full_name}
+    - say: Luis Mendoza Rojas
+      expect: {asks: phone}
+    - tap: {country: MX, number: "5512345705"}
+      expect: {asks: email}
+    - say: luis.mendoza@example.com
+      expect: {asks: has_license}
+    - say: Me la suspendieron hace dos meses
+      expect: {action: disqualify, outcome: disqualified, reason: license_not_valid, register: usted, closed: true}
+
+- id: lic_mx_no_esta_vencida
+  description: 'Mexico. "No está vencida" reads as a no with real models and closes as no_license; the owner
+    accepted this (the candidate can start again). Offline the keyword extractor reads it as a yes.'
+  country: MX
+  steps:
+    - tap: "yes"
+      expect: {asks: full_name}
+    - say: Fernanda Ruiz Salinas
+      expect: {asks: phone}
+    - tap: {country: MX, number: "5512345706"}
+      expect: {asks: email}
+    - say: fernanda.ruiz@example.com
+      expect: {asks: has_license}
+    - say: No está vencida
+      expect:
+        register: usted
+        live: {action: disqualify, outcome: disqualified, reason: no_license, closed: true}
+
+- id: lic_es_no_esta_caducada
+  description: 'Spain. "No está caducada, la renové el año pasado" is a yes.'
+  country: ES
+  steps:
+    - tap: "yes"
+      expect: {asks: full_name}
+    - say: Sergio Vidal Romero
+      expect: {asks: phone}
+    - tap: {country: ES, number: "612345705"}
+      expect: {asks: email}
+    - say: sergio.vidal@example.com
+      expect: {asks: has_license}
+    - say: No está caducada, la renové el año pasado
+      expect: {asks: city, outcome: in_progress}
+
+- id: lic_es_unsure_no_reasked
+  description: 'Spain. An unsure no is asked again, never acted on; the yes that follows carries on.'
+  country: ES
+  steps:
+    - tap: "yes"
+      expect: {asks: full_name}
+    - say: Nerea Blanco Iglesias
+      expect: {asks: phone}
+    - tap: {country: ES, number: "612345706"}
+      expect: {asks: email}
+    - say: nerea.blanco@example.com
+      expect: {asks: has_license}
+    - say: Creo que no, no estoy segura
+      expect: {asks: has_license, action: ask_field, outcome: in_progress}
+    - say: Sí, sí, la tengo, el B
+      expect: {asks: city, outcome: in_progress}
+
+- id: lic_mx_unresolved_three
+  description: 'Mexico. Three answers that say neither yes nor no close with unresolved_license and the fixed line; buttons from the third ask.'
+  country: MX
+  steps:
+    - tap: "yes"
+      expect: {asks: full_name}
+    - say: Mario Aguilar Peña
+      expect: {asks: phone}
+    - tap: {country: MX, number: "5512345707"}
+      expect: {asks: email}
+    - say: mario.aguilar@example.com
+      expect: {asks: has_license}
+    - say: mmm
+      expect: {asks: has_license, outcome: in_progress}
+    - say: pues depende
+      expect: {asks: has_license, outcome: in_progress, ui: quick_replies}
+    - say: no sé
+      expect:
+        action: disqualify
+        outcome: disqualified
+        reason: unresolved_license
+        closed: true
+        register: usted
+        reply_matches: "No pude confirmar si tiene licencia"
+
+- id: lic_es_reopen_yes
+  description: 'Spain. Closed for no license; the very next message "sí tengo carnet" reopens it and the city is asked.'
+  country: ES
+  steps:
+    - tap: "yes"
+      expect: {asks: full_name}
+    - say: Raúl Domínguez Soto
+      expect: {asks: phone}
+    - tap: {country: ES, number: "612345707"}
+      expect: {asks: email}
+    - say: raul.dominguez@example.com
+      expect: {asks: has_license}
+    - say: "No"
+      expect: {action: disqualify, reason: no_license, closed: true}
+    - say: Perdona, me he liado, sí que tengo carnet, el B
+      expect: {live: {asks: city, outcome: in_progress, action: ask_field}}
+    - say: Vivo en Gràcia
+      expect: {live: {asks: availability, outcome: in_progress}}
+
+- id: lic_mx_reopen_email_fix
+  description: 'Mexico. Closed for no license; the next message fixes the email, which reopens the application and asks the license again.'
+  country: MX
+  steps:
+    - tap: "yes"
+      expect: {asks: full_name}
+    - say: Claudia Navarro Ibarra
+      expect: {asks: phone}
+    - tap: {country: MX, number: "5512345708"}
+      expect: {asks: email}
+    - say: claudia.navaro@example.com
+      expect: {asks: has_license}
+    - say: "No"
+      expect: {action: disqualify, reason: no_license, closed: true}
+    - say: Perdón, mi correo está mal, es claudia.navarro@example.com
+      expect: {outcome: in_progress, live: {asks: has_license}}
+
+- id: lic_es_no_reopen_after_second
+  description: 'Spain. Only the very next message can reopen: "vale, gracias" then "sí que tengo carnet" stays closed.'
+  country: ES
+  steps:
+    - tap: "yes"
+      expect: {asks: full_name}
+    - say: Irene Castro Molina
+      expect: {asks: phone}
+    - tap: {country: ES, number: "612345708"}
+      expect: {asks: email}
+    - say: irene.castro@example.com
+      expect: {asks: has_license}
+    - say: No tengo carnet
+      expect: {action: disqualify, reason: no_license, closed: true}
+    - say: vale
+      expect: {outcome: disqualified, asks: none}
+    - say: Espera, sí que tengo carnet
+      expect: {outcome: disqualified, reason: no_license, asks: none}
+
+# --- city ---
+
+- id: city_es_zone_direct
+  description: 'Spain. A zone of one location ("Carabanchel") is taken without asking; "Madrid" alone asks the barrio.'
+  country: ES
+  steps:
+    - tap: "yes"
+      expect: {asks: full_name}
+    - say: Marta Ruiz Peña
+      expect: {asks: phone}
+    - tap: {country: ES, number: "612345709"}
+      expect: {asks: email}
+    - say: marta.ruiz@example.com
+      expect: {asks: has_license}
+    - say: Sí
+      expect: {asks: city}
+    - say: Vivo en Carabanchel
+      offline_say: Carabanchel
+      expect: {asks: availability, outcome: in_progress}
+
+- id: city_es_madrid_zone_question
+  description: 'Spain. "Madrid" has four locations: the barrio question with every Madrid location as buttons; a typed zone settles it.'
+  country: ES
+  steps:
+    - tap: "yes"
+      expect: {asks: full_name}
+    - say: Alberto Gil Herrero
+      expect: {asks: phone}
+    - tap: {country: ES, number: "612345710"}
+      expect: {asks: email}
+    - say: alberto.gil@example.com
+      expect: {asks: has_license}
+    - say: Sí, el B
+      expect: {asks: city}
+    - say: En Madrid
+      expect: {asks: city, action: clarify, ui: quick_replies, register: tu, reply_matches: "barrio de Madrid"}
+    - say: Chamberí
+      expect: {asks: availability, outcome: in_progress}
+
+- id: city_mx_df_zone_buttons
+  description: 'Mexico. "En el DF" asks the alcaldía or colonia with the eight CDMX locations as buttons; a tap settles it.'
+  country: MX
+  steps:
+    - tap: "yes"
+      expect: {asks: full_name}
+    - say: Diego Hernández Luna
+      expect: {asks: phone}
+    - tap: {country: MX, number: "5512345709"}
+      expect: {asks: email}
+    - say: diego.hernandez@example.com
+      expect: {asks: has_license}
+    - say: Sí tengo
+      expect: {asks: city}
+    - say: En el DF
+      expect:
+        asks: city
+        action: clarify
+        ui: quick_replies
+        register: usted
+        reply_matches: "alcald[ií]a o colonia"
+        reply_not_matches: "Coyoac|Polanco|Tlalpan|Iztapalapa"
+    - tap: mx-cdmx-coy
+      expect: {asks: availability, outcome: in_progress}
+
+- id: city_mx_gdl_alias
+  description: 'Mexico. "GDL" covers three locations in three municipalities: which of them, as buttons.'
+  country: MX
+  steps:
+    - tap: "yes"
+      expect: {asks: full_name}
+    - say: Valeria Ochoa Ramos
+      expect: {asks: phone}
+    - tap: {country: MX, number: "5512345710"}
+      expect: {asks: email}
+    - say: valeria.ochoa@example.com
+      expect: {asks: has_license}
+    - say: Sí
+      expect: {asks: city}
+    - say: GDL
+      expect: {asks: city, action: clarify, ui: quick_replies, register: usted}
+    - tap: mx-gdl-zapopan
+      expect: {asks: availability, outcome: in_progress}
+
+- id: city_mx_mty_typed_zone
+  description: 'Mexico. "MTY" asks which location; a typed "San Pedro" settles it without a tap.'
+  country: MX
+  steps:
+    - tap: "yes"
+      expect: {asks: full_name}
+    - say: Héctor Garza Treviño
+      expect: {asks: phone}
+    - tap: {country: MX, number: "5512345711"}
+      expect: {asks: email}
+    - say: hector.garza@example.com
+      expect: {asks: has_license}
+    - say: Sí
+      expect: {asks: city}
+    - say: Vivo en MTY
+      offline_say: MTY
+      expect: {asks: city, action: clarify}
+    - say: En San Pedro
+      offline_say: San Pedro
+      expect: {asks: availability, outcome: in_progress}
+
+- id: city_mx_typo_cancum
+  description: 'Mexico. "Cancum" never closes anything: offline the validator reads it back as a loose match; the live extractor writes "Cancún" and the location is taken without asking.'
+  country: MX
+  steps:
+    - tap: "yes"
+      expect: {asks: full_name}
+    - say: Karla Pech Canul
+      expect: {asks: phone}
+    - tap: {country: MX, number: "5512345712"}
+      expect: {asks: email}
+    - say: karla.pech@example.com
+      expect: {asks: has_license}
+    - say: Sí
+      expect: {asks: city}
+    - say: Cancum
+      expect: {outcome: in_progress, register: usted, live: {asks: availability}}
+
+- id: city_mx_los_angeles_loose_then_out
+  description: 'Mexico. "Los Ángeles" loosely matches San Ángel: read back once as that location; a no, then "Los Ángeles, California", is read back as a place outside every area; a yes closes out_of_area.'
+  country: MX
+  steps:
+    - tap: "yes"
+      expect: {asks: full_name}
+    - say: Kevin Morales Ríos
+      expect: {asks: phone}
+    - tap: {country: MX, number: "5512345717"}
+      expect: {asks: email}
+    - say: kevin.morales@example.com
+      expect: {asks: has_license}
+    - say: Sí
+      expect: {asks: city}
+    - say: Vivo en Los Ángeles
+      offline_say: Los Ángeles
+      expect: {asks: city, action: confirm_value, ui: quick_replies, reply_matches: "[ÁA]lvaro Obreg[oó]n"}
+    - tap: "no"
+      expect: {asks: city, outcome: in_progress}
+    - say: Los Ángeles, California
+      expect: {asks: city, action: confirm_value, reply_matches: "Los [ÁA]ngeles"}
+    - tap: "yes"
+      expect: {action: disqualify, reason: out_of_area, asks: talent_pool}
+
+- id: city_mx_guadalupe_zacatecas
+  description: 'Mexico. "Guadalupe, Zacatecas" is not the Guadalupe (Nuevo León) location: it must be read back as a place outside the areas, never taken as Monterrey.'
+  country: MX
+  steps:
+    - tap: "yes"
+      expect: {asks: full_name}
+    - say: Paola Saucedo Ibarra
+      expect: {asks: phone}
+    - tap: {country: MX, number: "5512345718"}
+      expect: {asks: email}
+    - say: paola.saucedo@example.com
+      expect: {asks: has_license}
+    - say: Sí
+      expect: {asks: city}
+    - say: Guadalupe, Zacatecas
+      expect: {asks: city, action: confirm_value, outcome: in_progress}
+
+- id: city_es_badalona
+  description: 'Spain. Badalona (its own municipality, not served) must be read back ("¿Vives ahora en Badalona?"), not answered with the Barcelona barrio question.'
+  country: ES
+  steps:
+    - tap: "yes"
+      expect: {asks: full_name}
+    - say: Jordi Puig Ferrer
+      expect: {asks: phone}
+    - tap: {country: ES, number: "612345715"}
+      expect: {asks: email}
+    - say: jordi.puig@example.com
+      expect: {asks: has_license}
+    - say: Sí
+      expect: {asks: city}
+    - say: Badalona
+      expect: {asks: city, action: confirm_value, reply_matches: "Badalona"}
+
+- id: city_mx_two_zones
+  description: 'Mexico. Two zones of different locations named ("entre Narvarte y Polanco"): which of the two, as buttons.'
+  country: MX
+  steps:
+    - tap: "yes"
+      expect: {asks: full_name}
+    - say: Andrea Vázquez Lara
+      expect: {asks: phone}
+    - tap: {country: MX, number: "5512345713"}
+      expect: {asks: email}
+    - say: andrea.vazquez@example.com
+      expect: {asks: has_license}
+    - say: Sí
+      expect: {asks: city}
+    - say: Me muevo entre Narvarte y Polanco
+      offline_say: Narvarte y Polanco
+      expect: {asks: city, action: clarify, ui: quick_replies, live: {reply_matches: "Narvarte|Benito Ju[aá]rez"}}
+    - tap: mx-cdmx-mh
+      expect: {asks: availability, outcome: in_progress}
+
+- id: city_es_out_of_area_pool_yes
+  description: 'Spain. Ourense is read back ("¿Vives ahora en Ourense?"); a yes closes out_of_area with the talent-pool question; a yes ends the chat.'
+  country: ES
+  steps:
+    - tap: "yes"
+      expect: {asks: full_name}
+    - say: Brais Otero Souto
+      expect: {asks: phone}
+    - tap: {country: ES, number: "612345711"}
+      expect: {asks: email}
+    - say: brais.otero@example.com
+      expect: {asks: has_license}
+    - say: Sí
+      expect: {asks: city}
+    - say: Vivo en Ourense
+      offline_say: Ourense
+      expect: {asks: city, action: confirm_value, ui: quick_replies, register: tu, reply_matches: "Ourense"}
+    - tap: "yes"
+      expect:
+        action: disqualify
+        outcome: disqualified
+        reason: out_of_area
+        asks: talent_pool
+        ui: quick_replies
+        register: tu
+        reply_matches: "bolsa de candidatos"
+        reply_not_matches: "te (avisaremos|contactaremos|escribiremos)|nos pondremos en contacto"
+    - tap: "yes"
+      expect: {action: end, outcome: disqualified, reason: out_of_area, closed: true}
+
+- id: city_mx_out_of_area_no_then_served
+  description: 'Mexico. Oaxaca read back; a no asks the city again, and Zapopan carries on.'
+  country: MX
+  steps:
+    - tap: "yes"
+      expect: {asks: full_name}
+    - say: Itzel Martínez Cruz
+      expect: {asks: phone}
+    - tap: {country: MX, number: "5512345714"}
+      expect: {asks: email}
+    - say: itzel.martinez@example.com
+      expect: {asks: has_license}
+    - say: Sí
+      expect: {asks: city}
+    - say: Oaxaca
+      expect: {asks: city, action: confirm_value, register: usted, reply_matches: "Oaxaca"}
+    - tap: "no"
+      expect: {asks: city, outcome: in_progress}
+    - say: Zapopan
+      expect: {asks: availability, outcome: in_progress}
+
+- id: city_mx_out_of_area_pool_no
+  description: 'Mexico. Puerto Vallarta read back, confirmed with a typed yes; a no to the talent pool ends the chat, still out_of_area.'
+  country: MX
+  steps:
+    - tap: "yes"
+      expect: {asks: full_name}
+    - say: Emilio Rosales Duarte
+      expect: {asks: phone}
+    - tap: {country: MX, number: "5512345715"}
+      expect: {asks: email}
+    - say: emilio.rosales@example.com
+      expect: {asks: has_license}
+    - say: Sí
+      expect: {asks: city}
+    - say: Vivo en Puerto Vallarta
+      offline_say: Puerto Vallarta
+      expect: {asks: city, action: confirm_value, reply_matches: "Puerto Vallarta"}
+    - say: Sí, ahí vivo
+      offline_say: sí
+      expect: {action: disqualify, reason: out_of_area, asks: talent_pool, register: usted}
+    - tap: "no"
+      expect: {action: end, outcome: disqualified, reason: out_of_area, closed: true}
+
+- id: city_es_grew_up_elsewhere
+  description: 'Spain. "Crecí en Los Ángeles pero vivo en Malasaña" is Malasaña; then an English switch that names only where they grew up does not close anything.'
+  country: ES
+  steps:
+    - tap: "yes"
+      expect: {asks: full_name}
+    - say: Carmen López Vera
+      expect: {asks: phone}
+    - tap: {country: ES, number: "612345712"}
+      expect: {asks: email}
+    - say: carmen.lopez@example.com
+      expect: {asks: has_license}
+    - say: Sí
+      expect: {asks: city}
+    - say: Crecí en Los Ángeles pero vivo en Malasaña
+      offline_say: Malasaña
+      expect: {asks: availability, outcome: in_progress}
+
+- id: city_es_grew_up_la_english
+  description: 'Spain. "Mejor en inglés, I grew up in LA" is not where they live; the city is asked again (in English), then Gràcia carries on.'
+  country: ES
+  steps:
+    - tap: "yes"
+      expect: {asks: full_name}
+    - say: Daniel Walsh Moreno
+      expect: {asks: phone}
+    - tap: {country: ES, number: "612345713"}
+      expect: {asks: email}
+    - say: daniel.walsh@example.com
+      expect: {asks: has_license}
+    - say: Sí
+      expect: {asks: city}
+    - say: Mejor en inglés, I grew up in LA
+      expect: {asks: city, outcome: in_progress, live: {language: en}}
+    - say: I live in Gràcia now
+      offline_say: Gràcia
+      expect: {asks: availability, outcome: in_progress}
+
+- id: city_mx_unresolved_three
+  description: 'Mexico. Three answers that never name a place close with unresolved_city and the fixed usted line. The refusal first gets the reason the city is needed (the nearest location and the interview), then the question again.'
+  country: MX
+  steps:
+    - tap: "yes"
+      expect: {asks: full_name}
+    - say: Rodrigo Salas Fuentes
+      expect: {asks: phone}
+    - tap: {country: MX, number: "5512345716"}
+      expect: {asks: email}
+    - say: rodrigo.salas@example.com
+      expect: {asks: has_license}
+    - say: Sí
+      expect: {asks: city}
+    - say: Prefiero no decirlo
+      offline_say: no sabría decirle dónde exactamente, la verdad
+      expect: {asks: city, outcome: in_progress, live: {reply_matches: "local|entrevista"}}
+    - say: Por ahí, cerca de donde trabajo
+      offline_say: por ahí cerca de donde trabajo ahora mismo
+      expect: {asks: city, outcome: in_progress}
+    - say: Eso es algo privado
+      offline_say: eso es algo privado la verdad señorita
+      expect:
+        action: disqualify
+        outcome: disqualified
+        reason: unresolved_city
+        closed: true
+        register: usted
+        reply_matches: "No pude confirmar dónde vive"
+
+- id: city_es_reopen_out_of_area
+  description: 'Spain. Closed out of area (Ourense); the very next message names a city we serve and reopens the application.'
+  country: ES
+  steps:
+    - tap: "yes"
+      expect: {asks: full_name}
+    - say: Noelia Varela Pazos
+      expect: {asks: phone}
+    - tap: {country: ES, number: "612345714"}
+      expect: {asks: email}
+    - say: noelia.varela@example.com
+      expect: {asks: has_license}
+    - say: Sí
+      expect: {asks: city}
+    - say: Ourense
+      expect: {action: confirm_value, asks: city}
+    - tap: "yes"
+      expect: {action: disqualify, reason: out_of_area, asks: talent_pool}
+    - say: Uy no, perdona, ya me mudé a Valencia, vivo en Ruzafa
+      expect: {live: {asks: availability, outcome: in_progress}}
+
+# --- the zone as the candidate said it, and the same place explained (2026-10-22) ---
+
+- id: city_mx_zone_shown_as_said_web
+  description: 'Mexico, web. "Vivo en Roma, en Ciudad de México" matches Cuauhtémoc; the summary card shows "Roma · local Cuauhtémoc", the place as they said it.'
+  country: MX
+  steps:
+    - tap: "yes"
+      expect: {asks: full_name}
+    - say: Sofía Herrera Paz
+      expect: {asks: phone}
+    - tap: {country: MX, number: "5512345720"}
+      expect: {asks: email}
+    - say: sofia.herrera@example.com
+      expect: {asks: has_license}
+    - say: Sí
+      expect: {asks: city}
+    - say: Vivo en Roma, en Ciudad de México
+      offline_say: Roma, Ciudad de México
+      expect: {asks: availability}
+    - say: Tiempo completo
+      expect: {asks: schedule}
+    - say: Mañanas
+      expect: {asks: experience_years}
+    - say: Ninguna
+      expect: {asks: start_date}
+    - say: El lunes que viene
+      offline_say: "2026-10-26"
+      expect: {asks: confirm, ui: confirm, card_matches: "Zona: Roma · local Cuauhtémoc"}
+    - tap: "yes"
+      expect: {outcome: qualified}
+
+- id: city_mx_voice_same_place_explained
+  description: >-
+    Mexico, a call (production, 2026-10-22). The summary reads "Roma, local Cuauhtémoc" aloud;
+    "La zona es Roma…" and "¿La zona no es correcta?" get the fixed line on why Roma is
+    Cuauhtémoc, never the summary again or an FAQ answer; a yes goes back to the summary.
+  country: MX
+  channel: voice
+  steps:
+    - say: Sí
+      expect: {asks: full_name}
+    - say: Sofía Herrera Paz
+      expect: {asks: phone}
+    - say: "5512345721"
+      expect: {asks: email}
+    - say: sofia.herrera@example.com
+      expect: {asks: has_license}
+    - say: Sí tengo licencia
+      offline_say: sí
+      expect: {asks: city}
+    - say: Vivo en Roma, en Ciudad de México
+      offline_say: Roma, Ciudad de México
+      expect: {asks: availability}
+    - say: Tiempo completo
+      expect: {asks: schedule}
+    - say: Mañanas
+      expect: {asks: experience_years}
+    - say: Ninguna
+      expect: {asks: start_date}
+    - say: El lunes que viene
+      offline_say: "2026-10-26"
+      expect: {asks: confirm, reply_matches: "Roma, local Cuauhtémoc"}
+    - say: La zona es Roma…
+      expect:
+        action: confirm_value
+        asks: city
+        reply_matches: "^Roma está en la alcaldía Cuauhtémoc, así que le corresponde ese local\\. ¿Es correcto\\?$"
+    - say: Sí
+      expect: {asks: confirm, reply_matches: "Roma, local Cuauhtémoc"}
+    - say: ¿La zona no es correcta?
+      expect: {action: confirm_value, asks: city, faq_source: none, reply_matches: "alcaldía Cuauhtémoc"}
+    - say: Sí, es correcto
+      offline_say: sí
+      expect: {asks: confirm}
+    - say: Sí, todo correcto
+      offline_say: sí
+      expect: {outcome: qualified}
+
+- id: city_mx_why_location_then_change_web
+  description: 'Mexico, web. "¿Por qué pone Cuauhtémoc?" at the summary is explained, not sent to the FAQ; a no asks the city again and Roma Sur is kept as said.'
+  country: MX
+  steps:
+    - tap: "yes"
+      expect: {asks: full_name}
+    - say: Pablo Juárez Rivas
+      expect: {asks: phone}
+    - tap: {country: MX, number: "5512345722"}
+      expect: {asks: email}
+    - say: pablo.juarez@example.com
+      expect: {asks: has_license}
+    - say: Sí
+      expect: {asks: city}
+    - say: Condesa
+      expect: {asks: availability}
+    - say: Tiempo completo
+      expect: {asks: schedule}
+    - say: Mañanas
+      expect: {asks: experience_years}
+    - say: Ninguna
+      expect: {asks: start_date}
+    - say: Hoy
+      offline_say: hoy
+      expect: {asks: confirm, card_matches: "Zona: Condesa · local Cuauhtémoc"}
+    - say: ¿Por qué pone Cuauhtémoc?
+      expect: {action: confirm_value, faq_source: none, reply_matches: "Condesa está en la alcaldía Cuauhtémoc"}
+    - tap: "no"
+      expect: {asks: city, action: ask_field}
+    - say: Roma Sur
+      expect: {asks: confirm, card_matches: "Zona: Roma Sur · local Cuauhtémoc"}
+
+- id: city_es_same_place_explained_web
+  description: 'Spain, web. "No, la zona es Gràcia" at the summary is the place they already have: the fixed line says it is the Barcelona Gràcia location, and a yes goes back to the summary.'
+  country: ES
+  steps:
+    - tap: "yes"
+      expect: {asks: full_name}
+    - say: Laia Vidal Font
+      expect: {asks: phone}
+    - tap: {country: ES, number: "612345723"}
+      expect: {asks: email}
+    - say: laia.vidal@example.com
+      expect: {asks: has_license}
+    - say: Sí
+      expect: {asks: city}
+    - say: Vivo en Gràcia
+      offline_say: Gràcia
+      expect: {asks: availability}
+    - say: Tiempo completo
+      expect: {asks: schedule}
+    - say: Mañanas
+      expect: {asks: experience_years}
+    - say: Ninguna
+      expect: {asks: start_date}
+    - say: Hoy
+      offline_say: hoy
+      expect: {asks: confirm, card_matches: "Zona: Gràcia · local Barcelona Gràcia"}
+    - say: No, la zona es Gràcia
+      expect:
+        action: confirm_value
+        register: tu
+        reply_matches: "Gràcia está en la zona del local de Barcelona Gràcia, así que te corresponde ese local"
+    - tap: "yes"
+      expect: {asks: confirm}
+    - tap: "yes"
+      expect: {outcome: qualified}

@@ -1,0 +1,73 @@
+# Teachers for Colegio Albéniz (`agents/teachers`): who interviews a qualified candidate. The
+# interview owner depends on the subject as well as the campus. Format: evals/journeys/README.md.
+- id: tch_maths_booked_with_the_head_of_maths
+  description: A maths teacher for ESO and Bachillerato with the master and the certificate is
+    booked by video with the head of maths, sciences and technology at the campus they chose.
+  country: ES
+  scheduling: {modes: [video]}
+  steps:
+    - {tap: 'yes', expect: {asks: full_name, register: tu, language: es}}
+    - {say: Lucía Fernández Gil, expect: {asks: phone, ui: phone}}
+    - {tap: {country: ES, number: '612345678'}, expect: {asks: email}}
+    - {say: lucia.fernandez@example.com, expect: {asks: levels}}
+    - {say: ESO y Bachillerato, expect: {asks: subjects}}
+    - {say: Matemáticas, expect: {asks: master_profesorado}}
+    - {say: Sí, expect: {asks: certificado_delitos_sexuales}}
+    - {say: Sí, expect: {asks: english_c1}}
+    - {say: Sí, expect: {asks: campus}}
+    - {say: Pozuelo, expect: {asks: workload}}
+    - {say: Jornada completa, expect: {asks: experience_years}}
+    - {say: '6', expect: {asks: start_date}}
+    - say: El 1 de diciembre
+      offline_say: '2026-12-01'
+      expect:
+        asks: confirm
+        ui: confirm
+        card_matches: 'Etapas: ESO, Bachillerato; Materias: Matemáticas; Máster de Profesorado: Sí;
+          Certificado de delitos sexuales: Sí; Inglés C1: Sí; Sede: Pozuelo; Jornada: Jornada completa'
+    - {tap: 'yes', expect: {asks: slot, outcome: qualified, ui: slots}}
+    - {tap: 'slot:1', expect: {booked: true, mode: video, interviewer: Elena Robles}}
+
+- id: tch_english_booked_with_the_head_of_languages
+  description: The same campus, an English teacher for Primaria with the Grado en Maestro, gets the
+    head of languages and humanities instead.
+  country: ES
+  scheduling: {modes: [video]}
+  steps:
+    - {tap: 'yes', expect: {asks: full_name}}
+    - {say: Tomás Ortega Ruiz, expect: {asks: phone}}
+    - {tap: {country: ES, number: '612345679'}, expect: {asks: email}}
+    - {say: tomas.ortega@example.com, expect: {asks: levels}}
+    - {say: Primaria, expect: {asks: subjects}}
+    - {say: Inglés, expect: {asks: grado_maestro}}
+    - {say: Sí, expect: {asks: certificado_delitos_sexuales}}
+    - {say: Sí, expect: {asks: english_c1}}
+    - {say: Sí, expect: {asks: campus}}
+    - {say: Pozuelo, expect: {asks: workload}}
+    - {say: Sustituciones, expect: {asks: experience_years}}
+    - {say: '3', expect: {asks: start_date}}
+    - {say: ya, expect: {asks: confirm}}
+    - {tap: 'yes', expect: {asks: slot}}
+    - {tap: 'slot:1', expect: {booked: true, interviewer: Javier Montes}}
+
+- id: tch_onsite_with_the_head_of_studies
+  description: In person, the interview is with the head of studies of the campus, whatever the
+    subject, in the campus's afternoon hours.
+  country: ES
+  scheduling: {modes: [onsite]}
+  steps:
+    - {tap: 'yes', expect: {asks: full_name}}
+    - {say: Carmen Vidal Soto, expect: {asks: phone}}
+    - {tap: {country: ES, number: '612345680'}, expect: {asks: email}}
+    - {say: carmen.vidal@example.com, expect: {asks: levels}}
+    - {say: FP, expect: {asks: subjects}}
+    - {say: Tecnología, expect: {asks: master_profesorado}}
+    - {say: Sí, expect: {asks: certificado_delitos_sexuales}}
+    - {say: Sí, expect: {asks: english_c1}}
+    - {say: 'No', expect: {asks: campus}}
+    - {say: Las Rozas, expect: {asks: workload}}
+    - {say: Media jornada, expect: {asks: experience_years}}
+    - {say: '12', expect: {asks: start_date}}
+    - {say: ya, expect: {asks: confirm}}
+    - {tap: 'yes', expect: {asks: slot, reply_matches: jefatura de estudios de la sede de Las Rozas}}
+    - {tap: 'slot:1', expect: {booked: true, mode: onsite, interviewer: Andrés Collado}}

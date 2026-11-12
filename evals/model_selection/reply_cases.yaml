@@ -1,0 +1,605 @@
+# Reply cases: an engine action as the responder receives it (`action`, validated as
+# sazon.engine.actions.Action) plus the reply context (`context`: candidate_name, last_message, faq
+# entries as q/a pairs), and deterministic expectations. Register: es-ES uses tu, es-MX uses usted.
+# Voice turns stay around 15 words. `scenario` groups cases for reporting.
+
+- id: greet-es-es-web
+  scenario: greet
+  locale: es-ES
+  country: ES
+  channel: web
+  action: {kind: greet}
+  expect:
+    language: es
+    register: tu
+    question: true
+    must_include: [\bAna\b, virtual|\bIA\b|inteligencia artificial, privacidad]
+
+- id: greet-es-mx-web
+  scenario: greet
+  locale: es-MX
+  country: MX
+  channel: web
+  action: {kind: greet}
+  expect:
+    language: es
+    register: usted
+    question: true
+    must_include: [\bAna\b, virtual|\bIA\b|inteligencia artificial, privacidad]
+
+- id: greet-en-voice
+  scenario: greet
+  locale: en
+  country: ES
+  channel: voice
+  action: {kind: greet}
+  expect:
+    language: en
+    question: true
+    max_words: 30
+    must_include: [\bAna\b, \bAI\b|virtual, privacy]
+
+- id: reask-phone-es-es-web
+  scenario: reask
+  locale: es-ES
+  country: ES
+  channel: web
+  action: {kind: ask_field, field: phone, retry: 2, hint: phone_invalid}
+  context: {last_message: 612 34}
+  expect:
+    language: es
+    register: tu
+    question: true
+    must_include: [612 345 678|612345678]
+
+- id: reask-experience-es-mx-web
+  scenario: reask
+  locale: es-MX
+  country: MX
+  channel: web
+  action: {kind: ask_field, field: experience_years, retry: 1, hint: experience_needs_number}
+  context: {last_message: unos meses en Rappi}
+  expect:
+    language: es
+    register: usted
+    question: true
+    must_include: [mes]
+
+- id: reask-schedule-en-web
+  scenario: reask
+  locale: en
+  country: ES
+  channel: web
+  action:
+    kind: ask_field
+    field: schedule
+    retry: 1
+    hint: schedule_invalid
+    options: [morning, afternoon, evening, flexible]
+  context: {last_message: idk depends}
+  expect: {language: en, question: true}
+
+- id: reask-email-es-mx-voice
+  scenario: reask
+  locale: es-MX
+  country: MX
+  channel: voice
+  action: {kind: ask_field, field: email, retry: 1, hint: email_invalid}
+  context: {last_message: jorge arroba hotmail}
+  expect: {language: es, register: usted, question: true, max_words: 15}
+
+- id: clarify-city-es-mx-web
+  scenario: clarify_city
+  locale: es-MX
+  country: MX
+  channel: web
+  action:
+    kind: clarify
+    field: city
+    options: [mx-gdl-zapopan]
+  context: {last_message: zapopam}
+  expect:
+    language: es
+    register: usted
+    question: true
+    must_include: [Zapopan]
+
+- id: clarify-city-cdmx-es-mx-voice
+  scenario: clarify_city
+  locale: es-MX
+  country: MX
+  channel: voice
+  action:
+    kind: clarify
+    field: city
+    options: []
+  context: {last_message: CDMX}
+  expect:
+    language: es
+    register: usted
+    question: true
+    max_words: 15
+    must_include: ['alcald[ií]a|colonia']
+
+- id: clarify-city-es-es-web
+  scenario: clarify_city
+  locale: es-ES
+  country: ES
+  channel: web
+  action:
+    kind: clarify
+    field: city
+    options: [es-bcn-eixample, es-bcn-gracia, es-bcn-sants]
+  context: {last_message: BCN}
+  expect:
+    language: es
+    register: tu
+    question: true
+    must_include: ['Gr[aà]cia|Eixample|Sants']
+
+- id: disqualify-license-es-es-web
+  scenario: disqualify_license
+  locale: es-ES
+  country: ES
+  channel: web
+  action: {kind: disqualify, reason: no_license, invite_reapply: true, talent_pool_offer: false}
+  context: {candidate_name: Pablo}
+  expect:
+    language: es
+    register: tu
+    question: false
+    must_include: [carnet]
+
+- id: disqualify-license-es-mx-web
+  scenario: disqualify_license
+  locale: es-MX
+  country: MX
+  channel: web
+  action: {kind: disqualify, reason: no_license, invite_reapply: true, talent_pool_offer: false}
+  context: {candidate_name: Mariana}
+  expect:
+    language: es
+    register: usted
+    question: false
+    must_include: [licencia]
+    must_not_include: [carnet]
+
+- id: disqualify-license-en-voice
+  scenario: disqualify_license
+  locale: en
+  country: ES
+  channel: voice
+  action: {kind: disqualify, reason: no_license, invite_reapply: true, talent_pool_offer: false}
+  context: {candidate_name: Tom}
+  expect:
+    language: en
+    question: false
+    max_words: 20
+    must_include: ['licen[cs]e']
+
+- id: license-in-progress-es-es-web
+  scenario: license_in_progress
+  locale: es-ES
+  country: ES
+  channel: web
+  action: {kind: disqualify, reason: license_in_progress, invite_reapply: true, talent_pool_offer: false}
+  context: {candidate_name: Pablo, last_message: 'lo estoy sacando, me examino el mes que viene'}
+  expect:
+    language: es
+    register: tu
+    question: false
+    must_include: [carnet, 'cuando (?:lo |ya lo )?tengas|en cuanto (?:lo )?tengas|vuelve a|de nuevo']
+
+- id: license-in-progress-es-mx-web
+  scenario: license_in_progress
+  locale: es-MX
+  country: MX
+  channel: web
+  action: {kind: disqualify, reason: license_in_progress, invite_reapply: true, talent_pool_offer: false}
+  context: {candidate_name: Luis, last_message: estoy tramitando la licencia}
+  expect:
+    language: es
+    register: usted
+    question: false
+    must_include: [licencia, 'cuando (?:la |ya la )?tenga|en cuanto (?:la )?tenga|vuelva a|de nuevo|nuevamente']
+
+- id: license-in-progress-en-web
+  scenario: license_in_progress
+  locale: en
+  country: ES
+  channel: web
+  action: {kind: disqualify, reason: license_in_progress, invite_reapply: true, talent_pool_offer: false}
+  context: {candidate_name: Sam, last_message: I have my test in two weeks}
+  expect:
+    language: en
+    question: false
+    must_include: [once you|when you|again]
+
+- id: disqualify-zone-es-es-web
+  scenario: disqualify_zone
+  locale: es-ES
+  country: ES
+  channel: web
+  action: {kind: disqualify, reason: out_of_area, invite_reapply: false, talent_pool_offer: true}
+  context: {last_message: vivo en Ourense}
+  expect: {language: es, register: tu, question: true}
+
+- id: disqualify-zone-es-mx-voice
+  scenario: disqualify_zone
+  locale: es-MX
+  country: MX
+  channel: voice
+  action: {kind: disqualify, reason: out_of_area, invite_reapply: false, talent_pool_offer: true}
+  context: {last_message: en Oaxaca}
+  expect: {language: es, register: usted, question: true, max_words: 18}
+
+- id: disqualify-zone-en-web
+  scenario: disqualify_zone
+  locale: en
+  country: ES
+  channel: web
+  action: {kind: disqualify, reason: out_of_area, invite_reapply: false, talent_pool_offer: true}
+  context: {last_message: I live in Leeds}
+  expect: {language: en, question: true}
+
+- id: faq-pay-es-es-web
+  scenario: answer_faq
+  locale: es-ES
+  country: ES
+  channel: web
+  action:
+    kind: answer_question
+    question: ¿cuánto se cobra a la hora?
+    follow_up: {kind: ask_field, field: availability}
+  context:
+    last_message: ¿cuánto se cobra a la hora?
+    faq:
+    - {q: '¿cuánto se cobra a la hora?', a: 'Repartidores en España: 9,80 € brutos por hora más propinas
+        íntegras. Se cobra a fin de mes.'}
+  expect:
+    max_chars: 400
+    language: es
+    register: tu
+    question: true
+    must_include: ['9,80']
+    must_not_include: ['\b(?:10|11|12)(?:[,.]\d+)? ?€', neto]
+
+- id: faq-vehicle-es-mx-web
+  scenario: answer_faq
+  locale: es-MX
+  country: MX
+  channel: web
+  action:
+    kind: answer_question
+    question: ¿ustedes dan la moto o tengo que llevar la mía?
+    follow_up: {kind: ask_field, field: city}
+  context:
+    last_message: ¿ustedes dan la moto o tengo que llevar la mía?
+    faq:
+    - {q: '¿ustedes dan la moto o tengo que llevar la mía?', a: 'México: Grupo Sazón presta moto con seguro
+        y gasolina en todas las sucursales. También se puede usar moto propia con apoyo de gasolina.'}
+  expect:
+    max_chars: 400
+    language: es
+    register: usted
+    question: true
+    must_include: [moto]
+    must_not_include: [bicicleta, '\$\s?\d']
+
+- id: faq-hours-en-voice
+  scenario: answer_faq
+  locale: en
+  country: ES
+  channel: voice
+  action:
+    kind: answer_question
+    question: how long are the shifts?
+    follow_up: {kind: ask_field, field: availability}
+  context:
+    last_message: how long are the shifts?
+    faq:
+    - {q: 'how long are the shifts?', a: Shifts are 4 or 8 hours. Part-time drivers choose at least 3
+        shifts a week.}
+  expect:
+    language: en
+    question: true
+    max_words: 25
+    must_include: [4|four, 8|eight]
+
+- id: faq-bot-es-es-web
+  scenario: answer_faq
+  locale: es-ES
+  country: ES
+  channel: web
+  action:
+    kind: answer_question
+    question: ¿eres una persona o un bot?
+    follow_up: {kind: ask_field, field: full_name}
+    topic: ai_identity
+  context: {last_message: '¿eres una persona o un bot?'}
+  expect:
+    max_chars: 400
+    language: es
+    register: tu
+    question: true
+    must_include: [virtual|\bIA\b|inteligencia artificial]
+
+- id: unknown-faq-es-es-web
+  scenario: unknown_faq
+  locale: es-ES
+  country: ES
+  channel: web
+  action:
+    kind: answer_question
+    question: ¿dais seguro médico privado?
+    follow_up: {kind: ask_field, field: schedule}
+  context: {last_message: '¿dais seguro médico privado?'}
+  expect:
+    max_chars: 400
+    language: es
+    register: tu
+    question: true
+    must_include: [entrevista]
+    must_not_include: ['\bs[ií], (?:damos|tenemos|incluye)', 'seguro m[eé]dico (?:incluido|privado incluido)']
+
+- id: unknown-faq-es-mx-web
+  scenario: unknown_faq
+  locale: es-MX
+  country: MX
+  channel: web
+  action:
+    kind: answer_question
+    question: ¿dan vales de despensa?
+    follow_up: {kind: ask_field, field: start_date}
+  context: {last_message: '¿dan vales de despensa?'}
+  expect:
+    max_chars: 400
+    language: es
+    register: usted
+    question: true
+    must_include: [entrevista]
+
+- id: unknown-faq-en-voice
+  scenario: unknown_faq
+  locale: en
+  country: ES
+  channel: voice
+  action:
+    kind: answer_question
+    question: do you pay for the phone data plan?
+    follow_up: {kind: ask_field, field: experience_years}
+  context: {last_message: 'do you pay for the phone data plan?'}
+  expect:
+    language: en
+    question: true
+    max_words: 25
+    must_include: [interview]
+
+- id: deescalate-es-es-web
+  scenario: deescalate_abuse
+  locale: es-ES
+  country: ES
+  channel: web
+  action:
+    kind: de_escalate
+    simplify: true
+    follow_up: {kind: ask_field, field: experience_years}
+  context: {last_message: 'qué pesada eres, máquina de mierda'}
+  expect:
+    language: es
+    register: tu
+    question: true
+    must_not_include: [mierda]
+
+- id: deescalate-es-mx-web
+  scenario: deescalate_abuse
+  locale: es-MX
+  country: MX
+  channel: web
+  action:
+    kind: de_escalate
+    simplify: true
+    follow_up: {kind: ask_field, field: schedule}
+  context: {last_message: ya cállate pinche robot inútil}
+  expect:
+    language: es
+    register: usted
+    question: true
+    must_not_include: [pinche, 'in[uú]til']
+
+- id: deescalate-en-web
+  scenario: deescalate_abuse
+  locale: en
+  country: ES
+  channel: web
+  action:
+    kind: de_escalate
+    simplify: true
+    follow_up: {kind: ask_field, field: city}
+  context: {last_message: 'this is so stupid, you''re useless'}
+  expect:
+    language: en
+    question: true
+    must_not_include: [stupid, useless]
+
+- id: pause-es-es-web
+  scenario: offer_pause
+  locale: es-ES
+  country: ES
+  channel: web
+  action: {kind: offer_pause, simplify: true}
+  expect: {language: es, register: tu, question: true}
+
+- id: pause-es-mx-voice
+  scenario: offer_pause
+  locale: es-MX
+  country: MX
+  channel: voice
+  action: {kind: offer_pause, simplify: true}
+  expect: {language: es, register: usted, question: true, max_words: 15}
+
+- id: pause-en-web
+  scenario: offer_pause
+  locale: en
+  country: ES
+  channel: web
+  action: {kind: offer_pause, simplify: true}
+  expect: {language: en, question: true}
+
+- id: confirm-es-es-web
+  scenario: confirm_summary
+  locale: es-ES
+  country: ES
+  channel: web
+  action:
+    kind: confirm_summary
+    profile:
+      full_name: Lucía
+      has_license: true
+      location_id: es-bcn-gracia
+      availability: [part_time]
+      schedule: afternoon
+      experience_years: 1.5
+      platforms: [glovo, just_eat]
+      start_date: '2026-10-26'
+  context: {candidate_name: Lucía}
+  expect: {language: es, register: tu, question: true}
+
+- id: confirm-es-mx-web
+  scenario: confirm_summary
+  locale: es-MX
+  country: MX
+  channel: web
+  action:
+    kind: confirm_summary
+    profile:
+      full_name: Jorge
+      has_license: true
+      location_id: mx-gdl-zapopan
+      availability: [full_time]
+      schedule: morning
+      experience_years: 2
+      platforms: [rappi]
+      start_date: '2026-10-26'
+  context: {candidate_name: Jorge}
+  expect: {language: es, register: usted, question: true}
+
+- id: confirm-en-web
+  scenario: confirm_summary
+  locale: en
+  country: ES
+  channel: web
+  action:
+    kind: confirm_summary
+    profile:
+      full_name: Tom
+      has_license: true
+      location_id: es-mad-centro
+      availability: [part_time]
+      schedule: evening
+      experience_years: 2
+      platforms: [uber_eats]
+      start_date: '2026-10-26'
+  context: {candidate_name: Tom}
+  expect: {language: en, question: true}
+
+- id: slots-es-es-web
+  scenario: offer_slots
+  locale: es-ES
+  country: ES
+  channel: web
+  action:
+    kind: offer_slots
+    location_id: es-bcn-gracia
+    slots:
+    - {id: slot-1, startsAt: '', label: 'jueves 22 de octubre, 11:00', location: 'Sazón Barcelona Gràcia,
+        Carrer Gran de Gràcia 120'}
+    - {id: slot-2, startsAt: '', label: 'viernes 23 de octubre, 10:00', location: 'Sazón Barcelona Gràcia,
+        Carrer Gran de Gràcia 120'}
+    - {id: slot-3, startsAt: '', label: 'lunes 26 de octubre, 17:00', location: 'Sazón Barcelona Gràcia,
+        Carrer Gran de Gràcia 120'}
+  expect:
+    language: es
+    register: tu
+    question: true
+    must_include: ['Gr[aà]cia']
+
+- id: slots-es-mx-voice
+  scenario: offer_slots
+  locale: es-MX
+  country: MX
+  channel: voice
+  action:
+    kind: offer_slots
+    location_id: mx-gdl-zapopan
+    slots:
+    - {id: slot-1, startsAt: '', label: 'jueves 22 de octubre, 11:00', location: 'Sazón Zapopan, Av. Patria
+        1200'}
+    - {id: slot-2, startsAt: '', label: 'viernes 23 de octubre, 10:00', location: 'Sazón Zapopan, Av.
+        Patria 1200'}
+  expect:
+    language: es
+    register: usted
+    question: true
+    max_words: 22
+    must_include: [jueves, viernes]
+    must_not_include: [lunes|martes|miércoles|sábado|domingo]
+
+- id: slots-en-web
+  scenario: offer_slots
+  locale: en
+  country: ES
+  channel: web
+  action:
+    kind: offer_slots
+    location_id: es-mad-centro
+    slots:
+    - {id: slot-1, startsAt: '', label: 'Thursday 22 October, 11:00', location: 'Sazón Madrid Centro,
+        Calle Mayor 10'}
+    - {id: slot-2, startsAt: '', label: 'Friday 23 October, 10:00', location: 'Sazón Madrid Centro, Calle
+        Mayor 10'}
+    - {id: slot-3, startsAt: '', label: 'Monday 26 October, 17:00', location: 'Sazón Madrid Centro, Calle
+        Mayor 10'}
+  expect:
+    language: en
+    question: true
+    must_include: [Madrid|Calle Mayor]
+
+- id: reengage-es-es-web
+  scenario: reengage
+  locale: es-ES
+  country: ES
+  channel: web
+  action:
+    kind: re_engage
+    attempt: 1
+    follow_up: {kind: ask_field, field: schedule}
+  context: {candidate_name: Lucía}
+  expect: {language: es, register: tu, question: true}
+
+- id: reengage-es-mx-web
+  scenario: reengage
+  locale: es-MX
+  country: MX
+  channel: web
+  action:
+    kind: re_engage
+    attempt: 2
+    follow_up: {kind: ask_field, field: experience_years}
+  context: {candidate_name: Jorge}
+  expect: {language: es, register: usted, question: true}
+
+- id: reengage-en-web
+  scenario: reengage
+  locale: en
+  country: ES
+  channel: web
+  action:
+    kind: re_engage
+    attempt: 2
+    follow_up: {kind: ask_field, field: start_date}
+  context: {candidate_name: Sam}
+  expect:
+    language: en
+    question: true
+    must_not_include: [\$|€|£]

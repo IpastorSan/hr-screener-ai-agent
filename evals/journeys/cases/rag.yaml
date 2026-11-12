@@ -1,0 +1,164 @@
+# Questions mid-flow that lean on earlier turns or ask several things (QA-BR). The extractor
+# rewrites a follow-up to stand on its own and splits a multi-part question; each part is looked
+# up on its own. Offline there is no retrieval: every question gets the unknown answer, so the
+# sources and the wording are `live:` expectations.
+
+- id: rag_followup_own_bike_es
+  description: Spain. Asks whether a motorbike of their own is needed, then "y si uso la mía" about its requirements; tú throughout.
+  country: ES
+  steps:
+    - tap: "yes"
+      expect: {asks: full_name, register: tu}
+    - say: ¿Necesito moto propia?
+      expect:
+        action: answer_question
+        asks: full_name
+        register: tu
+        live: {faq_source: vehicle}
+    - say: ¿Y si uso la mía, qué tiene que cumplir?
+      expect:
+        action: answer_question
+        asks: full_name
+        register: tu
+        live: {faq_source: own-vehicle-es}
+    - say: Lucía Fernández Gil
+      expect: {asks: phone, register: tu}
+
+- id: rag_followup_bike_bonus_mx
+  description: Mexico. Asks whether a motorbike of their own is needed, then "¿y de cuánto es ese plus?" about the per-kilometre bonus; usted throughout.
+  country: MX
+  steps:
+    - tap: "yes"
+      expect: {asks: full_name, register: usted}
+    - say: ¿Necesito moto propia?
+      expect:
+        action: answer_question
+        asks: full_name
+        register: usted
+        live: {faq_source: vehicle, reply_matches: "kil[oó]metro"}
+    - say: ¿Y de cuánto es ese plus?
+      expect:
+        action: answer_question
+        asks: full_name
+        register: usted
+        live: {reply_matches: "2[.,]50"}
+    - say: Jorge Ramírez Ortega
+      expect: {asks: phone, register: usted}
+
+- id: rag_multi_part_known_es
+  description: Spain. Asks the pay and whether a helmet is given in one message; both are answered, with both sources.
+  country: ES
+  steps:
+    - tap: "yes"
+      expect: {asks: full_name, register: tu}
+    - say: ¿Cuánto se paga y dais casco?
+      expect:
+        action: answer_question
+        asks: full_name
+        register: tu
+        live:
+          faq_source: [pay-es, helmet]
+          reply_matches: casco
+          reply_not_matches: no tengo informaci
+    - say: Lucía Fernández Gil
+      expect: {asks: phone, register: tu}
+
+- id: rag_multi_part_known_mx
+  description: Mexico. Asks the pay and who keeps the tips in one message; both are answered, with both sources.
+  country: MX
+  steps:
+    - tap: "yes"
+      expect: {asks: full_name, register: usted}
+    - say: ¿Cuánto pagan y las propinas son para mí?
+      expect:
+        action: answer_question
+        asks: full_name
+        register: usted
+        live:
+          faq_source: [pay-mx, tips]
+          reply_matches: propina
+          reply_not_matches: no tengo informaci
+    - say: Jorge Ramírez Ortega
+      expect: {asks: phone, register: usted}
+
+- id: rag_multi_part_unknown_es
+  description: Spain. Asks about the uniform and staff parking in one message; the uniform is answered and the parking gets the fixed line for the rest.
+  country: ES
+  steps:
+    - tap: "yes"
+      expect: {asks: full_name, register: tu}
+    - say: ¿Dais uniforme y hay parking para los empleados?
+      expect:
+        action: answer_question
+        asks: full_name
+        register: tu
+        live:
+          faq_source: uniform
+          reply_matches: "De lo demás no tengo información; puedes preguntarlo en la entrevista\\."
+    - say: Lucía Fernández Gil
+      expect: {asks: phone, register: tu}
+
+- id: rag_multi_part_unknown_mx
+  description: Mexico. Asks who pays the fuel and whether there is a staff canteen; the fuel is answered and the canteen gets the fixed line for the rest.
+  country: MX
+  steps:
+    - tap: "yes"
+      expect: {asks: full_name, register: usted}
+    - say: ¿Quién paga la gasolina y hay comedor para los empleados?
+      expect:
+        action: answer_question
+        asks: full_name
+        register: usted
+        live:
+          faq_source: fuel
+          reply_matches: "De lo demás no tengo información; puede preguntarlo en la entrevista\\."
+    - say: Jorge Ramírez Ortega
+      expect: {asks: phone, register: usted}
+
+- id: rag_other_country_es
+  description: Spain. Asks the pay, then "¿Y en México?"; that question is answered from Mexico's documents and the answer says it is about Mexico; the chat stays Spanish (tú, Spain's documents).
+  country: ES
+  steps:
+    - tap: "yes"
+      expect: {asks: full_name, register: tu}
+    - say: ¿Cuánto se paga?
+      expect:
+        action: answer_question
+        asks: full_name
+        register: tu
+        live: {faq_source: pay-es, reply_matches: "€|euro"}
+    - say: ¿Y en México?
+      expect:
+        action: answer_question
+        asks: full_name
+        register: tu
+        live: {faq_source: pay-mx, reply_matches: "M[eé]xico", reply_not_matches: "€|euro"}
+    - say: ¿Y dais casco?
+      expect:
+        action: answer_question
+        asks: full_name
+        register: tu
+        live: {faq_source: helmet}
+    - say: Lucía Fernández Gil
+      expect: {asks: phone, register: tu}
+
+- id: rag_other_country_mx
+  description: Mexico. Asks the pay, then "¿Y en España?"; that question is answered from Spain's documents and says so; usted throughout.
+  country: MX
+  steps:
+    - tap: "yes"
+      expect: {asks: full_name, register: usted}
+    - say: ¿Cuánto pagan?
+      expect:
+        action: answer_question
+        asks: full_name
+        register: usted
+        live: {faq_source: pay-mx, reply_matches: "MXN|pesos|\\$"}
+    - say: ¿Y en España cuánto se paga?
+      expect:
+        action: answer_question
+        asks: full_name
+        register: usted
+        live: {faq_source: pay-es, reply_matches: "Espa[ñn]a", reply_not_matches: "MXN|pesos"}
+    - say: Jorge Ramírez Ortega
+      expect: {asks: phone, register: usted}

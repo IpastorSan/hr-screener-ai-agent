@@ -1,0 +1,32 @@
+{
+  "_comment": "Fictional heads of department of Colegio Albéniz, who interview by video the candidates of their subjects at their campuses (`scope`). Demo passwords only.",
+  "recruiters": [
+    {
+      "name": "Elena Robles",
+      "email": "elena.robles@colegioalbeniz.example",
+      "country": "ES",
+      "location_ids": ["alb-aravaca", "alb-las-rozas", "alb-pozuelo"],
+      "interview_modes": ["video"],
+      "scope": {"subjects": ["matematicas", "fisica_quimica", "tecnologia"]},
+      "password": "Albeniz-Elena-4f81c2"
+    },
+    {
+      "name": "Javier Montes",
+      "email": "javier.montes@colegioalbeniz.example",
+      "country": "ES",
+      "location_ids": ["alb-aravaca", "alb-las-rozas", "alb-pozuelo"],
+      "interview_modes": ["video"],
+      "scope": {"subjects": ["lengua", "ingles", "geografia_historia"]},
+      "password": "Albeniz-Javier-0b93d7"
+    },
+    {
+      "name": "Nuria Salcedo",
+      "email": "nuria.salcedo@colegioalbeniz.example",
+      "country": "ES",
+      "location_ids": ["alb-aravaca", "alb-las-rozas", "alb-pozuelo"],
+      "interview_modes": ["video"],
+      "scope": {"subjects": ["biologia", "educacion_fisica", "musica", "other"]},
+      "password": "Albeniz-Nuria-7c25ea"
+    }
+  ]
+}

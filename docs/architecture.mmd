@@ -1,0 +1,34 @@
+%% Source of docs/architecture.svg. Regenerate with:
+%% npx -y @mermaid-js/mermaid-cli@11.4.2 -i docs/architecture.mmd -o docs/architecture.svg -b white -c docs/architecture.config.json
+flowchart LR
+    subgraph Channels
+        web["Web chat<br>Next.js /apply"]
+        voice["Voice<br>ElevenLabs Agents"]
+        dash["Recruiter dashboard<br>Next.js /recruiters"]
+    end
+    subgraph API["FastAPI (backend/src/sazon)"]
+        service["ScreeningService<br>service.py"]
+        engine["Engine<br>engine/ (state machine, validators)"]
+        llm["LLM layer<br>llm/ (extract, respond, summarize)"]
+        rag["FAQ retrieval<br>rag/ (local embeddings)"]
+        sched["Scheduling<br>scheduling/, calendar/"]
+        assistant["Recruiter assistant<br>recruiter_assistant.py"]
+    end
+    db[("SQLite (Postgres in stage 2)<br>storage/, Alembic")]
+    or["OpenRouter<br>ZDR, data_collection deny"]
+    gcal["Google Calendar"]
+    evals["evals/<br>model benchmark, e2e personas"]
+
+    web -- "POST /api/conversations, SSE" --> service
+    voice -- "POST /v1/chat/completions" --> service
+    dash --> assistant
+    dash --> db
+    service --> engine
+    service --> llm
+    service --> rag
+    service --> sched
+    service --> db
+    llm --> or
+    assistant --> or
+    sched --> gcal
+    evals -. "drive the real service" .-> service

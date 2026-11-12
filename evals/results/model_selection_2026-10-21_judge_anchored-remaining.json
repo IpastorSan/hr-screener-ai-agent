@@ -1,0 +1,3290 @@
+{
+ "meta": {
+  "run_id": "judge-20261021T150805",
+  "date": "2026-10-21",
+  "stage": "judge",
+  "repeat": 1,
+  "base_url": "https://openrouter.ai/api/v1",
+  "provider_preferences": {
+   "zdr": true,
+   "data_collection": "deny"
+  },
+  "run_cost_usd": 3.012112,
+  "ledger_total_usd": 26.749606,
+  "max_eval_usd": 27.8,
+  "aborted": null,
+  "cases": 41,
+  "judge": "anthropic/claude-opus-5.5",
+  "anchor": "anthropic/claude-haiku-5.5",
+  "comparisons": 328,
+  "replies": "evals/results/model_selection_2026-10-19_reply_final.json",
+  "position_bias_a": 0.5017,
+  "failed_verdicts": 0
+ },
+ "win_rates": {
+  "anthropic/claude-haiku-5.5": {
+   "win_rate": 0.5259,
+   "comparisons": 328,
+   "wins": 154,
+   "ties": 37
+  },
+  "mistralai/mistral-large-4-0": {
+   "win_rate": 0.5061,
+   "comparisons": 82,
+   "wins": 35,
+   "ties": 13
+  },
+  "moonshotai/kimi-k2.6": {
+   "win_rate": 0.3902,
+   "comparisons": 82,
+   "wins": 27,
+   "ties": 10
+  },
+  "x-ai/grok-4.6": {
+   "win_rate": 0.4695,
+   "comparisons": 82,
+   "wins": 36,
+   "ties": 5
+  },
+  "z-ai/glm-5.3-flash@minimal": {
+   "win_rate": 0.5305,
+   "comparisons": 82,
+   "wins": 39,
+   "ties": 9
+  }
+ },
+ "calls": [
+  {
+   "case_id": "greet-es-es-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "z-ai/glm-5.3-flash@minimal",
+   "winner": "B",
+   "reason": "The wording is the same, but B puts the closing question in the same sentence, so it uses fewer sentences and is closer to the two-sentence limit.",
+   "cost_usd": 0.01032,
+   "input_tokens": 1180,
+   "output_tokens": 280
+  },
+  {
+   "case_id": "greet-es-es-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "mistralai/mistral-large-4-0",
+   "winner": "B",
+   "reason": "Both disclose the AI and the privacy notice correctly, but B folds the question into the privacy sentence, so it is shorter and keeps within the two-sentence limit.",
+   "cost_usd": 0.011928,
+   "input_tokens": 1177,
+   "output_tokens": 361
+  },
+  {
+   "case_id": "greet-es-es-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "moonshotai/kimi-k2.6",
+   "winner": "A",
+   "reason": "A covers the AI disclosure and privacy notice and ends with a natural \"¿Empezamos?\", while B's \"¿estás de acuerdo en empezar?\" sounds stiff and like a consent request the action didn't ask for.",
+   "cost_usd": 0.012852,
+   "input_tokens": 1178,
+   "output_tokens": 407
+  },
+  {
+   "case_id": "greet-es-es-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "x-ai/grok-4.6",
+   "winner": "B",
+   "reason": "Both are correct, but B keeps to two sentences with the question at the end, while A splits into more sentences.",
+   "cost_usd": 0.010536,
+   "input_tokens": 1179,
+   "output_tokens": 291
+  },
+  {
+   "case_id": "greet-es-es-web",
+   "a": "z-ai/glm-5.3-flash@minimal",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "A",
+   "reason": "The wording is the same, but A puts the question at the end of the privacy sentence, so it uses fewer sentences and matches the reference.",
+   "cost_usd": 0.01046,
+   "input_tokens": 1180,
+   "output_tokens": 287
+  },
+  {
+   "case_id": "greet-es-es-web",
+   "a": "mistralai/mistral-large-4-0",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "A",
+   "reason": "Both are correct, but A keeps the closing question in its last sentence, so it stays nearer the two-sentence limit than B's split version.",
+   "cost_usd": 0.012528,
+   "input_tokens": 1177,
+   "output_tokens": 391
+  },
+  {
+   "case_id": "greet-es-es-web",
+   "a": "moonshotai/kimi-k2.6",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "B",
+   "reason": "B matches the reference more closely: it says the questions will be quick and ends with a warmer \"¿Empezamos?\", while A's consent question sounds stiff.",
+   "cost_usd": 0.015112,
+   "input_tokens": 1178,
+   "output_tokens": 520
+  },
+  {
+   "case_id": "greet-es-es-web",
+   "a": "x-ai/grok-4.6",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "A",
+   "reason": "Both are correct, but A stays within two sentences while B splits the same content into four.",
+   "cost_usd": 0.012156,
+   "input_tokens": 1179,
+   "output_tokens": 372
+  },
+  {
+   "case_id": "greet-es-mx-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "z-ai/glm-5.3-flash@minimal",
+   "winner": "B",
+   "reason": "Both are correct and use the same structure, but B's \"¿Le gustaría empezar?\" uses usted more clearly, which suits a Mexican candidate.",
+   "cost_usd": 0.012696,
+   "input_tokens": 1204,
+   "output_tokens": 394
+  },
+  {
+   "case_id": "greet-es-mx-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "mistralai/mistral-large-4-0",
+   "winner": "B",
+   "reason": "Both messages are correct and use usted, but B puts the question in the same sentence after a comma, so it has fewer sentences and is closer to the two-sentence limit.",
+   "cost_usd": 0.010032,
+   "input_tokens": 1193,
+   "output_tokens": 263
+  },
+  {
+   "case_id": "greet-es-mx-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "moonshotai/kimi-k2.6",
+   "winner": "A",
+   "reason": "Both are correct and use usted, but A is shorter, more natural and closely follows the reference, while B is wordier and ends with a clunky question.",
+   "cost_usd": 0.011052,
+   "input_tokens": 1213,
+   "output_tokens": 310
+  },
+  {
+   "case_id": "greet-es-mx-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "x-ai/grok-4.6",
+   "winner": "B",
+   "reason": "Both are correct, but B fits in two sentences and uses usted more clearly (\"Le haré\", \"¿desea empezar?\"), while A runs to three sentences.",
+   "cost_usd": 0.010792,
+   "input_tokens": 1193,
+   "output_tokens": 301
+  },
+  {
+   "case_id": "greet-es-mx-web",
+   "a": "z-ai/glm-5.3-flash@minimal",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "B",
+   "reason": "Both messages do the greeting correctly in usted and include the AI disclosure and privacy notice, but B says the same thing more briefly and naturally.",
+   "cost_usd": 0.011076,
+   "input_tokens": 1204,
+   "output_tokens": 313
+  },
+  {
+   "case_id": "greet-es-mx-web",
+   "a": "mistralai/mistral-large-4-0",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "tie",
+   "reason": "The two messages differ only in acceptable punctuation and are equally correct, in usted, AI-disclosing and privacy-noting.",
+   "cost_usd": 0.009832,
+   "input_tokens": 1193,
+   "output_tokens": 253
+  },
+  {
+   "case_id": "greet-es-mx-web",
+   "a": "moonshotai/kimi-k2.6",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "B",
+   "reason": "Both are correct and use usted, but B is shorter and more natural and matches the reference, while A is wordier.",
+   "cost_usd": 0.011112,
+   "input_tokens": 1213,
+   "output_tokens": 313
+  },
+  {
+   "case_id": "greet-es-mx-web",
+   "a": "x-ai/grok-4.6",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "A",
+   "reason": "Both are correct and use usted, but A stays within two sentences with the question last, while B splits it into three sentences.",
+   "cost_usd": 0.010212,
+   "input_tokens": 1193,
+   "output_tokens": 272
+  },
+  {
+   "case_id": "greet-en-voice",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "z-ai/glm-5.3-flash@minimal",
+   "winner": "B",
+   "reason": "Both are correct, but B is shorter and fits the voice length limit of about 15 words.",
+   "cost_usd": 0.008516,
+   "input_tokens": 1069,
+   "output_tokens": 212
+  },
+  {
+   "case_id": "greet-en-voice",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "mistralai/mistral-large-4-0",
+   "winner": "A",
+   "reason": "A says outright that Ana is an AI, as the action's AI disclosure requires, while B's \"virtual assistant\" is vaguer.",
+   "cost_usd": 0.007872,
+   "input_tokens": 1073,
+   "output_tokens": 179
+  },
+  {
+   "case_id": "greet-en-voice",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "moonshotai/kimi-k2.6",
+   "winner": "A",
+   "reason": "Both messages say Ana is an AI and ask about the privacy notice, but A does it in one short voice-length line, while B runs to four sentences and is too long for a voice call.",
+   "cost_usd": 0.00848,
+   "input_tokens": 1095,
+   "output_tokens": 205
+  },
+  {
+   "case_id": "greet-en-voice",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "x-ai/grok-4.6",
+   "winner": "A",
+   "reason": "Both are correct, but A asks for consent with a full, natural question, while B's \"Agree to the privacy notice to start?\" sounds clipped on a voice call.",
+   "cost_usd": 0.009812,
+   "input_tokens": 1068,
+   "output_tokens": 277
+  },
+  {
+   "case_id": "greet-en-voice",
+   "a": "z-ai/glm-5.3-flash@minimal",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "A",
+   "reason": "Both are correct and nearly identical, but A is shorter and stays within the roughly 15-word voice limit.",
+   "cost_usd": 0.007656,
+   "input_tokens": 1069,
+   "output_tokens": 169
+  },
+  {
+   "case_id": "greet-en-voice",
+   "a": "mistralai/mistral-large-4-0",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "B",
+   "reason": "B says outright that Ana is an AI assistant, which the disclosure requires, while A's \"virtual assistant\" is vaguer.",
+   "cost_usd": 0.008812,
+   "input_tokens": 1073,
+   "output_tokens": 226
+  },
+  {
+   "case_id": "greet-en-voice",
+   "a": "moonshotai/kimi-k2.6",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "B",
+   "reason": "Both messages say Ana is an AI and ask about privacy, but B fits a short voice greeting while A runs to four sentences.",
+   "cost_usd": 0.0087,
+   "input_tokens": 1095,
+   "output_tokens": 216
+  },
+  {
+   "case_id": "greet-en-voice",
+   "a": "x-ai/grok-4.6",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "B",
+   "reason": "Both say Ana is an AI and ask about privacy, but B is a full, natural question that stays near the voice word limit, while A's question sounds clipped.",
+   "cost_usd": 0.012252,
+   "input_tokens": 1068,
+   "output_tokens": 399
+  },
+  {
+   "case_id": "reask-phone-es-es-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "z-ai/glm-5.3-flash@minimal",
+   "winner": "B",
+   "reason": "B asks again for the full móvil, using tú and a clear example, in two short sentences, while A runs to three sentences and adds a \"9 cifras\" fact that isn't in the action or context.",
+   "cost_usd": 0.008324,
+   "input_tokens": 1106,
+   "output_tokens": 195
+  },
+  {
+   "case_id": "reask-phone-es-es-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "mistralai/mistral-large-4-0",
+   "winner": "B",
+   "reason": "B asks for the phone number again in two short sentences with Spain vocabulary, while A runs to three sentences and goes over the length limit.",
+   "cost_usd": 0.009168,
+   "input_tokens": 1102,
+   "output_tokens": 238
+  },
+  {
+   "case_id": "reask-phone-es-es-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "moonshotai/kimi-k2.6",
+   "winner": "B",
+   "reason": "B asks the same thing correctly in two short sentences, while A runs to three sentences and goes past the length limit.",
+   "cost_usd": 0.008328,
+   "input_tokens": 1102,
+   "output_tokens": 196
+  },
+  {
+   "case_id": "reask-phone-es-es-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "x-ai/grok-4.6",
+   "winner": "B",
+   "reason": "B asks again correctly in two short sentences, but A uses three sentences and adds a \"9 cifras\" detail that the action doesn't give.",
+   "cost_usd": 0.008408,
+   "input_tokens": 1102,
+   "output_tokens": 200
+  },
+  {
+   "case_id": "reask-phone-es-es-web",
+   "a": "z-ai/glm-5.3-flash@minimal",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "A",
+   "reason": "A asks again in two short, natural sentences, while B runs to three sentences and adds a \"9 cifras\" fact that isn't in the action or context.",
+   "cost_usd": 0.008084,
+   "input_tokens": 1106,
+   "output_tokens": 183
+  },
+  {
+   "case_id": "reask-phone-es-es-web",
+   "a": "mistralai/mistral-large-4-0",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "A",
+   "reason": "A asks again in two short sentences with an example, while B runs to three sentences and adds a detail that isn't in the action or context.",
+   "cost_usd": 0.008548,
+   "input_tokens": 1102,
+   "output_tokens": 207
+  },
+  {
+   "case_id": "reask-phone-es-es-web",
+   "a": "moonshotai/kimi-k2.6",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "A",
+   "reason": "A asks for the phone again in two short sentences, while B runs to three sentences and adds a \"9 cifras\" fact that isn't in the action or context.",
+   "cost_usd": 0.008468,
+   "input_tokens": 1102,
+   "output_tokens": 203
+  },
+  {
+   "case_id": "reask-phone-es-es-web",
+   "a": "x-ai/grok-4.6",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "A",
+   "reason": "A stays within two short sentences, while B runs to three and adds a \"9 cifras\" detail that isn't in the action or context.",
+   "cost_usd": 0.007868,
+   "input_tokens": 1102,
+   "output_tokens": 173
+  },
+  {
+   "case_id": "reask-experience-es-mx-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "z-ai/glm-5.3-flash@minimal",
+   "winner": "A",
+   "reason": "A acknowledges the candidate's Rappi experience warmly and ends with one clear usted question, while B's \"Con gusto\" doesn't fit as a reply and reads stiffer.",
+   "cost_usd": 0.009176,
+   "input_tokens": 1099,
+   "output_tokens": 239
+  },
+  {
+   "case_id": "reask-experience-es-mx-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "mistralai/mistral-large-4-0",
+   "winner": "A",
+   "reason": "A warmly acknowledges the Rappi experience, uses usted, and ends on its single question, while B is blunter and puts its example after the question.",
+   "cost_usd": 0.007472,
+   "input_tokens": 1103,
+   "output_tokens": 153
+  },
+  {
+   "case_id": "reask-experience-es-mx-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "moonshotai/kimi-k2.6",
+   "winner": "A",
+   "reason": "Both ask again for the number in correct usted form, but A is warmer because it mentions their Rappi experience, while B's \"Necesito un número\" sounds robotic.",
+   "cost_usd": 0.008032,
+   "input_tokens": 1103,
+   "output_tokens": 181
+  },
+  {
+   "case_id": "reask-experience-es-mx-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "x-ai/grok-4.6",
+   "winner": "A",
+   "reason": "Both messages are correct and use usted, but A acknowledges the candidate's Rappi experience warmly before asking for the number, while B's \"Necesito un número\" sounds more robotic.",
+   "cost_usd": 0.008904,
+   "input_tokens": 1106,
+   "output_tokens": 224
+  },
+  {
+   "case_id": "reask-experience-es-mx-web",
+   "a": "z-ai/glm-5.3-flash@minimal",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "B",
+   "reason": "B acknowledges the candidate's Rappi experience in a natural way and then asks for a number in one question at the end, while A's \"Con gusto\" doesn't fit as a reply and reads stiffly.",
+   "cost_usd": 0.008936,
+   "input_tokens": 1099,
+   "output_tokens": 227
+  },
+  {
+   "case_id": "reask-experience-es-mx-web",
+   "a": "mistralai/mistral-large-4-0",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "B",
+   "reason": "B acknowledges the candidate's Rappi work warmly and ends with its one question, while A sounds curt and adds an example after the question.",
+   "cost_usd": 0.007632,
+   "input_tokens": 1103,
+   "output_tokens": 161
+  },
+  {
+   "case_id": "reask-experience-es-mx-web",
+   "a": "moonshotai/kimi-k2.6",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "B",
+   "reason": "Both re-ask for the number correctly using usted, but B first acknowledges the candidate's Rappi experience, so it sounds warmer and less robotic than A's \"Necesito un número\".",
+   "cost_usd": 0.008712,
+   "input_tokens": 1103,
+   "output_tokens": 215
+  },
+  {
+   "case_id": "reask-experience-es-mx-web",
+   "a": "x-ai/grok-4.6",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "B",
+   "reason": "B is warmer because it acknowledges the Rappi experience, and it still asks naturally for an approximate number using usted, while A's \"Necesito\" sounds more mechanical.",
+   "cost_usd": 0.008644,
+   "input_tokens": 1106,
+   "output_tokens": 211
+  },
+  {
+   "case_id": "reask-schedule-en-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "z-ai/glm-5.3-flash@minimal",
+   "winner": "B",
+   "reason": "Both re-ask correctly with all four options, but B answers the candidate's \"idk depends\" naturally, while A's \"didn't catch that\" doesn't fit what they actually said.",
+   "cost_usd": 0.0087,
+   "input_tokens": 1085,
+   "output_tokens": 218
+  },
+  {
+   "case_id": "reask-schedule-en-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "mistralai/mistral-large-4-0",
+   "winner": "tie",
+   "reason": "Both messages are correct and natural, and they re-ask the shift question with the same four options, differing only in trivial wording.",
+   "cost_usd": 0.008212,
+   "input_tokens": 1083,
+   "output_tokens": 194
+  },
+  {
+   "case_id": "reask-schedule-en-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "moonshotai/kimi-k2.6",
+   "winner": "tie",
+   "reason": "Both messages ask the schedule question again correctly in English, list the same four options, and are equally warm and short, so neither is better.",
+   "cost_usd": 0.008248,
+   "input_tokens": 1082,
+   "output_tokens": 196
+  },
+  {
+   "case_id": "reask-schedule-en-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "x-ai/grok-4.6",
+   "winner": "A",
+   "reason": "Both re-ask correctly with all four options, but A sounds a little warmer and more natural.",
+   "cost_usd": 0.008608,
+   "input_tokens": 1082,
+   "output_tokens": 214
+  },
+  {
+   "case_id": "reask-schedule-en-web",
+   "a": "z-ai/glm-5.3-flash@minimal",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "A",
+   "reason": "Both re-ask correctly, but A actually answers the candidate's \"idk depends\" warmly, while B's \"didn't catch that\" doesn't fit what the candidate said.",
+   "cost_usd": 0.00852,
+   "input_tokens": 1085,
+   "output_tokens": 209
+  },
+  {
+   "case_id": "reask-schedule-en-web",
+   "a": "mistralai/mistral-large-4-0",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "tie",
+   "reason": "The two messages are nearly identical: both politely re-ask for the shift, in English, with the same four options and one closing question.",
+   "cost_usd": 0.008612,
+   "input_tokens": 1083,
+   "output_tokens": 214
+  },
+  {
+   "case_id": "reask-schedule-en-web",
+   "a": "moonshotai/kimi-k2.6",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "tie",
+   "reason": "Both messages correctly re-ask for the shift in English, list the same four options and end on one question, and their wording is equally warm and natural.",
+   "cost_usd": 0.009088,
+   "input_tokens": 1082,
+   "output_tokens": 238
+  },
+  {
+   "case_id": "reask-schedule-en-web",
+   "a": "x-ai/grok-4.6",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "B",
+   "reason": "Both re-ask correctly with the four options, but B's brief apology and \"suits you best\" make it warmer and more natural.",
+   "cost_usd": 0.008468,
+   "input_tokens": 1082,
+   "output_tokens": 207
+  },
+  {
+   "case_id": "reask-email-es-mx-voice",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "z-ai/glm-5.3-flash@minimal",
+   "winner": "A",
+   "reason": "A re-asks briefly with usted, while B is too long for voice and guesses the domain, which isn't in the context.",
+   "cost_usd": 0.008164,
+   "input_tokens": 1061,
+   "output_tokens": 196
+  },
+  {
+   "case_id": "reask-email-es-mx-voice",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "mistralai/mistral-large-4-0",
+   "winner": "B",
+   "reason": "Both messages are correct and use usted, but B asks for the \"completo\" email, which tells the candidate the address was cut short.",
+   "cost_usd": 0.009164,
+   "input_tokens": 1046,
+   "output_tokens": 249
+  },
+  {
+   "case_id": "reask-email-es-mx-voice",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "moonshotai/kimi-k2.6",
+   "winner": "B",
+   "reason": "Both are correct and use usted, but B's request for the \"complete\" email better helps the candidate fix the missing domain.",
+   "cost_usd": 0.009576,
+   "input_tokens": 1044,
+   "output_tokens": 270
+  },
+  {
+   "case_id": "reask-email-es-mx-voice",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "x-ai/grok-4.6",
+   "winner": "A",
+   "reason": "Both are correct and use usted, but A's request to dictate it again sounds warmer and more natural for a voice retry.",
+   "cost_usd": 0.008252,
+   "input_tokens": 1043,
+   "output_tokens": 204
+  },
+  {
+   "case_id": "reask-email-es-mx-voice",
+   "a": "z-ai/glm-5.3-flash@minimal",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "B",
+   "reason": "B asks for the email again cleanly and briefly, while A makes up a completed address (\"jorge en hotmail punto com\") and runs long for a voice message.",
+   "cost_usd": 0.008484,
+   "input_tokens": 1061,
+   "output_tokens": 212
+  },
+  {
+   "case_id": "reask-email-es-mx-voice",
+   "a": "mistralai/mistral-large-4-0",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "A",
+   "reason": "Both are correct and use usted, but A's request for the \"complete\" email tells the candidate what was missing.",
+   "cost_usd": 0.008764,
+   "input_tokens": 1046,
+   "output_tokens": 229
+  },
+  {
+   "case_id": "reask-email-es-mx-voice",
+   "a": "moonshotai/kimi-k2.6",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "A",
+   "reason": "Both are correct and use usted, but A's request for the \"complete\" email gently points to the missing domain.",
+   "cost_usd": 0.008716,
+   "input_tokens": 1044,
+   "output_tokens": 227
+  },
+  {
+   "case_id": "reask-email-es-mx-voice",
+   "a": "x-ai/grok-4.6",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "B",
+   "reason": "Both are correct and use usted, but B's \"¿Me lo dicta de nuevo, por favor?\" sounds warmer and more natural on a voice call when asking a second time.",
+   "cost_usd": 0.008172,
+   "input_tokens": 1043,
+   "output_tokens": 200
+  },
+  {
+   "case_id": "clarify-city-es-mx-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "z-ai/glm-5.3-flash@minimal",
+   "winner": "A",
+   "reason": "A asks just the one clarifying question, while B tacks on an unnecessary instruction after it, so its question isn't last.",
+   "cost_usd": 0.010004,
+   "input_tokens": 1016,
+   "output_tokens": 297
+  },
+  {
+   "case_id": "clarify-city-es-mx-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "mistralai/mistral-large-4-0",
+   "winner": "A",
+   "reason": "Both confirm the city correctly, but A's \"Zapopan, Jalisco\" is accurate and natural, while B wrongly places Zapopan inside Guadalajara.",
+   "cost_usd": 0.011892,
+   "input_tokens": 1008,
+   "output_tokens": 393
+  },
+  {
+   "case_id": "clarify-city-es-mx-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "moonshotai/kimi-k2.6",
+   "winner": "B",
+   "reason": "B is closer to the reference because it confirms the Zapopan location without adding \"Jalisco\", which is not in the action.",
+   "cost_usd": 0.014388,
+   "input_tokens": 1007,
+   "output_tokens": 518
+  },
+  {
+   "case_id": "clarify-city-es-mx-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "x-ai/grok-4.6",
+   "winner": "B",
+   "reason": "B asks to confirm the given option using only facts from the action, while A adds \"Jalisco\", a fact the action never states.",
+   "cost_usd": 0.01202,
+   "input_tokens": 1005,
+   "output_tokens": 400
+  },
+  {
+   "case_id": "clarify-city-es-mx-web",
+   "a": "z-ai/glm-5.3-flash@minimal",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "B",
+   "reason": "B asks a short, natural clarifying question and ends on it, while A adds an instruction after its question, so the question doesn't come last.",
+   "cost_usd": 0.009824,
+   "input_tokens": 1016,
+   "output_tokens": 288
+  },
+  {
+   "case_id": "clarify-city-es-mx-web",
+   "a": "mistralai/mistral-large-4-0",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "A",
+   "reason": "A takes \"Guadalajara\" from the option id (mx-gdl-zapopan), while B adds \"Jalisco\", which the action and context never mention.",
+   "cost_usd": 0.009632,
+   "input_tokens": 1008,
+   "output_tokens": 280
+  },
+  {
+   "case_id": "clarify-city-es-mx-web",
+   "a": "moonshotai/kimi-k2.6",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "A",
+   "reason": "Both correctly ask the candidate to confirm in usted, but A stays closer to the reference by pointing to the Sazón location instead of adding \"Jalisco,\" which isn't in the action.",
+   "cost_usd": 0.013268,
+   "input_tokens": 1007,
+   "output_tokens": 462
+  },
+  {
+   "case_id": "clarify-city-es-mx-web",
+   "a": "x-ai/grok-4.6",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "A",
+   "reason": "A matches the reference and uses only the given option, while B adds \"Jalisco\", which does not appear in the action or context.",
+   "cost_usd": 0.00968,
+   "input_tokens": 1005,
+   "output_tokens": 283
+  },
+  {
+   "case_id": "clarify-city-cdmx-es-mx-voice",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "z-ai/glm-5.3-flash@minimal",
+   "winner": "A",
+   "reason": "A asks for the needed detail in short, polite usted, while B adds an unsupported claim about locating a \"sucursal\".",
+   "cost_usd": 0.008344,
+   "input_tokens": 1021,
+   "output_tokens": 213
+  },
+  {
+   "case_id": "clarify-city-cdmx-es-mx-voice",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "mistralai/mistral-large-4-0",
+   "winner": "A",
+   "reason": "Both ask for the same clarification, but A clearly uses usted and sounds polite, while B's phrasing is more abrupt and has no usted marker.",
+   "cost_usd": 0.009512,
+   "input_tokens": 1013,
+   "output_tokens": 273
+  },
+  {
+   "case_id": "clarify-city-cdmx-es-mx-voice",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "moonshotai/kimi-k2.6",
+   "winner": "A",
+   "reason": "Both ask for the same clarification in correct usted, but A is shorter and sounds more natural for voice.",
+   "cost_usd": 0.008072,
+   "input_tokens": 1018,
+   "output_tokens": 200
+  },
+  {
+   "case_id": "clarify-city-cdmx-es-mx-voice",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "x-ai/grok-4.6",
+   "winner": "A",
+   "reason": "Both are correct and use usted, but A asks for the colonia or alcaldía in fewer words, which suits a voice call better.",
+   "cost_usd": 0.00926,
+   "input_tokens": 1020,
+   "output_tokens": 259
+  },
+  {
+   "case_id": "clarify-city-cdmx-es-mx-voice",
+   "a": "z-ai/glm-5.3-flash@minimal",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "B",
+   "reason": "Both ask the right clarifying question in usted, but B is shorter and doesn't add A's unsupported mention of a \"sucursal\".",
+   "cost_usd": 0.007984,
+   "input_tokens": 1021,
+   "output_tokens": 195
+  },
+  {
+   "case_id": "clarify-city-cdmx-es-mx-voice",
+   "a": "mistralai/mistral-large-4-0",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "A",
+   "reason": "Both are correct and polite, but A is a little more natural because it mentions Ciudad de México, which shows Ana understood \"CDMX\", before asking for the colonia or alcaldía.",
+   "cost_usd": 0.010592,
+   "input_tokens": 1013,
+   "output_tokens": 327
+  },
+  {
+   "case_id": "clarify-city-cdmx-es-mx-voice",
+   "a": "moonshotai/kimi-k2.6",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "B",
+   "reason": "Both are correct and use usted, but B asks for the colonia or alcaldía more directly and naturally, which suits voice better than A's slightly awkward \"Me aclara un poco más\".",
+   "cost_usd": 0.008412,
+   "input_tokens": 1018,
+   "output_tokens": 217
+  },
+  {
+   "case_id": "clarify-city-cdmx-es-mx-voice",
+   "a": "x-ai/grok-4.6",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "B",
+   "reason": "Both messages are correct and use usted, but B is shorter and politer for voice, so it reads as quick and natural.",
+   "cost_usd": 0.0094,
+   "input_tokens": 1020,
+   "output_tokens": 266
+  },
+  {
+   "case_id": "clarify-city-es-es-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "z-ai/glm-5.3-flash@minimal",
+   "winner": "tie",
+   "reason": "no call: missing or identical reply"
+  },
+  {
+   "case_id": "clarify-city-es-es-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "mistralai/mistral-large-4-0",
+   "winner": "B",
+   "reason": "Both ask the right clarification correctly, but B drops the repeated \"Sazón\" and reads more naturally while still being clear.",
+   "cost_usd": 0.009332,
+   "input_tokens": 1103,
+   "output_tokens": 246
+  },
+  {
+   "case_id": "clarify-city-es-es-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "moonshotai/kimi-k2.6",
+   "winner": "tie",
+   "reason": "no call: missing or identical reply"
+  },
+  {
+   "case_id": "clarify-city-es-es-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "x-ai/grok-4.6",
+   "winner": "tie",
+   "reason": "no call: missing or identical reply"
+  },
+  {
+   "case_id": "clarify-city-es-es-web",
+   "a": "z-ai/glm-5.3-flash@minimal",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "tie",
+   "reason": "no call: missing or identical reply"
+  },
+  {
+   "case_id": "clarify-city-es-es-web",
+   "a": "mistralai/mistral-large-4-0",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "A",
+   "reason": "Both clarify the same three Barcelona options correctly, but A reads more naturally because it doesn't repeat \"Sazón\" three times.",
+   "cost_usd": 0.010472,
+   "input_tokens": 1103,
+   "output_tokens": 303
+  },
+  {
+   "case_id": "clarify-city-es-es-web",
+   "a": "moonshotai/kimi-k2.6",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "tie",
+   "reason": "no call: missing or identical reply"
+  },
+  {
+   "case_id": "clarify-city-es-es-web",
+   "a": "x-ai/grok-4.6",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "tie",
+   "reason": "no call: missing or identical reply"
+  },
+  {
+   "case_id": "disqualify-license-es-es-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "z-ai/glm-5.3-flash@minimal",
+   "winner": "B",
+   "reason": "B fits in two warm sentences, while A runs to three and adds \"por este mismo chat\", which nothing in the action or context supports.",
+   "cost_usd": 0.009348,
+   "input_tokens": 1162,
+   "output_tokens": 235
+  },
+  {
+   "case_id": "disqualify-license-es-es-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "mistralai/mistral-large-4-0",
+   "winner": "B",
+   "reason": "B gives the disqualification and the invite to reapply warmly in two sentences, while A uses three and adds an unsupported detail (\"por este mismo chat\").",
+   "cost_usd": 0.009572,
+   "input_tokens": 1158,
+   "output_tokens": 247
+  },
+  {
+   "case_id": "disqualify-license-es-es-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "moonshotai/kimi-k2.6",
+   "winner": "B",
+   "reason": "Both messages are correct, but B stays within two short sentences, while A runs to three and adds \"por este mismo chat\", a detail the action doesn't give.",
+   "cost_usd": 0.008496,
+   "input_tokens": 1139,
+   "output_tokens": 197
+  },
+  {
+   "case_id": "disqualify-license-es-es-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "x-ai/grok-4.6",
+   "winner": "B",
+   "reason": "B fits the two-sentence limit and does the disqualification with a reapply invite, while A runs to three sentences and adds \"por este mismo chat\", which nothing in the action or context supports.",
+   "cost_usd": 0.00892,
+   "input_tokens": 1135,
+   "output_tokens": 219
+  },
+  {
+   "case_id": "disqualify-license-es-es-web",
+   "a": "z-ai/glm-5.3-flash@minimal",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "A",
+   "reason": "Both are correct and warm, but B makes up a detail the action doesn't give, that Pablo can reapply \"por este mismo chat\".",
+   "cost_usd": 0.008908,
+   "input_tokens": 1162,
+   "output_tokens": 213
+  },
+  {
+   "case_id": "disqualify-license-es-es-web",
+   "a": "mistralai/mistral-large-4-0",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "A",
+   "reason": "A covers the disqualification and the invite to reapply in two warm sentences, while B uses three and adds an unsupported \"por este mismo chat\".",
+   "cost_usd": 0.010752,
+   "input_tokens": 1158,
+   "output_tokens": 306
+  },
+  {
+   "case_id": "disqualify-license-es-es-web",
+   "a": "moonshotai/kimi-k2.6",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "A",
+   "reason": "Both messages are correct and use tú, but B's \"por este mismo chat\" claims a way to reapply that the action never gives, while A sticks to the facts and stays short.",
+   "cost_usd": 0.010536,
+   "input_tokens": 1139,
+   "output_tokens": 299
+  },
+  {
+   "case_id": "disqualify-license-es-es-web",
+   "a": "x-ai/grok-4.6",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "A",
+   "reason": "A does the job correctly in two sentences, while B runs to three and claims, without support, that Pablo can reapply \"por este mismo chat\".",
+   "cost_usd": 0.00994,
+   "input_tokens": 1135,
+   "output_tokens": 270
+  },
+  {
+   "case_id": "disqualify-license-es-mx-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "z-ai/glm-5.3-flash@minimal",
+   "winner": "B",
+   "reason": "Both disqualify correctly in usted with the invite to reapply, but B keeps to two sentences while A uses three and adds an unsupported \"por este mismo chat.\"",
+   "cost_usd": 0.009064,
+   "input_tokens": 1161,
+   "output_tokens": 221
+  },
+  {
+   "case_id": "disqualify-license-es-mx-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "mistralai/mistral-large-4-0",
+   "winner": "A",
+   "reason": "A keeps the usted form Mexico requires, while B slips into tú (\"tengas\", \"te invitamos\"), which matters more than A running to three sentences.",
+   "cost_usd": 0.008912,
+   "input_tokens": 1153,
+   "output_tokens": 215
+  },
+  {
+   "case_id": "disqualify-license-es-mx-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "moonshotai/kimi-k2.6",
+   "winner": "B",
+   "reason": "B keeps to two short sentences in correct usted register, while A runs to three sentences and adds the unsupported detail \"por este mismo chat.\"",
+   "cost_usd": 0.008436,
+   "input_tokens": 1149,
+   "output_tokens": 192
+  },
+  {
+   "case_id": "disqualify-license-es-mx-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "x-ai/grok-4.6",
+   "winner": "B",
+   "reason": "B gets the disqualification and the invitation to reapply right in two short sentences, using usted and Mexican vocabulary, while A runs to three sentences and adds an unsupported claim that she can reapply \"por este mismo chat\".",
+   "cost_usd": 0.009464,
+   "input_tokens": 1141,
+   "output_tokens": 245
+  },
+  {
+   "case_id": "disqualify-license-es-mx-web",
+   "a": "z-ai/glm-5.3-flash@minimal",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "A",
+   "reason": "A fits in two sentences, while B runs to three and adds an unsupported detail about reapplying \"por este mismo chat\".",
+   "cost_usd": 0.008364,
+   "input_tokens": 1161,
+   "output_tokens": 186
+  },
+  {
+   "case_id": "disqualify-license-es-mx-web",
+   "a": "mistralai/mistral-large-4-0",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "B",
+   "reason": "A addresses a Mexican candidate with tú (\"tengas\"), while B keeps usted, even though B is a bit longer than needed.",
+   "cost_usd": 0.010152,
+   "input_tokens": 1153,
+   "output_tokens": 277
+  },
+  {
+   "case_id": "disqualify-license-es-mx-web",
+   "a": "moonshotai/kimi-k2.6",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "A",
+   "reason": "A does the disqualification in two short usted sentences, while B runs to three sentences and adds an unsupported claim that she can reapply \"por este mismo chat\".",
+   "cost_usd": 0.009716,
+   "input_tokens": 1149,
+   "output_tokens": 256
+  },
+  {
+   "case_id": "disqualify-license-es-mx-web",
+   "a": "x-ai/grok-4.6",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "A",
+   "reason": "A keeps to two short sentences, while B uses three and adds a reapply-by-chat detail that isn't in the action.",
+   "cost_usd": 0.011104,
+   "input_tokens": 1141,
+   "output_tokens": 327
+  },
+  {
+   "case_id": "disqualify-license-en-voice",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "z-ai/glm-5.3-flash@minimal",
+   "winner": "B",
+   "reason": "Both are correct, but B comes closer to the roughly 15-word voice limit while A runs longer.",
+   "cost_usd": 0.011416,
+   "input_tokens": 1059,
+   "output_tokens": 359
+  },
+  {
+   "case_id": "disqualify-license-en-voice",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "mistralai/mistral-large-4-0",
+   "winner": "B",
+   "reason": "Both are correct, but B keeps to two shorter sentences for voice and opens with a fitting \"Sorry\" where A says \"Thanks.\"",
+   "cost_usd": 0.009824,
+   "input_tokens": 1066,
+   "output_tokens": 278
+  },
+  {
+   "case_id": "disqualify-license-en-voice",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "moonshotai/kimi-k2.6",
+   "winner": "B",
+   "reason": "Both are correct, but B keeps to two sentences and is a little shorter, which suits voice better than A's extra \"Thanks, Tom.\"",
+   "cost_usd": 0.01022,
+   "input_tokens": 1065,
+   "output_tokens": 298
+  },
+  {
+   "case_id": "disqualify-license-en-voice",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "x-ai/grok-4.6",
+   "winner": "B",
+   "reason": "B gets the disqualification and the reapply invite across in two short sentences that fit voice, while A runs to three sentences and about 22 words.",
+   "cost_usd": 0.010296,
+   "input_tokens": 1049,
+   "output_tokens": 305
+  },
+  {
+   "case_id": "disqualify-license-en-voice",
+   "a": "z-ai/glm-5.3-flash@minimal",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "B",
+   "reason": "Both are correct, but B's \"for now\" and \"feel free to apply again\" make the rejection kinder, while A's bare \"Apply again once you have it\" sounds curt, even though A is slightly shorter.",
+   "cost_usd": 0.013476,
+   "input_tokens": 1059,
+   "output_tokens": 462
+  },
+  {
+   "case_id": "disqualify-license-en-voice",
+   "a": "mistralai/mistral-large-4-0",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "A",
+   "reason": "Both are correct, but A is a bit shorter for voice, and \"Sorry\" fits a rejection better than \"Thanks\".",
+   "cost_usd": 0.009964,
+   "input_tokens": 1066,
+   "output_tokens": 285
+  },
+  {
+   "case_id": "disqualify-license-en-voice",
+   "a": "moonshotai/kimi-k2.6",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "A",
+   "reason": "Both are correct, but A is a bit shorter and more direct for voice, without B's out-of-place \"Thanks\".",
+   "cost_usd": 0.01266,
+   "input_tokens": 1065,
+   "output_tokens": 420
+  },
+  {
+   "case_id": "disqualify-license-en-voice",
+   "a": "x-ai/grok-4.6",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "A",
+   "reason": "Both messages handle the disqualification and the invitation to reapply, but A stays within the voice limit of about 15 words and two sentences, while B runs to three sentences and 22 words.",
+   "cost_usd": 0.009836,
+   "input_tokens": 1049,
+   "output_tokens": 282
+  },
+  {
+   "case_id": "license-in-progress-es-es-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "z-ai/glm-5.3-flash@minimal",
+   "winner": "A",
+   "reason": "A reads naturally, while B's \"cuando te lo saquen\" is awkward Spanish and \"encantada de que vuelvas a aplicar\" sounds clunky.",
+   "cost_usd": 0.011176,
+   "input_tokens": 1169,
+   "output_tokens": 325
+  },
+  {
+   "case_id": "license-in-progress-es-es-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "mistralai/mistral-large-4-0",
+   "winner": "B",
+   "reason": "Both disqualify Pablo correctly and invite him to reapply, but A runs to three sentences while B stays within the two-sentence limit, even if its wording is slightly awkward.",
+   "cost_usd": 0.011336,
+   "input_tokens": 1149,
+   "output_tokens": 337
+  },
+  {
+   "case_id": "license-in-progress-es-es-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "moonshotai/kimi-k2.6",
+   "winner": "B",
+   "reason": "Both messages handle the disqualification and reapply invite correctly, but B is a bit shorter and warmer, and it doesn't have A's redundant \"write to us and apply again\".",
+   "cost_usd": 0.011796,
+   "input_tokens": 1164,
+   "output_tokens": 357
+  },
+  {
+   "case_id": "license-in-progress-es-es-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "x-ai/grok-4.6",
+   "winner": "B",
+   "reason": "Both are correct, but A runs to three sentences, and B gives the same disqualification and reapply invitation in two short sentences.",
+   "cost_usd": 0.00926,
+   "input_tokens": 1135,
+   "output_tokens": 236
+  },
+  {
+   "case_id": "license-in-progress-es-es-web",
+   "a": "z-ai/glm-5.3-flash@minimal",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "B",
+   "reason": "Both run to three sentences, but B's reapply invitation sounds natural, while A's \"cuando te lo saquen\" and \"encantada de que\" sound awkward.",
+   "cost_usd": 0.010016,
+   "input_tokens": 1169,
+   "output_tokens": 267
+  },
+  {
+   "case_id": "license-in-progress-es-es-web",
+   "a": "mistralai/mistral-large-4-0",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "A",
+   "reason": "Both turn Pablo down correctly in tú with \"carnet\" and invite him to reapply, but A keeps to two short sentences while B runs to three.",
+   "cost_usd": 0.012496,
+   "input_tokens": 1149,
+   "output_tokens": 395
+  },
+  {
+   "case_id": "license-in-progress-es-es-web",
+   "a": "moonshotai/kimi-k2.6",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "A",
+   "reason": "Both are correct, but A is shorter and warmer, and its good-luck wish for the exam fits the moment naturally, while B is longer and stiffer.",
+   "cost_usd": 0.011636,
+   "input_tokens": 1164,
+   "output_tokens": 349
+  },
+  {
+   "case_id": "license-in-progress-es-es-web",
+   "a": "x-ai/grok-4.6",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "A",
+   "reason": "Both messages are correct and in Spain register, but B uses three sentences and breaks the two-sentence limit, while A is short and stays within it.",
+   "cost_usd": 0.01156,
+   "input_tokens": 1135,
+   "output_tokens": 351
+  },
+  {
+   "case_id": "license-in-progress-es-mx-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "z-ai/glm-5.3-flash@minimal",
+   "winner": "B",
+   "reason": "Both messages are correct and use usted, but B stays within two sentences, while A runs to three.",
+   "cost_usd": 0.008468,
+   "input_tokens": 1137,
+   "output_tokens": 196
+  },
+  {
+   "case_id": "license-in-progress-es-mx-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "mistralai/mistral-large-4-0",
+   "winner": "A",
+   "reason": "A uses usted as required for a Mexican candidate, while B uses tú (\"tengas\", \"vuelve\").",
+   "cost_usd": 0.00866,
+   "input_tokens": 1145,
+   "output_tokens": 204
+  },
+  {
+   "case_id": "license-in-progress-es-mx-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "moonshotai/kimi-k2.6",
+   "winner": "A",
+   "reason": "B's \"cuando la tramite\" is confusing because Luis is already getting the license, while A clearly says to reapply once he has it, even though A runs slightly long at three sentences.",
+   "cost_usd": 0.01576,
+   "input_tokens": 1120,
+   "output_tokens": 564
+  },
+  {
+   "case_id": "license-in-progress-es-mx-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "x-ai/grok-4.6",
+   "winner": "B",
+   "reason": "Both are correct and use usted, but A runs to three sentences and B keeps to the two-sentence limit.",
+   "cost_usd": 0.008264,
+   "input_tokens": 1116,
+   "output_tokens": 190
+  },
+  {
+   "case_id": "license-in-progress-es-mx-web",
+   "a": "z-ai/glm-5.3-flash@minimal",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "A",
+   "reason": "Both messages handle the disqualification correctly in usted, but A keeps to two sentences while B uses three and adds a reapply channel the action never mentions.",
+   "cost_usd": 0.008748,
+   "input_tokens": 1137,
+   "output_tokens": 210
+  },
+  {
+   "case_id": "license-in-progress-es-mx-web",
+   "a": "mistralai/mistral-large-4-0",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "B",
+   "reason": "B uses usted as Mexico requires, while A uses tú (\"tengas\", \"vuelve\") with a Mexican candidate.",
+   "cost_usd": 0.00892,
+   "input_tokens": 1145,
+   "output_tokens": 217
+  },
+  {
+   "case_id": "license-in-progress-es-mx-web",
+   "a": "moonshotai/kimi-k2.6",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "A",
+   "reason": "Both correctly turn Luis away for now and invite him to reapply using usted, but A stays within two sentences while B uses three.",
+   "cost_usd": 0.01326,
+   "input_tokens": 1120,
+   "output_tokens": 439
+  },
+  {
+   "case_id": "license-in-progress-es-mx-web",
+   "a": "x-ai/grok-4.6",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "A",
+   "reason": "Both messages are correct and use usted, but B runs to three sentences while A stays within the two-short-sentence limit.",
+   "cost_usd": 0.007924,
+   "input_tokens": 1116,
+   "output_tokens": 173
+  },
+  {
+   "case_id": "license-in-progress-en-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "z-ai/glm-5.3-flash@minimal",
+   "winner": "B",
+   "reason": "Both messages turn Sam down correctly and invite him to reapply, but B stays within two sentences and mentions his upcoming test, while A runs to three.",
+   "cost_usd": 0.007968,
+   "input_tokens": 1097,
+   "output_tokens": 179
+  },
+  {
+   "case_id": "license-in-progress-en-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "mistralai/mistral-large-4-0",
+   "winner": "B",
+   "reason": "Both are correct and warm, but B stays within two sentences while A runs to three.",
+   "cost_usd": 0.008796,
+   "input_tokens": 1104,
+   "output_tokens": 219
+  },
+  {
+   "case_id": "license-in-progress-en-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "moonshotai/kimi-k2.6",
+   "winner": "B",
+   "reason": "Both messages turn Sam down correctly and invite him to reapply, but A runs to three sentences while B stays within two and still mentions his upcoming test.",
+   "cost_usd": 0.007996,
+   "input_tokens": 1089,
+   "output_tokens": 182
+  },
+  {
+   "case_id": "license-in-progress-en-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "x-ai/grok-4.6",
+   "winner": "B",
+   "reason": "Both are correct, but A runs to three sentences and goes over the two-sentence limit, while B gives the same message in two.",
+   "cost_usd": 0.009764,
+   "input_tokens": 1071,
+   "output_tokens": 274
+  },
+  {
+   "case_id": "license-in-progress-en-web",
+   "a": "z-ai/glm-5.3-flash@minimal",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "A",
+   "reason": "Both are correct, but A keeps to two sentences and warmly mentions the candidate's upcoming test, while B runs to three sentences.",
+   "cost_usd": 0.007588,
+   "input_tokens": 1097,
+   "output_tokens": 160
+  },
+  {
+   "case_id": "license-in-progress-en-web",
+   "a": "mistralai/mistral-large-4-0",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "B",
+   "reason": "Both disqualify and invite reapplying correctly, but B thanks Sam for sharing and stays neutral, while A adds \"we'd love to hear from you\", which hints at a good outcome.",
+   "cost_usd": 0.010936,
+   "input_tokens": 1104,
+   "output_tokens": 326
+  },
+  {
+   "case_id": "license-in-progress-en-web",
+   "a": "moonshotai/kimi-k2.6",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "A",
+   "reason": "Both are correct, but A keeps to two sentences and warmly picks up on Sam's upcoming test, while B runs to three sentences.",
+   "cost_usd": 0.009476,
+   "input_tokens": 1089,
+   "output_tokens": 256
+  },
+  {
+   "case_id": "license-in-progress-en-web",
+   "a": "x-ai/grok-4.6",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "A",
+   "reason": "Both disqualify correctly and invite Sam to reapply, but B runs to three sentences and A stays within the two-sentence limit.",
+   "cost_usd": 0.010564,
+   "input_tokens": 1071,
+   "output_tokens": 314
+  },
+  {
+   "case_id": "disqualify-zone-es-es-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "z-ai/glm-5.3-flash@minimal",
+   "winner": "A",
+   "reason": "Both are three sentences rather than two, but A sticks to the fact that there is no local in Ourense, while B claims there is no delivery there and phrases the alert offer as a personal promise.",
+   "cost_usd": 0.011016,
+   "input_tokens": 1164,
+   "output_tokens": 318
+  },
+  {
+   "case_id": "disqualify-zone-es-es-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "mistralai/mistral-large-4-0",
+   "winner": "B",
+   "reason": "Both messages handle the out-of-area rejection correctly and offer the talent pool, but B does it in two short, warm sentences while A runs to three.",
+   "cost_usd": 0.0082,
+   "input_tokens": 1140,
+   "output_tokens": 182
+  },
+  {
+   "case_id": "disqualify-zone-es-es-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "moonshotai/kimi-k2.6",
+   "winner": "B",
+   "reason": "Both messages are correct and make the talent-pool offer, but A runs to three sentences while B stays within the two-sentence limit and still sounds warm.",
+   "cost_usd": 0.008,
+   "input_tokens": 1135,
+   "output_tokens": 173
+  },
+  {
+   "case_id": "disqualify-zone-es-es-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "x-ai/grok-4.6",
+   "winner": "B",
+   "reason": "Both are correct and offer the talent pool, but A runs to three sentences, while B stays within the two-sentence limit.",
+   "cost_usd": 0.008008,
+   "input_tokens": 1127,
+   "output_tokens": 175
+  },
+  {
+   "case_id": "disqualify-zone-es-es-web",
+   "a": "z-ai/glm-5.3-flash@minimal",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "B",
+   "reason": "B is a bit tighter and sticks to the reference's wording (\"ningún local\", \"te avisemos\"), while A's \"no tenemos reparto en Ourense\" is a claim the reference doesn't make; both run three sentences, over the two-sentence limit.",
+   "cost_usd": 0.011176,
+   "input_tokens": 1164,
+   "output_tokens": 326
+  },
+  {
+   "case_id": "disqualify-zone-es-es-web",
+   "a": "mistralai/mistral-large-4-0",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "A",
+   "reason": "Both turn the candidate down correctly and offer the talent pool, but A stays within two short sentences while B runs to three.",
+   "cost_usd": 0.0079,
+   "input_tokens": 1140,
+   "output_tokens": 167
+  },
+  {
+   "case_id": "disqualify-zone-es-es-web",
+   "a": "moonshotai/kimi-k2.6",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "A",
+   "reason": "Both are correct and use tú, but B runs to three sentences, over the two-sentence limit, while A stays short and warm.",
+   "cost_usd": 0.00846,
+   "input_tokens": 1135,
+   "output_tokens": 196
+  },
+  {
+   "case_id": "disqualify-zone-es-es-web",
+   "a": "x-ai/grok-4.6",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "A",
+   "reason": "Both are correct, but A keeps to two short sentences while B runs to three and is wordier.",
+   "cost_usd": 0.008368,
+   "input_tokens": 1127,
+   "output_tokens": 193
+  },
+  {
+   "case_id": "disqualify-zone-es-mx-voice",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "z-ai/glm-5.3-flash@minimal",
+   "winner": "B",
+   "reason": "Both are correct and use usted, but B is shorter and fits the voice length limit better.",
+   "cost_usd": 0.011404,
+   "input_tokens": 1091,
+   "output_tokens": 352
+  },
+  {
+   "case_id": "disqualify-zone-es-mx-voice",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "mistralai/mistral-large-4-0",
+   "winner": "tie",
+   "reason": "Both messages say the same correct thing in usted with the talent-pool question last, and only the word order differs.",
+   "cost_usd": 0.007696,
+   "input_tokens": 1099,
+   "output_tokens": 165
+  },
+  {
+   "case_id": "disqualify-zone-es-mx-voice",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "moonshotai/kimi-k2.6",
+   "winner": "A",
+   "reason": "Both are correct and use usted, but A is shorter for voice and doesn't repeat \"sucursal\" the way B does.",
+   "cost_usd": 0.01232,
+   "input_tokens": 1110,
+   "output_tokens": 394
+  },
+  {
+   "case_id": "disqualify-zone-es-mx-voice",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "x-ai/grok-4.6",
+   "winner": "A",
+   "reason": "Both are correct and use usted, but A's \"por ahora, lo siento\" makes it warmer while staying close to the roughly 15-word voice limit.",
+   "cost_usd": 0.010736,
+   "input_tokens": 1089,
+   "output_tokens": 319
+  },
+  {
+   "case_id": "disqualify-zone-es-mx-voice",
+   "a": "z-ai/glm-5.3-flash@minimal",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "B",
+   "reason": "Both are correct and use usted, but B's brief apology makes the rejection warmer and it stays close to the voice length limit.",
+   "cost_usd": 0.012664,
+   "input_tokens": 1091,
+   "output_tokens": 415
+  },
+  {
+   "case_id": "disqualify-zone-es-mx-voice",
+   "a": "mistralai/mistral-large-4-0",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "tie",
+   "reason": "Both messages say the same correct thing in usted, with the same talent-pool question at the end, and differ only in word order.",
+   "cost_usd": 0.007996,
+   "input_tokens": 1099,
+   "output_tokens": 180
+  },
+  {
+   "case_id": "disqualify-zone-es-mx-voice",
+   "a": "moonshotai/kimi-k2.6",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "B",
+   "reason": "Both are correct and use usted, but B is a bit shorter for voice, sounds warmer with \"lo siento,\" and doesn't say \"sucursal\" twice.",
+   "cost_usd": 0.01326,
+   "input_tokens": 1110,
+   "output_tokens": 441
+  },
+  {
+   "case_id": "disqualify-zone-es-mx-voice",
+   "a": "x-ai/grok-4.6",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "B",
+   "reason": "Both messages are correct and use usted, but B's \"por ahora, lo siento\" makes the rejection kinder and fits the talent-pool offer, and it stays close to the voice word limit.",
+   "cost_usd": 0.012516,
+   "input_tokens": 1089,
+   "output_tokens": 408
+  },
+  {
+   "case_id": "disqualify-zone-en-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "z-ai/glm-5.3-flash@minimal",
+   "winner": "B",
+   "reason": "Both are correct and offer the talent pool, but B is warmer and apologizes the way the reference does.",
+   "cost_usd": 0.009524,
+   "input_tokens": 1081,
+   "output_tokens": 260
+  },
+  {
+   "case_id": "disqualify-zone-en-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "mistralai/mistral-large-4-0",
+   "winner": "B",
+   "reason": "Both are correct, but B is warmer and shorter, and it skips A's extra clause about not taking the application, which is a bit blunt.",
+   "cost_usd": 0.008312,
+   "input_tokens": 1068,
+   "output_tokens": 202
+  },
+  {
+   "case_id": "disqualify-zone-en-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "moonshotai/kimi-k2.6",
+   "winner": "A",
+   "reason": "Both are correct, but A says clearly that the application can't go ahead before offering the talent pool, so the disqualification isn't left vague.",
+   "cost_usd": 0.009408,
+   "input_tokens": 1062,
+   "output_tokens": 258
+  },
+  {
+   "case_id": "disqualify-zone-en-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "x-ai/grok-4.6",
+   "winner": "B",
+   "reason": "Both are correct, but B delivers the out-of-area news and the talent pool offer more briefly, without A's blunt extra clause.",
+   "cost_usd": 0.010192,
+   "input_tokens": 1063,
+   "output_tokens": 297
+  },
+  {
+   "case_id": "disqualify-zone-en-web",
+   "a": "z-ai/glm-5.3-flash@minimal",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "A",
+   "reason": "Both are correct and offer the talent pool, but A is warmer because it thanks the candidate and apologises, while B sounds blunter.",
+   "cost_usd": 0.008844,
+   "input_tokens": 1081,
+   "output_tokens": 226
+  },
+  {
+   "case_id": "disqualify-zone-en-web",
+   "a": "mistralai/mistral-large-4-0",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "A",
+   "reason": "Both are correct, but A says the same thing more warmly and briefly, with a \"sorry\" and no extra rejection wording.",
+   "cost_usd": 0.008632,
+   "input_tokens": 1068,
+   "output_tokens": 218
+  },
+  {
+   "case_id": "disqualify-zone-en-web",
+   "a": "moonshotai/kimi-k2.6",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "B",
+   "reason": "Both are correct, but B also says plainly that the application can't go ahead, which makes the disqualification clearer, and it still makes the talent-pool offer.",
+   "cost_usd": 0.010408,
+   "input_tokens": 1062,
+   "output_tokens": 308
+  },
+  {
+   "case_id": "disqualify-zone-en-web",
+   "a": "x-ai/grok-4.6",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "A",
+   "reason": "Both are correct, but A is shorter and warmer, while B adds a blunt clause that isn't needed.",
+   "cost_usd": 0.009792,
+   "input_tokens": 1063,
+   "output_tokens": 277
+  },
+  {
+   "case_id": "faq-pay-es-es-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "z-ai/glm-5.3-flash@minimal",
+   "winner": "B",
+   "reason": "B gives the FAQ pay as a general fact about drivers, while A's \"cobras\" sounds like a personal pay promise to the candidate.",
+   "cost_usd": 0.009312,
+   "input_tokens": 1338,
+   "output_tokens": 198
+  },
+  {
+   "case_id": "faq-pay-es-es-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "mistralai/mistral-large-4-0",
+   "winner": "A",
+   "reason": "A states the FAQ pay clearly for the candidate, while B's \"cobramos\" wrongly suggests the company is the one earning.",
+   "cost_usd": 0.010168,
+   "input_tokens": 1332,
+   "output_tokens": 242
+  },
+  {
+   "case_id": "faq-pay-es-es-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "moonshotai/kimi-k2.6",
+   "winner": "B",
+   "reason": "Both give the correct FAQ facts and ask the availability question, but B is shorter and its impersonal \"se pagan\" avoids A's \"cobras\", which hints the candidate already has the job.",
+   "cost_usd": 0.01062,
+   "input_tokens": 1335,
+   "output_tokens": 264
+  },
+  {
+   "case_id": "faq-pay-es-es-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "x-ai/grok-4.6",
+   "winner": "A",
+   "reason": "A gives the same FAQ facts and question in two natural, direct tú sentences, while B uses three and reads stiffer.",
+   "cost_usd": 0.009928,
+   "input_tokens": 1337,
+   "output_tokens": 229
+  },
+  {
+   "case_id": "faq-pay-es-es-web",
+   "a": "z-ai/glm-5.3-flash@minimal",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "A",
+   "reason": "Both messages are correct, but A says \"los repartidores cobran\" in neutral terms, while B's \"cobras\" suggests the candidate already has the job.",
+   "cost_usd": 0.010112,
+   "input_tokens": 1338,
+   "output_tokens": 238
+  },
+  {
+   "case_id": "faq-pay-es-es-web",
+   "a": "mistralai/mistral-large-4-0",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "B",
+   "reason": "B states the FAQ pay accurately and reads naturally, while A's \"cobramos\" makes it sound as if Ana or the company is the one being paid.",
+   "cost_usd": 0.012568,
+   "input_tokens": 1332,
+   "output_tokens": 362
+  },
+  {
+   "case_id": "faq-pay-es-es-web",
+   "a": "moonshotai/kimi-k2.6",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "A",
+   "reason": "Both are accurate, but A is shorter and states the pay neutrally, while B's \"cobras\" sounds like it promises the candidate that pay.",
+   "cost_usd": 0.01022,
+   "input_tokens": 1335,
+   "output_tokens": 244
+  },
+  {
+   "case_id": "faq-pay-es-es-web",
+   "a": "x-ai/grok-4.6",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "B",
+   "reason": "Both are accurate and use tú, but B fits the facts and the question into two sentences while A needs three.",
+   "cost_usd": 0.009368,
+   "input_tokens": 1337,
+   "output_tokens": 201
+  },
+  {
+   "case_id": "faq-vehicle-es-mx-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "z-ai/glm-5.3-flash@minimal",
+   "winner": "A",
+   "reason": "Both are accurate and use usted, but A answers more warmly in two sentences, while B is a stiffer three.",
+   "cost_usd": 0.010064,
+   "input_tokens": 1336,
+   "output_tokens": 236
+  },
+  {
+   "case_id": "faq-vehicle-es-mx-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "mistralai/mistral-large-4-0",
+   "winner": "A",
+   "reason": "A gives the same correct facts in two smooth sentences, while B uses three sentences and has a spelling error (\"préstamos\" should be \"prestamos\").",
+   "cost_usd": 0.009584,
+   "input_tokens": 1346,
+   "output_tokens": 210
+  },
+  {
+   "case_id": "faq-vehicle-es-mx-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "moonshotai/kimi-k2.6",
+   "winner": "B",
+   "reason": "Both are correct and use usted, but B answers the either/or question cleanly, without A's awkward opening \"Sí\".",
+   "cost_usd": 0.015304,
+   "input_tokens": 1346,
+   "output_tokens": 496
+  },
+  {
+   "case_id": "faq-vehicle-es-mx-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "x-ai/grok-4.6",
+   "winner": "A",
+   "reason": "Both are accurate and use usted, but A sounds warmer and fits into two sentences, while B reads like three stiff, copied sentences.",
+   "cost_usd": 0.00994,
+   "input_tokens": 1340,
+   "output_tokens": 229
+  },
+  {
+   "case_id": "faq-vehicle-es-mx-web",
+   "a": "z-ai/glm-5.3-flash@minimal",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "B",
+   "reason": "Both messages are accurate and use usted, but B fits the answer and the question into two natural sentences, while A takes three.",
+   "cost_usd": 0.009164,
+   "input_tokens": 1336,
+   "output_tokens": 191
+  },
+  {
+   "case_id": "faq-vehicle-es-mx-web",
+   "a": "mistralai/mistral-large-4-0",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "B",
+   "reason": "B gives the correct facts in two clean sentences, while A has the misspelling \"préstamos\" and runs to three sentences.",
+   "cost_usd": 0.008944,
+   "input_tokens": 1346,
+   "output_tokens": 178
+  },
+  {
+   "case_id": "faq-vehicle-es-mx-web",
+   "a": "moonshotai/kimi-k2.6",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "A",
+   "reason": "Both are correct and use usted, but B opens with \"Sí,\" which doesn't fit an either/or question, so A reads more naturally.",
+   "cost_usd": 0.011104,
+   "input_tokens": 1346,
+   "output_tokens": 286
+  },
+  {
+   "case_id": "faq-vehicle-es-mx-web",
+   "a": "x-ai/grok-4.6",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "B",
+   "reason": "Both are accurate and use usted, but B fits the two-sentence limit and sounds warmer and more natural, while A runs to three sentences.",
+   "cost_usd": 0.00918,
+   "input_tokens": 1340,
+   "output_tokens": 191
+  },
+  {
+   "case_id": "faq-hours-en-voice",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "z-ai/glm-5.3-flash@minimal",
+   "winner": "A",
+   "reason": "Both are accurate, but A is shorter for voice and keeps the FAQ's point that part-timers choose their shifts.",
+   "cost_usd": 0.012604,
+   "input_tokens": 1201,
+   "output_tokens": 390
+  },
+  {
+   "case_id": "faq-hours-en-voice",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "mistralai/mistral-large-4-0",
+   "winner": "A",
+   "reason": "A gives the correct shift facts in two sentences and asks about availability with clear options, while B runs to three sentences and asks a vaguer question.",
+   "cost_usd": 0.01066,
+   "input_tokens": 1195,
+   "output_tokens": 294
+  },
+  {
+   "case_id": "faq-hours-en-voice",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "moonshotai/kimi-k2.6",
+   "winner": "A",
+   "reason": "A stays within two short sentences and is shorter for voice, while B uses three sentences.",
+   "cost_usd": 0.009568,
+   "input_tokens": 1207,
+   "output_tokens": 237
+  },
+  {
+   "case_id": "faq-hours-en-voice",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "x-ai/grok-4.6",
+   "winner": "A",
+   "reason": "A answers correctly and asks about availability in two natural sentences, while B is choppy, uses three fragments and asks a curt question.",
+   "cost_usd": 0.010248,
+   "input_tokens": 1187,
+   "output_tokens": 275
+  },
+  {
+   "case_id": "faq-hours-en-voice",
+   "a": "z-ai/glm-5.3-flash@minimal",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "A",
+   "reason": "Both are accurate, but A writes the numbers out as words, which works better on a voice call.",
+   "cost_usd": 0.009444,
+   "input_tokens": 1201,
+   "output_tokens": 232
+  },
+  {
+   "case_id": "faq-hours-en-voice",
+   "a": "mistralai/mistral-large-4-0",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "B",
+   "reason": "B stays within two sentences and asks a clear availability question with concrete options, while A uses three sentences and a vaguer question.",
+   "cost_usd": 0.01528,
+   "input_tokens": 1195,
+   "output_tokens": 525
+  },
+  {
+   "case_id": "faq-hours-en-voice",
+   "a": "moonshotai/kimi-k2.6",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "B",
+   "reason": "Both are correct, but B gives the same facts in two shorter sentences, which suits voice better than A's three.",
+   "cost_usd": 0.008488,
+   "input_tokens": 1207,
+   "output_tokens": 183
+  },
+  {
+   "case_id": "faq-hours-en-voice",
+   "a": "x-ai/grok-4.6",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "B",
+   "reason": "B is a bit long for voice, but it sounds natural and asks a clear availability question, while A is clipped and robotic (\"Your availability?\").",
+   "cost_usd": 0.012168,
+   "input_tokens": 1187,
+   "output_tokens": 371
+  },
+  {
+   "case_id": "faq-bot-es-es-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "z-ai/glm-5.3-flash@minimal",
+   "winner": "tie",
+   "reason": "no call: missing or identical reply"
+  },
+  {
+   "case_id": "faq-bot-es-es-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "mistralai/mistral-large-4-0",
+   "winner": "A",
+   "reason": "A says it is an AI and then asks for the full name as the action requires, while B asks for privacy consent instead, repeats its greeting and runs too long.",
+   "cost_usd": 0.007312,
+   "input_tokens": 1248,
+   "output_tokens": 116
+  },
+  {
+   "case_id": "faq-bot-es-es-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "moonshotai/kimi-k2.6",
+   "winner": "tie",
+   "reason": "no call: missing or identical reply"
+  },
+  {
+   "case_id": "faq-bot-es-es-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "x-ai/grok-4.6",
+   "winner": "tie",
+   "reason": "no call: missing or identical reply"
+  },
+  {
+   "case_id": "faq-bot-es-es-web",
+   "a": "z-ai/glm-5.3-flash@minimal",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "tie",
+   "reason": "no call: missing or identical reply"
+  },
+  {
+   "case_id": "faq-bot-es-es-web",
+   "a": "mistralai/mistral-large-4-0",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "B",
+   "reason": "B confirms it is an AI and asks for the full name as the action says, while A adds a privacy-consent question that wasn't asked for and skips the name question.",
+   "cost_usd": 0.007332,
+   "input_tokens": 1248,
+   "output_tokens": 117
+  },
+  {
+   "case_id": "faq-bot-es-es-web",
+   "a": "moonshotai/kimi-k2.6",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "tie",
+   "reason": "no call: missing or identical reply"
+  },
+  {
+   "case_id": "faq-bot-es-es-web",
+   "a": "x-ai/grok-4.6",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "tie",
+   "reason": "no call: missing or identical reply"
+  },
+  {
+   "case_id": "unknown-faq-es-es-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "z-ai/glm-5.3-flash@minimal",
+   "winner": "B",
+   "reason": "Both are correct, but B's \"pero lo puedes preguntar\" and \"te va mejor\" sound more natural than A's slightly awkward \"así que\".",
+   "cost_usd": 0.008952,
+   "input_tokens": 1183,
+   "output_tokens": 211
+  },
+  {
+   "case_id": "unknown-faq-es-es-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "mistralai/mistral-large-4-0",
+   "winner": "B",
+   "reason": "Both are correct, but B reads more naturally than A's clunkier \"así que puedes preguntarla\".",
+   "cost_usd": 0.009516,
+   "input_tokens": 1179,
+   "output_tokens": 240
+  },
+  {
+   "case_id": "unknown-faq-es-es-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "moonshotai/kimi-k2.6",
+   "winner": "tie",
+   "reason": "Both say they don't have the information and ask about schedule in natural Spain Spanish using tú, with only tiny wording differences.",
+   "cost_usd": 0.009964,
+   "input_tokens": 1181,
+   "output_tokens": 262
+  },
+  {
+   "case_id": "unknown-faq-es-es-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "x-ai/grok-4.6",
+   "winner": "B",
+   "reason": "Both are correct and nearly identical, but B is a bit shorter and more natural because it drops the slightly forced \"así que\".",
+   "cost_usd": 0.010276,
+   "input_tokens": 1179,
+   "output_tokens": 278
+  },
+  {
+   "case_id": "unknown-faq-es-es-web",
+   "a": "z-ai/glm-5.3-flash@minimal",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "A",
+   "reason": "Both are correct, but A reads more naturally (\"pero\", \"te va mejor\") than B's awkward \"así que\".",
+   "cost_usd": 0.007852,
+   "input_tokens": 1183,
+   "output_tokens": 156
+  },
+  {
+   "case_id": "unknown-faq-es-es-web",
+   "a": "mistralai/mistral-large-4-0",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "A",
+   "reason": "Both are nearly identical, but A is shorter and reads more naturally, while B's \"así que... preguntarla\" is clunky.",
+   "cost_usd": 0.009096,
+   "input_tokens": 1179,
+   "output_tokens": 219
+  },
+  {
+   "case_id": "unknown-faq-es-es-web",
+   "a": "moonshotai/kimi-k2.6",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "A",
+   "reason": "Both are correct and identical in substance, but A reads more naturally than B's slightly awkward \"así que\" link.",
+   "cost_usd": 0.008864,
+   "input_tokens": 1181,
+   "output_tokens": 207
+  },
+  {
+   "case_id": "unknown-faq-es-es-web",
+   "a": "x-ai/grok-4.6",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "A",
+   "reason": "Both are correct, but A is shorter and reads more naturally, without B's awkward \"así que... preguntarla\".",
+   "cost_usd": 0.008616,
+   "input_tokens": 1179,
+   "output_tokens": 195
+  },
+  {
+   "case_id": "unknown-faq-es-mx-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "z-ai/glm-5.3-flash@minimal",
+   "winner": "tie",
+   "reason": "Both are correct, use usted, and ask only for the start date, so the extra \"a trabajar\" in B makes no real difference.",
+   "cost_usd": 0.0093,
+   "input_tokens": 1140,
+   "output_tokens": 237
+  },
+  {
+   "case_id": "unknown-faq-es-mx-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "mistralai/mistral-large-4-0",
+   "winner": "tie",
+   "reason": "Both are correct, in usted register, and differ only by trivial wording.",
+   "cost_usd": 0.010932,
+   "input_tokens": 1138,
+   "output_tokens": 319
+  },
+  {
+   "case_id": "unknown-faq-es-mx-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "moonshotai/kimi-k2.6",
+   "winner": "tie",
+   "reason": "The two messages are the same except for one connector, and both are correct, use usted and ask one question at the end.",
+   "cost_usd": 0.008112,
+   "input_tokens": 1133,
+   "output_tokens": 179
+  },
+  {
+   "case_id": "unknown-faq-es-mx-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "x-ai/grok-4.6",
+   "winner": "tie",
+   "reason": "The two messages are the same apart from a comma \"pero\" versus a semicolon, and both are correct, use usted and read naturally.",
+   "cost_usd": 0.006732,
+   "input_tokens": 1133,
+   "output_tokens": 110
+  },
+  {
+   "case_id": "unknown-faq-es-mx-web",
+   "a": "z-ai/glm-5.3-flash@minimal",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "tie",
+   "reason": "Both are correct, use usted, and answer the question before asking for the start date; the only difference is that A adds \"a trabajar\".",
+   "cost_usd": 0.00806,
+   "input_tokens": 1140,
+   "output_tokens": 175
+  },
+  {
+   "case_id": "unknown-faq-es-mx-web",
+   "a": "mistralai/mistral-large-4-0",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "tie",
+   "reason": "Neither message is better: both say the information isn't available, use usted and end with the same start-date question, with only tiny wording differences.",
+   "cost_usd": 0.009192,
+   "input_tokens": 1138,
+   "output_tokens": 232
+  },
+  {
+   "case_id": "unknown-faq-es-mx-web",
+   "a": "moonshotai/kimi-k2.6",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "B",
+   "reason": "The two are almost the same, but B's \"pero\" reads more naturally in chat than A's semicolon.",
+   "cost_usd": 0.009292,
+   "input_tokens": 1133,
+   "output_tokens": 238
+  },
+  {
+   "case_id": "unknown-faq-es-mx-web",
+   "a": "x-ai/grok-4.6",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "B",
+   "reason": "Both are equally correct, but B's \"pero\" makes the sentence read a little more naturally.",
+   "cost_usd": 0.009592,
+   "input_tokens": 1133,
+   "output_tokens": 253
+  },
+  {
+   "case_id": "unknown-faq-en-voice",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "z-ai/glm-5.3-flash@minimal",
+   "winner": "tie",
+   "reason": "no call: missing or identical reply"
+  },
+  {
+   "case_id": "unknown-faq-en-voice",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "mistralai/mistral-large-4-0",
+   "winner": "A",
+   "reason": "Both are correct, but A reads more naturally and asks for years of experience, which matches the experience_years field.",
+   "cost_usd": 0.00822,
+   "input_tokens": 1110,
+   "output_tokens": 189
+  },
+  {
+   "case_id": "unknown-faq-en-voice",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "moonshotai/kimi-k2.6",
+   "winner": "A",
+   "reason": "Both are correct, but A reads more naturally and avoids B's comma splice and awkward \"ask it.\"",
+   "cost_usd": 0.008008,
+   "input_tokens": 1112,
+   "output_tokens": 178
+  },
+  {
+   "case_id": "unknown-faq-en-voice",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "x-ai/grok-4.6",
+   "winner": "A",
+   "reason": "A is two natural sentences and asks for years of experience directly, while B splits into three sentences and ends with a clipped, awkward question.",
+   "cost_usd": 0.009104,
+   "input_tokens": 1106,
+   "output_tokens": 234
+  },
+  {
+   "case_id": "unknown-faq-en-voice",
+   "a": "z-ai/glm-5.3-flash@minimal",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "tie",
+   "reason": "no call: missing or identical reply"
+  },
+  {
+   "case_id": "unknown-faq-en-voice",
+   "a": "mistralai/mistral-large-4-0",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "B",
+   "reason": "B reads more naturally and asks for the number of years of experience, which is exactly what the field needs.",
+   "cost_usd": 0.00848,
+   "input_tokens": 1110,
+   "output_tokens": 202
+  },
+  {
+   "case_id": "unknown-faq-en-voice",
+   "a": "moonshotai/kimi-k2.6",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "B",
+   "reason": "Both are equally correct, but B's \"but you can ask at the interview\" sounds more natural than A's awkward \"ask it\".",
+   "cost_usd": 0.008328,
+   "input_tokens": 1112,
+   "output_tokens": 194
+  },
+  {
+   "case_id": "unknown-faq-en-voice",
+   "a": "x-ai/grok-4.6",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "B",
+   "reason": "B fits in two natural sentences and clearly asks for years of experience, while A uses three choppy sentences and ends on a clipped question.",
+   "cost_usd": 0.008564,
+   "input_tokens": 1106,
+   "output_tokens": 207
+  },
+  {
+   "case_id": "deescalate-es-es-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "z-ai/glm-5.3-flash@minimal",
+   "winner": "A",
+   "reason": "A calms the candidate down with a clear, respectful apology and asks directly for years of experience, while B's \"Tranqui\" can sound dismissive to someone who is angry, and \"lo dejamos rápido\" reads oddly.",
+   "cost_usd": 0.010116,
+   "input_tokens": 1129,
+   "output_tokens": 280
+  },
+  {
+   "case_id": "deescalate-es-es-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "mistralai/mistral-large-4-0",
+   "winner": "B",
+   "reason": "B speaks to the candidate's annoyance by promising to keep it quick, then asks the experience question in fewer words, which is closer to the reference.",
+   "cost_usd": 0.00976,
+   "input_tokens": 1125,
+   "output_tokens": 263
+  },
+  {
+   "case_id": "deescalate-es-es-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "moonshotai/kimi-k2.6",
+   "winner": "A",
+   "reason": "Both calm the candidate and ask the experience question correctly using tú, but A's apology sounds more natural than B's awkward \"vamos a lo rápido\" and its guess that the candidate finds this slow.",
+   "cost_usd": 0.011348,
+   "input_tokens": 1132,
+   "output_tokens": 341
+  },
+  {
+   "case_id": "deescalate-es-es-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "x-ai/grok-4.6",
+   "winner": "B",
+   "reason": "Both are correct, but B answers the \"pesada\" complaint by promising to keep it quick, and it is shorter and simpler.",
+   "cost_usd": 0.01074,
+   "input_tokens": 1125,
+   "output_tokens": 312
+  },
+  {
+   "case_id": "deescalate-es-es-web",
+   "a": "z-ai/glm-5.3-flash@minimal",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "B",
+   "reason": "B calms the candidate down with an apology, while A's \"Tranqui\" can come across as telling them to calm down.",
+   "cost_usd": 0.009956,
+   "input_tokens": 1129,
+   "output_tokens": 272
+  },
+  {
+   "case_id": "deescalate-es-es-web",
+   "a": "mistralai/mistral-large-4-0",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "A",
+   "reason": "A answers the candidate's impatience by moving things along quickly, as the reference does, and B's apology does less to address that frustration.",
+   "cost_usd": 0.0092,
+   "input_tokens": 1125,
+   "output_tokens": 235
+  },
+  {
+   "case_id": "deescalate-es-es-web",
+   "a": "moonshotai/kimi-k2.6",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "B",
+   "reason": "Both calm the candidate and ask the experience question correctly, but B sounds more natural and simple, while A's \"vamos a lo rápido\" is awkward and guesses why the candidate is upset.",
+   "cost_usd": 0.011668,
+   "input_tokens": 1132,
+   "output_tokens": 357
+  },
+  {
+   "case_id": "deescalate-es-es-web",
+   "a": "x-ai/grok-4.6",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "B",
+   "reason": "B calms the candidate with a short apology and asks directly for years of experience, which is the field the action requests.",
+   "cost_usd": 0.01048,
+   "input_tokens": 1125,
+   "output_tokens": 299
+  },
+  {
+   "case_id": "deescalate-es-mx-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "z-ai/glm-5.3-flash@minimal",
+   "winner": "B",
+   "reason": "Both calm the candidate and ask about schedule using usted, but B's \"hagámoslo rápido\" is clearer than A's \"lo dejamos corto,\" which could sound like the chat is ending.",
+   "cost_usd": 0.010488,
+   "input_tokens": 1142,
+   "output_tokens": 296
+  },
+  {
+   "case_id": "deescalate-es-mx-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "mistralai/mistral-large-4-0",
+   "winner": "A",
+   "reason": "Both calm the candidate and ask for the schedule in usted, but A is shorter and plainer, which fits the simplify flag, and \"le acomoda\" is natural Mexican Spanish.",
+   "cost_usd": 0.009396,
+   "input_tokens": 1144,
+   "output_tokens": 241
+  },
+  {
+   "case_id": "deescalate-es-mx-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "moonshotai/kimi-k2.6",
+   "winner": "A",
+   "reason": "Both are correct and use usted, but A is shorter and simpler, as the simplify flag asks, and its \"le acomoda\" sounds naturally Mexican without telling an angry user how they feel.",
+   "cost_usd": 0.010796,
+   "input_tokens": 1144,
+   "output_tokens": 311
+  },
+  {
+   "case_id": "deescalate-es-mx-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "x-ai/grok-4.6",
+   "winner": "A",
+   "reason": "Both calm the candidate and ask about schedule using usted, but A is shorter and more natural, which fits simplify, while B runs everything together with a comma splice.",
+   "cost_usd": 0.008544,
+   "input_tokens": 1146,
+   "output_tokens": 198
+  },
+  {
+   "case_id": "deescalate-es-mx-web",
+   "a": "z-ai/glm-5.3-flash@minimal",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "tie",
+   "reason": "Both calm the candidate and then ask only the schedule question, in short, natural Mexican Spanish with usted, so neither one is better.",
+   "cost_usd": 0.009408,
+   "input_tokens": 1142,
+   "output_tokens": 242
+  },
+  {
+   "case_id": "deescalate-es-mx-web",
+   "a": "mistralai/mistral-large-4-0",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "B",
+   "reason": "Both calm the candidate and ask for the schedule in usted, but B is shorter and simpler, which the simplify flag asks for, and \"le acomoda\" sounds naturally Mexican.",
+   "cost_usd": 0.009116,
+   "input_tokens": 1144,
+   "output_tokens": 227
+  },
+  {
+   "case_id": "deescalate-es-mx-web",
+   "a": "moonshotai/kimi-k2.6",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "B",
+   "reason": "Both calm the candidate correctly and use usted, but B is shorter and simpler, which fits the simplify flag, and \"le acomoda\" sounds naturally Mexican.",
+   "cost_usd": 0.009616,
+   "input_tokens": 1144,
+   "output_tokens": 252
+  },
+  {
+   "case_id": "deescalate-es-mx-web",
+   "a": "x-ai/grok-4.6",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "B",
+   "reason": "Both calm the candidate and ask about schedule, but B is shorter and simpler, uses natural Mexican usted wording (\"le acomoda\"), and avoids A's run-on sentence.",
+   "cost_usd": 0.009484,
+   "input_tokens": 1146,
+   "output_tokens": 245
+  },
+  {
+   "case_id": "deescalate-en-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "z-ai/glm-5.3-flash@minimal",
+   "winner": "A",
+   "reason": "A names the candidate's frustration and asks clearly where they live, while B's \"are you in\" could be read as where they are right now.",
+   "cost_usd": 0.009944,
+   "input_tokens": 1071,
+   "output_tokens": 283
+  },
+  {
+   "case_id": "deescalate-en-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "mistralai/mistral-large-4-0",
+   "winner": "B",
+   "reason": "Both calm the candidate and then ask for the city correctly, but B is shorter and simpler, which fits the simplify flag better.",
+   "cost_usd": 0.008368,
+   "input_tokens": 1072,
+   "output_tokens": 204
+  },
+  {
+   "case_id": "deescalate-en-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "moonshotai/kimi-k2.6",
+   "winner": "A",
+   "reason": "Both messages are correct, but A sounds more natural and calms the candidate better by promising to keep it quick before asking for the city.",
+   "cost_usd": 0.009148,
+   "input_tokens": 1067,
+   "output_tokens": 244
+  },
+  {
+   "case_id": "deescalate-en-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "x-ai/grok-4.6",
+   "winner": "A",
+   "reason": "A actually calms the candidate down by acknowledging the frustration and promising to keep it quick before asking for the city, while B skips most of the de-escalation step.",
+   "cost_usd": 0.008788,
+   "input_tokens": 1062,
+   "output_tokens": 227
+  },
+  {
+   "case_id": "deescalate-en-web",
+   "a": "z-ai/glm-5.3-flash@minimal",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "A",
+   "reason": "A calms the candidate and asks for the city just as well as B, and it's shorter and plainer, which fits the simplify flag.",
+   "cost_usd": 0.008764,
+   "input_tokens": 1071,
+   "output_tokens": 224
+  },
+  {
+   "case_id": "deescalate-en-web",
+   "a": "mistralai/mistral-large-4-0",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "B",
+   "reason": "Both are correct, but B names the frustration in plain words, which calms the candidate better while staying short and simple.",
+   "cost_usd": 0.009988,
+   "input_tokens": 1072,
+   "output_tokens": 285
+  },
+  {
+   "case_id": "deescalate-en-web",
+   "a": "moonshotai/kimi-k2.6",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "A",
+   "reason": "Both calm the candidate and ask for the city correctly, but A is shorter and simpler, which fits the simplify flag better.",
+   "cost_usd": 0.009408,
+   "input_tokens": 1067,
+   "output_tokens": 257
+  },
+  {
+   "case_id": "deescalate-en-web",
+   "a": "x-ai/grok-4.6",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "B",
+   "reason": "B acknowledges the candidate's frustration and promises to keep it quick before asking for the city, while A barely does the de-escalation step.",
+   "cost_usd": 0.008148,
+   "input_tokens": 1062,
+   "output_tokens": 195
+  },
+  {
+   "case_id": "pause-es-es-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "z-ai/glm-5.3-flash@minimal",
+   "winner": "A",
+   "reason": "Both are correct and use natural Spain tú, but A's closing question names the pause outright, which makes the offer slightly clearer.",
+   "cost_usd": 0.01032,
+   "input_tokens": 1060,
+   "output_tokens": 304
+  },
+  {
+   "case_id": "pause-es-es-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "mistralai/mistral-large-4-0",
+   "winner": "B",
+   "reason": "Both offer the pause correctly in Spain-style tú, but B does it in one shorter question, which suits the simplify flag better.",
+   "cost_usd": 0.007664,
+   "input_tokens": 1046,
+   "output_tokens": 174
+  },
+  {
+   "case_id": "pause-es-es-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "moonshotai/kimi-k2.6",
+   "winner": "A",
+   "reason": "Both offer the pause correctly using tú, but A's \"¿Hacemos una pausa?\" sounds slightly more natural in Spain than the clipped \"¿Hacemos pausa?\".",
+   "cost_usd": 0.009816,
+   "input_tokens": 1064,
+   "output_tokens": 278
+  },
+  {
+   "case_id": "pause-es-es-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "x-ai/grok-4.6",
+   "winner": "A",
+   "reason": "A offers the pause and ends with a clear question, as the reference does, while B never asks the candidate whether they want to stop.",
+   "cost_usd": 0.007828,
+   "input_tokens": 1052,
+   "output_tokens": 181
+  },
+  {
+   "case_id": "pause-es-es-web",
+   "a": "z-ai/glm-5.3-flash@minimal",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "B",
+   "reason": "Both are correct and natural Spain Spanish, but B's closing question names the pause outright, so the offer is clearer.",
+   "cost_usd": 0.00902,
+   "input_tokens": 1060,
+   "output_tokens": 239
+  },
+  {
+   "case_id": "pause-es-es-web",
+   "a": "mistralai/mistral-large-4-0",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "A",
+   "reason": "Both offer the pause correctly in Spain Spanish with tú, but A does it in one short question, which fits the simplify flag better than B's longer, repetitive wording.",
+   "cost_usd": 0.008304,
+   "input_tokens": 1046,
+   "output_tokens": 206
+  },
+  {
+   "case_id": "pause-es-es-web",
+   "a": "moonshotai/kimi-k2.6",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "B",
+   "reason": "Both are correct and use tú, but B's \"¿Hacemos una pausa?\" sounds more natural in Spain Spanish than \"¿Hacemos pausa?\".",
+   "cost_usd": 0.009156,
+   "input_tokens": 1064,
+   "output_tokens": 245
+  },
+  {
+   "case_id": "pause-es-es-web",
+   "a": "x-ai/grok-4.6",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "B",
+   "reason": "B makes the full pause offer and ends with a clear question, as the reference does, while A gives the candidate nothing to answer.",
+   "cost_usd": 0.008028,
+   "input_tokens": 1052,
+   "output_tokens": 191
+  },
+  {
+   "case_id": "pause-es-mx-voice",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "z-ai/glm-5.3-flash@minimal",
+   "winner": "B",
+   "reason": "Both are correct and use usted, but B offers the pause in one smooth question that sounds more natural on a voice call.",
+   "cost_usd": 0.009068,
+   "input_tokens": 1037,
+   "output_tokens": 246
+  },
+  {
+   "case_id": "pause-es-mx-voice",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "mistralai/mistral-large-4-0",
+   "winner": "A",
+   "reason": "Both are correct and use usted, but A keeps the reassurance that the candidate picks up where they left off while staying short for voice.",
+   "cost_usd": 0.011032,
+   "input_tokens": 1028,
+   "output_tokens": 346
+  },
+  {
+   "case_id": "pause-es-mx-voice",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "moonshotai/kimi-k2.6",
+   "winner": "A",
+   "reason": "Both are correct and use usted, but A reads more naturally and says more clearly that the candidate picks up where they left off, while B awkwardly switches from \"pausamos\" to \"continúa\".",
+   "cost_usd": 0.012584,
+   "input_tokens": 1036,
+   "output_tokens": 422
+  },
+  {
+   "case_id": "pause-es-mx-voice",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "x-ai/grok-4.6",
+   "winner": "B",
+   "reason": "Both are correct and use usted, but B makes the pause offer in one short, simple voice question that leaves the choice to the candidate.",
+   "cost_usd": 0.009244,
+   "input_tokens": 1041,
+   "output_tokens": 254
+  },
+  {
+   "case_id": "pause-es-mx-voice",
+   "a": "z-ai/glm-5.3-flash@minimal",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "A",
+   "reason": "Both are correct and use usted, but A reads more naturally as one short question, while B has an awkward comma.",
+   "cost_usd": 0.009568,
+   "input_tokens": 1037,
+   "output_tokens": 271
+  },
+  {
+   "case_id": "pause-es-mx-voice",
+   "a": "mistralai/mistral-large-4-0",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "B",
+   "reason": "Both are correct, short and use usted, but B sounds warmer and more natural, and it reassures the candidate they'll pick up where they left off.",
+   "cost_usd": 0.008492,
+   "input_tokens": 1028,
+   "output_tokens": 219
+  },
+  {
+   "case_id": "pause-es-mx-voice",
+   "a": "moonshotai/kimi-k2.6",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "B",
+   "reason": "Both offer the pause correctly using usted, but B reads more smoothly, while A awkwardly switches from \"pausamos\" (we) to \"continúa\" (you).",
+   "cost_usd": 0.010184,
+   "input_tokens": 1036,
+   "output_tokens": 302
+  },
+  {
+   "case_id": "pause-es-mx-voice",
+   "a": "x-ai/grok-4.6",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "A",
+   "reason": "Both offer the pause correctly using usted, but A does it in one short, simple question, which fits the simplify flag better.",
+   "cost_usd": 0.010104,
+   "input_tokens": 1041,
+   "output_tokens": 297
+  },
+  {
+   "case_id": "pause-en-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "z-ai/glm-5.3-flash@minimal",
+   "winner": "B",
+   "reason": "B offers the pause clearly, while A opens with \"No problem,\" which answers a candidate message that doesn't exist.",
+   "cost_usd": 0.009464,
+   "input_tokens": 1001,
+   "output_tokens": 273
+  },
+  {
+   "case_id": "pause-en-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "mistralai/mistral-large-4-0",
+   "winner": "A",
+   "reason": "Both offer the pause correctly, but A does it in one short question, which fits the simplify request better than B's more repetitive two sentences.",
+   "cost_usd": 0.00796,
+   "input_tokens": 1000,
+   "output_tokens": 198
+  },
+  {
+   "case_id": "pause-en-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "moonshotai/kimi-k2.6",
+   "winner": "A",
+   "reason": "A ends on its one question, while B asks first and then keeps going, which breaks the question-last rule.",
+   "cost_usd": 0.008248,
+   "input_tokens": 997,
+   "output_tokens": 213
+  },
+  {
+   "case_id": "pause-en-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "x-ai/grok-4.6",
+   "winner": "A",
+   "reason": "A actually offers the pause by asking one clear question at the end, while B only states that pausing is possible and doesn't invite a reply.",
+   "cost_usd": 0.009248,
+   "input_tokens": 987,
+   "output_tokens": 265
+  },
+  {
+   "case_id": "pause-en-web",
+   "a": "z-ai/glm-5.3-flash@minimal",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "A",
+   "reason": "Message A offers the pause plainly, while B starts with \"No problem\" even though the candidate hasn't said anything.",
+   "cost_usd": 0.007824,
+   "input_tokens": 1001,
+   "output_tokens": 191
+  },
+  {
+   "case_id": "pause-en-web",
+   "a": "mistralai/mistral-large-4-0",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "B",
+   "reason": "Both make the pause offer correctly, but B says it in fewer, plainer words, which fits the simplify flag better.",
+   "cost_usd": 0.00808,
+   "input_tokens": 1000,
+   "output_tokens": 204
+  },
+  {
+   "case_id": "pause-en-web",
+   "a": "moonshotai/kimi-k2.6",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "B",
+   "reason": "B offers the pause simply and ends on its only question, while A asks its question first, against the rule that the question comes last.",
+   "cost_usd": 0.008468,
+   "input_tokens": 997,
+   "output_tokens": 224
+  },
+  {
+   "case_id": "pause-en-web",
+   "a": "x-ai/grok-4.6",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "B",
+   "reason": "B makes the pause a real offer by ending with one short question, while A just states that a pause is possible and never asks.",
+   "cost_usd": 0.009128,
+   "input_tokens": 987,
+   "output_tokens": 259
+  },
+  {
+   "case_id": "confirm-es-es-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "z-ai/glm-5.3-flash@minimal",
+   "winner": "B",
+   "reason": "B uses Spain's \"carnet\", while A uses the Mexican \"licencia de conducir\" for a candidate in Spain.",
+   "cost_usd": 0.0099,
+   "input_tokens": 1270,
+   "output_tokens": 241
+  },
+  {
+   "case_id": "confirm-es-es-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "mistralai/mistral-large-4-0",
+   "winner": "B",
+   "reason": "B uses the Spanish word \"carnet\", while A says \"licencia de conducir\", which is Mexican vocabulary and wrong for a candidate in Spain.",
+   "cost_usd": 0.009068,
+   "input_tokens": 1277,
+   "output_tokens": 198
+  },
+  {
+   "case_id": "confirm-es-es-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "moonshotai/kimi-k2.6",
+   "winner": "A",
+   "reason": "A gives the profile summary the confirm_summary action asks for, though it says \"licencia\" where Spain uses \"carnet\", while B skips the summary and asks for a phone number instead.",
+   "cost_usd": 0.009244,
+   "input_tokens": 1206,
+   "output_tokens": 221
+  },
+  {
+   "case_id": "confirm-es-es-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "x-ai/grok-4.6",
+   "winner": "B",
+   "reason": "B is short and correct, while A uses Mexican words like \"licencia\" and \"sucursal\" for a candidate in Spain and runs longer than needed.",
+   "cost_usd": 0.010812,
+   "input_tokens": 1188,
+   "output_tokens": 303
+  },
+  {
+   "case_id": "confirm-es-es-web",
+   "a": "z-ai/glm-5.3-flash@minimal",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "A",
+   "reason": "A uses the Spain term \"carnet\", but B uses the Mexican \"licencia de conducir\" with a candidate in Spain.",
+   "cost_usd": 0.009,
+   "input_tokens": 1270,
+   "output_tokens": 196
+  },
+  {
+   "case_id": "confirm-es-es-web",
+   "a": "mistralai/mistral-large-4-0",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "A",
+   "reason": "Both summaries are accurate, but A says \"carnet\" as Spain requires, while B uses the Mexican term \"licencia de conducir\".",
+   "cost_usd": 0.008708,
+   "input_tokens": 1277,
+   "output_tokens": 180
+  },
+  {
+   "case_id": "confirm-es-es-web",
+   "a": "moonshotai/kimi-k2.6",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "B",
+   "reason": "B does the confirm_summary that was asked for, though it says \"licencia\" where Spain would say \"carnet\" and runs long, while A skips the summary and asks for a phone number instead.",
+   "cost_usd": 0.008804,
+   "input_tokens": 1206,
+   "output_tokens": 199
+  },
+  {
+   "case_id": "confirm-es-es-web",
+   "a": "x-ai/grok-4.6",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "A",
+   "reason": "A matches the reference and stays short, while B is long and uses Mexican words (\"licencia\", \"sucursal\") for a candidate in Spain.",
+   "cost_usd": 0.010512,
+   "input_tokens": 1188,
+   "output_tokens": 288
+  },
+  {
+   "case_id": "confirm-es-mx-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "z-ai/glm-5.3-flash@minimal",
+   "winner": "B",
+   "reason": "B sums up the profile accurately, while A's \"licencia vigente\" claims the licence is valid, which the profile doesn't say.",
+   "cost_usd": 0.012012,
+   "input_tokens": 1263,
+   "output_tokens": 348
+  },
+  {
+   "case_id": "confirm-es-mx-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "mistralai/mistral-large-4-0",
+   "winner": "A",
+   "reason": "A addresses the Mexican candidate as usted, as Mexico requires, while B uses tú and wrongly calls Jorge \"lista\" in the feminine.",
+   "cost_usd": 0.00924,
+   "input_tokens": 1255,
+   "output_tokens": 211
+  },
+  {
+   "case_id": "confirm-es-mx-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "moonshotai/kimi-k2.6",
+   "winner": "A",
+   "reason": "A uses usted as Mexico requires and summarizes the profile accurately, while B uses tú and makes up a \"lunes a sábado\" schedule that isn't in the profile.",
+   "cost_usd": 0.008972,
+   "input_tokens": 1258,
+   "output_tokens": 197
+  },
+  {
+   "case_id": "confirm-es-mx-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "x-ai/grok-4.6",
+   "winner": "B",
+   "reason": "B matches the reference and stays short, while A is a long sentence that adds details the profile doesn't give, such as \"vigente\" and \"sucursal\".",
+   "cost_usd": 0.013228,
+   "input_tokens": 1187,
+   "output_tokens": 424
+  },
+  {
+   "case_id": "confirm-es-mx-web",
+   "a": "z-ai/glm-5.3-flash@minimal",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "A",
+   "reason": "B adds facts the profile doesn't support: it calls the licence \"vigente\" and says all two years of experience were with Rappi, while A sticks to the data.",
+   "cost_usd": 0.011692,
+   "input_tokens": 1263,
+   "output_tokens": 332
+  },
+  {
+   "case_id": "confirm-es-mx-web",
+   "a": "mistralai/mistral-large-4-0",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "B",
+   "reason": "B uses the usted form Mexico requires, while A says \"tus datos\" and calls Jorge \"lista\" instead of \"listo\".",
+   "cost_usd": 0.0084,
+   "input_tokens": 1255,
+   "output_tokens": 169
+  },
+  {
+   "case_id": "confirm-es-mx-web",
+   "a": "moonshotai/kimi-k2.6",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "B",
+   "reason": "B uses usted as Mexico requires and states the profile accurately, while A uses tú and makes up a \"lunes a sábado\" schedule.",
+   "cost_usd": 0.008652,
+   "input_tokens": 1258,
+   "output_tokens": 181
+  },
+  {
+   "case_id": "confirm-es-mx-web",
+   "a": "x-ai/grok-4.6",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "A",
+   "reason": "A is short and matches the reference, while B is a long list that adds the unsupported claim that the license is \"vigente\" (currently valid).",
+   "cost_usd": 0.011908,
+   "input_tokens": 1187,
+   "output_tokens": 358
+  },
+  {
+   "case_id": "confirm-en-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "z-ai/glm-5.3-flash@minimal",
+   "winner": "A",
+   "reason": "A gives the full start date, 26 October 2026, while B drops the year, so A's summary is more complete.",
+   "cost_usd": 0.009156,
+   "input_tokens": 1199,
+   "output_tokens": 218
+  },
+  {
+   "case_id": "confirm-en-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "mistralai/mistral-large-4-0",
+   "winner": "B",
+   "reason": "Both summaries are correct, but B reads as natural sentences while A's \"driving licence yes\" sounds like a robotic list.",
+   "cost_usd": 0.010424,
+   "input_tokens": 1211,
+   "output_tokens": 279
+  },
+  {
+   "case_id": "confirm-en-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "moonshotai/kimi-k2.6",
+   "winner": "A",
+   "reason": "Both summaries are accurate, but A reads more naturally and warmly, while B uses stiff field labels like \"platforms Uber Eats\" and leaves the apostrophe out of \"years experience\".",
+   "cost_usd": 0.010356,
+   "input_tokens": 1209,
+   "output_tokens": 276
+  },
+  {
+   "case_id": "confirm-en-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "x-ai/grok-4.6",
+   "winner": "B",
+   "reason": "B is short and matches the reference, while A crams the whole profile into one long sentence that breaks the brevity rule.",
+   "cost_usd": 0.01198,
+   "input_tokens": 1145,
+   "output_tokens": 370
+  },
+  {
+   "case_id": "confirm-en-web",
+   "a": "z-ai/glm-5.3-flash@minimal",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "A",
+   "reason": "Both summaries are accurate, but A flows more naturally without B's needless mid-conversation \"Hi\" greeting.",
+   "cost_usd": 0.011396,
+   "input_tokens": 1199,
+   "output_tokens": 330
+  },
+  {
+   "case_id": "confirm-en-web",
+   "a": "mistralai/mistral-large-4-0",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "A",
+   "reason": "Both give the same correct summary, but A reads like natural, warm speech, while B is a clipped, list-like run of fragments.",
+   "cost_usd": 0.008644,
+   "input_tokens": 1211,
+   "output_tokens": 190
+  },
+  {
+   "case_id": "confirm-en-web",
+   "a": "moonshotai/kimi-k2.6",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "B",
+   "reason": "Both summaries are correct, but B is more concise and reads more cleanly than A's awkward phrasing.",
+   "cost_usd": 0.014436,
+   "input_tokens": 1209,
+   "output_tokens": 480
+  },
+  {
+   "case_id": "confirm-en-web",
+   "a": "x-ai/grok-4.6",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "A",
+   "reason": "A matches the reference action in two short sentences, while B packs in a long list and a location label it inferred from the ID, which breaks the brevity rule.",
+   "cost_usd": 0.01126,
+   "input_tokens": 1145,
+   "output_tokens": 334
+  },
+  {
+   "case_id": "slots-es-es-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "z-ai/glm-5.3-flash@minimal",
+   "winner": "B",
+   "reason": "Both are correct, but B gives the same three slots more briefly and naturally, and weekday plus day number is still unambiguous.",
+   "cost_usd": 0.012976,
+   "input_tokens": 1504,
+   "output_tokens": 348
+  },
+  {
+   "case_id": "slots-es-es-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "mistralai/mistral-large-4-0",
+   "winner": "A",
+   "reason": "A gives all three slots plus the full address, while B leaves out the street address and opens with \"¡Perfecto!\" even though the candidate hasn't said anything.",
+   "cost_usd": 0.009352,
+   "input_tokens": 1508,
+   "output_tokens": 166
+  },
+  {
+   "case_id": "slots-es-es-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "moonshotai/kimi-k2.6",
+   "winner": "A",
+   "reason": "A keeps the full street address and the month from the slots, while B leaves both out, so A gives the candidate everything they need to choose.",
+   "cost_usd": 0.010508,
+   "input_tokens": 1487,
+   "output_tokens": 228
+  },
+  {
+   "case_id": "slots-es-es-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "x-ai/grok-4.6",
+   "winner": "A",
+   "reason": "A gives the interview address and reads the times more clearly, while B leaves the location out.",
+   "cost_usd": 0.008744,
+   "input_tokens": 1481,
+   "output_tokens": 141
+  },
+  {
+   "case_id": "slots-es-es-web",
+   "a": "z-ai/glm-5.3-flash@minimal",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "A",
+   "reason": "Both offer the right slots in correct Spain tú register, but A is shorter and more natural, and the dates stay clear without repeating \"de octubre\".",
+   "cost_usd": 0.013516,
+   "input_tokens": 1504,
+   "output_tokens": 375
+  },
+  {
+   "case_id": "slots-es-es-web",
+   "a": "mistralai/mistral-large-4-0",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "B",
+   "reason": "B gives the full interview address and skips A's \"¡Perfecto!\", which makes no sense when the candidate hasn't said anything.",
+   "cost_usd": 0.009372,
+   "input_tokens": 1508,
+   "output_tokens": 167
+  },
+  {
+   "case_id": "slots-es-es-web",
+   "a": "moonshotai/kimi-k2.6",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "B",
+   "reason": "B keeps the full address and the dates with the month, while A leaves out where to go and which month, and B is still two natural sentences.",
+   "cost_usd": 0.009868,
+   "input_tokens": 1487,
+   "output_tokens": 196
+  },
+  {
+   "case_id": "slots-es-es-web",
+   "a": "x-ai/grok-4.6",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "B",
+   "reason": "B gives the interview address, which A leaves out, and adding \"a las\" makes the times easier to read.",
+   "cost_usd": 0.008664,
+   "input_tokens": 1481,
+   "output_tokens": 137
+  },
+  {
+   "case_id": "slots-es-mx-voice",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "z-ai/glm-5.3-flash@minimal",
+   "winner": "A",
+   "reason": "Both leave out the location, but B's \"tengo hueco\" is Spain vocabulary in a Mexico conversation, while A sounds natural and is a bit shorter.",
+   "cost_usd": 0.010616,
+   "input_tokens": 1284,
+   "output_tokens": 274
+  },
+  {
+   "case_id": "slots-es-mx-voice",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "mistralai/mistral-large-4-0",
+   "winner": "B",
+   "reason": "B says the slots are for the interview in Zapopan and reads the times naturally for voice, while A leaves out the location completely.",
+   "cost_usd": 0.011036,
+   "input_tokens": 1284,
+   "output_tokens": 295
+  },
+  {
+   "case_id": "slots-es-mx-voice",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "moonshotai/kimi-k2.6",
+   "winner": "B",
+   "reason": "B gives both slots plus the interview location in correct Mexican usted, while A leaves out the location, even though B runs long for voice.",
+   "cost_usd": 0.012048,
+   "input_tokens": 1322,
+   "output_tokens": 338
+  },
+  {
+   "case_id": "slots-es-mx-voice",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "x-ai/grok-4.6",
+   "winner": "A",
+   "reason": "A gives both slots with the month included and stays close to the voice word limit, while B also leaves out the month.",
+   "cost_usd": 0.014332,
+   "input_tokens": 1268,
+   "output_tokens": 463
+  },
+  {
+   "case_id": "slots-es-mx-voice",
+   "a": "z-ai/glm-5.3-flash@minimal",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "B",
+   "reason": "A uses \"hueco\", which is Spain vocabulary, while B offers both slots in neutral Mexican usted register.",
+   "cost_usd": 0.009056,
+   "input_tokens": 1284,
+   "output_tokens": 196
+  },
+  {
+   "case_id": "slots-es-mx-voice",
+   "a": "mistralai/mistral-large-4-0",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "A",
+   "reason": "A says what the slots are for and where (the interview in Zapopan), and it writes the times out in words, which works better on a voice call; B leaves out both the purpose and the location.",
+   "cost_usd": 0.010296,
+   "input_tokens": 1284,
+   "output_tokens": 258
+  },
+  {
+   "case_id": "slots-es-mx-voice",
+   "a": "moonshotai/kimi-k2.6",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "A",
+   "reason": "A gives the interview location and both slots in voice-friendly wording, while B is shorter but leaves out where the interview is.",
+   "cost_usd": 0.011248,
+   "input_tokens": 1322,
+   "output_tokens": 298
+  },
+  {
+   "case_id": "slots-es-mx-voice",
+   "a": "x-ai/grok-4.6",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "A",
+   "reason": "Both offer the same two slots in usted and leave out the location, but A fits the roughly 15-word voice limit while B runs to about 21 words.",
+   "cost_usd": 0.013932,
+   "input_tokens": 1268,
+   "output_tokens": 443
+  },
+  {
+   "case_id": "slots-en-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "z-ai/glm-5.3-flash@minimal",
+   "winner": "A",
+   "reason": "Both offer the right slots, but A stays within two sentences, while B adds an unneeded opener that makes it three.",
+   "cost_usd": 0.009492,
+   "input_tokens": 1388,
+   "output_tokens": 197
+  },
+  {
+   "case_id": "slots-en-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "mistralai/mistral-large-4-0",
+   "winner": "tie",
+   "reason": "The two messages are the same except \"three\" versus \"these\", and both list all three correct slots and end with one question.",
+   "cost_usd": 0.00752,
+   "input_tokens": 1375,
+   "output_tokens": 101
+  },
+  {
+   "case_id": "slots-en-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "moonshotai/kimi-k2.6",
+   "winner": "tie",
+   "reason": "The two are basically the same: each gives all three slots correctly in English in two sentences and ends with one question.",
+   "cost_usd": 0.007536,
+   "input_tokens": 1374,
+   "output_tokens": 102
+  },
+  {
+   "case_id": "slots-en-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "x-ai/grok-4.6",
+   "winner": "A",
+   "reason": "A gives the interview location from the action, which B leaves out, and A's time wording is also clearer.",
+   "cost_usd": 0.007716,
+   "input_tokens": 1354,
+   "output_tokens": 115
+  },
+  {
+   "case_id": "slots-en-web",
+   "a": "z-ai/glm-5.3-flash@minimal",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "B",
+   "reason": "Both offer the right slots correctly, but A's added \"Great, we're nearly there!\" makes it three sentences, while B stays within two and reads more naturally.",
+   "cost_usd": 0.009572,
+   "input_tokens": 1388,
+   "output_tokens": 201
+  },
+  {
+   "case_id": "slots-en-web",
+   "a": "mistralai/mistral-large-4-0",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "tie",
+   "reason": "Both messages give the same three correct slots and the location, use natural English and end with one question; the only difference is \"these\" versus \"three\".",
+   "cost_usd": 0.00894,
+   "input_tokens": 1375,
+   "output_tokens": 172
+  },
+  {
+   "case_id": "slots-en-web",
+   "a": "moonshotai/kimi-k2.6",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "tie",
+   "reason": "The two messages are basically the same: both offer the three slots correctly in English, in two sentences, and end with one question.",
+   "cost_usd": 0.008676,
+   "input_tokens": 1374,
+   "output_tokens": 159
+  },
+  {
+   "case_id": "slots-en-web",
+   "a": "x-ai/grok-4.6",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "B",
+   "reason": "B gives the interview location from the action, which A leaves out, and it reads more naturally.",
+   "cost_usd": 0.007736,
+   "input_tokens": 1354,
+   "output_tokens": 116
+  },
+  {
+   "case_id": "reengage-es-es-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "z-ai/glm-5.3-flash@minimal",
+   "winner": "A",
+   "reason": "Both are correct and use tú, but A is shorter and quicker and still sounds warm, while B adds filler.",
+   "cost_usd": 0.009324,
+   "input_tokens": 1171,
+   "output_tokens": 232
+  },
+  {
+   "case_id": "reengage-es-es-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "mistralai/mistral-large-4-0",
+   "winner": "tie",
+   "reason": "no call: missing or identical reply"
+  },
+  {
+   "case_id": "reengage-es-es-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "moonshotai/kimi-k2.6",
+   "winner": "A",
+   "reason": "A re-engages Lucía and asks only one question, at the end, while B asks two questions.",
+   "cost_usd": 0.006948,
+   "input_tokens": 1157,
+   "output_tokens": 116
+  },
+  {
+   "case_id": "reengage-es-es-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "x-ai/grok-4.6",
+   "winner": "A",
+   "reason": "Both are correct and identical otherwise, but A greets Lucía by name, which makes it warmer and more natural.",
+   "cost_usd": 0.007956,
+   "input_tokens": 1149,
+   "output_tokens": 168
+  },
+  {
+   "case_id": "reengage-es-es-web",
+   "a": "z-ai/glm-5.3-flash@minimal",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "B",
+   "reason": "Both are correct and use tú, but B makes the same re-engagement and schedule question more briefly and naturally, without A's extra filler.",
+   "cost_usd": 0.011964,
+   "input_tokens": 1171,
+   "output_tokens": 364
+  },
+  {
+   "case_id": "reengage-es-es-web",
+   "a": "mistralai/mistral-large-4-0",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "tie",
+   "reason": "no call: missing or identical reply"
+  },
+  {
+   "case_id": "reengage-es-es-web",
+   "a": "moonshotai/kimi-k2.6",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "B",
+   "reason": "B re-engages Lucía with one question at the end, while A asks two questions.",
+   "cost_usd": 0.007188,
+   "input_tokens": 1157,
+   "output_tokens": 128
+  },
+  {
+   "case_id": "reengage-es-es-web",
+   "a": "x-ai/grok-4.6",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "B",
+   "reason": "Both messages are the same and both are correct, but B greets Lucía by name, which makes it warmer.",
+   "cost_usd": 0.007816,
+   "input_tokens": 1149,
+   "output_tokens": 161
+  },
+  {
+   "case_id": "reengage-es-mx-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "z-ai/glm-5.3-flash@minimal",
+   "winner": "A",
+   "reason": "Both re-engage correctly in usted, but B runs to three sentences, and A stays within the two-sentence limit and still sounds warm.",
+   "cost_usd": 0.008544,
+   "input_tokens": 1156,
+   "output_tokens": 196
+  },
+  {
+   "case_id": "reengage-es-mx-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "mistralai/mistral-large-4-0",
+   "winner": "A",
+   "reason": "A uses usted the whole way through, as Mexico requires, while B switches between \"tu solicitud\" and \"tiene\".",
+   "cost_usd": 0.00762,
+   "input_tokens": 1145,
+   "output_tokens": 152
+  },
+  {
+   "case_id": "reengage-es-mx-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "moonshotai/kimi-k2.6",
+   "winner": "A",
+   "reason": "A sticks to the reference's \"pocas preguntas,\" while B's \"un par de preguntas\" claims an exact number of remaining questions that nothing in the action supports.",
+   "cost_usd": 0.007996,
+   "input_tokens": 1134,
+   "output_tokens": 173
+  },
+  {
+   "case_id": "reengage-es-mx-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "x-ai/grok-4.6",
+   "winner": "A",
+   "reason": "Both are correct and use usted, but A is warmer because it uses Jorge's name, and it asks for years, which matches the experience_years field.",
+   "cost_usd": 0.007736,
+   "input_tokens": 1124,
+   "output_tokens": 162
+  },
+  {
+   "case_id": "reengage-es-mx-web",
+   "a": "z-ai/glm-5.3-flash@minimal",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "B",
+   "reason": "Both messages are correct and use usted, but B keeps to two short sentences while A uses three.",
+   "cost_usd": 0.008024,
+   "input_tokens": 1156,
+   "output_tokens": 170
+  },
+  {
+   "case_id": "reengage-es-mx-web",
+   "a": "mistralai/mistral-large-4-0",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "B",
+   "reason": "B keeps to usted all the way through, as Mexico requires, while A slips into tú with \"tu solicitud.\"",
+   "cost_usd": 0.00738,
+   "input_tokens": 1145,
+   "output_tokens": 140
+  },
+  {
+   "case_id": "reengage-es-mx-web",
+   "a": "moonshotai/kimi-k2.6",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "B",
+   "reason": "B's \"pocas preguntas\" sticks to the reference, while A's \"un par\" claims a number of remaining questions that the action never gives.",
+   "cost_usd": 0.008216,
+   "input_tokens": 1134,
+   "output_tokens": 184
+  },
+  {
+   "case_id": "reengage-es-mx-web",
+   "a": "x-ai/grok-4.6",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "B",
+   "reason": "Both are correct and use usted, but B is warmer because it uses Jorge's name, and it asks for years of experience, which matches the experience_years field exactly.",
+   "cost_usd": 0.008196,
+   "input_tokens": 1124,
+   "output_tokens": 185
+  },
+  {
+   "case_id": "reengage-en-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "z-ai/glm-5.3-flash@minimal",
+   "winner": "A",
+   "reason": "Both are correct, but A follows the reference by telling Sam only a few questions are left, which gives a clearer reason to come back than B's generic \"friendly nudge\".",
+   "cost_usd": 0.008728,
+   "input_tokens": 1062,
+   "output_tokens": 224
+  },
+  {
+   "case_id": "reengage-en-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "mistralai/mistral-large-4-0",
+   "winner": "tie",
+   "reason": "Both messages are the same apart from \"Hi\" versus \"Hey\", and both re-engage Sam correctly before asking the start date.",
+   "cost_usd": 0.00708,
+   "input_tokens": 1060,
+   "output_tokens": 142
+  },
+  {
+   "case_id": "reengage-en-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "moonshotai/kimi-k2.6",
+   "winner": "A",
+   "reason": "A tells Sam only a few questions remain, as the reference does, which is a better reason to come back than B's vaguer \"friendly nudge.\"",
+   "cost_usd": 0.008572,
+   "input_tokens": 1063,
+   "output_tokens": 216
+  },
+  {
+   "case_id": "reengage-en-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "x-ai/grok-4.6",
+   "winner": "A",
+   "reason": "Both are correct, but A is warmer because it greets Sam and explains that the questions finish his application.",
+   "cost_usd": 0.007448,
+   "input_tokens": 1052,
+   "output_tokens": 162
+  },
+  {
+   "case_id": "reengage-en-web",
+   "a": "z-ai/glm-5.3-flash@minimal",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "B",
+   "reason": "B tells Sam only a few questions are left, which matches the reference, so it's more motivating than A's vague nudge.",
+   "cost_usd": 0.008048,
+   "input_tokens": 1062,
+   "output_tokens": 190
+  },
+  {
+   "case_id": "reengage-en-web",
+   "a": "mistralai/mistral-large-4-0",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "tie",
+   "reason": "The two messages match word for word except for \"Hey\" versus \"Hi\", and both re-engage Sam correctly and ask for the start date.",
+   "cost_usd": 0.00788,
+   "input_tokens": 1060,
+   "output_tokens": 182
+  },
+  {
+   "case_id": "reengage-en-web",
+   "a": "moonshotai/kimi-k2.6",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "B",
+   "reason": "Both are correct, but B's \"just a few questions left\" follows the reference and gives a more motivating reason to finish than A's generic \"friendly nudge.\"",
+   "cost_usd": 0.008832,
+   "input_tokens": 1063,
+   "output_tokens": 229
+  },
+  {
+   "case_id": "reengage-en-web",
+   "a": "x-ai/grok-4.6",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "B",
+   "reason": "Both are correct and short, but B's greeting and its mention of finishing the application read as a warmer, more natural way to bring Sam back.",
+   "cost_usd": 0.008908,
+   "input_tokens": 1052,
+   "output_tokens": 235
+  }
+ ]
+}

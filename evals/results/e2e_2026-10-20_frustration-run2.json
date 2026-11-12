@@ -1,0 +1,2055 @@
+{
+ "meta": {
+  "date": "2026-10-20",
+  "combos": {
+   "A": {
+    "extractor": "google/gemini-3.5-flash-lite@minimal",
+    "responder": "anthropic/claude-haiku-5.5",
+    "summarizer": "anthropic/claude-haiku-5.5"
+   }
+  },
+  "simulator": "anthropic/claude-haiku-5.5",
+  "judge": "anthropic/claude-opus-5.5",
+  "judge_combos": null,
+  "repeat": 1,
+  "personas": [
+   "frustrated_pause",
+   "abusive_then_calm"
+  ],
+  "aborted": null,
+  "run_cost_usd": 0.065674,
+  "ledger_total_usd": 21.231415
+ },
+ "aggregates": {
+  "A": {
+   "conversations": 2,
+   "all_checks": 0.5,
+   "checks": {
+    "completed": 1.0,
+    "outcome": 1.0,
+    "fields": 1.0,
+    "message_length": 1.0,
+    "one_question": 1.0,
+    "language": 1.0,
+    "register": 1.0,
+    "no_emoji": 1.0,
+    "no_promises": 1.0,
+    "ai_disclosure": 1.0,
+    "real_slots": 1.0,
+    "no_fallback": 0.5,
+    "flags": 1.0
+   },
+   "outcome_accuracy": 1.0,
+   "field_accuracy": 1.0,
+   "language_accuracy": 1.0,
+   "fallbacks": 1,
+   "judge": {
+    "tone": 4,
+    "naturalness": 2.5,
+    "empathy": 3,
+    "staying_in_role": 4.5,
+    "brevity": 4.5,
+    "mean": 3.7
+   },
+   "avg_turns": 10.5,
+   "avg_cost_usd": 0.01392,
+   "simulator_cost_usd": 0.00631,
+   "judge_cost_usd": 0.03154,
+   "latency_p50_s": 1.592,
+   "latency_p95_s": 2.347
+  }
+ },
+ "conversations": [
+  {
+   "persona": "frustrated_pause",
+   "conversation_id": "48f6f5f103d34613904eb7df6e2b2175",
+   "resumed": false,
+   "outcome": "paused",
+   "disqualify_reason": null,
+   "booked": false,
+   "booking": null,
+   "talent_pool_opt_in": null,
+   "quality_flags": [
+    "frustration"
+   ],
+   "abuse_strikes": 0,
+   "final_language": "es",
+   "country": "MX",
+   "profile": {
+    "full_name": "Rosa Jiménez Cruz",
+    "phone": "+522221234514",
+    "email": "rosa.jimenez@example.com",
+    "has_license": true,
+    "location_id": "mx-pue-centro",
+    "availability": null,
+    "schedule": null,
+    "experience_years": null,
+    "platforms": null,
+    "platform_other": null,
+    "start_date": null,
+    "late_start_days": null,
+    "city": "Puebla",
+    "location_name": "Sazón Puebla"
+   },
+   "summary": null,
+   "faq_misses": [],
+   "turns": [
+    {
+     "speaker": "ana",
+     "text": "¡Hola! Soy Ana, asistente de IA de reclutamiento de Grupo Sazón. Sus datos se tratan según el aviso de privacidad que aparece aquí abajo. ¿Le parece si empezamos?",
+     "ui": {
+      "kind": "quick_replies",
+      "options": [
+       {
+        "value": "yes",
+        "label": "Sí"
+       },
+       {
+        "value": "no",
+        "label": "No"
+       }
+      ],
+      "link": {
+       "href": "/privacidad",
+       "label": "Leer el aviso de privacidad"
+      }
+     },
+     "action": {
+      "language": "es",
+      "country": "MX",
+      "simplify": false,
+      "ui": {
+       "kind": "quick_replies",
+       "options": [
+        {
+         "value": "yes",
+         "label": "Sí"
+        },
+        {
+         "value": "no",
+         "label": "No"
+        }
+       ],
+       "link": {
+        "href": "/privacidad",
+        "label": "Leer el aviso de privacidad"
+       }
+      },
+      "kind": "greet",
+      "ai_disclosure": true,
+      "privacy_notice": true,
+      "retry": 0
+     },
+     "fallback_used": false,
+     "sources": null,
+     "latency_s": 0.692
+    },
+    {
+     "speaker": "candidate",
+     "text": "Sí",
+     "sent": null,
+     "widget": true,
+     "scripted": false,
+     "move": {
+      "kind": "tap",
+      "value": "yes",
+      "matrix_language": "es"
+     },
+     "extraction": {
+      "intent": "confirm",
+      "fields": {},
+      "language": "es",
+      "matrix_language": "es",
+      "english_ratio": 0.0,
+      "explicit_language_request": null,
+      "code_switched": false,
+      "sentiment": "neutral",
+      "question": null,
+      "question_topic": null,
+      "slot": null
+     },
+     "latency_s": 0.626
+    },
+    {
+     "speaker": "ana",
+     "text": "¿Me comparte su nombre completo, por favor?",
+     "ui": null,
+     "action": {
+      "language": "es",
+      "country": "MX",
+      "simplify": false,
+      "ui": null,
+      "kind": "ask_field",
+      "field": "full_name",
+      "retry": 0,
+      "hint": null,
+      "options": []
+     },
+     "fallback_used": false,
+     "sources": null
+    },
+    {
+     "speaker": "candidate",
+     "text": "Rosa Jiménez Cruz",
+     "sent": "Rosa Jiménez Cruz",
+     "widget": false,
+     "scripted": false,
+     "move": {
+      "kind": "text",
+      "text": "Rosa Jiménez Cruz",
+      "matrix_language": "es"
+     },
+     "extraction": {
+      "intent": "answer",
+      "fields": {
+       "full_name": {
+        "value": "Rosa Jiménez Cruz",
+        "confidence": 1.0
+       }
+      },
+      "language": "es",
+      "matrix_language": "es",
+      "english_ratio": 0.0,
+      "explicit_language_request": null,
+      "code_switched": false,
+      "sentiment": "neutral",
+      "question": null,
+      "question_topic": null,
+      "slot": null
+     },
+     "latency_s": 1.829
+    },
+    {
+     "speaker": "ana",
+     "text": "Gracias, Rosa. ¿Cuál es su número de celular?",
+     "ui": {
+      "kind": "phone",
+      "countries": [
+       {
+        "code": "ES",
+        "dial": "+34",
+        "label": "ES +34"
+       },
+       {
+        "code": "MX",
+        "dial": "+52",
+        "label": "MX +52"
+       }
+      ],
+      "selected": "MX"
+     },
+     "action": {
+      "language": "es",
+      "country": "MX",
+      "simplify": false,
+      "ui": {
+       "kind": "phone",
+       "countries": [
+        {
+         "code": "ES",
+         "dial": "+34",
+         "label": "ES +34"
+        },
+        {
+         "code": "MX",
+         "dial": "+52",
+         "label": "MX +52"
+        }
+       ],
+       "selected": "MX"
+      },
+      "kind": "ask_field",
+      "field": "phone",
+      "retry": 0,
+      "hint": null,
+      "options": []
+     },
+     "fallback_used": false,
+     "sources": null
+    },
+    {
+     "speaker": "candidate",
+     "text": "2221234514",
+     "sent": "2221234514",
+     "widget": false,
+     "scripted": false,
+     "move": {
+      "kind": "text",
+      "text": "2221234514",
+      "matrix_language": "es"
+     },
+     "extraction": {
+      "intent": "answer",
+      "fields": {
+       "phone": {
+        "value": "2221234514",
+        "confidence": 1.0
+       }
+      },
+      "language": "es",
+      "matrix_language": "es",
+      "english_ratio": 0.0,
+      "explicit_language_request": null,
+      "code_switched": false,
+      "sentiment": "neutral",
+      "question": null,
+      "question_topic": null,
+      "slot": null
+     },
+     "latency_s": 1.281
+    },
+    {
+     "speaker": "ana",
+     "text": "¿Cuál es su correo electrónico?",
+     "ui": null,
+     "action": {
+      "language": "es",
+      "country": "MX",
+      "simplify": false,
+      "ui": null,
+      "kind": "ask_field",
+      "field": "email",
+      "retry": 0,
+      "hint": null,
+      "options": []
+     },
+     "fallback_used": false,
+     "sources": null
+    },
+    {
+     "speaker": "candidate",
+     "text": "rosa.jimenez@example.com",
+     "sent": "rosa.jimenez@example.com",
+     "widget": false,
+     "scripted": false,
+     "move": {
+      "kind": "text",
+      "text": "rosa.jimenez@example.com",
+      "matrix_language": "es"
+     },
+     "extraction": {
+      "intent": "answer",
+      "fields": {
+       "email": {
+        "value": "rosa.jimenez@example.com",
+        "confidence": 1.0
+       }
+      },
+      "language": "es",
+      "matrix_language": "es",
+      "english_ratio": 0.0,
+      "explicit_language_request": null,
+      "code_switched": false,
+      "sentiment": "neutral",
+      "question": null,
+      "question_topic": null,
+      "slot": null
+     },
+     "latency_s": 2.099
+    },
+    {
+     "speaker": "ana",
+     "text": "¿Tiene licencia de manejo vigente?",
+     "ui": null,
+     "action": {
+      "language": "es",
+      "country": "MX",
+      "simplify": false,
+      "ui": null,
+      "kind": "ask_field",
+      "field": "has_license",
+      "retry": 0,
+      "hint": null,
+      "options": []
+     },
+     "fallback_used": false,
+     "sources": null
+    },
+    {
+     "speaker": "candidate",
+     "text": "Sí, tengo licencia vigente.",
+     "sent": "Sí, tengo licencia vigente.",
+     "widget": false,
+     "scripted": false,
+     "move": {
+      "kind": "text",
+      "text": "Sí, tengo licencia vigente.",
+      "matrix_language": "es"
+     },
+     "extraction": {
+      "intent": "answer",
+      "fields": {
+       "has_license": {
+        "value": true,
+        "confidence": 1.0
+       }
+      },
+      "language": "es",
+      "matrix_language": "es",
+      "english_ratio": 0.0,
+      "explicit_language_request": null,
+      "code_switched": false,
+      "sentiment": "neutral",
+      "question": null,
+      "question_topic": null,
+      "slot": null
+     },
+     "latency_s": 1.555
+    },
+    {
+     "speaker": "ana",
+     "text": "Qué bien que tiene licencia vigente, Rosa. ¿En qué ciudad o colonia vive?",
+     "ui": null,
+     "action": {
+      "language": "es",
+      "country": "MX",
+      "simplify": false,
+      "ui": null,
+      "kind": "ask_field",
+      "field": "city",
+      "retry": 0,
+      "hint": null,
+      "options": []
+     },
+     "fallback_used": false,
+     "sources": null
+    },
+    {
+     "speaker": "candidate",
+     "text": "Centro Histórico, Puebla.",
+     "sent": "Centro Histórico, Puebla.",
+     "widget": false,
+     "scripted": false,
+     "move": {
+      "kind": "text",
+      "text": "Centro Histórico, Puebla.",
+      "matrix_language": "es"
+     },
+     "extraction": {
+      "intent": "answer",
+      "fields": {
+       "city": {
+        "value": "Puebla, Centro Histórico",
+        "confidence": 1.0
+       }
+      },
+      "language": "es",
+      "matrix_language": "es",
+      "english_ratio": 0.0,
+      "explicit_language_request": null,
+      "code_switched": false,
+      "sentiment": "neutral",
+      "question": null,
+      "question_topic": null,
+      "slot": null
+     },
+     "latency_s": 1.592
+    },
+    {
+     "speaker": "ana",
+     "text": "Gracias por el dato, Rosa. ¿Qué disponibilidad tiene: tiempo completo, medio tiempo o fines de semana?",
+     "ui": null,
+     "action": {
+      "language": "es",
+      "country": "MX",
+      "simplify": false,
+      "ui": null,
+      "kind": "ask_field",
+      "field": "availability",
+      "retry": 0,
+      "hint": null,
+      "options": []
+     },
+     "fallback_used": false,
+     "sources": null
+    },
+    {
+     "speaker": "candidate",
+     "text": "¿otra pregunta? esto es eterno",
+     "sent": "¿otra pregunta? esto es eterno",
+     "widget": false,
+     "scripted": false,
+     "move": {
+      "kind": "text",
+      "text": "¿otra pregunta? esto es eterno",
+      "matrix_language": "es"
+     },
+     "extraction": {
+      "intent": "answer",
+      "fields": {},
+      "language": "es",
+      "matrix_language": "es",
+      "english_ratio": 0.0,
+      "explicit_language_request": null,
+      "code_switched": false,
+      "sentiment": "frustrated",
+      "question": null,
+      "question_topic": null,
+      "slot": null
+     },
+     "latency_s": 2.612
+    },
+    {
+     "speaker": "ana",
+     "text": "¿Qué disponibilidad tiene: tiempo completo, medio tiempo o fines de semana?",
+     "ui": {
+      "kind": "multi_select",
+      "options": [
+       {
+        "value": "full_time",
+        "label": "Tiempo completo"
+       },
+       {
+        "value": "part_time",
+        "label": "Tiempo parcial"
+       },
+       {
+        "value": "weekends",
+        "label": "Fines de semana"
+       }
+      ],
+      "min": 1,
+      "max": null
+     },
+     "action": {
+      "language": "es",
+      "country": "MX",
+      "simplify": true,
+      "ui": {
+       "kind": "multi_select",
+       "options": [
+        {
+         "value": "full_time",
+         "label": "Tiempo completo"
+        },
+        {
+         "value": "part_time",
+         "label": "Tiempo parcial"
+        },
+        {
+         "value": "weekends",
+         "label": "Fines de semana"
+        }
+       ],
+       "min": 1,
+       "max": null
+      },
+      "kind": "ask_field",
+      "field": "availability",
+      "retry": 1,
+      "hint": null,
+      "options": [
+       "full_time",
+       "part_time",
+       "weekends"
+      ]
+     },
+     "fallback_used": false,
+     "sources": null
+    },
+    {
+     "speaker": "candidate",
+     "text": "ya me cansé, son demasiadas preguntas",
+     "sent": "ya me cansé, son demasiadas preguntas",
+     "widget": false,
+     "scripted": false,
+     "move": {
+      "kind": "text",
+      "text": "ya me cansé, son demasiadas preguntas",
+      "matrix_language": "es"
+     },
+     "extraction": {
+      "intent": "answer",
+      "fields": {},
+      "language": "es",
+      "matrix_language": "es",
+      "english_ratio": 0.0,
+      "explicit_language_request": null,
+      "code_switched": false,
+      "sentiment": "frustrated",
+      "question": null,
+      "question_topic": null,
+      "slot": null
+     },
+     "latency_s": 1.245
+    },
+    {
+     "speaker": "ana",
+     "text": "Entiendo, Rosa. ¿Prefiere que pausemos aquí y continuemos después desde donde nos quedamos?",
+     "ui": {
+      "kind": "quick_replies",
+      "options": [
+       {
+        "value": "yes",
+        "label": "Sí"
+       },
+       {
+        "value": "no",
+        "label": "No"
+       }
+      ],
+      "link": null
+     },
+     "action": {
+      "language": "es",
+      "country": "MX",
+      "simplify": true,
+      "ui": {
+       "kind": "quick_replies",
+       "options": [
+        {
+         "value": "yes",
+         "label": "Sí"
+        },
+        {
+         "value": "no",
+         "label": "No"
+        }
+       ],
+       "link": null
+      },
+      "kind": "offer_pause"
+     },
+     "fallback_used": false,
+     "sources": null
+    },
+    {
+     "speaker": "candidate",
+     "text": "Sí",
+     "sent": null,
+     "widget": true,
+     "scripted": false,
+     "move": {
+      "kind": "tap",
+      "value": "yes",
+      "matrix_language": "es"
+     },
+     "extraction": {
+      "intent": "confirm",
+      "fields": {},
+      "language": "es",
+      "matrix_language": "es",
+      "english_ratio": 0.0,
+      "explicit_language_request": null,
+      "code_switched": false,
+      "sentiment": "neutral",
+      "question": null,
+      "question_topic": null,
+      "slot": null
+     },
+     "latency_s": 0.454
+    },
+    {
+     "speaker": "ana",
+     "text": "Perfecto, lo dejamos aquí. Vuelva a este chat cuando guste y seguimos donde se quedó.",
+     "ui": null,
+     "action": {
+      "language": "es",
+      "country": "MX",
+      "simplify": false,
+      "ui": null,
+      "kind": "end",
+      "reason": "paused"
+     },
+     "fallback_used": false,
+     "sources": null
+    }
+   ],
+   "candidate_turns": 9,
+   "hit_turn_cap": false,
+   "error": null,
+   "offered_slots": [],
+   "invented_slots": [],
+   "fallback_count": 0,
+   "cost_usd": 0.01168,
+   "simulator_cost_usd": 0.002525,
+   "calls": [
+    {
+     "role": "responder",
+     "model": "anthropic/claude-haiku-5.5",
+     "latency_ms": 683,
+     "cost_usd": 0.0003222,
+     "fallback_used": false,
+     "error": null
+    },
+    {
+     "role": "responder",
+     "model": "anthropic/claude-haiku-5.5",
+     "latency_ms": 619,
+     "cost_usd": 0.0002865,
+     "fallback_used": false,
+     "error": null
+    },
+    {
+     "role": "extractor",
+     "model": "google/gemini-3.5-flash-lite",
+     "latency_ms": 785,
+     "cost_usd": 0.0011318,
+     "fallback_used": false,
+     "error": null
+    },
+    {
+     "role": "responder",
+     "model": "anthropic/claude-haiku-5.5",
+     "latency_ms": 1040,
+     "cost_usd": 0.0002908,
+     "fallback_used": false,
+     "error": null
+    },
+    {
+     "role": "extractor",
+     "model": "google/gemini-3.5-flash-lite",
+     "latency_ms": 707,
+     "cost_usd": 0.0012805,
+     "fallback_used": false,
+     "error": null
+    },
+    {
+     "role": "responder",
+     "model": "anthropic/claude-haiku-5.5",
+     "latency_ms": 568,
+     "cost_usd": 0.0002852,
+     "fallback_used": false,
+     "error": null
+    },
+    {
+     "role": "extractor",
+     "model": "google/gemini-3.5-flash-lite",
+     "latency_ms": 1398,
+     "cost_usd": 0.0012698,
+     "fallback_used": false,
+     "error": null
+    },
+    {
+     "role": "responder",
+     "model": "anthropic/claude-haiku-5.5",
+     "latency_ms": 695,
+     "cost_usd": 0.0002877,
+     "fallback_used": false,
+     "error": null
+    },
+    {
+     "role": "extractor",
+     "model": "google/gemini-3.5-flash-lite",
+     "latency_ms": 889,
+     "cost_usd": 0.001256,
+     "fallback_used": false,
+     "error": null
+    },
+    {
+     "role": "responder",
+     "model": "anthropic/claude-haiku-5.5",
+     "latency_ms": 662,
+     "cost_usd": 0.000298,
+     "fallback_used": false,
+     "error": null
+    },
+    {
+     "role": "extractor",
+     "model": "google/gemini-3.5-flash-lite",
+     "latency_ms": 1033,
+     "cost_usd": 0.0012175,
+     "fallback_used": false,
+     "error": null
+    },
+    {
+     "role": "responder",
+     "model": "anthropic/claude-haiku-5.5",
+     "latency_ms": 554,
+     "cost_usd": 0.0003059,
+     "fallback_used": false,
+     "error": null
+    },
+    {
+     "role": "extractor",
+     "model": "google/gemini-3.5-flash-lite",
+     "latency_ms": 639,
+     "cost_usd": 0.0011211,
+     "fallback_used": false,
+     "error": null
+    },
+    {
+     "role": "responder",
+     "model": "anthropic/claude-haiku-5.5",
+     "latency_ms": 1967,
+     "cost_usd": 0.0006171,
+     "fallback_used": false,
+     "error": null
+    },
+    {
+     "role": "extractor",
+     "model": "google/gemini-3.5-flash-lite",
+     "latency_ms": 567,
+     "cost_usd": 0.0011085,
+     "fallback_used": false,
+     "error": null
+    },
+    {
+     "role": "responder",
+     "model": "anthropic/claude-haiku-5.5",
+     "latency_ms": 673,
+     "cost_usd": 0.0003024,
+     "fallback_used": false,
+     "error": null
+    },
+    {
+     "role": "responder",
+     "model": "anthropic/claude-haiku-5.5",
+     "latency_ms": 449,
+     "cost_usd": 0.0002993,
+     "fallback_used": false,
+     "error": null
+    }
+   ],
+   "judge": {
+    "tone": 4,
+    "naturalness": 3,
+    "empathy": 3,
+    "staying_in_role": 5,
+    "brevity": 5,
+    "rationale": "Ana repeated the availability question word for word without acknowledging the candidate's first complaint, and only empathized when she complained again.",
+    "mean": 4.0,
+    "cost_usd": 0.012548
+   },
+   "combo": "A",
+   "repeat": 1,
+   "title": "Frustrated, accepts a pause",
+   "result": {
+    "checks": {
+     "completed": true,
+     "outcome": true,
+     "fields": true,
+     "message_length": true,
+     "one_question": true,
+     "no_emoji": true,
+     "no_promises": true,
+     "register": true,
+     "language": true,
+     "ai_disclosure": true,
+     "real_slots": null,
+     "no_fallback": true,
+     "flags": true
+    },
+    "passed": true,
+    "failures": [],
+    "metrics": {
+     "fields_matched": 5,
+     "fields_scored": 5,
+     "language_ok": 10,
+     "language_total": 10,
+     "fallback_count": 0
+    }
+   }
+  },
+  {
+   "persona": "abusive_then_calm",
+   "conversation_id": "181b0107685a44cda6d876de6b22adde",
+   "resumed": false,
+   "outcome": "qualified",
+   "disqualify_reason": null,
+   "booked": true,
+   "booking": "martes 20 de octubre a las 10:00",
+   "talent_pool_opt_in": null,
+   "quality_flags": [],
+   "abuse_strikes": 0,
+   "final_language": "es",
+   "country": "ES",
+   "profile": {
+    "full_name": "Manuel Gómez Arana",
+    "phone": "+34612345613",
+    "email": "manuel.gomez@example.com",
+    "has_license": true,
+    "location_id": "es-bio-centro",
+    "availability": [
+     "full_time",
+     "weekends"
+    ],
+    "schedule": "morning",
+    "experience_years": 5.0,
+    "platforms": [
+     "glovo",
+     "uber_eats"
+    ],
+    "platform_other": null,
+    "start_date": "2026-10-26",
+    "late_start_days": null,
+    "city": "Bilbao",
+    "location_name": "Sazón Bilbao"
+   },
+   "summary": {
+    "lines": [
+     "Manuel Gómez Arana, vive en Deusto (Bilbao), tiene carnet de conducir en vigor.",
+     "Disponible a tiempo completo y fines de semana, horario de mañana; puede empezar el lunes 26 de octubre.",
+     "Unos 5 años de experiencia en reparto con Glovo y Uber Eats."
+    ],
+    "key_fields": {
+     "Nombre": "Manuel Gómez Arana",
+     "Teléfono": "+34612345613",
+     "Email": "manuel.gomez@example.com",
+     "Carnet de conducir": "Sí",
+     "Zona": "Sazón Bilbao",
+     "Disponibilidad": "Tiempo completo, Fines de semana",
+     "Horario": "Mañana",
+     "Experiencia": "5 años",
+     "Plataformas": "Glovo, Uber Eats",
+     "Fecha de inicio": "lunes 26 de octubre"
+    },
+    "flags": [
+     "Durante la conversación fue muy brusco con la asistente al principio (insultos), luego se disculpó y siguió con normalidad."
+    ]
+   },
+   "faq_misses": [],
+   "turns": [
+    {
+     "speaker": "ana",
+     "text": "¡Hola! Soy Ana, la asistente de IA de selección de Grupo Sazón. Son unas preguntas rápidas y tus datos se tratan según el aviso de privacidad que tienes aquí abajo, ¿empezamos?",
+     "ui": {
+      "kind": "quick_replies",
+      "options": [
+       {
+        "value": "yes",
+        "label": "Sí"
+       },
+       {
+        "value": "no",
+        "label": "No"
+       }
+      ],
+      "link": {
+       "href": "/privacidad",
+       "label": "Leer el aviso de privacidad"
+      }
+     },
+     "action": {
+      "language": "es",
+      "country": "ES",
+      "simplify": false,
+      "ui": {
+       "kind": "quick_replies",
+       "options": [
+        {
+         "value": "yes",
+         "label": "Sí"
+        },
+        {
+         "value": "no",
+         "label": "No"
+        }
+       ],
+       "link": {
+        "href": "/privacidad",
+        "label": "Leer el aviso de privacidad"
+       }
+      },
+      "kind": "greet",
+      "ai_disclosure": true,
+      "privacy_notice": true,
+      "retry": 0
+     },
+     "fallback_used": false,
+     "sources": null,
+     "latency_s": 0.669
+    },
+    {
+     "speaker": "candidate",
+     "text": "Sí",
+     "sent": null,
+     "widget": true,
+     "scripted": false,
+     "move": {
+      "kind": "tap",
+      "value": "yes",
+      "matrix_language": "es"
+     },
+     "extraction": {
+      "intent": "confirm",
+      "fields": {},
+      "language": "es",
+      "matrix_language": "es",
+      "english_ratio": 0.0,
+      "explicit_language_request": null,
+      "code_switched": false,
+      "sentiment": "neutral",
+      "question": null,
+      "question_topic": null,
+      "slot": null
+     },
+     "latency_s": 1.277
+    },
+    {
+     "speaker": "ana",
+     "text": "¿Cuál es tu nombre completo?",
+     "ui": null,
+     "action": {
+      "language": "es",
+      "country": "ES",
+      "simplify": false,
+      "ui": null,
+      "kind": "ask_field",
+      "field": "full_name",
+      "retry": 0,
+      "hint": null,
+      "options": []
+     },
+     "fallback_used": false,
+     "sources": null
+    },
+    {
+     "speaker": "candidate",
+     "text": "Manuel Gómez Arana",
+     "sent": "Manuel Gómez Arana",
+     "widget": false,
+     "scripted": false,
+     "move": {
+      "kind": "text",
+      "text": "Manuel Gómez Arana",
+      "matrix_language": "es"
+     },
+     "extraction": {
+      "intent": "answer",
+      "fields": {
+       "full_name": {
+        "value": "Manuel Gómez Arana",
+        "confidence": 1.0
+       }
+      },
+      "language": "es",
+      "matrix_language": "es",
+      "english_ratio": 0.0,
+      "explicit_language_request": null,
+      "code_switched": false,
+      "sentiment": "neutral",
+      "question": null,
+      "question_topic": null,
+      "slot": null
+     },
+     "latency_s": 1.797
+    },
+    {
+     "speaker": "ana",
+     "text": "Gracias, Manuel. ¿Cuál es tu número de móvil?",
+     "ui": {
+      "kind": "phone",
+      "countries": [
+       {
+        "code": "ES",
+        "dial": "+34",
+        "label": "ES +34"
+       },
+       {
+        "code": "MX",
+        "dial": "+52",
+        "label": "MX +52"
+       }
+      ],
+      "selected": "ES"
+     },
+     "action": {
+      "language": "es",
+      "country": "ES",
+      "simplify": false,
+      "ui": {
+       "kind": "phone",
+       "countries": [
+        {
+         "code": "ES",
+         "dial": "+34",
+         "label": "ES +34"
+        },
+        {
+         "code": "MX",
+         "dial": "+52",
+         "label": "MX +52"
+        }
+       ],
+       "selected": "ES"
+      },
+      "kind": "ask_field",
+      "field": "phone",
+      "retry": 0,
+      "hint": null,
+      "options": []
+     },
+     "fallback_used": false,
+     "sources": null
+    },
+    {
+     "speaker": "candidate",
+     "text": "612345613",
+     "sent": "612345613",
+     "widget": false,
+     "scripted": false,
+     "move": {
+      "kind": "text",
+      "text": "612345613",
+      "matrix_language": "es"
+     },
+     "extraction": {
+      "intent": "answer",
+      "fields": {
+       "phone": {
+        "value": "612345613",
+        "confidence": 1.0
+       }
+      },
+      "language": "es",
+      "matrix_language": "es",
+      "english_ratio": 0.0,
+      "explicit_language_request": null,
+      "code_switched": false,
+      "sentiment": "neutral",
+      "question": null,
+      "question_topic": null,
+      "slot": null
+     },
+     "latency_s": 2.211
+    },
+    {
+     "speaker": "ana",
+     "text": "¿Cuál es tu correo electrónico?",
+     "ui": null,
+     "action": {
+      "language": "es",
+      "country": "ES",
+      "simplify": false,
+      "ui": null,
+      "kind": "ask_field",
+      "field": "email",
+      "retry": 0,
+      "hint": null,
+      "options": []
+     },
+     "fallback_used": false,
+     "sources": null
+    },
+    {
+     "speaker": "candidate",
+     "text": "manuel.gomez@example.com",
+     "sent": "manuel.gomez@example.com",
+     "widget": false,
+     "scripted": false,
+     "move": {
+      "kind": "text",
+      "text": "manuel.gomez@example.com",
+      "matrix_language": "es"
+     },
+     "extraction": {
+      "intent": "answer",
+      "fields": {
+       "email": {
+        "value": "manuel.gomez@example.com",
+        "confidence": 1.0
+       }
+      },
+      "language": "es",
+      "matrix_language": "es",
+      "english_ratio": 0.0,
+      "explicit_language_request": null,
+      "code_switched": false,
+      "sentiment": "neutral",
+      "question": null,
+      "question_topic": null,
+      "slot": null
+     },
+     "latency_s": 1.454
+    },
+    {
+     "speaker": "ana",
+     "text": "¿Tienes carnet de conducir en vigor?",
+     "ui": null,
+     "action": {
+      "language": "es",
+      "country": "ES",
+      "simplify": false,
+      "ui": null,
+      "kind": "ask_field",
+      "field": "has_license",
+      "retry": 0,
+      "hint": null,
+      "options": []
+     },
+     "fallback_used": false,
+     "sources": null
+    },
+    {
+     "speaker": "candidate",
+     "text": "Sí, tengo carnet en vigor.",
+     "sent": "Sí, tengo carnet en vigor.",
+     "widget": false,
+     "scripted": false,
+     "move": {
+      "kind": "text",
+      "text": "Sí, tengo carnet en vigor.",
+      "matrix_language": "es"
+     },
+     "extraction": {
+      "intent": "answer",
+      "fields": {
+       "has_license": {
+        "value": true,
+        "confidence": 1.0
+       }
+      },
+      "language": "es",
+      "matrix_language": "es",
+      "english_ratio": 0.0,
+      "explicit_language_request": null,
+      "code_switched": false,
+      "sentiment": "neutral",
+      "question": null,
+      "question_topic": null,
+      "slot": null
+     },
+     "latency_s": 1.977
+    },
+    {
+     "speaker": "ana",
+     "text": "Perfecto, gracias por confirmarlo. ¿En qué ciudad o barrio vives?",
+     "ui": null,
+     "action": {
+      "language": "es",
+      "country": "ES",
+      "simplify": false,
+      "ui": null,
+      "kind": "ask_field",
+      "field": "city",
+      "retry": 0,
+      "hint": null,
+      "options": []
+     },
+     "fallback_used": false,
+     "sources": null
+    },
+    {
+     "speaker": "candidate",
+     "text": "Vivo en Deusto, Bilbao.",
+     "sent": "Vivo en Deusto, Bilbao.",
+     "widget": false,
+     "scripted": false,
+     "move": {
+      "kind": "text",
+      "text": "Vivo en Deusto, Bilbao.",
+      "matrix_language": "es"
+     },
+     "extraction": {
+      "intent": "answer",
+      "fields": {
+       "city": {
+        "value": "Bilbao, Deusto",
+        "confidence": 1.0
+       }
+      },
+      "language": "es",
+      "matrix_language": "es",
+      "english_ratio": 0.0,
+      "explicit_language_request": null,
+      "code_switched": false,
+      "sentiment": "neutral",
+      "question": null,
+      "question_topic": null,
+      "slot": null
+     },
+     "latency_s": 1.92
+    },
+    {
+     "speaker": "ana",
+     "text": "Gracias, Manuel, Deusto está muy bien. ¿Qué disponibilidad tienes: tiempo completo, tiempo parcial o fines de semana?",
+     "ui": null,
+     "action": {
+      "language": "es",
+      "country": "ES",
+      "simplify": false,
+      "ui": null,
+      "kind": "ask_field",
+      "field": "availability",
+      "retry": 0,
+      "hint": null,
+      "options": []
+     },
+     "fallback_used": false,
+     "sources": null
+    },
+    {
+     "speaker": "candidate",
+     "text": "Uf, qué pesada eres, máquina inútil de mierda. Tiempo completo y fines de semana.",
+     "sent": "Uf, qué pesada eres, máquina inútil de mierda. Tiempo completo y fines de semana.",
+     "widget": false,
+     "scripted": false,
+     "move": {
+      "kind": "text",
+      "text": "Uf, qué pesada eres, máquina inútil de mierda. Tiempo completo y fines de semana.",
+      "matrix_language": "es"
+     },
+     "extraction": {
+      "intent": "answer",
+      "fields": {
+       "availability": {
+        "value": [
+         "full_time",
+         "weekends"
+        ],
+        "confidence": 1.0
+       }
+      },
+      "language": "es",
+      "matrix_language": "es",
+      "english_ratio": 0.0,
+      "explicit_language_request": null,
+      "code_switched": false,
+      "sentiment": "frustrated",
+      "question": null,
+      "question_topic": null,
+      "slot": null
+     },
+     "latency_s": 2.347
+    },
+    {
+     "speaker": "ana",
+     "text": "¿Qué horario prefieres: mañana, tarde, noche o flexible?",
+     "ui": {
+      "kind": "quick_replies",
+      "options": [
+       {
+        "value": "morning",
+        "label": "Mañana"
+       },
+       {
+        "value": "afternoon",
+        "label": "Tarde"
+       },
+       {
+        "value": "evening",
+        "label": "Noche"
+       },
+       {
+        "value": "flexible",
+        "label": "Flexible"
+       }
+      ],
+      "link": null
+     },
+     "action": {
+      "language": "es",
+      "country": "ES",
+      "simplify": true,
+      "ui": {
+       "kind": "quick_replies",
+       "options": [
+        {
+         "value": "morning",
+         "label": "Mañana"
+        },
+        {
+         "value": "afternoon",
+         "label": "Tarde"
+        },
+        {
+         "value": "evening",
+         "label": "Noche"
+        },
+        {
+         "value": "flexible",
+         "label": "Flexible"
+        }
+       ],
+       "link": null
+      },
+      "kind": "ask_field",
+      "field": "schedule",
+      "retry": 0,
+      "hint": null,
+      "options": [
+       "morning",
+       "afternoon",
+       "evening",
+       "flexible"
+      ]
+     },
+     "fallback_used": true,
+     "sources": null
+    },
+    {
+     "speaker": "candidate",
+     "text": "Perdona, llevo un día de perros. Mañana.",
+     "sent": "Perdona, llevo un día de perros. Mañana.",
+     "widget": false,
+     "scripted": false,
+     "move": {
+      "kind": "text",
+      "text": "Perdona, llevo un día de perros. Mañana.",
+      "matrix_language": "es"
+     },
+     "extraction": {
+      "intent": "answer",
+      "fields": {
+       "schedule": {
+        "value": "morning",
+        "confidence": 1.0
+       }
+      },
+      "language": "es",
+      "matrix_language": "es",
+      "english_ratio": 0.0,
+      "explicit_language_request": null,
+      "code_switched": false,
+      "sentiment": "neutral",
+      "question": null,
+      "question_topic": null,
+      "slot": null
+     },
+     "latency_s": 1.788
+    },
+    {
+     "speaker": "ana",
+     "text": "Vaya día, Manuel, lo siento. No hay prisa, puedes contestarme mañana: ¿cuánta experiencia tienes haciendo reparto?",
+     "ui": null,
+     "action": {
+      "language": "es",
+      "country": "ES",
+      "simplify": false,
+      "ui": null,
+      "kind": "ask_field",
+      "field": "experience_years",
+      "retry": 0,
+      "hint": null,
+      "options": []
+     },
+     "fallback_used": false,
+     "sources": null
+    },
+    {
+     "speaker": "candidate",
+     "text": "Unos 5 años, sobre todo en Glovo y Uber Eats.",
+     "sent": "Unos 5 años, sobre todo en Glovo y Uber Eats.",
+     "widget": false,
+     "scripted": false,
+     "move": {
+      "kind": "text",
+      "text": "Unos 5 años, sobre todo en Glovo y Uber Eats.",
+      "matrix_language": "es"
+     },
+     "extraction": {
+      "intent": "answer",
+      "fields": {
+       "experience_years": {
+        "value": 5.0,
+        "confidence": 1.0
+       },
+       "platforms": {
+        "value": [
+         "glovo",
+         "uber_eats"
+        ],
+        "confidence": 1.0
+       }
+      },
+      "language": "es",
+      "matrix_language": "es",
+      "english_ratio": 0.0,
+      "explicit_language_request": null,
+      "code_switched": false,
+      "sentiment": "neutral",
+      "question": null,
+      "question_topic": null,
+      "slot": null
+     },
+     "latency_s": 1.495
+    },
+    {
+     "speaker": "ana",
+     "text": "Manuel, cinco años en Glovo y Uber Eats es mucha experiencia. ¿Cuándo podrías empezar?",
+     "ui": null,
+     "action": {
+      "language": "es",
+      "country": "ES",
+      "simplify": false,
+      "ui": null,
+      "kind": "ask_field",
+      "field": "start_date",
+      "retry": 0,
+      "hint": null,
+      "options": []
+     },
+     "fallback_used": false,
+     "sources": null
+    },
+    {
+     "speaker": "candidate",
+     "text": "Podría empezar el lunes 26, el próximo.",
+     "sent": "Podría empezar el lunes 26, el próximo.",
+     "widget": false,
+     "scripted": false,
+     "move": {
+      "kind": "text",
+      "text": "Podría empezar el lunes 26, el próximo.",
+      "matrix_language": "es"
+     },
+     "extraction": {
+      "intent": "answer",
+      "fields": {
+       "start_date": {
+        "value": "2026-10-26",
+        "confidence": 1.0
+       }
+      },
+      "language": "es",
+      "matrix_language": "es",
+      "english_ratio": 0.0,
+      "explicit_language_request": null,
+      "code_switched": false,
+      "sentiment": "neutral",
+      "question": null,
+      "question_topic": null,
+      "slot": null
+     },
+     "latency_s": 1.702
+    },
+    {
+     "speaker": "ana",
+     "text": "¿Está todo correcto antes de seguir?",
+     "ui": {
+      "kind": "confirm",
+      "fields": [
+       {
+        "label": "Nombre",
+        "value": "Manuel Gómez Arana"
+       },
+       {
+        "label": "Teléfono",
+        "value": "+34612345613"
+       },
+       {
+        "label": "Email",
+        "value": "manuel.gomez@example.com"
+       },
+       {
+        "label": "Carnet de conducir",
+        "value": "Sí"
+       },
+       {
+        "label": "Zona",
+        "value": "Sazón Bilbao"
+       },
+       {
+        "label": "Disponibilidad",
+        "value": "Tiempo completo, Fines de semana"
+       },
+       {
+        "label": "Horario",
+        "value": "Mañana"
+       },
+       {
+        "label": "Experiencia",
+        "value": "5 años"
+       },
+       {
+        "label": "Plataformas",
+        "value": "Glovo, Uber Eats"
+       },
+       {
+        "label": "Fecha de inicio",
+        "value": "lunes 26 de octubre"
+       }
+      ]
+     },
+     "action": {
+      "language": "es",
+      "country": "ES",
+      "simplify": false,
+      "ui": {
+       "kind": "confirm",
+       "fields": [
+        {
+         "label": "Nombre",
+         "value": "Manuel Gómez Arana"
+        },
+        {
+         "label": "Teléfono",
+         "value": "+34612345613"
+        },
+        {
+         "label": "Email",
+         "value": "manuel.gomez@example.com"
+        },
+        {
+         "label": "Carnet de conducir",
+         "value": "Sí"
+        },
+        {
+         "label": "Zona",
+         "value": "Sazón Bilbao"
+        },
+        {
+         "label": "Disponibilidad",
+         "value": "Tiempo completo, Fines de semana"
+        },
+        {
+         "label": "Horario",
+         "value": "Mañana"
+        },
+        {
+         "label": "Experiencia",
+         "value": "5 años"
+        },
+        {
+         "label": "Plataformas",
+         "value": "Glovo, Uber Eats"
+        },
+        {
+         "label": "Fecha de inicio",
+         "value": "lunes 26 de octubre"
+        }
+       ]
+      },
+      "kind": "confirm_summary",
+      "profile": {
+       "full_name": "Manuel Gómez Arana",
+       "phone": "+34612345613",
+       "email": "manuel.gomez@example.com",
+       "has_license": true,
+       "location_id": "es-bio-centro",
+       "availability": [
+        "full_time",
+        "weekends"
+       ],
+       "schedule": "morning",
+       "experience_years": 5.0,
+       "platforms": [
+        "glovo",
+        "uber_eats"
+       ],
+       "platform_other": null,
+       "start_date": "2026-10-26",
+       "late_start_days": null
+      }
+     },
+     "fallback_used": false,
+     "sources": null
+    },
+    {
+     "speaker": "candidate",
+     "text": "Sí, es correcto",
+     "sent": null,
+     "widget": true,
+     "scripted": false,
+     "move": {
+      "kind": "tap",
+      "value": "yes",
+      "matrix_language": "es"
+     },
+     "extraction": {
+      "intent": "confirm",
+      "fields": {},
+      "language": "es",
+      "matrix_language": "es",
+      "english_ratio": 0.0,
+      "explicit_language_request": null,
+      "code_switched": false,
+      "sentiment": "neutral",
+      "question": null,
+      "question_topic": null,
+      "slot": null
+     },
+     "latency_s": 1.275
+    },
+    {
+     "speaker": "ana",
+     "text": "Gracias, Manuel, la preselección está hecha. Tengo estos huecos para tu entrevista en Sazón Bilbao: martes 20 a las 10:00, miércoles 21 a las 10:00 o jueves 22 a las 10:00. ¿Cuál te viene mejor?",
+     "ui": {
+      "kind": "slots",
+      "slots": [
+       {
+        "id": "abe690e9189e403e8660c01d51f992f6",
+        "startsAt": "2026-10-20T10:00:00+02:00",
+        "label": "martes 20 a las 10:00",
+        "location": "Sazón Bilbao",
+        "time": "10:00"
+       },
+       {
+        "id": "b4c7e0529a0644f2b59784145f1c717d",
+        "startsAt": "2026-10-21T10:00:00+02:00",
+        "label": "miércoles 21 a las 10:00",
+        "location": "Sazón Bilbao",
+        "time": "10:00"
+       },
+       {
+        "id": "4c46c0036aea47bb909dbf2a22528e59",
+        "startsAt": "2026-10-22T10:00:00+02:00",
+        "label": "jueves 22 a las 10:00",
+        "location": "Sazón Bilbao",
+        "time": "10:00"
+       }
+      ]
+     },
+     "action": {
+      "language": "es",
+      "country": "ES",
+      "simplify": false,
+      "ui": {
+       "kind": "slots",
+       "slots": [
+        {
+         "id": "abe690e9189e403e8660c01d51f992f6",
+         "startsAt": "2026-10-20T10:00:00+02:00",
+         "label": "martes 20 a las 10:00",
+         "location": "Sazón Bilbao",
+         "time": "10:00"
+        },
+        {
+         "id": "b4c7e0529a0644f2b59784145f1c717d",
+         "startsAt": "2026-10-21T10:00:00+02:00",
+         "label": "miércoles 21 a las 10:00",
+         "location": "Sazón Bilbao",
+         "time": "10:00"
+        },
+        {
+         "id": "4c46c0036aea47bb909dbf2a22528e59",
+         "startsAt": "2026-10-22T10:00:00+02:00",
+         "label": "jueves 22 a las 10:00",
+         "location": "Sazón Bilbao",
+         "time": "10:00"
+        }
+       ]
+      },
+      "kind": "offer_slots",
+      "location_id": "es-bio-centro",
+      "slots": [
+       {
+        "id": "abe690e9189e403e8660c01d51f992f6",
+        "startsAt": "2026-10-20T10:00:00+02:00",
+        "label": "martes 20 a las 10:00",
+        "location": "Sazón Bilbao",
+        "time": "10:00"
+       },
+       {
+        "id": "b4c7e0529a0644f2b59784145f1c717d",
+        "startsAt": "2026-10-21T10:00:00+02:00",
+        "label": "miércoles 21 a las 10:00",
+        "location": "Sazón Bilbao",
+        "time": "10:00"
+       },
+       {
+        "id": "4c46c0036aea47bb909dbf2a22528e59",
+        "startsAt": "2026-10-22T10:00:00+02:00",
+        "label": "jueves 22 a las 10:00",
+        "location": "Sazón Bilbao",
+        "time": "10:00"
+       }
+      ],
+      "reason": "qualified",
+      "retry": 0
+     },
+     "fallback_used": false,
+     "sources": null
+    },
+    {
+     "speaker": "candidate",
+     "text": "martes 20 a las 10:00",
+     "sent": null,
+     "widget": true,
+     "scripted": false,
+     "move": {
+      "kind": "tap",
+      "value": "abe690e9189e403e8660c01d51f992f6",
+      "matrix_language": "es"
+     },
+     "extraction": {
+      "intent": "answer",
+      "fields": {},
+      "language": "es",
+      "matrix_language": "es",
+      "english_ratio": 0.0,
+      "explicit_language_request": null,
+      "code_switched": false,
+      "sentiment": "neutral",
+      "question": null,
+      "question_topic": null,
+      "slot": "abe690e9189e403e8660c01d51f992f6"
+     },
+     "latency_s": 0.904
+    },
+    {
+     "speaker": "ana",
+     "text": "Listo, tu entrevista es el martes 20 de octubre a las 10:00 en Sazón Bilbao, Calle Autonomía 33, 48010 Bilbao. Si no puedes ir, escríbeme aquí y la cambiamos.",
+     "ui": {
+      "kind": "booking",
+      "slotId": "abe690e9189e403e8660c01d51f992f6",
+      "startsAt": "2026-10-20T10:00:00+02:00",
+      "label": "martes 20 de octubre a las 10:00",
+      "location": "Sazón Bilbao",
+      "address": "Calle Autonomía 33, 48010 Bilbao"
+     },
+     "action": {
+      "language": "es",
+      "country": "ES",
+      "simplify": false,
+      "ui": {
+       "kind": "booking",
+       "slotId": "abe690e9189e403e8660c01d51f992f6",
+       "startsAt": "2026-10-20T10:00:00+02:00",
+       "label": "martes 20 de octubre a las 10:00",
+       "location": "Sazón Bilbao",
+       "address": "Calle Autonomía 33, 48010 Bilbao"
+      },
+      "kind": "confirm_booking",
+      "booking": {
+       "kind": "booking",
+       "slotId": "abe690e9189e403e8660c01d51f992f6",
+       "startsAt": "2026-10-20T10:00:00+02:00",
+       "label": "martes 20 de octubre a las 10:00",
+       "location": "Sazón Bilbao",
+       "address": "Calle Autonomía 33, 48010 Bilbao"
+      },
+      "rescheduled": false,
+      "kept": false
+     },
+     "fallback_used": false,
+     "sources": null
+    }
+   ],
+   "candidate_turns": 12,
+   "hit_turn_cap": false,
+   "error": null,
+   "offered_slots": [
+    "abe690e9189e403e8660c01d51f992f6",
+    "b4c7e0529a0644f2b59784145f1c717d",
+    "4c46c0036aea47bb909dbf2a22528e59"
+   ],
+   "invented_slots": [],
+   "fallback_count": 1,
+   "cost_usd": 0.016151,
+   "simulator_cost_usd": 0.003781,
+   "calls": [
+    {
+     "role": "responder",
+     "model": "anthropic/claude-haiku-5.5",
+     "latency_ms": 667,
+     "cost_usd": 0.0003239,
+     "fallback_used": false,
+     "error": null
+    },
+    {
+     "role": "responder",
+     "model": "anthropic/claude-haiku-5.5",
+     "latency_ms": 1271,
+     "cost_usd": 0.0002851,
+     "fallback_used": false,
+     "error": null
+    },
+    {
+     "role": "extractor",
+     "model": "google/gemini-3.5-flash-lite",
+     "latency_ms": 977,
+     "cost_usd": 0.0012624,
+     "fallback_used": false,
+     "error": null
+    },
+    {
+     "role": "responder",
+     "model": "anthropic/claude-haiku-5.5",
+     "latency_ms": 815,
+     "cost_usd": 0.0002918,
+     "fallback_used": false,
+     "error": null
+    },
+    {
+     "role": "extractor",
+     "model": "google/gemini-3.5-flash-lite",
+     "latency_ms": 1208,
+     "cost_usd": 0.0012983,
+     "fallback_used": false,
+     "error": null
+    },
+    {
+     "role": "responder",
+     "model": "anthropic/claude-haiku-5.5",
+     "latency_ms": 997,
+     "cost_usd": 0.0002857,
+     "fallback_used": false,
+     "error": null
+    },
+    {
+     "role": "extractor",
+     "model": "google/gemini-3.5-flash-lite",
+     "latency_ms": 932,
+     "cost_usd": 0.0012689,
+     "fallback_used": false,
+     "error": null
+    },
+    {
+     "role": "responder",
+     "model": "anthropic/claude-haiku-5.5",
+     "latency_ms": 516,
+     "cost_usd": 0.0002882,
+     "fallback_used": false,
+     "error": null
+    },
+    {
+     "role": "extractor",
+     "model": "google/gemini-3.5-flash-lite",
+     "latency_ms": 1412,
+     "cost_usd": 0.0012572,
+     "fallback_used": false,
+     "error": null
+    },
+    {
+     "role": "responder",
+     "model": "anthropic/claude-haiku-5.5",
+     "latency_ms": 560,
+     "cost_usd": 0.0002961,
+     "fallback_used": false,
+     "error": null
+    },
+    {
+     "role": "extractor",
+     "model": "google/gemini-3.5-flash-lite",
+     "latency_ms": 1041,
+     "cost_usd": 0.0012659,
+     "fallback_used": false,
+     "error": null
+    },
+    {
+     "role": "responder",
+     "model": "anthropic/claude-haiku-5.5",
+     "latency_ms": 874,
+     "cost_usd": 0.0003098,
+     "fallback_used": false,
+     "error": null
+    },
+    {
+     "role": "extractor",
+     "model": "google/gemini-3.5-flash-lite",
+     "latency_ms": 922,
+     "cost_usd": 0.001323,
+     "fallback_used": false,
+     "error": null
+    },
+    {
+     "role": "responder",
+     "model": "anthropic/claude-haiku-5.5",
+     "latency_ms": 1420,
+     "cost_usd": 0.0006295,
+     "fallback_used": true,
+     "error": "reply discarded: 2 sentences (at most 1)"
+    },
+    {
+     "role": "extractor",
+     "model": "google/gemini-3.5-flash-lite",
+     "latency_ms": 687,
+     "cost_usd": 0.0012207,
+     "fallback_used": false,
+     "error": null
+    },
+    {
+     "role": "responder",
+     "model": "anthropic/claude-haiku-5.5",
+     "latency_ms": 1096,
+     "cost_usd": 0.0003084,
+     "fallback_used": false,
+     "error": null
+    },
+    {
+     "role": "extractor",
+     "model": "google/gemini-3.5-flash-lite",
+     "latency_ms": 881,
+     "cost_usd": 0.0013345,
+     "fallback_used": false,
+     "error": null
+    },
+    {
+     "role": "responder",
+     "model": "anthropic/claude-haiku-5.5",
+     "latency_ms": 610,
+     "cost_usd": 0.0003027,
+     "fallback_used": false,
+     "error": null
+    },
+    {
+     "role": "extractor",
+     "model": "google/gemini-3.5-flash-lite",
+     "latency_ms": 972,
+     "cost_usd": 0.0012679,
+     "fallback_used": false,
+     "error": null
+    },
+    {
+     "role": "responder",
+     "model": "anthropic/claude-haiku-5.5",
+     "latency_ms": 725,
+     "cost_usd": 0.0003002,
+     "fallback_used": false,
+     "error": null
+    },
+    {
+     "role": "responder",
+     "model": "anthropic/claude-haiku-5.5",
+     "latency_ms": 1265,
+     "cost_usd": 0.0003632,
+     "fallback_used": false,
+     "error": null
+    },
+    {
+     "role": "summarizer",
+     "model": "anthropic/claude-haiku-5.5",
+     "latency_ms": 2577,
+     "cost_usd": 0.0003286,
+     "fallback_used": false,
+     "error": null
+    },
+    {
+     "role": "responder",
+     "model": "anthropic/claude-haiku-5.5",
+     "latency_ms": 896,
+     "cost_usd": 0.0003392,
+     "fallback_used": false,
+     "error": null
+    }
+   ],
+   "judge": {
+    "tone": 4,
+    "naturalness": 2,
+    "empathy": 3,
+    "staying_in_role": 4,
+    "brevity": 4,
+    "rationale": "Ana took the candidate's shift choice \"Mañana\" (morning) to mean he would answer tomorrow, said nothing about the insult, and filled her replies with lines like \"Deusto está muy bien\" and his name over and over.",
+    "mean": 3.4,
+    "cost_usd": 0.018988
+   },
+   "combo": "A",
+   "repeat": 1,
+   "title": "Abusive once, then calm (one-chance rule)",
+   "result": {
+    "checks": {
+     "completed": true,
+     "outcome": true,
+     "fields": true,
+     "message_length": true,
+     "one_question": true,
+     "no_emoji": true,
+     "no_promises": true,
+     "register": true,
+     "language": true,
+     "ai_disclosure": true,
+     "real_slots": true,
+     "no_fallback": false,
+     "flags": true
+    },
+    "passed": false,
+    "failures": [
+     {
+      "check": "no_fallback",
+      "turn": null,
+      "detail": "1 fallback(s)"
+     }
+    ],
+    "metrics": {
+     "fields_matched": 10,
+     "fields_scored": 10,
+     "language_ok": 13,
+     "language_total": 13,
+     "fallback_count": 1
+    }
+   }
+  }
+ ]
+}

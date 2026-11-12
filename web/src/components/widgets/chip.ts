@@ -1,0 +1,2 @@
+export const chipClass =
+  "h-auto min-h-9 rounded-full border border-input bg-card px-3.5 py-1.5 text-[0.9375rem] font-bold whitespace-normal text-foreground hover:border-primary hover:bg-card aria-pressed:border-primary aria-pressed:bg-primary aria-pressed:text-primary-foreground data-[pressed]:border-primary data-[pressed]:bg-primary data-[pressed]:text-primary-foreground aria-pressed:disabled:opacity-100 data-[pressed]:data-[disabled]:opacity-100";

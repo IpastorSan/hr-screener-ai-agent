@@ -1,0 +1,11 @@
+[Unit]
+Description=Sazón SQLite backup to Cloud Storage
+Wants=network-online.target docker.service
+After=network-online.target docker.service
+
+[Service]
+Type=oneshot
+WorkingDirectory=/opt/sazon
+# Absolute paths: systemd's PATH has no /snap/bin (gsutil on Ubuntu images).
+Environment=PATH=/usr/local/bin:/usr/bin:/bin:/snap/bin:/usr/lib/google-cloud-sdk/bin
+ExecStart=/opt/sazon/backup.sh

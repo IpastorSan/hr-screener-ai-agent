@@ -1,0 +1,683 @@
+# Corrections: every field corrected by name, at every stage, in the chat and in voice-style
+# calls (`channel: voice`: typed as speech to text writes it, no taps, no card). Format:
+# evals/journeys/README.md. Rules: docs/screening-rules.md, "Corrections". The clock starts on
+# Monday 19 October 2026, 10:00 in Madrid. Fictional people and data only.
+
+# --- every field by name at the summary ---
+
+- id: fix_every_field_es_web
+  description: >-
+    Spain, web. At the summary each field is named as wrong or to change, one after the other:
+    each is asked again and the summary comes back with the new value; then a yes qualifies.
+  country: ES
+  steps:
+    - tap: "yes"
+      expect: {asks: full_name}
+    - say: Nuria Campos Vidal
+      expect: {asks: phone}
+    - tap: {country: ES, number: "612345801"}
+      expect: {asks: email}
+    - say: nuria.campos@example.com
+      expect: {asks: has_license}
+    - say: Sí, el B
+      offline_say: sí
+      expect: {asks: city}
+    - say: Vivo en Gràcia
+      offline_say: Gràcia
+      expect: {asks: availability}
+    - say: Tiempo completo
+      expect: {asks: schedule}
+    - say: Mañanas
+      expect: {asks: experience_years}
+    - say: Ninguna
+      expect: {asks: start_date}
+    - say: El lunes que viene
+      offline_say: "2026-10-26"
+      expect: {asks: confirm, ui: confirm, card_matches: "Zona: Gràcia · local Barcelona Gràcia"}
+    - say: Quiero cambiar el nombre
+      expect: {asks: full_name, action: ask_field, faq_source: none}
+    - say: Nuria Campos Ferrer
+      expect: {asks: confirm, card_matches: "Nombre: Nuria Campos Ferrer"}
+    - say: Mi móvil está mal
+      expect: {asks: phone, ui: phone}
+    - tap: {country: ES, number: "699111801"}
+      expect: {asks: confirm, card_matches: "Teléfono: \\+34699111801"}
+    - say: El correo está mal
+      expect: {asks: email}
+    - say: nuria.ferrer@example.com
+      expect: {asks: confirm, card_matches: "Email: nuria.ferrer@example.com"}
+    - say: Quiero cambiar lo del carnet
+      expect: {asks: has_license}
+    - say: Sí, tengo el B
+      offline_say: sí
+      expect: {asks: confirm, outcome: in_progress}
+    - say: Quiero cambiar la zona
+      expect: {asks: city}
+    - say: Ahora vivo en Sants
+      offline_say: Sants
+      expect: {asks: confirm, card_matches: "Zona: Sants · local Barcelona Sants"}
+    - say: La disponibilidad está mal
+      expect: {asks: availability}
+    - say: Fines de semana
+      expect: {asks: confirm, card_matches: "Disponibilidad: Fines de semana"}
+    - say: Quiero cambiar el horario
+      expect: {asks: schedule}
+    - say: Tardes
+      expect: {asks: confirm, card_matches: "Horario: Tarde"}
+    - say: La experiencia está mal
+      expect: {asks: experience_years}
+    - say: Tres años
+      offline_say: "3"
+      expect: {asks: platforms}
+    - say: Glovo
+      expect: {asks: confirm, card_matches: "Experiencia: 3 años"}
+    - say: Quiero cambiar las plataformas
+      expect: {asks: platforms}
+    - say: Uber Eats
+      expect: {asks: confirm, card_matches: "Plataformas: Uber Eats"}
+    - say: La fecha de inicio está mal
+      expect: {asks: start_date}
+    - say: El miércoles 28
+      offline_say: "2026-10-28"
+      expect: {asks: confirm, card_matches: "Fecha de inicio: miércoles 28 de octubre"}
+    - tap: "yes"
+      expect: {outcome: qualified}
+
+- id: fix_every_field_es_voice
+  description: >-
+    Spain, a call. The summary is read aloud with its values (no card); each field named at it
+    is asked again and the summary read again with the new value.
+  country: ES
+  channel: voice
+  steps:
+    - say: Sí
+      expect: {asks: full_name}
+    - say: Nuria Campos Vidal
+      expect: {asks: phone}
+    - say: "612345802"
+      expect: {asks: email}
+    - say: nuria.campos2@example.com
+      expect: {asks: has_license}
+    - say: Sí, el B
+      offline_say: sí
+      expect: {asks: city}
+    - say: Vivo en Gràcia
+      offline_say: Gràcia
+      expect: {asks: availability}
+    - say: Tiempo completo
+      expect: {asks: schedule}
+    - say: Mañanas
+      expect: {asks: experience_years}
+    - say: Ninguna
+      expect: {asks: start_date}
+    - say: El lunes que viene
+      offline_say: "2026-10-26"
+      expect:
+        asks: confirm
+        reply_matches: "Repaso: Nuria, Gràcia, local Barcelona Gràcia, tiempo completo, desde el lunes 26"
+    - say: Quiero cambiar el nombre
+      expect: {asks: full_name}
+    - say: Nuria Campos Ferrer
+      expect: {asks: confirm}
+    - say: El móvil está mal
+      expect: {asks: phone}
+    - say: "699111802"
+      expect: {asks: confirm}
+    - say: Quiero cambiar el correo
+      expect: {asks: email}
+    - say: nuria.ferrer2@example.com
+      expect: {asks: confirm}
+    - say: El carnet está mal
+      expect: {asks: has_license}
+    - say: Sí, lo tengo
+      offline_say: sí
+      expect: {asks: confirm}
+    - say: La zona está mal
+      expect: {asks: city}
+    - say: En Sants
+      offline_say: Sants
+      expect: {asks: confirm, reply_matches: "Sants, local Barcelona Sants"}
+    - say: Quiero cambiar la disponibilidad
+      expect: {asks: availability}
+    - say: Fines de semana
+      expect: {asks: confirm, reply_matches: "fines de semana"}
+    - say: El horario está mal
+      expect: {asks: schedule}
+    - say: Por las tardes
+      offline_say: Tardes
+      expect: {asks: confirm}
+    - say: Quiero cambiar la experiencia
+      expect: {asks: experience_years}
+    - say: Dos años
+      offline_say: "2"
+      expect: {asks: platforms}
+    - say: Con Glovo
+      offline_say: Glovo
+      expect: {asks: confirm}
+    - say: Las plataformas están mal
+      expect: {asks: platforms}
+    - say: Just Eat
+      expect: {asks: confirm}
+    - say: Quiero cambiar la fecha de inicio
+      expect: {asks: start_date}
+    - say: El miércoles 28
+      offline_say: "2026-10-28"
+      expect: {asks: confirm, reply_matches: "desde el miércoles 28"}
+    - say: Sí, todo bien
+      offline_say: sí
+      expect: {outcome: qualified}
+
+- id: fix_every_field_mx_web
+  description: >-
+    Mexico, web, usted. Each field named in Mexican wording at the summary (celular, licencia,
+    colonia, días, turno, apps, cuándo empiezo) is asked again, and the card shows the new value.
+  country: MX
+  steps:
+    - tap: "yes"
+      expect: {asks: full_name}
+    - say: Armando Vega Solís
+      expect: {asks: phone}
+    - tap: {country: MX, number: "5512345803"}
+      expect: {asks: email}
+    - say: armando.vega@example.com
+      expect: {asks: has_license}
+    - say: Sí, tengo licencia
+      offline_say: sí
+      expect: {asks: city}
+    - say: Vivo en Roma, en Ciudad de México
+      offline_say: Roma, Ciudad de México
+      expect: {asks: availability}
+    - say: Tiempo completo
+      expect: {asks: schedule}
+    - say: Mañanas
+      expect: {asks: experience_years}
+    - say: Ninguna
+      expect: {asks: start_date}
+    - say: El lunes que viene
+      offline_say: "2026-10-26"
+      expect: {asks: confirm, card_matches: "Zona: Roma · local Cuauhtémoc", register: usted}
+    - say: Mi nombre está mal escrito
+      expect: {asks: full_name, register: usted}
+    - say: Armando Vega Soliz
+      expect: {asks: confirm, card_matches: "Nombre: Armando Vega Soliz"}
+    - say: Mi celular está mal
+      expect: {asks: phone, ui: phone}
+    - tap: {country: MX, number: "5598765803"}
+      expect: {asks: confirm, card_matches: "Teléfono: \\+525598765803"}
+    - say: Quiero cambiar el correo
+      expect: {asks: email}
+    - say: armando.solis@example.com
+      expect: {asks: confirm}
+    - say: La licencia está mal
+      expect: {asks: has_license}
+    - say: Sí tengo licencia vigente
+      offline_say: sí
+      expect: {asks: confirm}
+    - say: Quiero cambiar la colonia
+      expect: {asks: city}
+    - say: Polanco
+      expect: {asks: confirm, card_matches: "Zona: Polanco · local Miguel Hidalgo"}
+    - say: Quiero cambiar los días
+      expect: {asks: availability}
+    - say: Medio tiempo
+      expect: {asks: confirm, card_matches: "Disponibilidad: Tiempo parcial"}
+    - say: El turno está mal
+      expect: {asks: schedule}
+    - say: Noches
+      expect: {asks: confirm, card_matches: "Horario: Noche"}
+    - say: Quiero cambiar los años de experiencia
+      expect: {asks: experience_years}
+    - say: Un año
+      offline_say: "1"
+      expect: {asks: platforms}
+    - say: Rappi
+      expect: {asks: confirm}
+    - say: Las apps están mal
+      expect: {asks: platforms}
+    - say: DiDi Food
+      expect: {asks: confirm, card_matches: "Plataformas: DiDi Food"}
+    - say: Quiero cambiar cuándo empiezo
+      expect: {asks: start_date}
+    - say: El miércoles 28
+      offline_say: "2026-10-28"
+      expect: {asks: confirm, card_matches: "miércoles 28 de octubre"}
+    - tap: "yes"
+      expect: {outcome: qualified}
+
+- id: fix_every_field_mx_voice
+  description: >-
+    Mexico, a call, usted. The production case (2026-10-22): the summary reads "Roma, local
+    Cuauhtémoc" aloud; every field named at it is asked again, the zone included.
+  country: MX
+  channel: voice
+  steps:
+    - say: Sí
+      expect: {asks: full_name}
+    - say: Armando Vega Solís
+      expect: {asks: phone}
+    - say: "5512345804"
+      expect: {asks: email}
+    - say: armando.vega4@example.com
+      expect: {asks: has_license}
+    - say: Sí, tengo licencia
+      offline_say: sí
+      expect: {asks: city}
+    - say: Vivo en Roma, en Ciudad de México
+      offline_say: Roma, Ciudad de México
+      expect: {asks: availability}
+    - say: Tiempo completo
+      expect: {asks: schedule}
+    - say: Mañanas
+      expect: {asks: experience_years}
+    - say: Ninguna
+      expect: {asks: start_date}
+    - say: El lunes que viene
+      offline_say: "2026-10-26"
+      expect:
+        asks: confirm
+        register: usted
+        reply_matches: "Repaso: Armando, Roma, local Cuauhtémoc, tiempo completo, desde el lunes 26"
+    - say: Quiero cambiar el nombre
+      expect: {asks: full_name}
+    - say: Armando Vega Soliz
+      expect: {asks: confirm}
+    - say: El celular está mal
+      expect: {asks: phone}
+    - say: "5598765804"
+      expect: {asks: confirm}
+    - say: El correo está mal
+      expect: {asks: email}
+    - say: armando.soliz@example.com
+      expect: {asks: confirm}
+    - say: Quiero cambiar lo de la licencia
+      expect: {asks: has_license}
+    - say: Sí la tengo
+      offline_say: sí
+      expect: {asks: confirm}
+    - say: Quiero cambiar la zona
+      expect: {asks: city}
+    - say: Polanco
+      expect: {asks: confirm, reply_matches: "Polanco, local Miguel Hidalgo"}
+    - say: La disponibilidad está mal
+      expect: {asks: availability}
+    - say: Fines de semana
+      expect: {asks: confirm}
+    - say: Quiero cambiar el horario
+      expect: {asks: schedule}
+    - say: En las tardes
+      offline_say: Tardes
+      expect: {asks: confirm}
+    - say: La experiencia está mal
+      expect: {asks: experience_years}
+    - say: Dos años
+      offline_say: "2"
+      expect: {asks: platforms}
+    - say: DiDi Food
+      expect: {asks: confirm}
+    - say: Quiero cambiar las plataformas
+      expect: {asks: platforms}
+    - say: Rappi
+      expect: {asks: confirm}
+    - say: La fecha de inicio está mal
+      expect: {asks: start_date}
+    - say: El miércoles 28
+      offline_say: "2026-10-28"
+      expect: {asks: confirm, reply_matches: "desde el miércoles 28"}
+    - say: Sí, está correcto
+      offline_say: sí
+      expect: {outcome: qualified}
+
+# --- during the questions ---
+
+- id: fix_mid_flow_email_es_web
+  description: 'Spain, web. At the availability question "mi correo está mal" asks it again with a short lead; the new one is kept and the availability comes back.'
+  country: ES
+  steps:
+    - tap: "yes"
+      expect: {asks: full_name}
+    - say: Pau Serra Molins
+      expect: {asks: phone}
+    - tap: {country: ES, number: "612345805"}
+      expect: {asks: email}
+    - say: pau.serra@example.com
+      expect: {asks: has_license}
+    - say: Sí
+      expect: {asks: city}
+    - say: Gràcia
+      expect: {asks: availability}
+    - say: Perdona, mi correo está mal
+      expect: {asks: email, action: ask_field, faq_source: none}
+    - say: pau.serra.molins@example.com
+      expect: {asks: availability, outcome: in_progress}
+
+- id: fix_mid_flow_zone_mx_voice
+  description: 'Mexico, a call. At the schedule question "la zona está mal" asks the city again; a colonia of another alcaldía is applied and the schedule comes back.'
+  country: MX
+  channel: voice
+  steps:
+    - say: Sí
+      expect: {asks: full_name}
+    - say: Luisa Ortega Ramos
+      expect: {asks: phone}
+    - say: "5512345806"
+      expect: {asks: email}
+    - say: luisa.ortega@example.com
+      expect: {asks: has_license}
+    - say: Sí tengo
+      offline_say: sí
+      expect: {asks: city}
+    - say: En la Roma
+      offline_say: Roma
+      expect: {asks: availability}
+    - say: Tiempo completo
+      expect: {asks: schedule}
+    - say: Oiga, la zona está mal
+      expect: {asks: city, register: usted}
+    - say: Vivo en Polanco
+      offline_say: Polanco
+      expect: {asks: schedule, outcome: in_progress}
+
+# --- at the summary ---
+
+- id: fix_summary_which_detail_es_voice
+  description: 'Spain, a call. A no to the summary asks which detail; "el correo" alone names it, it is asked again, and the summary is read again.'
+  country: ES
+  channel: voice
+  steps:
+    - say: Sí
+      expect: {asks: full_name}
+    - say: Marta Gil Pons
+      expect: {asks: phone}
+    - say: "612345807"
+      expect: {asks: email}
+    - say: marta.gil@example.com
+      expect: {asks: has_license}
+    - say: Sí
+      expect: {asks: city}
+    - say: Lavapiés
+      expect: {asks: availability}
+    - say: Tiempo parcial
+      expect: {asks: schedule}
+    - say: Tardes
+      expect: {asks: experience_years}
+    - say: Ninguna
+      expect: {asks: start_date}
+    - say: El lunes que viene
+      offline_say: "2026-10-26"
+      expect: {asks: confirm, reply_matches: "Repaso: Marta, Lavapiés, local Madrid Centro"}
+    - say: "No"
+      expect: {asks: confirm, live: {reply_matches: "qu[eé] dato"}}
+    - say: El correo
+      expect: {asks: email, action: ask_field}
+    - say: marta.gil.pons@example.com
+      expect: {asks: confirm, reply_matches: "Repaso: Marta"}
+    - say: Sí
+      expect: {outcome: qualified}
+
+- id: fix_summary_direct_mx_web
+  description: 'Mexico, web. "No, el correo está mal" at the summary asks it straight away, never "¿qué dato?"; a tap on "Corregir algo" then "la zona" names the zone.'
+  country: MX
+  steps:
+    - tap: "yes"
+      expect: {asks: full_name}
+    - say: Tomás Ríos Lara
+      expect: {asks: phone}
+    - tap: {country: MX, number: "5512345808"}
+      expect: {asks: email}
+    - say: tomas.rios@example.com
+      expect: {asks: has_license}
+    - say: Sí
+      expect: {asks: city}
+    - say: Condesa
+      expect: {asks: availability}
+    - say: Fines de semana
+      expect: {asks: schedule}
+    - say: Noches
+      expect: {asks: experience_years}
+    - say: Ninguna
+      expect: {asks: start_date}
+    - say: Hoy
+      offline_say: hoy
+      expect: {asks: confirm, card_matches: "Zona: Condesa · local Cuauhtémoc"}
+    - say: No, el correo está mal
+      expect: {asks: email, action: ask_field}
+    - say: tomas.rios.lara@example.com
+      expect: {asks: confirm}
+    - tap: "no"
+      expect: {asks: confirm, action: confirm_summary}
+    - say: La zona
+      expect: {asks: city, action: ask_field}
+    - say: Doctores
+      expect: {asks: confirm, card_matches: "Zona: Doctores · local Cuauhtémoc"}
+    - tap: "yes"
+      expect: {outcome: qualified}
+
+# --- right after a gate close ---
+
+- id: fix_after_license_close_mx_voice
+  description: 'Mexico, a call. A no to the license, confirmed, closes; the very next message says they do have one, which reopens it and asks the city.'
+  country: MX
+  channel: voice
+  steps:
+    - say: Sí
+      expect: {asks: full_name}
+    - say: Gerardo Luna Paz
+      expect: {asks: phone}
+    - say: "5512345809"
+      expect: {asks: email}
+    - say: gerardo.luna@example.com
+      expect: {asks: has_license}
+    - say: "No"
+      expect: {asks: has_license, action: confirm_value}
+    - say: Así es, no tengo
+      offline_say: sí
+      expect: {action: disqualify, outcome: disqualified, reason: no_license}
+    - say: Perdón, me equivoqué, sí tengo licencia
+      offline_say: sí
+      expect: {live: {asks: city, outcome: in_progress}}
+
+- id: fix_after_unresolved_city_close_es_web
+  description: 'Spain, web. Closed for a city never named; a place in the next message does not reopen it (an unresolved close is started again, never reopened).'
+  country: ES
+  steps:
+    - tap: "yes"
+      expect: {asks: full_name}
+    - say: Héctor Prado Ruiz
+      expect: {asks: phone}
+    - tap: {country: ES, number: "612345810"}
+      expect: {asks: email}
+    - say: hector.prado@example.com
+      expect: {asks: has_license}
+    - say: Sí
+      expect: {asks: city}
+    - say: Por ahí
+      offline_say: por ahí
+      expect: {asks: city}
+    - say: Cerca de donde trabajo
+      offline_say: cerca de donde trabajo
+      expect: {asks: city}
+    - say: Por ahí, ya te digo
+      offline_say: por ahí ya te digo
+      expect: {action: disqualify, reason: unresolved_city, closed: true}
+    - say: Vale, vivo en Gràcia
+      offline_say: Gràcia
+      expect: {outcome: disqualified, reason: unresolved_city}
+
+# --- after the interview is booked ---
+
+- id: fix_after_booking_es_web
+  description: >-
+    Spain, web. With the interview booked: the email corrected keeps the interview (the
+    invitation goes to the new one); the availability too; a new zone asks before moving, and a
+    yes cancels the interview and offers times at the new location.
+  country: ES
+  scheduling: {modes: [onsite]}
+  steps:
+    - tap: "yes"
+      expect: {asks: full_name}
+    - say: Clara Bosch Mir
+      expect: {asks: phone}
+    - tap: {country: ES, number: "612345811"}
+      expect: {asks: email}
+    - say: clara.bosch@example.com
+      expect: {asks: has_license}
+    - say: Sí
+      expect: {asks: city}
+    - say: Gràcia
+      expect: {asks: availability}
+    - say: Tiempo completo
+      expect: {asks: schedule}
+    - say: Mañanas
+      expect: {asks: experience_years}
+    - say: Ninguna
+      expect: {asks: start_date}
+    - say: Hoy
+      offline_say: hoy
+      expect: {asks: confirm}
+    - tap: "yes"
+      expect: {asks: slot, outcome: qualified}
+    - tap: slot:1
+      expect: {booked: true, action: confirm_booking}
+    - say: Mi correo está mal
+      expect: {asks: email, booked: true}
+    - say: clara.bosch.mir@example.com
+      expect: {action: details_updated, booked: true, reply_matches: "actualizado tus datos"}
+    - say: Quiero cambiar la disponibilidad
+      expect: {asks: availability, booked: true}
+    - say: Fines de semana
+      expect: {action: details_updated, booked: true}
+    - say: Quiero cambiar la zona
+      expect: {asks: city, booked: true}
+    - say: Ahora vivo en Sants
+      offline_say: Sants
+      expect: {asks: move, booked: true, reply_matches: "local de Barcelona Sants"}
+    - tap: "yes"
+      expect: {asks: slot, booked: false, outcome: qualified}
+    - tap: slot:1
+      expect: {booked: true, action: confirm_booking, reply_matches: "Barcelona Sants"}
+
+- id: fix_after_booking_mx_web
+  description: 'Mexico, web. With the interview booked: the schedule corrected keeps it; "quiero cambiar la hora de la entrevista" offers other times.'
+  country: MX
+  scheduling: {modes: [onsite]}
+  steps:
+    - tap: "yes"
+      expect: {asks: full_name}
+    - say: Rosa Méndez Cruz
+      expect: {asks: phone}
+    - tap: {country: MX, number: "5512345812"}
+      expect: {asks: email}
+    - say: rosa.mendez@example.com
+      expect: {asks: has_license}
+    - say: Sí
+      expect: {asks: city}
+    - say: Narvarte
+      expect: {asks: availability}
+    - say: Tiempo completo
+      expect: {asks: schedule}
+    - say: Mañanas
+      expect: {asks: experience_years}
+    - say: Ninguna
+      expect: {asks: start_date}
+    - say: Hoy
+      offline_say: hoy
+      expect: {asks: confirm}
+    - tap: "yes"
+      expect: {asks: slot, outcome: qualified}
+    - tap: slot:1
+      expect: {booked: true}
+    - say: El horario está mal
+      expect: {asks: schedule, booked: true, register: usted}
+    - say: Tardes
+      expect: {action: details_updated, booked: true, reply_matches: "actualicé sus datos"}
+    - say: Quiero cambiar la hora de la entrevista
+      expect: {asks: slot, booked: true}
+
+# --- a returning candidate ---
+
+- id: fix_returning_es_web
+  description: 'Spain, web. Stops at the summary; a new chat with the same phone resumes it after "¿Quieres continuar como Iris?", and "quiero cambiar el horario" asks it again before the summary.'
+  country: ES
+  sessions:
+    - steps:
+        - tap: "yes"
+          expect: {asks: full_name}
+        - say: Iris Pons Vela
+          expect: {asks: phone}
+        - tap: {country: ES, number: "612345813"}
+          expect: {asks: email}
+        - say: iris.pons@example.com
+          expect: {asks: has_license}
+        - say: Sí
+          expect: {asks: city}
+        - say: Gràcia
+          expect: {asks: availability}
+        - say: Tiempo completo
+          expect: {asks: schedule}
+        - say: Mañanas
+          expect: {asks: experience_years}
+        - say: Ninguna
+          expect: {asks: start_date}
+        - say: Hoy
+          offline_say: hoy
+          expect: {asks: confirm}
+    - after: 3h
+      steps:
+        - tap: "yes"
+          expect: {asks: full_name}
+        - say: Iris Pons Vela
+          expect: {asks: phone}
+        - tap: {country: ES, number: "612345813"}
+          expect: {reply_matches: "continuar como Iris"}
+        - tap: "yes"
+          expect: {resumed: true, asks: confirm}
+        - say: Quiero cambiar el horario
+          expect: {asks: schedule, resumed: true}
+        - say: Tardes
+          expect: {asks: confirm, card_matches: "Horario: Tarde"}
+
+- id: fix_returning_booked_mx_web
+  description: 'Mexico, web. Booked, then back in a new chat with the same phone: after the yes and the status, "mi correo está mal" asks it and the new one is kept with the interview.'
+  country: MX
+  scheduling: {modes: [onsite]}
+  sessions:
+    - steps:
+        - tap: "yes"
+          expect: {asks: full_name}
+        - say: Emilio Cano Ruiz
+          expect: {asks: phone}
+        - tap: {country: MX, number: "5512345814"}
+          expect: {asks: email}
+        - say: emilio.cano@example.com
+          expect: {asks: has_license}
+        - say: Sí
+          expect: {asks: city}
+        - say: Del Valle, CDMX
+          expect: {asks: availability}
+        - say: Tiempo completo
+          expect: {asks: schedule}
+        - say: Mañanas
+          expect: {asks: experience_years}
+        - say: Ninguna
+          expect: {asks: start_date}
+        - say: Hoy
+          offline_say: hoy
+          expect: {asks: confirm}
+        - tap: "yes"
+          expect: {asks: slot}
+        - tap: slot:1
+          expect: {booked: true}
+    - after: 1d
+      steps:
+        - tap: "yes"
+          expect: {asks: full_name}
+        - say: Emilio Cano Ruiz
+          expect: {asks: phone}
+        - tap: {country: MX, number: "5512345814"}
+          expect: {reply_matches: "continuar como Emilio"}
+        - tap: "yes"
+          expect: {resumed: true, booked: true}
+        - say: Mi correo está mal
+          expect: {asks: email, resumed: true, booked: true}
+        - say: emilio.cano.ruiz@example.com
+          expect: {action: details_updated, booked: true}

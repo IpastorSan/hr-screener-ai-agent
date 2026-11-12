@@ -1,0 +1,854 @@
+{
+ "meta": {
+  "run_id": "judge-20261020T004156",
+  "date": "2026-10-20",
+  "stage": "judge",
+  "repeat": 1,
+  "base_url": "https://openrouter.ai/api/v1",
+  "provider_preferences": {
+   "zdr": true,
+   "data_collection": "deny"
+  },
+  "run_cost_usd": 0.75454,
+  "ledger_total_usd": 15.094248,
+  "max_eval_usd": 35.0,
+  "aborted": null,
+  "cases": 41,
+  "judge": "anthropic/claude-opus-5.5",
+  "anchor": "anthropic/claude-haiku-5.5",
+  "comparisons": 82,
+  "replies": "evals/results/model_selection_2026-10-19_reply_final.json",
+  "position_bias_a": 0.5395,
+  "failed_verdicts": 0
+ },
+ "win_rates": {
+  "anthropic/claude-haiku-5.5": {
+   "win_rate": 0.439,
+   "comparisons": 82,
+   "wins": 33,
+   "ties": 6
+  },
+  "deepseek/deepseek-v4.1-flash": {
+   "win_rate": 0.561,
+   "comparisons": 82,
+   "wins": 43,
+   "ties": 6
+  }
+ },
+ "calls": [
+  {
+   "case_id": "greet-es-es-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "deepseek/deepseek-v4.1-flash",
+   "winner": "B",
+   "reason": "Both have the same wording, but B puts the question at the end of the privacy sentence, which keeps the message tighter and closer to the two-sentence limit.",
+   "cost_usd": 0.0101,
+   "input_tokens": 1180,
+   "output_tokens": 269
+  },
+  {
+   "case_id": "greet-es-es-web",
+   "a": "deepseek/deepseek-v4.1-flash",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "A",
+   "reason": "The two are almost the same, but A attaches the question to the previous sentence like the reference does, so it uses one fewer sentence.",
+   "cost_usd": 0.01012,
+   "input_tokens": 1180,
+   "output_tokens": 270
+  },
+  {
+   "case_id": "greet-es-mx-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "deepseek/deepseek-v4.1-flash",
+   "winner": "B",
+   "reason": "The two messages are almost the same, but B stays within two sentences by ending with the question after a comma, while A uses three.",
+   "cost_usd": 0.008756,
+   "input_tokens": 1194,
+   "output_tokens": 199
+  },
+  {
+   "case_id": "greet-es-mx-web",
+   "a": "deepseek/deepseek-v4.1-flash",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "A",
+   "reason": "Both are correct and use usted, but A works the question into the last sentence, so it reads shorter and matches the reference more closely.",
+   "cost_usd": 0.011336,
+   "input_tokens": 1194,
+   "output_tokens": 328
+  },
+  {
+   "case_id": "greet-en-voice",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "deepseek/deepseek-v4.1-flash",
+   "winner": "B",
+   "reason": "Both are correct, but B says \"privacy notice\" as the action does, while A changes it to \"privacy policy\".",
+   "cost_usd": 0.011248,
+   "input_tokens": 1072,
+   "output_tokens": 348
+  },
+  {
+   "case_id": "greet-en-voice",
+   "a": "deepseek/deepseek-v4.1-flash",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "A",
+   "reason": "A names the \"privacy notice\" the action asks for, while B wrongly says \"privacy policy\".",
+   "cost_usd": 0.012488,
+   "input_tokens": 1072,
+   "output_tokens": 410
+  },
+  {
+   "case_id": "reask-phone-es-es-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "deepseek/deepseek-v4.1-flash",
+   "winner": "B",
+   "reason": "B is short, natural and close to the reference; A runs three sentences and adds the 9-digit fact, which isn't in the action, context or FAQ, though B's question doesn't come last.",
+   "cost_usd": 0.01044,
+   "input_tokens": 1100,
+   "output_tokens": 302
+  },
+  {
+   "case_id": "reask-phone-es-es-web",
+   "a": "deepseek/deepseek-v4.1-flash",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "A",
+   "reason": "A is short and natural, though its question doesn't come last; B runs to three wordy sentences and adds the 9-digit fact, which isn't in the action or context.",
+   "cost_usd": 0.01096,
+   "input_tokens": 1100,
+   "output_tokens": 328
+  },
+  {
+   "case_id": "reask-experience-es-mx-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "deepseek/deepseek-v4.1-flash",
+   "winner": "A",
+   "reason": "Both messages correctly ask again for a number in usted, but A is warmer and more natural because it acknowledges the Rappi experience, while B sounds mechanical and runs longer.",
+   "cost_usd": 0.008996,
+   "input_tokens": 1119,
+   "output_tokens": 226
+  },
+  {
+   "case_id": "reask-experience-es-mx-web",
+   "a": "deepseek/deepseek-v4.1-flash",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "B",
+   "reason": "Both messages correctly ask again for a number and use usted, but B is warmer because it acknowledges the candidate's time at Rappi, and it is shorter and more natural.",
+   "cost_usd": 0.009256,
+   "input_tokens": 1119,
+   "output_tokens": 239
+  },
+  {
+   "case_id": "reask-schedule-en-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "deepseek/deepseek-v4.1-flash",
+   "winner": "A",
+   "reason": "Both re-ask correctly, but A is warmer, while B's \"I need a clearer answer\" sounds slightly blaming.",
+   "cost_usd": 0.00722,
+   "input_tokens": 1085,
+   "output_tokens": 144
+  },
+  {
+   "case_id": "reask-schedule-en-web",
+   "a": "deepseek/deepseek-v4.1-flash",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "B",
+   "reason": "Both re-ask correctly with all four options, but B sounds warmer, while A's \"I need a clearer answer\" comes across as slightly blaming.",
+   "cost_usd": 0.00774,
+   "input_tokens": 1085,
+   "output_tokens": 170
+  },
+  {
+   "case_id": "reask-email-es-mx-voice",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "deepseek/deepseek-v4.1-flash",
+   "winner": "B",
+   "reason": "Both use usted correctly, but B asks for the \"complete\" email, which gently signals the missing domain part, while A only asks the candidate to repeat it.",
+   "cost_usd": 0.011216,
+   "input_tokens": 1039,
+   "output_tokens": 353
+  },
+  {
+   "case_id": "reask-email-es-mx-voice",
+   "a": "deepseek/deepseek-v4.1-flash",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "B",
+   "reason": "Both are correct and use usted, but B is two short sentences that end in one natural question, which suits a voice call better than A's comma-spliced command.",
+   "cost_usd": 0.010216,
+   "input_tokens": 1039,
+   "output_tokens": 303
+  },
+  {
+   "case_id": "clarify-city-es-mx-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "deepseek/deepseek-v4.1-flash",
+   "winner": "B",
+   "reason": "B sticks exactly to the given option, while A adds \"Jalisco\", which the action never states.",
+   "cost_usd": 0.01114,
+   "input_tokens": 1005,
+   "output_tokens": 356
+  },
+  {
+   "case_id": "clarify-city-es-mx-web",
+   "a": "deepseek/deepseek-v4.1-flash",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "A",
+   "reason": "A matches the reference and sticks to the given option, while B adds \"Jalisco\", a detail that appears nowhere in the action or context.",
+   "cost_usd": 0.01042,
+   "input_tokens": 1005,
+   "output_tokens": 320
+  },
+  {
+   "case_id": "clarify-city-cdmx-es-mx-voice",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "deepseek/deepseek-v4.1-flash",
+   "winner": "A",
+   "reason": "Both are correct and use the right register with usted, but A asks for the colonia or alcaldía more briefly, which suits a voice call better.",
+   "cost_usd": 0.009016,
+   "input_tokens": 1024,
+   "output_tokens": 246
+  },
+  {
+   "case_id": "clarify-city-cdmx-es-mx-voice",
+   "a": "deepseek/deepseek-v4.1-flash",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "A",
+   "reason": "Both are correct and use usted, but A gently asks for more detail about the zone, so it reads as a natural clarification and still stays within the voice length.",
+   "cost_usd": 0.009136,
+   "input_tokens": 1024,
+   "output_tokens": 252
+  },
+  {
+   "case_id": "clarify-city-es-es-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "deepseek/deepseek-v4.1-flash",
+   "winner": "tie",
+   "reason": "no call: missing or identical reply"
+  },
+  {
+   "case_id": "clarify-city-es-es-web",
+   "a": "deepseek/deepseek-v4.1-flash",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "tie",
+   "reason": "no call: missing or identical reply"
+  },
+  {
+   "case_id": "disqualify-license-es-es-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "deepseek/deepseek-v4.1-flash",
+   "winner": "B",
+   "reason": "Both are correct and use the Spain register, but B keeps to two short sentences, while A runs to three and adds a detail the action didn't include (\"por este mismo chat\").",
+   "cost_usd": 0.009364,
+   "input_tokens": 1141,
+   "output_tokens": 240
+  },
+  {
+   "case_id": "disqualify-license-es-es-web",
+   "a": "deepseek/deepseek-v4.1-flash",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "A",
+   "reason": "A fits in two short sentences, while B runs to three and adds a detail the action doesn't support (\"por este mismo chat\").",
+   "cost_usd": 0.010044,
+   "input_tokens": 1141,
+   "output_tokens": 274
+  },
+  {
+   "case_id": "disqualify-license-es-mx-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "deepseek/deepseek-v4.1-flash",
+   "winner": "B",
+   "reason": "B gives the disqualification and the invite to reapply in two short usted sentences, while A runs to three sentences and adds an unsupported \"por este mismo chat\".",
+   "cost_usd": 0.009232,
+   "input_tokens": 1143,
+   "output_tokens": 233
+  },
+  {
+   "case_id": "disqualify-license-es-mx-web",
+   "a": "deepseek/deepseek-v4.1-flash",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "A",
+   "reason": "A keeps to two short usted sentences, while B runs to three and adds an unsupported \"por este mismo chat\" detail.",
+   "cost_usd": 0.010052,
+   "input_tokens": 1143,
+   "output_tokens": 274
+  },
+  {
+   "case_id": "disqualify-license-en-voice",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "deepseek/deepseek-v4.1-flash",
+   "winner": "A",
+   "reason": "Both messages are correct and about the same length, but A's opening \"Thanks, Tom\" makes the rejection feel warmer.",
+   "cost_usd": 0.009712,
+   "input_tokens": 1063,
+   "output_tokens": 273
+  },
+  {
+   "case_id": "disqualify-license-en-voice",
+   "a": "deepseek/deepseek-v4.1-flash",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "B",
+   "reason": "Both messages are correct and about the same length, but B's \"Thanks\" and \"feel free to apply again\" make the rejection warmer.",
+   "cost_usd": 0.011912,
+   "input_tokens": 1063,
+   "output_tokens": 383
+  },
+  {
+   "case_id": "license-in-progress-es-es-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "deepseek/deepseek-v4.1-flash",
+   "winner": "B",
+   "reason": "Both are correct and use Spain's tú and \"carnet,\" but A runs to three sentences while B stays within the two-short-sentence limit.",
+   "cost_usd": 0.00796,
+   "input_tokens": 1140,
+   "output_tokens": 170
+  },
+  {
+   "case_id": "license-in-progress-es-es-web",
+   "a": "deepseek/deepseek-v4.1-flash",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "A",
+   "reason": "Both are correct and use Spain tú, but B runs to three sentences while A delivers the disqualification and the invite to reapply in two.",
+   "cost_usd": 0.00902,
+   "input_tokens": 1140,
+   "output_tokens": 223
+  },
+  {
+   "case_id": "license-in-progress-es-mx-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "deepseek/deepseek-v4.1-flash",
+   "winner": "B",
+   "reason": "Both are correct and use usted, but A runs to three sentences, while B covers the same disqualification and reapply invite in two.",
+   "cost_usd": 0.008196,
+   "input_tokens": 1124,
+   "output_tokens": 185
+  },
+  {
+   "case_id": "license-in-progress-es-mx-web",
+   "a": "deepseek/deepseek-v4.1-flash",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "A",
+   "reason": "Both messages turn Luis down correctly and invite him to reapply using usted, but A keeps to two short sentences while B runs to three.",
+   "cost_usd": 0.007796,
+   "input_tokens": 1124,
+   "output_tokens": 165
+  },
+  {
+   "case_id": "license-in-progress-en-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "deepseek/deepseek-v4.1-flash",
+   "winner": "B",
+   "reason": "Both correctly turn Sam down and invite him to reapply, but B does it in two short sentences while A runs to three.",
+   "cost_usd": 0.00824,
+   "input_tokens": 1085,
+   "output_tokens": 195
+  },
+  {
+   "case_id": "license-in-progress-en-web",
+   "a": "deepseek/deepseek-v4.1-flash",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "A",
+   "reason": "Both messages turn Sam down correctly and invite a reapplication, but B uses three sentences and A stays within the two-sentence limit.",
+   "cost_usd": 0.00798,
+   "input_tokens": 1085,
+   "output_tokens": 182
+  },
+  {
+   "case_id": "disqualify-zone-es-es-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "deepseek/deepseek-v4.1-flash",
+   "winner": "B",
+   "reason": "Both are correct and both offer the talent pool, but B stays within the two-sentence limit and A runs to three.",
+   "cost_usd": 0.007844,
+   "input_tokens": 1141,
+   "output_tokens": 164
+  },
+  {
+   "case_id": "disqualify-zone-es-es-web",
+   "a": "deepseek/deepseek-v4.1-flash",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "A",
+   "reason": "Both are correct, but A fits in two short sentences while B runs to three.",
+   "cost_usd": 0.008944,
+   "input_tokens": 1141,
+   "output_tokens": 219
+  },
+  {
+   "case_id": "disqualify-zone-es-mx-voice",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "deepseek/deepseek-v4.1-flash",
+   "winner": "tie",
+   "reason": "Both messages are correct, use usted, make the same talent-pool offer and differ only in word order.",
+   "cost_usd": 0.007036,
+   "input_tokens": 1099,
+   "output_tokens": 132
+  },
+  {
+   "case_id": "disqualify-zone-es-mx-voice",
+   "a": "deepseek/deepseek-v4.1-flash",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "tie",
+   "reason": "The two messages are correct and say the same thing in Mexican usted with the talent-pool offer as the last question; only the word order differs.",
+   "cost_usd": 0.008396,
+   "input_tokens": 1099,
+   "output_tokens": 200
+  },
+  {
+   "case_id": "disqualify-zone-en-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "deepseek/deepseek-v4.1-flash",
+   "winner": "B",
+   "reason": "B is shorter and warmer, offers the talent pool cleanly, and avoids A's \"at this time,\" which hints at reapplying even though invite_reapply is false.",
+   "cost_usd": 0.008928,
+   "input_tokens": 1067,
+   "output_tokens": 233
+  },
+  {
+   "case_id": "disqualify-zone-en-web",
+   "a": "deepseek/deepseek-v4.1-flash",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "A",
+   "reason": "Both messages are correct, but A is shorter and warmer, and it apologises the way the reference does without B's extra rejection clause.",
+   "cost_usd": 0.007688,
+   "input_tokens": 1067,
+   "output_tokens": 171
+  },
+  {
+   "case_id": "faq-pay-es-es-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "deepseek/deepseek-v4.1-flash",
+   "winner": "A",
+   "reason": "Both give the same correct pay facts and question, but A reads like a natural, warm sentence, while B sounds like a copied FAQ entry.",
+   "cost_usd": 0.00986,
+   "input_tokens": 1335,
+   "output_tokens": 226
+  },
+  {
+   "case_id": "faq-pay-es-es-web",
+   "a": "deepseek/deepseek-v4.1-flash",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "B",
+   "reason": "Both are correct and use tú, but B reads as natural conversation, while A copies the FAQ's stiff label wording.",
+   "cost_usd": 0.00978,
+   "input_tokens": 1335,
+   "output_tokens": 222
+  },
+  {
+   "case_id": "faq-vehicle-es-mx-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "deepseek/deepseek-v4.1-flash",
+   "winner": "B",
+   "reason": "Both are correct and use usted, but B reads more naturally because it skips A's awkward \"Sí\" in reply to an either/or question and is shorter.",
+   "cost_usd": 0.011336,
+   "input_tokens": 1339,
+   "output_tokens": 299
+  },
+  {
+   "case_id": "faq-vehicle-es-mx-web",
+   "a": "deepseek/deepseek-v4.1-flash",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "A",
+   "reason": "Both are accurate and use usted, but A reads more naturally, while B's opening \"Sí\" doesn't fit an either/or question.",
+   "cost_usd": 0.010796,
+   "input_tokens": 1339,
+   "output_tokens": 272
+  },
+  {
+   "case_id": "faq-hours-en-voice",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "deepseek/deepseek-v4.1-flash",
+   "winner": "A",
+   "reason": "Both answer the shift question correctly, but A asks about availability with clear options (full time, part time or weekends), which is easier to answer on a call than B's vague \"What's your availability?\"",
+   "cost_usd": 0.013216,
+   "input_tokens": 1194,
+   "output_tokens": 422
+  },
+  {
+   "case_id": "faq-hours-en-voice",
+   "a": "deepseek/deepseek-v4.1-flash",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "A",
+   "reason": "Both are correct, but A is shorter and spells out the numbers, so it reads better on voice and stays closer to the voice length limit.",
+   "cost_usd": 0.010516,
+   "input_tokens": 1194,
+   "output_tokens": 287
+  },
+  {
+   "case_id": "faq-bot-es-es-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "deepseek/deepseek-v4.1-flash",
+   "winner": "B",
+   "reason": "Both correctly confirm being an AI and ask for the full name in Spain-style tú, but B's \"¿Me dices tu nombre completo para empezar?\" sounds warmer and more natural.",
+   "cost_usd": 0.0103,
+   "input_tokens": 1190,
+   "output_tokens": 277
+  },
+  {
+   "case_id": "faq-bot-es-es-web",
+   "a": "deepseek/deepseek-v4.1-flash",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "A",
+   "reason": "Both correctly confirm being an AI and ask for the full name, but A's \"¿Me dices… para empezar?\" sounds warmer and more natural in Spain.",
+   "cost_usd": 0.00938,
+   "input_tokens": 1190,
+   "output_tokens": 231
+  },
+  {
+   "case_id": "unknown-faq-es-es-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "deepseek/deepseek-v4.1-flash",
+   "winner": "B",
+   "reason": "B's \"pero puedes preguntarlo\" reads more naturally than A's clunky \"así que puedes preguntarla\", and the rest of the two messages is the same.",
+   "cost_usd": 0.009184,
+   "input_tokens": 1181,
+   "output_tokens": 223
+  },
+  {
+   "case_id": "unknown-faq-es-es-web",
+   "a": "deepseek/deepseek-v4.1-flash",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "A",
+   "reason": "Both are correct, but A's \"pero puedes preguntarlo\" reads more naturally than B's awkward \"así que puedes preguntarla\".",
+   "cost_usd": 0.008544,
+   "input_tokens": 1181,
+   "output_tokens": 191
+  },
+  {
+   "case_id": "unknown-faq-es-mx-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "deepseek/deepseek-v4.1-flash",
+   "winner": "A",
+   "reason": "Both are correct and use usted, but A's \"pero\" reads more naturally than B's comma splice.",
+   "cost_usd": 0.007412,
+   "input_tokens": 1133,
+   "output_tokens": 144
+  },
+  {
+   "case_id": "unknown-faq-es-mx-web",
+   "a": "deepseek/deepseek-v4.1-flash",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "B",
+   "reason": "Both are correct and match the reference, but B's \"pero\" reads more naturally than A's comma splice.",
+   "cost_usd": 0.008172,
+   "input_tokens": 1133,
+   "output_tokens": 182
+  },
+  {
+   "case_id": "unknown-faq-en-voice",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "deepseek/deepseek-v4.1-flash",
+   "winner": "A",
+   "reason": "Both are correct and nearly identical, but A's \"you can ask at the interview\" reads more naturally than B's \"ask it at the interview.\"",
+   "cost_usd": 0.008232,
+   "input_tokens": 1113,
+   "output_tokens": 189
+  },
+  {
+   "case_id": "unknown-faq-en-voice",
+   "a": "deepseek/deepseek-v4.1-flash",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "B",
+   "reason": "The two are almost identical, but B's \"ask at the interview\" sounds more natural than \"ask it\" and is slightly shorter for voice.",
+   "cost_usd": 0.008212,
+   "input_tokens": 1113,
+   "output_tokens": 188
+  },
+  {
+   "case_id": "deescalate-es-es-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "deepseek/deepseek-v4.1-flash",
+   "winner": "B",
+   "reason": "Both are correct, but B answers the \"you're annoying\" complaint head-on by promising to finish quickly, which calms the candidate better than a generic apology.",
+   "cost_usd": 0.01128,
+   "input_tokens": 1130,
+   "output_tokens": 338
+  },
+  {
+   "case_id": "deescalate-es-es-web",
+   "a": "deepseek/deepseek-v4.1-flash",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "A",
+   "reason": "A calms the candidate by promising to finish quickly, which matches the reference most closely, and then asks the experience question in simple Spain Spanish.",
+   "cost_usd": 0.01112,
+   "input_tokens": 1130,
+   "output_tokens": 330
+  },
+  {
+   "case_id": "deescalate-es-mx-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "deepseek/deepseek-v4.1-flash",
+   "winner": "A",
+   "reason": "Both messages are correct and use usted, but A calms the candidate better by promising to keep it short, and \"le acomoda\" sounds naturally Mexican.",
+   "cost_usd": 0.00938,
+   "input_tokens": 1135,
+   "output_tokens": 242
+  },
+  {
+   "case_id": "deescalate-es-mx-web",
+   "a": "deepseek/deepseek-v4.1-flash",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "B",
+   "reason": "B tells the candidate it will stay short, which calms them better, and \"le acomoda\" sounds natural in Mexican Spanish.",
+   "cost_usd": 0.009,
+   "input_tokens": 1135,
+   "output_tokens": 223
+  },
+  {
+   "case_id": "deescalate-en-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "deepseek/deepseek-v4.1-flash",
+   "winner": "tie",
+   "reason": "Both calmly acknowledge the frustration, keep it short, and then ask only for the city, so they are equally good.",
+   "cost_usd": 0.0091,
+   "input_tokens": 1080,
+   "output_tokens": 239
+  },
+  {
+   "case_id": "deescalate-en-web",
+   "a": "deepseek/deepseek-v4.1-flash",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "tie",
+   "reason": "Both calm the candidate down, keep it short and simple, and end with the city question, differing only in \"I'm sorry\" versus \"I understand\".",
+   "cost_usd": 0.00966,
+   "input_tokens": 1080,
+   "output_tokens": 267
+  },
+  {
+   "case_id": "pause-es-es-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "deepseek/deepseek-v4.1-flash",
+   "winner": "A",
+   "reason": "The two are almost the same, but \"¿Hacemos una pausa?\" sounds a little more natural in Spain Spanish.",
+   "cost_usd": 0.008072,
+   "input_tokens": 1063,
+   "output_tokens": 191
+  },
+  {
+   "case_id": "pause-es-es-web",
+   "a": "deepseek/deepseek-v4.1-flash",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "B",
+   "reason": "Both are correct and nearly identical, but \"¿Hacemos una pausa?\" sounds more natural in Spain Spanish than \"¿Hacemos pausa?\".",
+   "cost_usd": 0.008312,
+   "input_tokens": 1063,
+   "output_tokens": 203
+  },
+  {
+   "case_id": "pause-es-mx-voice",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "deepseek/deepseek-v4.1-flash",
+   "winner": "A",
+   "reason": "Both use correct Mexican usted, but A offers the pause and closes with a short question asking the candidate to confirm, while B never invites a reply.",
+   "cost_usd": 0.00934,
+   "input_tokens": 1040,
+   "output_tokens": 259
+  },
+  {
+   "case_id": "pause-es-mx-voice",
+   "a": "deepseek/deepseek-v4.1-flash",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "B",
+   "reason": "Both are short and use usted correctly, but only B ends with a question that asks the candidate whether they want to pause, so the offer is complete.",
+   "cost_usd": 0.00836,
+   "input_tokens": 1040,
+   "output_tokens": 210
+  },
+  {
+   "case_id": "pause-en-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "deepseek/deepseek-v4.1-flash",
+   "winner": "B",
+   "reason": "B offers the pause simply, while A's \"No problem\" replies to a candidate message that doesn't exist.",
+   "cost_usd": 0.007276,
+   "input_tokens": 989,
+   "output_tokens": 166
+  },
+  {
+   "case_id": "pause-en-web",
+   "a": "deepseek/deepseek-v4.1-flash",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "A",
+   "reason": "A offers the pause simply and directly, while B opens with \"No problem\" even though the candidate hasn't said anything.",
+   "cost_usd": 0.008096,
+   "input_tokens": 989,
+   "output_tokens": 207
+  },
+  {
+   "case_id": "confirm-es-es-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "deepseek/deepseek-v4.1-flash",
+   "winner": "A",
+   "reason": "B makes up \"reparto en bici\" and drops the licence, while A states the profile correctly even though it uses Mexican words (\"licencia\", \"sucursal\") where Spain would say \"carnet\".",
+   "cost_usd": 0.010224,
+   "input_tokens": 1261,
+   "output_tokens": 259
+  },
+  {
+   "case_id": "confirm-es-es-web",
+   "a": "deepseek/deepseek-v4.1-flash",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "B",
+   "reason": "A makes up \"reparto en bici\" and leaves out the licence, while B states the profile facts correctly, even though \"licencia\" should be \"carnet\" for Spain.",
+   "cost_usd": 0.010164,
+   "input_tokens": 1261,
+   "output_tokens": 256
+  },
+  {
+   "case_id": "confirm-es-mx-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "deepseek/deepseek-v4.1-flash",
+   "winner": "A",
+   "reason": "A sounds warmer because it uses Jorge's name, and \"turno matutino\" is more natural Mexican wording, though \"vigente\" and \"sucursal\" add small details the profile doesn't state.",
+   "cost_usd": 0.013492,
+   "input_tokens": 1243,
+   "output_tokens": 426
+  },
+  {
+   "case_id": "confirm-es-mx-web",
+   "a": "deepseek/deepseek-v4.1-flash",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "A",
+   "reason": "A sums up the profile accurately and briefly, while B adds \"vigente\" (a valid licence), which the profile data doesn't say, and is wordier.",
+   "cost_usd": 0.011132,
+   "input_tokens": 1243,
+   "output_tokens": 308
+  },
+  {
+   "case_id": "confirm-en-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "deepseek/deepseek-v4.1-flash",
+   "winner": "B",
+   "reason": "Both summaries are accurate, but B reads more naturally and briefly, with no list-like field labels, and it still covers every detail.",
+   "cost_usd": 0.009312,
+   "input_tokens": 1188,
+   "output_tokens": 228
+  },
+  {
+   "case_id": "confirm-en-web",
+   "a": "deepseek/deepseek-v4.1-flash",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "A",
+   "reason": "Both summaries are accurate, but A reads warmly and naturally while B sounds like a list read off a form.",
+   "cost_usd": 0.009192,
+   "input_tokens": 1188,
+   "output_tokens": 222
+  },
+  {
+   "case_id": "slots-es-es-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "deepseek/deepseek-v4.1-flash",
+   "winner": "A",
+   "reason": "A keeps the full interview address from the slots, while B leaves out the street address and so drops information the candidate needs.",
+   "cost_usd": 0.010084,
+   "input_tokens": 1491,
+   "output_tokens": 206
+  },
+  {
+   "case_id": "slots-es-es-web",
+   "a": "deepseek/deepseek-v4.1-flash",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "B",
+   "reason": "B gives every slot in full, including the interview street address, which A leaves out, and it still reads naturally in tú.",
+   "cost_usd": 0.009584,
+   "input_tokens": 1491,
+   "output_tokens": 181
+  },
+  {
+   "case_id": "slots-es-mx-voice",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "deepseek/deepseek-v4.1-flash",
+   "winner": "B",
+   "reason": "B says the slots are for the interview and writes the times out in words, which reads better on a voice call; neither message gives the location.",
+   "cost_usd": 0.009912,
+   "input_tokens": 1288,
+   "output_tokens": 238
+  },
+  {
+   "case_id": "slots-es-mx-voice",
+   "a": "deepseek/deepseek-v4.1-flash",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "A",
+   "reason": "A says what the slots are for (the interview) and spells out the dates and times, which reads better aloud on a voice call.",
+   "cost_usd": 0.009172,
+   "input_tokens": 1288,
+   "output_tokens": 201
+  },
+  {
+   "case_id": "slots-en-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "deepseek/deepseek-v4.1-flash",
+   "winner": "A",
+   "reason": "A gives the full interview address (Calle Mayor 10), which B leaves out, and the two messages are otherwise equally good.",
+   "cost_usd": 0.008376,
+   "input_tokens": 1364,
+   "output_tokens": 146
+  },
+  {
+   "case_id": "slots-en-web",
+   "a": "deepseek/deepseek-v4.1-flash",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "B",
+   "reason": "B gives the full location with the Calle Mayor 10 address, which A leaves out, and the rest of the two messages is equally good.",
+   "cost_usd": 0.008596,
+   "input_tokens": 1364,
+   "output_tokens": 157
+  },
+  {
+   "case_id": "reengage-es-es-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "deepseek/deepseek-v4.1-flash",
+   "winner": "A",
+   "reason": "The two are the same except that A correctly sets off the name \"Lucía\" with commas, so it reads more cleanly.",
+   "cost_usd": 0.008152,
+   "input_tokens": 1153,
+   "output_tokens": 177
+  },
+  {
+   "case_id": "reengage-es-es-web",
+   "a": "deepseek/deepseek-v4.1-flash",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "B",
+   "reason": "The two are the same except for punctuation, and only B correctly puts commas around the name Lucía when addressing her.",
+   "cost_usd": 0.008012,
+   "input_tokens": 1153,
+   "output_tokens": 170
+  },
+  {
+   "case_id": "reengage-es-mx-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "deepseek/deepseek-v4.1-flash",
+   "winner": "A",
+   "reason": "Both are correct and use usted, but A reminds Jorge that he is close to finishing his application, which works better when trying to win him back.",
+   "cost_usd": 0.011592,
+   "input_tokens": 1128,
+   "output_tokens": 354
+  },
+  {
+   "case_id": "reengage-es-mx-web",
+   "a": "deepseek/deepseek-v4.1-flash",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "A",
+   "reason": "Both re-engage correctly in usted and ask the one question last, but A is shorter and sounds more natural.",
+   "cost_usd": 0.008652,
+   "input_tokens": 1128,
+   "output_tokens": 207
+  },
+  {
+   "case_id": "reengage-en-web",
+   "a": "anthropic/claude-haiku-5.5",
+   "b": "deepseek/deepseek-v4.1-flash",
+   "winner": "A",
+   "reason": "Both are nearly the same, but A's \"a few questions left\" matches the reference, while B's \"a couple\" claims an exact number of steps that isn't supported.",
+   "cost_usd": 0.008384,
+   "input_tokens": 1061,
+   "output_tokens": 207
+  },
+  {
+   "case_id": "reengage-en-web",
+   "a": "deepseek/deepseek-v4.1-flash",
+   "b": "anthropic/claude-haiku-5.5",
+   "winner": "B",
+   "reason": "Both are nearly identical, but B's \"a few questions left\" matches the action, while A's \"a couple of details\" suggests an exact count the action never gives.",
+   "cost_usd": 0.008424,
+   "input_tokens": 1061,
+   "output_tokens": 209
+  }
+ ]
+}

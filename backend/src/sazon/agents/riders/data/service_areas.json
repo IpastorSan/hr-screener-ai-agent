@@ -1,0 +1,1285 @@
+{
+  "_note": "Fictional client data for Grupo Sazón: the kitchens candidates apply to, 45 in all, 20 in Spain and 25 in Mexico. Each location has its city, country, timezone, address, manager, and the `zones` (neighbourhoods, colonias) and `aliases` (spellings without accents, nicknames such as \"DF\") a candidate may name instead of the city; `sazon.engine.service_areas` matches a candidate's answer against them. Keys starting with `_` are notes for readers and are never loaded.",
+  "_interviews": "In-person interviews are with each location's manager (fictional people at the fictional gruposazon.example domain). `interview_defaults` holds each country's interview hours (local time), interviews per slot and daily maximum per location; a location overrides any of them with `interview_hours`, `interviews_per_slot` or `max_interviews_per_day`.",
+  "brand": "Sazón",
+  "interview_defaults": {
+    "ES": {
+      "interview_hours": {
+        "mon": [
+          [
+            "10:00",
+            "14:00"
+          ],
+          [
+            "16:00",
+            "20:00"
+          ]
+        ],
+        "tue": [
+          [
+            "10:00",
+            "14:00"
+          ],
+          [
+            "16:00",
+            "20:00"
+          ]
+        ],
+        "wed": [
+          [
+            "10:00",
+            "14:00"
+          ],
+          [
+            "16:00",
+            "20:00"
+          ]
+        ],
+        "thu": [
+          [
+            "10:00",
+            "14:00"
+          ],
+          [
+            "16:00",
+            "20:00"
+          ]
+        ],
+        "fri": [
+          [
+            "10:00",
+            "14:00"
+          ],
+          [
+            "16:00",
+            "20:00"
+          ]
+        ]
+      },
+      "interviews_per_slot": 1,
+      "max_interviews_per_day": 15
+    },
+    "MX": {
+      "interview_hours": {
+        "mon": [
+          [
+            "10:00",
+            "14:00"
+          ],
+          [
+            "16:00",
+            "20:00"
+          ]
+        ],
+        "tue": [
+          [
+            "10:00",
+            "14:00"
+          ],
+          [
+            "16:00",
+            "20:00"
+          ]
+        ],
+        "wed": [
+          [
+            "10:00",
+            "14:00"
+          ],
+          [
+            "16:00",
+            "20:00"
+          ]
+        ],
+        "thu": [
+          [
+            "10:00",
+            "14:00"
+          ],
+          [
+            "16:00",
+            "20:00"
+          ]
+        ],
+        "fri": [
+          [
+            "10:00",
+            "14:00"
+          ],
+          [
+            "16:00",
+            "20:00"
+          ]
+        ]
+      },
+      "interviews_per_slot": 1,
+      "max_interviews_per_day": 15
+    }
+  },
+  "locations": [
+    {
+      "location_id": "es-mad-centro",
+      "name": "Sazón Madrid Centro",
+      "city": "Madrid",
+      "region": "madrid",
+      "country": "ES",
+      "timezone": "Europe/Madrid",
+      "address": "Calle de Fuencarral 112, 28004 Madrid",
+      "manager": {
+        "name": "Pilar Navarro",
+        "email": "gerencia.es-mad-centro@gruposazon.example"
+      },
+      "zones": [
+        "Centro",
+        "Sol",
+        "Malasaña",
+        "Lavapiés",
+        "Chamberí",
+        "Salamanca",
+        "Retiro"
+      ],
+      "aliases": [
+        "Malasana",
+        "Lavapies",
+        "Chamberi"
+      ]
+    },
+    {
+      "location_id": "es-mad-norte",
+      "name": "Sazón Madrid Norte",
+      "city": "Madrid",
+      "region": "madrid",
+      "country": "ES",
+      "timezone": "Europe/Madrid",
+      "address": "Calle de Bravo Murillo 305, 28020 Madrid",
+      "manager": {
+        "name": "Sergio Calvo",
+        "email": "gerencia.es-mad-norte@gruposazon.example"
+      },
+      "zones": [
+        "Chamartín",
+        "Tetuán",
+        "Fuencarral",
+        "Hortaleza"
+      ],
+      "aliases": [
+        "Chamartin",
+        "Tetuan",
+        "Las Tablas"
+      ]
+    },
+    {
+      "location_id": "es-mad-sur",
+      "name": "Sazón Madrid Sur",
+      "city": "Madrid",
+      "region": "madrid",
+      "country": "ES",
+      "timezone": "Europe/Madrid",
+      "address": "Calle de Marcelo Usera 58, 28026 Madrid",
+      "manager": {
+        "name": "Beatriz Molina",
+        "email": "gerencia.es-mad-sur@gruposazon.example"
+      },
+      "zones": [
+        "Usera",
+        "Carabanchel",
+        "Villaverde",
+        "Arganzuela",
+        "Latina"
+      ],
+      "aliases": [
+        "Legazpi"
+      ]
+    },
+    {
+      "location_id": "es-mad-este",
+      "name": "Sazón Madrid Este",
+      "city": "Madrid",
+      "region": "madrid",
+      "country": "ES",
+      "timezone": "Europe/Madrid",
+      "address": "Calle de Alcalá 412, 28027 Madrid",
+      "manager": {
+        "name": "Álvaro Herrero",
+        "email": "gerencia.es-mad-este@gruposazon.example"
+      },
+      "zones": [
+        "Ciudad Lineal",
+        "San Blas",
+        "Moratalaz",
+        "Vicálvaro"
+      ],
+      "aliases": [
+        "Vicalvaro"
+      ]
+    },
+    {
+      "location_id": "es-bcn-eixample",
+      "name": "Sazón Barcelona Eixample",
+      "city": "Barcelona",
+      "region": "cataluna",
+      "country": "ES",
+      "timezone": "Europe/Madrid",
+      "address": "Carrer del Consell de Cent 287, 08007 Barcelona",
+      "manager": {
+        "name": "Nuria Castells",
+        "email": "gerencia.es-bcn-eixample@gruposazon.example"
+      },
+      "zones": [
+        "Eixample",
+        "Sant Antoni",
+        "Ciutat Vella",
+        "Gòtic",
+        "Raval"
+      ],
+      "aliases": [
+        "BCN",
+        "Barna",
+        "Gotic",
+        "Ensanche"
+      ]
+    },
+    {
+      "location_id": "es-bcn-gracia",
+      "name": "Sazón Barcelona Gràcia",
+      "city": "Barcelona",
+      "region": "cataluna",
+      "country": "ES",
+      "timezone": "Europe/Madrid",
+      "address": "Carrer de Verdi 45, 08012 Barcelona",
+      "manager": {
+        "name": "Marc Soler",
+        "email": "gerencia.es-bcn-gracia@gruposazon.example"
+      },
+      "zones": [
+        "Gràcia",
+        "Sarrià-Sant Gervasi",
+        "Horta-Guinardó"
+      ],
+      "aliases": [
+        "BCN",
+        "Barna",
+        "Gracia",
+        "Sarria"
+      ]
+    },
+    {
+      "location_id": "es-bcn-sants",
+      "name": "Sazón Barcelona Sants",
+      "city": "Barcelona",
+      "region": "cataluna",
+      "country": "ES",
+      "timezone": "Europe/Madrid",
+      "address": "Carrer de Sants 134, 08028 Barcelona",
+      "manager": {
+        "name": "Montse Vidal",
+        "email": "gerencia.es-bcn-sants@gruposazon.example"
+      },
+      "zones": [
+        "Sants-Montjuïc",
+        "Les Corts",
+        "Poble-sec"
+      ],
+      "aliases": [
+        "BCN",
+        "Barna",
+        "Sants",
+        "Montjuic",
+        "Poble Sec"
+      ]
+    },
+    {
+      "location_id": "es-bcn-hospitalet",
+      "name": "Sazón L'Hospitalet",
+      "city": "L'Hospitalet de Llobregat",
+      "region": "cataluna",
+      "country": "ES",
+      "timezone": "Europe/Madrid",
+      "address": "Rambla de la Marina 210, 08907 L'Hospitalet de Llobregat",
+      "manager": {
+        "name": "Óscar Prieto",
+        "email": "gerencia.es-bcn-hospitalet@gruposazon.example"
+      },
+      "zones": [
+        "Centre",
+        "Bellvitge",
+        "La Florida"
+      ],
+      "aliases": [
+        "Hospitalet",
+        "L Hospitalet",
+        "Hospitalet de Llobregat"
+      ]
+    },
+    {
+      "location_id": "es-vlc-centro",
+      "name": "Sazón Valencia Centro",
+      "city": "Valencia",
+      "region": "comunidad valenciana",
+      "country": "ES",
+      "timezone": "Europe/Madrid",
+      "address": "Carrer de Colón 36, 46004 València",
+      "manager": {
+        "name": "Amparo Ferrer",
+        "email": "gerencia.es-vlc-centro@gruposazon.example"
+      },
+      "zones": [
+        "Ciutat Vella",
+        "Ruzafa",
+        "Extramurs",
+        "El Pla del Real"
+      ],
+      "aliases": [
+        "València",
+        "Russafa"
+      ]
+    },
+    {
+      "location_id": "es-vlc-norte",
+      "name": "Sazón Valencia Benimaclet",
+      "city": "Valencia",
+      "region": "comunidad valenciana",
+      "country": "ES",
+      "timezone": "Europe/Madrid",
+      "address": "Carrer d'Emili Baró 21, 46020 València",
+      "manager": {
+        "name": "Vicente Llorens",
+        "email": "gerencia.es-vlc-norte@gruposazon.example"
+      },
+      "zones": [
+        "Benimaclet",
+        "Campanar",
+        "Algirós"
+      ],
+      "aliases": [
+        "València",
+        "Algiros"
+      ]
+    },
+    {
+      "location_id": "es-sev-centro",
+      "name": "Sazón Sevilla",
+      "city": "Sevilla",
+      "region": "andalucia",
+      "country": "ES",
+      "timezone": "Europe/Madrid",
+      "address": "Calle Feria 74, 41003 Sevilla",
+      "manager": {
+        "name": "Rocío Márquez",
+        "email": "gerencia.es-sev-centro@gruposazon.example"
+      },
+      "zones": [
+        "Casco Antiguo",
+        "Triana",
+        "Nervión",
+        "Los Remedios"
+      ],
+      "aliases": [
+        "Seville",
+        "Sevila",
+        "Nervion"
+      ]
+    },
+    {
+      "location_id": "es-mlg-centro",
+      "name": "Sazón Málaga",
+      "city": "Málaga",
+      "region": "andalucia",
+      "country": "ES",
+      "timezone": "Europe/Madrid",
+      "address": "Calle Carretería 49, 29008 Málaga",
+      "manager": {
+        "name": "Antonio Bravo",
+        "email": "gerencia.es-mlg-centro@gruposazon.example"
+      },
+      "zones": [
+        "Centro",
+        "Teatinos",
+        "El Palo",
+        "Carretera de Cádiz"
+      ],
+      "aliases": [
+        "Malaga"
+      ]
+    },
+    {
+      "location_id": "es-bio-centro",
+      "name": "Sazón Bilbao",
+      "city": "Bilbao",
+      "region": "pais vasco",
+      "country": "ES",
+      "timezone": "Europe/Madrid",
+      "address": "Calle Autonomía 33, 48010 Bilbao",
+      "manager": {
+        "name": "Itziar Etxeberria",
+        "email": "gerencia.es-bio-centro@gruposazon.example"
+      },
+      "zones": [
+        "Abando",
+        "Indautxu",
+        "Deusto",
+        "Casco Viejo"
+      ],
+      "aliases": [
+        "Bilbo",
+        "Indautxu"
+      ]
+    },
+    {
+      "location_id": "es-zgz-centro",
+      "name": "Sazón Zaragoza",
+      "city": "Zaragoza",
+      "region": "aragon",
+      "country": "ES",
+      "timezone": "Europe/Madrid",
+      "address": "Calle del Coso 96, 50001 Zaragoza",
+      "manager": {
+        "name": "Laura Lacasa",
+        "email": "gerencia.es-zgz-centro@gruposazon.example"
+      },
+      "zones": [
+        "Centro",
+        "Delicias",
+        "Actur",
+        "Universidad"
+      ],
+      "aliases": []
+    },
+    {
+      "location_id": "es-ali-centro",
+      "name": "Sazón Alicante",
+      "city": "Alicante",
+      "region": "comunidad valenciana",
+      "country": "ES",
+      "timezone": "Europe/Madrid",
+      "address": "Avenida de Alfonso el Sabio 18, 03004 Alicante",
+      "manager": {
+        "name": "Paco Sempere",
+        "email": "gerencia.es-ali-centro@gruposazon.example"
+      },
+      "zones": [
+        "Centro",
+        "San Blas",
+        "Playa de San Juan"
+      ],
+      "aliases": [
+        "Alacant"
+      ]
+    },
+    {
+      "location_id": "es-mur-centro",
+      "name": "Sazón Murcia",
+      "city": "Murcia",
+      "region": "murcia",
+      "country": "ES",
+      "timezone": "Europe/Madrid",
+      "address": "Calle Trapería 27, 30001 Murcia",
+      "manager": {
+        "name": "Encarna López",
+        "email": "gerencia.es-mur-centro@gruposazon.example"
+      },
+      "zones": [
+        "Centro",
+        "El Carmen",
+        "Espinardo"
+      ],
+      "aliases": []
+    },
+    {
+      "location_id": "es-pmi-centro",
+      "name": "Sazón Palma",
+      "city": "Palma",
+      "region": "baleares",
+      "country": "ES",
+      "timezone": "Europe/Madrid",
+      "address": "Carrer de Blanquerna 52, 07003 Palma",
+      "manager": {
+        "name": "Margalida Riera",
+        "email": "gerencia.es-pmi-centro@gruposazon.example"
+      },
+      "zones": [
+        "Centro",
+        "Santa Catalina",
+        "Son Armadams"
+      ],
+      "aliases": [
+        "Palma de Mallorca",
+        "Mallorca"
+      ]
+    },
+    {
+      "location_id": "es-lpa-centro",
+      "name": "Sazón Las Palmas",
+      "city": "Las Palmas de Gran Canaria",
+      "region": "canarias",
+      "country": "ES",
+      "timezone": "Atlantic/Canary",
+      "address": "Calle Mesa y López 41, 35010 Las Palmas de Gran Canaria",
+      "manager": {
+        "name": "Yeray Santana",
+        "email": "gerencia.es-lpa-centro@gruposazon.example"
+      },
+      "zones": [
+        "Triana",
+        "Vegueta",
+        "Guanarteme",
+        "Las Canteras"
+      ],
+      "aliases": [
+        "Las Palmas",
+        "Gran Canaria"
+      ]
+    },
+    {
+      "location_id": "es-vll-centro",
+      "name": "Sazón Valladolid",
+      "city": "Valladolid",
+      "region": "castilla y leon",
+      "country": "ES",
+      "timezone": "Europe/Madrid",
+      "address": "Calle de Santiago 22, 47001 Valladolid",
+      "manager": {
+        "name": "Raquel Alonso",
+        "email": "gerencia.es-vll-centro@gruposazon.example"
+      },
+      "zones": [
+        "Centro",
+        "Delicias",
+        "Parquesol"
+      ],
+      "aliases": [
+        "Pucela"
+      ]
+    },
+    {
+      "location_id": "es-gra-centro",
+      "name": "Sazón Granada",
+      "city": "Granada",
+      "region": "andalucia",
+      "country": "ES",
+      "timezone": "Europe/Madrid",
+      "address": "Calle Recogidas 31, 18005 Granada",
+      "manager": {
+        "name": "Inmaculada Torres",
+        "email": "gerencia.es-gra-centro@gruposazon.example"
+      },
+      "zones": [
+        "Centro",
+        "Albaicín",
+        "Zaidín",
+        "Ronda"
+      ],
+      "aliases": [
+        "Albaicin",
+        "Zaidin"
+      ]
+    },
+    {
+      "location_id": "mx-cdmx-bju",
+      "name": "Sazón CDMX Benito Juárez",
+      "city": "Ciudad de México",
+      "region": "ciudad de mexico",
+      "country": "MX",
+      "timezone": "America/Mexico_City",
+      "address": "Av. Insurgentes Sur 1235, Col. Del Valle, 03100 CDMX",
+      "manager": {
+        "name": "Fernanda Ortega",
+        "email": "gerencia.mx-cdmx-bju@gruposazon.example"
+      },
+      "zones": [
+        "Del Valle",
+        "Narvarte",
+        "Nápoles",
+        "Portales",
+        "Mixcoac",
+        "Álamos",
+        "Letrán Valle",
+        "Xoco",
+        "Santa Cruz Atoyac",
+        "Ciudad de los Deportes",
+        "Noche Buena",
+        "San Pedro de los Pinos",
+        "General Anaya",
+        "Villa de Cortés",
+        "Portales Norte",
+        "Portales Sur",
+        "Insurgentes Mixcoac",
+        "Acacias",
+        "Actipan",
+        "Tlacoquemécatl"
+      ],
+      "aliases": [
+        "CDMX",
+        "DF",
+        "Ciudad de Mexico",
+        "Mexico City",
+        "Distrito Federal",
+        "Benito Juarez",
+        "Napoles"
+      ]
+    },
+    {
+      "location_id": "mx-cdmx-cuauh",
+      "name": "Sazón CDMX Cuauhtémoc",
+      "city": "Ciudad de México",
+      "region": "ciudad de mexico",
+      "country": "MX",
+      "timezone": "America/Mexico_City",
+      "address": "Calle Durango 247, Col. Roma Norte, 06700 CDMX",
+      "manager": {
+        "name": "Ricardo Salinas",
+        "email": "gerencia.mx-cdmx-cuauh@gruposazon.example"
+      },
+      "zones": [
+        "Roma",
+        "Condesa",
+        "Juárez",
+        "Centro Histórico",
+        "Santa María la Ribera",
+        "Roma Norte",
+        "Roma Sur",
+        "Hipódromo",
+        "Hipódromo Condesa",
+        "Doctores",
+        "Obrera",
+        "San Rafael",
+        "Tabacalera",
+        "Colonia Guerrero",
+        "Buenavista",
+        "Tlatelolco",
+        "Peralvillo",
+        "Atlampa",
+        "Algarín",
+        "Paulino Navarro",
+        "Vista Alegre",
+        "Valle Gómez"
+      ],
+      "aliases": [
+        "CDMX",
+        "DF",
+        "Ciudad de Mexico",
+        "Mexico City",
+        "Distrito Federal",
+        "Cuauhtemoc",
+        "Roma Norte",
+        "Condesa"
+      ]
+    },
+    {
+      "location_id": "mx-cdmx-coy",
+      "name": "Sazón CDMX Coyoacán",
+      "city": "Ciudad de México",
+      "region": "ciudad de mexico",
+      "country": "MX",
+      "timezone": "America/Mexico_City",
+      "address": "Av. Miguel Ángel de Quevedo 520, Col. Romero de Terreros, 04310 CDMX",
+      "manager": {
+        "name": "Mariana Cruz",
+        "email": "gerencia.mx-cdmx-coy@gruposazon.example"
+      },
+      "zones": [
+        "Coyoacán Centro",
+        "Copilco",
+        "Santo Domingo",
+        "Ciudad Universitaria",
+        "Pedregal de Santo Domingo",
+        "Campestre Churubusco",
+        "Country Club",
+        "Romero de Terreros",
+        "Ciudad Jardín",
+        "Avante",
+        "Educación",
+        "Pedregal de Carrasco",
+        "CTM Culhuacán",
+        "Xotepingo"
+      ],
+      "aliases": [
+        "CDMX",
+        "DF",
+        "Ciudad de Mexico",
+        "Mexico City",
+        "Distrito Federal",
+        "Coyoacan",
+        "CU"
+      ]
+    },
+    {
+      "location_id": "mx-cdmx-mh",
+      "name": "Sazón CDMX Miguel Hidalgo",
+      "city": "Ciudad de México",
+      "region": "ciudad de mexico",
+      "country": "MX",
+      "timezone": "America/Mexico_City",
+      "address": "Av. Presidente Masaryk 318, Col. Polanco, 11560 CDMX",
+      "manager": {
+        "name": "Héctor Bautista",
+        "email": "gerencia.mx-cdmx-mh@gruposazon.example"
+      },
+      "zones": [
+        "Polanco",
+        "Anzures",
+        "Tacubaya",
+        "Escandón",
+        "Lomas de Chapultepec",
+        "Ampliación Granada",
+        "Irrigación",
+        "Tacuba",
+        "Popotla",
+        "San Miguel Chapultepec",
+        "Daniel Garza",
+        "Legaria",
+        "Lomas de Sotelo",
+        "Pensil",
+        "Verónica Anzures"
+      ],
+      "aliases": [
+        "CDMX",
+        "DF",
+        "Ciudad de Mexico",
+        "Mexico City",
+        "Distrito Federal",
+        "Polanco",
+        "Escandon"
+      ]
+    },
+    {
+      "location_id": "mx-cdmx-ao",
+      "name": "Sazón CDMX Álvaro Obregón",
+      "city": "Ciudad de México",
+      "region": "ciudad de mexico",
+      "country": "MX",
+      "timezone": "America/Mexico_City",
+      "address": "Av. Revolución 1580, Col. San Ángel, 01000 CDMX",
+      "manager": {
+        "name": "Gabriela Rangel",
+        "email": "gerencia.mx-cdmx-ao@gruposazon.example"
+      },
+      "zones": [
+        "San Ángel",
+        "Santa Fe",
+        "Olivar de los Padres",
+        "Guadalupe Inn",
+        "Tlacopac",
+        "Merced Gómez",
+        "Jardines del Pedregal",
+        "San Ángel Inn",
+        "Tetelpan",
+        "Molino de Rosas",
+        "Torres de Potrero",
+        "Lomas de Plateros",
+        "Tizapán"
+      ],
+      "aliases": [
+        "CDMX",
+        "DF",
+        "Ciudad de Mexico",
+        "Mexico City",
+        "Distrito Federal",
+        "Alvaro Obregon",
+        "San Angel",
+        "Santa Fe"
+      ]
+    },
+    {
+      "location_id": "mx-cdmx-izt",
+      "name": "Sazón CDMX Iztapalapa",
+      "city": "Ciudad de México",
+      "region": "ciudad de mexico",
+      "country": "MX",
+      "timezone": "America/Mexico_City",
+      "address": "Calz. Ermita Iztapalapa 2140, Col. Constitución de 1917, 09260 CDMX",
+      "manager": {
+        "name": "Arturo Mendoza",
+        "email": "gerencia.mx-cdmx-izt@gruposazon.example"
+      },
+      "zones": [
+        "Iztapalapa Centro",
+        "Santa Cruz Meyehualco",
+        "Ermita",
+        "San Lorenzo Tezonco",
+        "Santa Martha Acatitla",
+        "Cerro de la Estrella",
+        "Escuadrón 201",
+        "Granjas Esmeralda",
+        "Juan Escutia",
+        "Lomas Estrella",
+        "San Miguel Teotongo",
+        "Santa María Aztahuacán",
+        "Ejército de Oriente",
+        "Paraje San Juan"
+      ],
+      "aliases": [
+        "CDMX",
+        "DF",
+        "Ciudad de Mexico",
+        "Mexico City",
+        "Distrito Federal",
+        "Iztapalapa"
+      ]
+    },
+    {
+      "location_id": "mx-cdmx-gam",
+      "name": "Sazón CDMX Gustavo A. Madero",
+      "city": "Ciudad de México",
+      "region": "ciudad de mexico",
+      "country": "MX",
+      "timezone": "America/Mexico_City",
+      "address": "Av. Montevideo 363, Col. Lindavista, 07300 CDMX",
+      "manager": {
+        "name": "Claudia Ibarra",
+        "email": "gerencia.mx-cdmx-gam@gruposazon.example"
+      },
+      "zones": [
+        "Lindavista",
+        "La Villa",
+        "Aragón",
+        "Tepeyac",
+        "Guadalupe Tepeyac",
+        "San Juan de Aragón",
+        "Cuautepec",
+        "Martín Carrera",
+        "Vallejo",
+        "Nueva Atzacoalco",
+        "Bondojito",
+        "Magdalena de las Salinas",
+        "Tepeyac Insurgentes"
+      ],
+      "aliases": [
+        "CDMX",
+        "DF",
+        "Ciudad de Mexico",
+        "Mexico City",
+        "Distrito Federal",
+        "GAM",
+        "Gustavo A Madero",
+        "Lindavista"
+      ]
+    },
+    {
+      "location_id": "mx-cdmx-tlp",
+      "name": "Sazón CDMX Tlalpan",
+      "city": "Ciudad de México",
+      "region": "ciudad de mexico",
+      "country": "MX",
+      "timezone": "America/Mexico_City",
+      "address": "Calz. de Tlalpan 4620, Col. Huipulco, 14370 CDMX",
+      "manager": {
+        "name": "Eduardo Pineda",
+        "email": "gerencia.mx-cdmx-tlp@gruposazon.example"
+      },
+      "zones": [
+        "Tlalpan Centro",
+        "Coapa",
+        "Villa Coapa",
+        "Pedregal de San Nicolás",
+        "Isidro Fabela",
+        "Toriello Guerra",
+        "Héroes de Padierna",
+        "Fuentes del Pedregal",
+        "San Pedro Mártir",
+        "Santa Úrsula Xitla",
+        "Huipulco",
+        "Granjas Coapa",
+        "Lomas de Padierna",
+        "Peña Pobre",
+        "San Miguel Ajusco",
+        "Ajusco Medio"
+      ],
+      "aliases": [
+        "CDMX",
+        "DF",
+        "Ciudad de Mexico",
+        "Mexico City",
+        "Distrito Federal",
+        "Tlalpan",
+        "Coapa"
+      ]
+    },
+    {
+      "location_id": "mx-mex-naucalpan",
+      "name": "Sazón Naucalpan",
+      "city": "Naucalpan de Juárez",
+      "region": "estado de mexico",
+      "country": "MX",
+      "timezone": "America/Mexico_City",
+      "address": "Blvd. Manuel Ávila Camacho 1007, Satélite, 53100 Naucalpan",
+      "manager": {
+        "name": "Lorena Valdez",
+        "email": "gerencia.mx-mex-naucalpan@gruposazon.example"
+      },
+      "zones": [
+        "Satélite",
+        "Echegaray",
+        "Lomas Verdes"
+      ],
+      "aliases": [
+        "Naucalpan",
+        "Satelite",
+        "Ciudad Satelite",
+        "Edomex"
+      ]
+    },
+    {
+      "location_id": "mx-gdl-centro",
+      "name": "Sazón Guadalajara",
+      "city": "Guadalajara",
+      "region": "jalisco",
+      "country": "MX",
+      "timezone": "America/Mexico_City",
+      "address": "Av. Juárez 638, Col. Centro, 44100 Guadalajara",
+      "manager": {
+        "name": "Jaime Orozco",
+        "email": "gerencia.mx-gdl-centro@gruposazon.example"
+      },
+      "zones": [
+        "Centro",
+        "Americana",
+        "Providencia",
+        "Chapultepec"
+      ],
+      "aliases": [
+        "GDL",
+        "Guadalajara Jalisco"
+      ]
+    },
+    {
+      "location_id": "mx-gdl-zapopan",
+      "name": "Sazón Zapopan",
+      "city": "Zapopan",
+      "region": "jalisco",
+      "country": "MX",
+      "timezone": "America/Mexico_City",
+      "address": "Av. Patria 1200, Col. Jardines Universidad, 45110 Zapopan",
+      "manager": {
+        "name": "Patricia Medina",
+        "email": "gerencia.mx-gdl-zapopan@gruposazon.example"
+      },
+      "zones": [
+        "Andares",
+        "Ciudad Granja",
+        "Real Center",
+        "Las Águilas"
+      ],
+      "aliases": [
+        "GDL",
+        "Andares",
+        "Las Aguilas"
+      ]
+    },
+    {
+      "location_id": "mx-gdl-tlaquepaque",
+      "name": "Sazón Tlaquepaque",
+      "city": "San Pedro Tlaquepaque",
+      "region": "jalisco",
+      "country": "MX",
+      "timezone": "America/Mexico_City",
+      "address": "Av. Niños Héroes 2390, Col. Centro, 45500 Tlaquepaque",
+      "manager": {
+        "name": "Rodrigo Treviño",
+        "email": "gerencia.mx-gdl-tlaquepaque@gruposazon.example"
+      },
+      "zones": [
+        "Centro",
+        "Santa María Tequepexpan",
+        "Las Juntas"
+      ],
+      "aliases": [
+        "Tlaquepaque",
+        "GDL"
+      ]
+    },
+    {
+      "location_id": "mx-mty-centro",
+      "name": "Sazón Monterrey",
+      "city": "Monterrey",
+      "region": "nuevo leon",
+      "country": "MX",
+      "timezone": "America/Monterrey",
+      "address": "Av. Benito Juárez 905, Col. Centro, 64000 Monterrey",
+      "manager": {
+        "name": "Sofía Elizondo",
+        "email": "gerencia.mx-mty-centro@gruposazon.example"
+      },
+      "zones": [
+        "Centro",
+        "Obispado",
+        "Cumbres",
+        "Mitras"
+      ],
+      "aliases": [
+        "MTY",
+        "Monterrey Nuevo Leon",
+        "Monterrey NL"
+      ]
+    },
+    {
+      "location_id": "mx-mty-sanpedro",
+      "name": "Sazón San Pedro Garza García",
+      "city": "San Pedro Garza García",
+      "region": "nuevo leon",
+      "country": "MX",
+      "timezone": "America/Monterrey",
+      "address": "Calz. del Valle 409, Col. Del Valle, 66220 San Pedro Garza García",
+      "manager": {
+        "name": "Ramiro Cantú",
+        "email": "gerencia.mx-mty-sanpedro@gruposazon.example"
+      },
+      "zones": [
+        "Valle Oriente",
+        "Del Valle",
+        "Centrito Valle"
+      ],
+      "aliases": [
+        "San Pedro",
+        "San Pedro Garza Garcia",
+        "SPGG",
+        "MTY"
+      ]
+    },
+    {
+      "location_id": "mx-mty-guadalupe",
+      "name": "Sazón Guadalupe",
+      "city": "Guadalupe",
+      "region": "nuevo leon",
+      "country": "MX",
+      "timezone": "America/Monterrey",
+      "address": "Av. Pablo Livas 2300, Col. Rincón de la Sierra, 67190 Guadalupe",
+      "manager": {
+        "name": "Verónica Aguilar",
+        "email": "gerencia.mx-mty-guadalupe@gruposazon.example"
+      },
+      "zones": [
+        "Linda Vista",
+        "Contry",
+        "Centro"
+      ],
+      "aliases": [
+        "Guadalupe Nuevo Leon",
+        "Guadalupe NL",
+        "MTY"
+      ]
+    },
+    {
+      "location_id": "mx-pue-centro",
+      "name": "Sazón Puebla",
+      "city": "Puebla",
+      "region": "puebla",
+      "country": "MX",
+      "timezone": "America/Mexico_City",
+      "address": "Av. Juárez 2915, Col. La Paz, 72160 Puebla",
+      "manager": {
+        "name": "Armando Olvera",
+        "email": "gerencia.mx-pue-centro@gruposazon.example"
+      },
+      "zones": [
+        "Centro Histórico",
+        "Angelópolis",
+        "La Paz",
+        "Cholula"
+      ],
+      "aliases": [
+        "Puebla de Zaragoza",
+        "Angelopolis"
+      ]
+    },
+    {
+      "location_id": "mx-qro-centro",
+      "name": "Sazón Querétaro",
+      "city": "Santiago de Querétaro",
+      "region": "queretaro",
+      "country": "MX",
+      "timezone": "America/Mexico_City",
+      "address": "Av. Zaragoza 112, Col. Centro, 76000 Querétaro",
+      "manager": {
+        "name": "Itzel Canul",
+        "email": "gerencia.mx-qro-centro@gruposazon.example"
+      },
+      "zones": [
+        "Centro",
+        "Juriquilla",
+        "El Refugio"
+      ],
+      "aliases": [
+        "Queretaro",
+        "Querétaro",
+        "QRO"
+      ]
+    },
+    {
+      "location_id": "mx-mid-centro",
+      "name": "Sazón Mérida",
+      "city": "Mérida",
+      "region": "yucatan",
+      "country": "MX",
+      "timezone": "America/Merida",
+      "address": "Calle 60 No. 355, Col. Centro, 97000 Mérida",
+      "manager": {
+        "name": "Mónica Esparza",
+        "email": "gerencia.mx-mid-centro@gruposazon.example"
+      },
+      "zones": [
+        "Centro",
+        "García Ginerés",
+        "Altabrisa",
+        "Montejo"
+      ],
+      "aliases": [
+        "Merida",
+        "Merida Yucatan"
+      ]
+    },
+    {
+      "location_id": "mx-leo-centro",
+      "name": "Sazón León",
+      "city": "León",
+      "region": "guanajuato",
+      "country": "MX",
+      "timezone": "America/Mexico_City",
+      "address": "Blvd. Adolfo López Mateos 1810, Col. Jardines del Moral, 37160 León",
+      "manager": {
+        "name": "Iván Zamora",
+        "email": "gerencia.mx-leo-centro@gruposazon.example"
+      },
+      "zones": [
+        "Centro",
+        "El Campestre",
+        "Jardines del Moral"
+      ],
+      "aliases": [
+        "Leon",
+        "Leon Guanajuato"
+      ]
+    },
+    {
+      "location_id": "mx-tij-centro",
+      "name": "Sazón Tijuana",
+      "city": "Tijuana",
+      "region": "baja california",
+      "country": "MX",
+      "timezone": "America/Tijuana",
+      "address": "Av. Revolución 1120, Zona Centro, 22000 Tijuana",
+      "manager": {
+        "name": "Karla Pacheco",
+        "email": "gerencia.mx-tij-centro@gruposazon.example"
+      },
+      "zones": [
+        "Zona Río",
+        "Otay",
+        "Playas de Tijuana"
+      ],
+      "aliases": [
+        "TJ",
+        "Tijuas",
+        "Zona Rio"
+      ]
+    },
+    {
+      "location_id": "mx-cun-centro",
+      "name": "Sazón Cancún",
+      "city": "Cancún",
+      "region": "quintana roo",
+      "country": "MX",
+      "timezone": "America/Cancun",
+      "address": "Av. Tulum 230, SM 4, 77500 Cancún",
+      "manager": {
+        "name": "Óscar Mejía",
+        "email": "gerencia.mx-cun-centro@gruposazon.example"
+      },
+      "zones": [
+        "Centro",
+        "Zona Hotelera",
+        "Malecón Tajamar"
+      ],
+      "aliases": [
+        "Cancun"
+      ]
+    },
+    {
+      "location_id": "mx-tol-centro",
+      "name": "Sazón Toluca",
+      "city": "Toluca",
+      "region": "estado de mexico",
+      "country": "MX",
+      "timezone": "America/Mexico_City",
+      "address": "Av. Hidalgo Poniente 410, Col. Centro, 50000 Toluca",
+      "manager": {
+        "name": "Rebeca Saucedo",
+        "email": "gerencia.mx-tol-centro@gruposazon.example"
+      },
+      "zones": [
+        "Centro",
+        "Metepec",
+        "San Buenaventura"
+      ],
+      "aliases": [
+        "Toluca de Lerdo",
+        "Metepec"
+      ]
+    },
+    {
+      "location_id": "mx-ags-centro",
+      "name": "Sazón Aguascalientes",
+      "city": "Aguascalientes",
+      "region": "aguascalientes",
+      "country": "MX",
+      "timezone": "America/Mexico_City",
+      "address": "Av. Madero 325, Zona Centro, 20000 Aguascalientes",
+      "manager": {
+        "name": "Joaquín Palacios",
+        "email": "gerencia.mx-ags-centro@gruposazon.example"
+      },
+      "zones": [
+        "Centro",
+        "Bosques del Prado",
+        "Ojocaliente"
+      ],
+      "aliases": [
+        "Ags",
+        "Aguas"
+      ]
+    },
+    {
+      "location_id": "mx-slp-centro",
+      "name": "Sazón San Luis Potosí",
+      "city": "San Luis Potosí",
+      "region": "san luis potosi",
+      "country": "MX",
+      "timezone": "America/Mexico_City",
+      "address": "Av. Venustiano Carranza 1450, Col. Tequisquiapan, 78250 San Luis Potosí",
+      "manager": {
+        "name": "Alma Durazo",
+        "email": "gerencia.mx-slp-centro@gruposazon.example"
+      },
+      "zones": [
+        "Centro",
+        "Lomas",
+        "Tequisquiapan"
+      ],
+      "aliases": [
+        "San Luis Potosi",
+        "SLP"
+      ]
+    },
+    {
+      "location_id": "mx-hmo-centro",
+      "name": "Sazón Hermosillo",
+      "city": "Hermosillo",
+      "region": "sonora",
+      "country": "MX",
+      "timezone": "America/Hermosillo",
+      "address": "Blvd. Kino 504, Col. Pitic, 83150 Hermosillo",
+      "manager": {
+        "name": "Tomás Villarreal",
+        "email": "gerencia.mx-hmo-centro@gruposazon.example"
+      },
+      "zones": [
+        "Centro",
+        "Pitic",
+        "Villa de Seris"
+      ],
+      "aliases": [
+        "HMO"
+      ]
+    }
+  ]
+}

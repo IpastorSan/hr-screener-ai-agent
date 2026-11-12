@@ -1,0 +1,22 @@
+[Unit]
+Description=Sazón daily upkeep: retention purge, calendar events and channels, trace retention
+Wants=docker.service
+After=docker.service
+
+[Service]
+Type=oneshot
+WorkingDirectory=/opt/sazon
+StandardInput=null
+# Delete applications idle for longer than RETENTION_DAYS (the privacy notice's 12 months).
+# "-": purge exits 1 when Google refuses a calendar delete; that must not skip the jobs below,
+# and sync-events is the one that retries those deletes.
+ExecStart=-/usr/bin/docker compose exec -T api sazon purge
+# Create calendar events a Google outage left out and retry refused deletes
+# (SCHEDULING_SOURCE=google; no-op otherwise).
+ExecStart=-/usr/bin/docker compose exec -T api sazon sync-events
+# Replace Google Calendar push channels expiring within 48 hours (SAZ-40; needs PUBLIC_URL).
+# "-": a failure must not skip the trace retention below; the sazon-calendar-channels alert
+# reports it instead.
+ExecStart=-/usr/bin/docker compose exec -T api sazon calendar-watch renew
+# Delete Langfuse traces older than 30 days (no-op without the observability stack).
+ExecStart=/opt/sazon/langfuse-retention.sh

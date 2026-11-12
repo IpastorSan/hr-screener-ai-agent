@@ -1,0 +1,130 @@
+# What the teacher agent calls things, by language (`es`, `en`): the fields and their options on
+# the summary card and for recruiters, and the recruiters' dashboard, in Spanish. A credential's
+# `readings` are the words that read as each answer but yes and no, as regexes on folded text.
+fields:
+  full_name:
+    label: {es: Nombre, en: Name}
+  phone:
+    label: {es: Teléfono, en: Phone}
+  email:
+    label: {es: Email, en: Email}
+  levels:
+    label: {es: Etapas, en: Stages}
+    option_labels:
+      es: {infantil: Infantil, primaria: Primaria, eso: ESO, bachillerato: Bachillerato, fp: FP}
+      en: {infantil: Early years, primaria: Primary, eso: Secondary (ESO), bachillerato: Bachillerato,
+        fp: Vocational (FP)}
+  subjects:
+    label: {es: Materias, en: Subjects}
+    option_labels:
+      es:
+        matematicas: Matemáticas
+        lengua: Lengua y Literatura
+        ingles: Inglés
+        fisica_quimica: Física y Química
+        biologia: Biología y Geología
+        geografia_historia: Geografía e Historia
+        educacion_fisica: Educación Física
+        musica: Música
+        tecnologia: Tecnología
+        other: Otra
+      en:
+        matematicas: Maths
+        lengua: Spanish Language and Literature
+        ingles: English
+        fisica_quimica: Physics and Chemistry
+        biologia: Biology and Geology
+        geografia_historia: Geography and History
+        educacion_fisica: Physical Education
+        musica: Music
+        tecnologia: Technology
+        other: Other
+  grado_maestro:
+    label: {es: Grado en Maestro, en: Teaching degree}
+    readings:
+      in_progress:
+        - 'lo estoy (?:estudiando|cursando|terminando|acabando)'
+        - 'estoy en (?:\w+ )?(?:curso|ano)'
+        - '(?:me )?faltan? (?:el tfg|asignaturas|las practicas|un curso)'
+        - en curso
+        - still studying
+        - 'in my (?:\w+ )?year'
+      not_valid: &unrecognised
+        - 'no (?:esta )?homologad[oa]'
+        - sin homologar
+        - pendiente de homologacion
+        - not recognised
+  master_profesorado:
+    label: {es: Máster de Profesorado, en: Teacher training master's}
+    readings:
+      in_progress:
+        - 'lo estoy (?:estudiando|cursando|haciendo|terminando|acabando)'
+        - '(?:me )?faltan? (?:el tfm|las practicas|asignaturas)'
+        - 'matriculad[oa]'
+        - en curso
+        - doing it now
+        - still studying
+      not_valid: *unrecognised
+  certificado_delitos_sexuales:
+    label: {es: Certificado de delitos sexuales, en: Sex offenders register certificate}
+    option_labels:
+      es: {in_progress: En trámite}
+      en: {in_progress: Being requested}
+    readings:
+      # It takes minutes online with Cl@ve: "todavía no" is one being requested, not a no.
+      in_progress:
+        - 'lo (?:pido|saco|solicito|tramito)'
+        - 'lo estoy (?:pidiendo|sacando|tramitando|solicitando)'
+        - '(?:lo )?he (?:pedido|solicitado)'
+        - todavia no
+        - aun no
+        - en tramite
+        - pendiente
+        - not yet
+        - applied for it
+        - requesting it
+      not_valid:
+        - 'caducad[oa]'
+        - expired
+        - out of date
+  english_c1:
+    label: {es: Inglés C1, en: English C1}
+  campus:
+    label: {es: Sede, en: Campus}
+  workload:
+    label: {es: Jornada, en: Workload}
+    option_labels:
+      es: {jornada_completa: Jornada completa, media_jornada: Media jornada, sustituciones: Sustituciones}
+      en: {jornada_completa: Full time, media_jornada: Part time, sustituciones: Cover work}
+  experience_years:
+    label: {es: Experiencia, en: Experience}
+  start_date:
+    label: {es: Incorporación, en: Start date}
+dashboard:
+  steps:
+    contact: Contacto
+    credentials: Titulación
+    certificate: Certificado
+# The words that name each field in "mi email está mal", "quiero cambiar la sede": regexes on
+# folded text, tried field by field in this order. The interview's own words come before them.
+fix_words:
+  experience_years: ['experiencia', '(?:numero de )?anos(?: de experiencia)?', 'experience']
+  start_date: ['fecha(?: de (?:inicio|incorporacion))?', 'incorporacion', 'start(?:ing)? date']
+  levels: ['etapas?', 'niveles?', 'cursos', 'stages?', 'levels?']
+  subjects: ['materias?', 'asignaturas?', 'especialidad', 'subjects?']
+  workload: ['jornada', 'sustituciones', 'workload', 'hours']
+  grado_maestro: ['grado(?: en maestro)?', 'magisterio', 'teaching degree']
+  master_profesorado: ['master', 'cap', 'teacher training']
+  certificado_delitos_sexuales: ['certificado(?: de delitos)?', 'delitos sexuales', 'certificate']
+  english_c1: ['ingles', 'english', 'c1']
+  email: ['correo(?: electronico)?', '(?:e ?)?mail(?: address)?']
+  phone: ['telefono', 'movil', 'numero(?: de (?:telefono|movil))?', 'phone(?: number)?', 'mobile']
+  full_name: ['nombre(?: completo)?', 'apellidos?', '(?:full |last |sur)?name']
+  campus: ['sede', 'campus', 'colegio', 'centro']
+# Who runs the interview, as every reply that offers or confirms one must name them: the head of
+# studies of the campus in person, the head of the candidate's department by video.
+interviewers:
+  onsite: ['jefatura de estudios', 'jefe de estudios', 'jefa de estudios', 'head of studies']
+  video: ['jefatura de (?:tu )?departamento', 'jef[ea] de departamento', 'head of (?:your )?department']
+# A zone said and the campus it belongs to, on the summary card: "Somosaguas · sede de Pozuelo".
+place_label: {es: '{place} · sede de {location}', en: '{place} · {location} campus'}
