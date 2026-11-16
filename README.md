@@ -1,6 +1,6 @@
-# Sazón Screener
+# HR Screener for a restaurant group
 
-Ana screens delivery-driver applicants for Grupo Sazón, a fictional restaurant chain with kitchens in Spain and Mexico. A candidate opens the chat from the job posting, in a panel beside the ad, or talks to her by voice, in Spanish, English or a mix of both. In about three minutes she collects what recruiters need to know, closes kindly when someone doesn't qualify, and books an interview when they do: by video with one of the central recruiters, on their calendar with a Google Meet link, or in person with the location's manager, invited from an organizer account and never on a recruiter's calendar. Recruiters get a dashboard with every candidate, a summary of each conversation, analytics, and an assistant that answers questions about the pipeline.
+Ana is an AI Agent that screens delivery-driver applicants for Grupo Sazón, a fictional restaurant chain with kitchens in Spain and Mexico. A candidate opens the chat from the job posting, in a panel beside the ad, or talks to her by voice, in Spanish, English or a mix of both. In about three minutes she collects what recruiters need to know, closes kindly when someone doesn't qualify, and books an interview when they do: by video with one of the central recruiters, on their calendar with a Google Meet link, or in person with the location's manager, invited from an organizer account and never on a recruiter's calendar. Recruiters get a dashboard with every candidate, a summary of each conversation, analytics, and an assistant that answers questions about the pipeline.
 
 ![A candidate applies from the job posting and books a video interview](docs/screenshots/demo.gif)
 
